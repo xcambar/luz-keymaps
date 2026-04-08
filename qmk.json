@@ -3,6 +3,7 @@
     "build_targets": [
         ["kaly/kaly42", "crafted"],
         ["kaly/kaly42", "zen"],
+        ["kaly/kaly42", "unified"],
         ["42keebs/cantor_pro/v3/left", "crafted"],
         ["42keebs/cantor_pro/v3/right", "crafted"],
         ["42keebs/cantor_pro/v3/left", "zen"]
