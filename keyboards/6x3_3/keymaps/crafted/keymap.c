@@ -185,14 +185,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *               └───┤OSf├───┐   ┌───┤OSf├───┘
       *                   └───┤   │   │NAV├───┘
       *                       └───┘   └───┘
-      * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window, OSf=Oneshot Shift, NAV=TG(NAV)
+      * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window, OSf=Oneshot Shift, NAV=MO(NAV)
       * Alt/Gui/Ctl are oneshot modifiers
       */
     [FAVS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_ESC,  OS_ALT,  OS_GUI,  OS_CTRL, MM_GUICTRL, SW_WIN,                          KC_NO,   KC_NO,   KC_ENT,  KC_NO,   KC_NO,   KC_DEL,
         KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                            KC_NO,   OS_SHFT, KC_NO,                  TO(NAV), OS_SHFT, KC_NO
+                                            KC_NO,   OS_SHFT, KC_NO,                  MO(NAV), OS_SHFT, KC_NO
     ),
      /*
       * Navigation Layer - Arrow keys and navigation

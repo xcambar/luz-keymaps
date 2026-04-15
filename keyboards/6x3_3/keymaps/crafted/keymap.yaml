@@ -83,7 +83,7 @@ layers:
                   type: modifier,
               },
               "",
-              { t: $$mdi:layers-outline$$, h: NAV (TG), type: layer },
+              { t: $$mdi:layers-outline$$, h: NAV (MO), type: layer },
               {
                   t: $$mdi:apple-keyboard-shift$$,
                   h: "Oneshot Shift",
