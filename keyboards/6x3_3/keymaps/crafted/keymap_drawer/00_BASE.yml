@@ -3,31 +3,31 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    "Base (default)":
-        - ["", "", W, E, R, T, Y, U, I, O, "", ""]
+    "Base (Gallium East)":
+        - ["", "", L, C, D, V, J, F, O, U, "", ""]
         - [
               { t: $$mdi:keyboard-tab$$, type: nav },
-              A,
+              N,
+              R,
               S,
-              D,
-              F,
+              T,
               G,
+              Y,
               H,
-              J,
-              K,
-              L,
-              { t: "'", s: '"', type: symbol },
+              E,
+              A,
+              I,
               { t: $$mdi:backspace-outline$$, type: editing },
           ]
         - [
               "",
-              Z,
               X,
-              C,
-              V,
-              "",
-              "",
+              Q,
+              W,
               M,
+              "",
+              "",
+              P,
               { t: ",", s: "?", type: symbol },
               { t: ".", s: "!", type: symbol },
               { t: "-", s: "/", type: symbol },
@@ -44,25 +44,25 @@ layers:
 
 combos:
     - key_positions: [2, 3]
-      key: Q
-      layers:
-          - "Base (default)"
-    - key_positions: [8, 9]
-      key: P
-      layers:
-          - "Base (default)"
-    - key_positions: [27, 28]
       key: B
       layers:
-          - "Base (default)"
-    - key_positions: [31, 32]
-      key: N
+          - "Base (Gallium East)"
+    - key_positions: [8, 9]
+      key: { t: "'", s: '"', type: symbol }
       layers:
-          - "Base (default)"
+          - "Base (Gallium East)"
+    - key_positions: [27, 28]
+      key: Z
+      layers:
+          - "Base (Gallium East)"
+    - key_positions: [31, 32]
+      key: K
+      layers:
+          - "Base (Gallium East)"
     - key_positions: [12, 23]
       key: QK_BOOT (Tab+Bsp)
       layers:
-          - "Base (default)"
+          - "Base (Gallium East)"
 
 draw_config:
     key_h: 60

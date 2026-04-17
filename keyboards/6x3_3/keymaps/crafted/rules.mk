@@ -27,11 +27,10 @@ SRC += features/alt_symbols_layer.c
 #
 
 # Layout selection: qwerty, gallium, focal, graphite, or radial
-XC_LAYOUT ?= qwerty
+XC_LAYOUT ?=gallium_east
 
 # Secondary (alternate base) layout: qwerty, gallium, focal, graphite, or gallium_east
-XC_SECONDARY_LAYOUT ?= gallium_east
-
+XC_SECONDARY_LAYOUT ?= qwerty
 XC_WEAK_CORNERS = yes
 
 # Alternative symbols for the base layer

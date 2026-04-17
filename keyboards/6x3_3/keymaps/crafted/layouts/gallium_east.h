@@ -20,7 +20,7 @@
 
 #ifdef XC_WEAK_CORNERS
     #define WC_OUT_01 KC_B
-    #define WC_OUT_10 KC_COMM
+    #define WC_OUT_10 KC_QUOT
     #define WC_OUT_29 KC_Z
     #define WC_OUT_30 KC_K
 #endif
