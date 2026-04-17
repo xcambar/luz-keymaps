@@ -3,29 +3,42 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    NAV_FASTEST:
+    SYMBOLS:
         - ["", "", "", "", "", "", "", "", "", "", "", ""]
+        - [
+              { t: $$mdi:layers$$, h: Base, type: layer },
+              { t: "1", s: "@", type: symbol },
+              { t: "2", s: "$", type: symbol },
+              { t: "3", s: "%", type: symbol },
+              { t: "4", s: "#", type: symbol },
+              { t: "5", s: "&", type: symbol },
+              { t: "6", s: "+", type: symbol },
+              { t: "7", s: "=", type: symbol },
+              { t: "8", s: "*", type: symbol },
+              { t: "9", s: "_", type: symbol },
+              { t: "0", s: "`", type: symbol },
+              { t: $$mdi:backspace-outline$$, type: editing },
+          ]
         - [
               "",
               "",
+              { t: "\\", s: "^", type: symbol },
+              { t: "(", s: "<", type: symbol },
+              { t: "{", s: "[", type: symbol },
               "",
               "",
-              "",
-              "",
-              { t: "Line←", h: "Line Begin", type: nav },
-              { t: "Doc↓", h: "Document End", type: nav },
-              { t: "Doc↑", h: "Document Begin", type: nav },
-              { t: "Line→", h: "Line End", type: nav },
-              "",
+              { t: "}", s: "]", type: symbol },
+              { t: ")", s: ">", type: symbol },
+              { t: ":", s: ";", type: symbol },
+              { t: "|", s: "~", type: symbol },
               "",
           ]
-        - ["", "", "", "", "", "", "", "", "", "", "", ""]
         - [
               "",
               { t: $$mdi:apple-keyboard-shift$$, type: modifier },
-              { t: $$mdi:layers$$, h: "To Base", type: layer },
-              { t: $$mdi:layers$$, h: "To Base", type: layer },
-              { t: $$mdi:apple-keyboard-shift$$, type: modifier },
+              "",
+              "",
+              "",
               "",
           ]
 

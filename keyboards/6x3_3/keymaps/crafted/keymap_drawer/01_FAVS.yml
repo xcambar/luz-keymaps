@@ -4,7 +4,20 @@ layout:
 
 layers:
     FAVS:
-        - ["", "", "", "", "", "", "", "", "", "", "", ""]
+        - [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              { t: "L←", type: nav },
+              { t: "D↓", type: nav },
+              { t: "D↑", type: nav },
+              { t: "L→", type: nav },
+              "",
+              "",
+          ]
         - [
               { t: $$mdi:keyboard-esc$$, type: editing },
               { t: LAlt, type: modifier },
@@ -12,11 +25,11 @@ layers:
               { t: $$mdi:apple-keyboard-control$$, type: modifier },
               { t: $$mdi:star-four-points-box$$, type: modifier },
               { t: $$mdi:swap-horizontal$$, type: system },
-              "",
-              "",
+              { t: $$mdi:arrow-left$$, type: nav },
+              { t: $$mdi:arrow-down$$, type: nav },
+              { t: $$mdi:arrow-up$$, type: nav },
+              { t: $$mdi:arrow-right$$, type: nav },
               { t: $$mdi:keyboard-return$$, type: editing },
-              "",
-              "",
               { t: Del, type: editing },
           ]
         - [
@@ -26,10 +39,10 @@ layers:
               { t: Copy, type: system },
               { t: Paste, type: system },
               "",
-              "",
-              "",
-              "",
-              "",
+              { t: "W←", type: nav },
+              { t: PgDn, type: nav },
+              { t: PgUp, type: nav },
+              { t: "W→", type: nav },
               "",
               "",
           ]
@@ -41,12 +54,8 @@ layers:
                   type: modifier,
               },
               "",
-              { t: $$mdi:layers-outline$$, h: NAV (MO), type: layer },
-              {
-                  t: $$mdi:apple-keyboard-shift$$,
-                  h: "Oneshot Shift",
-                  type: modifier,
-              },
+              "",
+              { t: $$mdi:apple-keyboard-shift$$, type: modifier },
               "",
           ]
 

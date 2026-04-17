@@ -41,10 +41,17 @@ xxxxXx   xXxxxx
      Xx xX 
 ```
 
-
-![Keymap Layout](./keyboards/6x3_3/keymaps/crafted/keymap.png)
-
 It is quite feature-rich and opinionated, with an emphasis on **short finger travel**, **platform independence**, and **semantics over shortcuts**. Instead of memorizing different shortcuts for each platform, you use semantic commands that translate to the correct keystroke(s) for your current OS.
+
+#### The keymap
+
+<!-- KEYMAP DRAWER><-->
+![BASE Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.png)
+![FAVS Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_FAVS.png)
+![SYMBOLS Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_SYMBOLS.png)
+![ACCENTS Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ACCENTS.png)
+<!-- END KEYMAP DRAWER><-->
+
 
 #### Ergonomics
 

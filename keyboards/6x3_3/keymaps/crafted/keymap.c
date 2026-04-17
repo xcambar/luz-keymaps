@@ -47,9 +47,6 @@ enum layers {
     BASE = 0,
     BASE_ALT,
     FAVS,
-    NAV,
-    NAV_FASTER,
-    NAV_FASTEST,
     SYMBOLS
 };
 
@@ -172,93 +169,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_NO,   SFT_LEAD, MO(FAVS),               MO(SYMBOLS), KC_SPC,  KC_NO
     ),
      /*
-      * FAVS Layer (Layer 2) - Favorite shortcuts and modifiers
+      * FAVS Layer (Layer 2) - Favorite shortcuts, modifiers and navigation
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
+      * │   │   │   │   │   │   │       │L← │D↓ │D↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│Alt│Gui│Ctl│G/C│SWn│       │   │   │Ent│   │   │Del│
+      * │Esc│Alt│Gui│Ctl│G/C│SWn│       │ ← │ ↓ │ ↑ │ → │Ent│Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │Udo│Cut│Cpy│Pst│   │       │   │   │   │   │   │   │
+      * │   │Udo│Cut│Cpy│Pst│   │       │W← │PgD│PgU│W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
       *               │   ├───┐           ┌───┤   │
-      *               └───┤OSf├───┐   ┌───┤OSf├───┘
-      *                   └───┤   │   │NAV├───┘
+      *               └───┤OSf├───┐   ┌───┤Sft├───┘
+      *                   └───┤   │   │   ├───┘
       *                       └───┘   └───┘
-      * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window, OSf=Oneshot Shift, NAV=MO(NAV)
+      * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window, OSf=Oneshot Shift
+      * L←=Line Begin, L→=Line End, D↑=Doc Begin, D↓=Doc End
+      * W←=Word Left, W→=Word Right
       * Alt/Gui/Ctl are oneshot modifiers
       */
     [FAVS] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        KC_ESC,  OS_ALT,  OS_GUI,  OS_CTRL, MM_GUICTRL, SW_WIN,                          KC_NO,   KC_NO,   KC_ENT,  KC_NO,   KC_NO,   KC_DEL,
-        KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                            KC_NO,   OS_SHFT, KC_NO,                  MO(NAV), OS_SHFT, KC_NO
-    ),
-     /*
-      * Navigation Layer - Arrow keys and navigation
-      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │C-A│       │   │   │   │   │   │   │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │#BS│   │   │NFa│NF+│   │       │ ← │ ↓ │ ↑ │ → │   │   │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
-      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      *               ┌───┐                   ┌───┐
-      *               │   ├───┐           ┌───┤   │
-      *               └───┤Sft├───┐   ┌───┤Sft├───┘
-      *                   └───┤#BS│   │#BS├───┘
-      *                       └───┘   └───┘
-      * #BS=To Base, C-A=Select All, NF+=NAV_FASTER, NFa=NAV_FASTEST
-      */
-    [NAV] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   SK_SALL,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        TO(BASE), KC_NO,   KC_NO,   MO(NAV_FASTEST), MO(NAV_FASTER), KC_NO,              KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                            KC_NO,   KC_LSFT, TO(BASE),          TO(BASE), KC_LSFT, KC_NO
-    ),
-     /*
-      * Navigation Faster Layer - Word and page navigation
-      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │W← │PgD│PgU│W→ │   │   │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
-      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      *               ┌───┐                   ┌───┐
-      *               │   ├───┐           ┌───┤   │
-      *               └───┤Sft├───┐   ┌───┤Sft├───┘
-      *                   └───┤#BS│   │#BS├───┘
-      *                       └───┘   └───┘
-      * W←=Word Left, W→=Word Right, #BS=To Base
-      */
-    [NAV_FASTER] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   MO(NAV_FASTEST),   KC_NO,   KC_NO,                    SK_WORDPRV, KC_PGDN, KC_PGUP, SK_WORDNXT, KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                            KC_NO,   KC_LSFT, TO(BASE),          TO(BASE), KC_LSFT, KC_NO
-    ),
-     /*
-      * Navigation Fastest Layer - Document and line navigation
-      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │L← │D↓ │D↑ │L→ │   │   │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
-      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      *               ┌───┐                   ┌───┐
-      *               │   ├───┐           ┌───┤   │
-      *               └───┤Sft├───┐   ┌───┤Sft├───┘
-      *                   └───┤#BS│   │#BS├───┘
-      *                       └───┘   └───┘
-      * L←=Line Begin, L→=Line End, D↑=Doc Begin, D↓=Doc End, #BS=To Base
-      */
-    [NAV_FASTEST] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              SK_LINEBEG, SK_DOCEND, SK_DOCBEG, SK_LINEEND, KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                            KC_NO,   KC_LSFT, TO(BASE),          TO(BASE), KC_LSFT, KC_NO
+        KC_ESC,  OS_ALT,  OS_GUI,  OS_CTRL, MM_GUICTRL, SW_WIN,                          KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT,  KC_DEL,
+        KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              SK_WORDPRV, KC_PGDN, KC_PGUP, SK_WORDNXT, KC_NO,   KC_NO,
+                                            KC_NO,   OS_SHFT, KC_NO,                  KC_NO,   KC_LSFT, KC_NO
     ),
      /*
       * Layer 3 - Symbols
@@ -282,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,     KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,     KC_NO,    KC_NO,    KC_NO,
         TO(BASE),  SL_1,     SL_2,     SL_3,     SL_4,    SL_5,                               SL_6,    SL_7,    KC_8,  SL_9,     SL_0,     KC_BSPC,
         KC_NO,     KC_NO,    SL_BSLS,  SL_LPRN,  SL_LBRC, KC_NO,                              KC_NO,   SL_RBRC, SL_RPRN,  SL_SCLN,  SL_TILD,  KC_NO,
-                                                  KC_NO,   KC_LSFT, KC_NO,                  QK_LAYER_LOCK,   KC_LSFT, KC_NO
+                                                  KC_NO,   KC_LSFT, KC_NO,                  KC_NO,   KC_NO,   KC_NO
     )
 };
 
@@ -367,9 +300,6 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
         case KC_RALT:
         case KC_LGUI:
         case KC_RGUI:
-        case MO(NAV):
-        case MO(NAV_FASTER):
-        case MO(NAV_FASTEST):
         case MO(FAVS):
         case MO(SYMBOLS):
         case QK_LAYER_LOCK:
