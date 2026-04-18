@@ -148,15 +148,13 @@ path.combo {
 <g transform="translate(90, 45)" class="key keypos-1">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
-<g transform="translate(150, 38)" class="key accent keypos-2">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
-<text x="0" y="0" class="key accent tap">€</text>
-<text x="0" y="26" class="key accent hold">Euro</text>
+<g transform="translate(150, 38)" class="key keypos-2">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
 <g transform="translate(210, 30)" class="key accent keypos-3">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
-<text x="0" y="0" class="key accent tap">´</text>
-<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Acute dead…</tspan></text>
+<text x="0" y="0" class="key accent tap">ç</text>
+<text x="0" y="26" class="key accent hold">Cedilla</text>
 </g>
 <g transform="translate(270, 38)" class="key keypos-4">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -167,18 +165,18 @@ path.combo {
 <g transform="translate(510, 45)" class="key keypos-6">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
-<g transform="translate(570, 38)" class="key accent keypos-7">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
-<text x="0" y="0" class="key accent tap">¨</text>
-<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Diaeresis …</tspan></text>
-</g>
-<g transform="translate(630, 30)" class="key keypos-8">
+<g transform="translate(570, 38)" class="key keypos-7">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
-<g transform="translate(690, 38)" class="key accent keypos-9">
+<g transform="translate(630, 30)" class="key accent keypos-8">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
 <text x="0" y="0" class="key accent tap">^</text>
 <text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Circumflex…</tspan></text>
+</g>
+<g transform="translate(690, 38)" class="key accent keypos-9">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
+<text x="0" y="0" class="key accent tap">¨</text>
+<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Diaeresis …</tspan></text>
 </g>
 <g transform="translate(750, 45)" class="key keypos-10">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -191,8 +189,8 @@ path.combo {
 </g>
 <g transform="translate(90, 105)" class="key accent keypos-13">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
-<text x="0" y="0" class="key accent tap">`</text>
-<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Grave dead…</tspan></text>
+<text x="0" y="0" class="key accent tap">ñ</text>
+<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">N with til…</tspan></text>
 </g>
 <g transform="translate(150, 98)" class="key keypos-14">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -212,11 +210,15 @@ path.combo {
 <g transform="translate(570, 98)" class="key keypos-19">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
-<g transform="translate(630, 90)" class="key keypos-20">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(630, 90)" class="key accent keypos-20">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
+<text x="0" y="0" class="key accent tap">´</text>
+<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Acute dead…</tspan></text>
 </g>
-<g transform="translate(690, 98)" class="key keypos-21">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(690, 98)" class="key accent keypos-21">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
+<text x="0" y="0" class="key accent tap">`</text>
+<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">Grave dead…</tspan></text>
 </g>
 <g transform="translate(750, 105)" class="key keypos-22">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -235,8 +237,8 @@ path.combo {
 </g>
 <g transform="translate(210, 150)" class="key accent keypos-27">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
-<text x="0" y="0" class="key accent tap">ç</text>
-<text x="0" y="26" class="key accent hold">Cedilla</text>
+<text x="0" y="0" class="key accent tap">€</text>
+<text x="0" y="26" class="key accent hold">Euro</text>
 </g>
 <g transform="translate(270, 158)" class="key keypos-28">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -247,10 +249,8 @@ path.combo {
 <g transform="translate(510, 165)" class="key keypos-30">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
-<g transform="translate(570, 158)" class="key accent keypos-31">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key accent"/>
-<text x="0" y="0" class="key accent tap">ñ</text>
-<text x="0" y="26" class="key accent hold"><tspan style="font-size: 64%">N with til…</tspan></text>
+<g transform="translate(570, 158)" class="key keypos-31">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
 <g transform="translate(630, 150)" class="key keypos-32">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>

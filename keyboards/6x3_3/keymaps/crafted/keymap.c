@@ -367,6 +367,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     }
 }
 
+// End leader sequence immediately after first keypress (all sequences are single-key)
+bool leader_add_user(uint16_t keycode) {
+    return true;
+}
+
 // Leader key sequences for special characters and dead keys
 // W = Euro (€), C = Cedilla (ç), N = Ñ
 // E = acute (é), A = grave (à), U = diaeresis (ü), O = circumflex (ô)
@@ -377,7 +382,7 @@ void leader_end_user(void) {
     } else if (leader_sequence_one_key(KC_C)) {
         // Cedilla: ç
         tap_semkey_code(SK_CEDIL);
-    } else if (leader_sequence_one_key(KC_M)) {
+    } else if (leader_sequence_one_key(KC_N)) {
         // N with tilde: ñ
         tap_semkey_code(SK_NTILDE);
     } else if (leader_sequence_one_key(KC_E)) {
