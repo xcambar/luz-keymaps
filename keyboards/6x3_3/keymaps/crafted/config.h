@@ -14,7 +14,7 @@
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 // Callum-style oneshot mod timeout (ms) - auto-cancel queued mods after delay
-#define ONESHOT_MOD_TIMEOUT 3000
+#define ONESHOT_MOD_TIMEOUT 2000
 
 // Retro tapping - tap layer key when released without pressing other keys
 #define RETRO_TAPPING
