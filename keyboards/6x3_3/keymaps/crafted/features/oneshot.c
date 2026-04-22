@@ -5,7 +5,8 @@ void update_oneshot(
     uint16_t mod,
     uint16_t trigger,
     uint16_t keycode,
-    keyrecord_t *record
+    keyrecord_t *record,
+    uint16_t *timer
 ) {
     if (keycode == trigger) {
         if (record->event.pressed) {
@@ -17,6 +18,9 @@ void update_oneshot(
             switch (*state) {
             case os_down_unused:
                 *state = os_up_queued;
+#if ONESHOT_MOD_TIMEOUT > 0
+                *timer = timer_read();
+#endif
                 break;
             case os_down_used:
                 *state = os_up_unqueued;
@@ -49,3 +53,12 @@ void update_oneshot(
         }
     }
 }
+
+#if ONESHOT_MOD_TIMEOUT > 0
+void check_oneshot_timeout(oneshot_state *state, uint16_t mod, uint16_t *timer) {
+    if (*state == os_up_queued && timer_elapsed(*timer) >= ONESHOT_MOD_TIMEOUT) {
+        *state = os_up_unqueued;
+        unregister_code(mod);
+    }
+}
+#endif

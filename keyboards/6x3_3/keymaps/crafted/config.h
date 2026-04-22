@@ -13,8 +13,8 @@
 // Per-key hold on other key press for layers only (not for home row mods)
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
-// One-shot modifier timeout (in ms) - keeps OSM active after layer release
-#define ONESHOT_TIMEOUT 3000
+// Callum-style oneshot mod timeout (ms) - auto-cancel queued mods after delay
+#define ONESHOT_MOD_TIMEOUT 3000
 
 // Retro tapping - tap layer key when released without pressing other keys
 #define RETRO_TAPPING

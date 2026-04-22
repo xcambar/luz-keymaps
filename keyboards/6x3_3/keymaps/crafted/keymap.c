@@ -229,6 +229,12 @@ oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
 oneshot_state os_gui_state = os_up_unqueued;
 
+// Oneshot modifier timers (for auto-cancel after timeout)
+static uint16_t os_shft_timer = 0;
+static uint16_t os_ctrl_timer = 0;
+static uint16_t os_alt_timer  = 0;
+static uint16_t os_gui_timer  = 0;
+
 // Swapper state
 static bool sw_win_active = false;
 
@@ -247,10 +253,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
 
     // Update oneshot modifiers
-    update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
-    update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
-    update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
-    update_oneshot(&os_gui_state, KC_LGUI, OS_GUI, keycode, record);
+    update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record, &os_shft_timer);
+    update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record, &os_ctrl_timer);
+    update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record, &os_alt_timer);
+    update_oneshot(&os_gui_state, KC_LGUI, OS_GUI, keycode, record, &os_gui_timer);
 
     // Update oneshot morphing modifier
     update_mod_morph_oneshot(MM_GUICTRL, keycode, record);
@@ -366,6 +372,16 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 #endif
     }
 }
+
+#if ONESHOT_MOD_TIMEOUT > 0
+void matrix_scan_user(void) {
+    check_oneshot_timeout(&os_shft_state, KC_LSFT, &os_shft_timer);
+    check_oneshot_timeout(&os_ctrl_state, KC_LCTL, &os_ctrl_timer);
+    check_oneshot_timeout(&os_alt_state, KC_LALT, &os_alt_timer);
+    check_oneshot_timeout(&os_gui_state, KC_LGUI, &os_gui_timer);
+    check_mod_morph_timeout();
+}
+#endif
 
 // End leader sequence immediately after first keypress (all sequences are single-key)
 bool leader_add_user(uint16_t keycode) {
