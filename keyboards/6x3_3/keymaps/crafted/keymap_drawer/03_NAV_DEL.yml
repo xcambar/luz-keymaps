@@ -3,7 +3,7 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    FAVS:
+    NAV_DEL:
         - [
               "",
               "",
@@ -11,38 +11,24 @@ layers:
               "",
               "",
               "",
-              { t: "L←", type: nav },
-              { t: "D↓", type: nav },
-              { t: "D↑", type: nav },
-              { t: "L→", type: nav },
+              { t: "⌫ L←", type: editing },
+              "",
+              "",
+              { t: "⌦ L→", type: editing },
               "",
               "",
           ]
         - [
-              { t: $$mdi:keyboard-esc$$, type: editing },
-              { t: $$mdi:lock-outline$$, h: "Layer Lock", type: layer },
-              { t: $$mdi:backspace-outline$$, h: "Delete (hold)", type: layer },
-              { t: $$mdi:star-four-points-box$$, type: modifier },
-              { t: $$mdi:apple-keyboard-shift$$, h: "Latch", type: modifier },
-              { t: $$mdi:swap-horizontal$$, type: system },
-              { t: $$mdi:arrow-left$$, type: nav },
-              { t: $$mdi:arrow-down$$, type: nav },
-              { t: $$mdi:arrow-up$$, type: nav },
-              { t: $$mdi:arrow-right$$, type: nav },
-              { t: $$mdi:keyboard-return$$, type: editing },
+              "",
+              "",
+              { type: held },
+              "",
+              "",
+              "",
+              { t: $$mdi:backspace-outline$$, type: editing },
+              "",
+              "",
               { t: Del, type: editing },
-          ]
-        - [
-              "",
-              { t: Undo, type: system },
-              { t: Cut, type: system },
-              { t: Copy, type: system },
-              { t: Paste, type: system },
-              "",
-              { t: "W←", type: nav },
-              { t: PgDn, type: nav },
-              { t: PgUp, type: nav },
-              { t: "W→", type: nav },
               "",
               "",
           ]
@@ -51,9 +37,16 @@ layers:
               "",
               "",
               "",
-              { t: $$mdi:apple-keyboard-shift$$, type: modifier },
+              "",
+              "",
+              { t: "⌫ W←", type: editing },
+              "",
+              "",
+              { t: "⌦ W→", type: editing },
+              "",
               "",
           ]
+        - ["", "", { type: held }, "", "", ""]
 
 draw_config:
     key_h: 60

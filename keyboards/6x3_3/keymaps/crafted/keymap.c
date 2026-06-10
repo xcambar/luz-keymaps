@@ -31,7 +31,7 @@
 // Weak corners feature
 #include "feature_weak_corners.h"
 
-// Callum-style oneshot modifiers
+// Callum-style oneshot core (no oneshot keys left; still used by mod_morph)
 #include "features/oneshot.h"
 
 // Callum-style swapper
@@ -47,7 +47,8 @@ enum layers {
     BASE = 0,
     BASE_ALT,
     FAVS,
-    SYMBOLS
+    SYMBOLS,
+    NAV_DEL
 };
 
 // Include semantic keys header
@@ -189,25 +190,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │L← │D↓ │D↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│ ▽ │ ▽ │ ▽ │G/C│SWn│       │ ← │ ↓ │ ↑ │ → │Ent│Del│
+      * │Esc│Lck│Dl⊙│G/C│Sl⊙│SWn│       │ ← │ ↓ │ ↑ │ → │Ent│Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │Udo│Cut│Cpy│Pst│   │       │W← │PgD│PgU│W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
       *               │   ├───┐           ┌───┤   │
-      *               └───┤OSf├───┐   ┌───┤Sft├───┘
+      *               └───┤   ├───┐   ┌───┤Sft├───┘
       *                   └───┤   │   │   ├───┘
       *                       └───┘   └───┘
-      * ▽=transparent (BASE layer keys pass through)
-      * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window, OSf=Oneshot Shift
+      * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window
+      * Lck=Layer Lock (keep FAVS without holding the thumb)
+      * Sl⊙=Select latch: tap to hold Shift until FAVS is released (or tap again/Esc)
+      * Dl⊙=Delete hold: momentary NAV_DEL sub-layer (hold-only, destructive op)
       * L←=Line Begin, L→=Line End, D↑=Doc Begin, D↓=Doc End
       * W←=Word Left, W→=Word Right
       */
     [FAVS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              SK_LINEBEG, SK_DOCEND, SK_DOCBEG, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  KC_TRNS, KC_TRNS, KC_TRNS, MM_GUICTRL, SW_WIN,                          KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT,  KC_DEL,
+        KC_ESC,  QK_LLCK, MO(NAV_DEL), MM_GUICTRL, SEL_LATCH, SW_WIN,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT,  KC_DEL,
         KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              SK_WORDPRV, KC_PGDN, KC_PGUP, SK_WORDNXT, KC_NO,   KC_NO,
-                                            KC_NO,   OS_SHFT, KC_NO,                  KC_NO,   KC_LSFT, KC_NO
+                                            KC_NO,   KC_NO,   KC_NO,                  KC_NO,   KC_LSFT, KC_NO
     ),
      /*
       * Layer 3 - Symbols
@@ -232,6 +235,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(BASE),  SL_1,     SL_2,     SL_3,     SL_4,    SL_5,                               SL_6,    SL_7,    KC_8,  SL_9,     SL_0,     KC_BSPC,
         KC_NO,     KC_NO,    SL_BSLS,  SL_LPRN,  SL_LBRC, KC_NO,                              KC_NO,   SL_RBRC, SL_RPRN,  SL_SCLN,  SL_TILD,  KC_NO,
                                                   KC_NO,   KC_LSFT, KC_NO,                  KC_NO,   KC_NO,   KC_NO
+    ),
+     /*
+      * NAV_DEL Layer (Layer 4) - Deletion sub-layer, active only while Dl⊙ is held on FAVS
+      * Vim-like operator grammar: row = granularity, each deletion sits on the motion it consumes
+      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
+      * │   │   │   │   │   │   │       │DlB│ ▽ │ ▽ │DlE│   │   │  line: delete to begin/end
+      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
+      * │ ▽ │ ✗ │(▽)│ ✗ │ ✗ │ ▽ │       │Bsp│ ▽ │ ▽ │Del│ ▽ │ ▽ │  char: backspace/delete
+      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
+      * │   │ ▽ │ ▽ │ ▽ │ ▽ │   │       │DlW│ ▽ │ ▽ │Dl→│   │   │  word: delete back/forward
+      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
+      * ▽=transparent (FAVS motions/clipboard stay live: navigate and Undo without releasing)
+      * ✗=blocked: Lck (would lock delete mode), G/C, Sl⊙ (delete wins over select)
+      * (▽)=Dl⊙ itself (the held MO key)
+      */
+    [NAV_DEL] = LAYOUT_split_3x6_3(
+        _______, _______, _______, _______, _______, _______,                            SK_DELLINEBEG, _______, _______, SK_DELLINEEND, _______, _______,
+        _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______,                            KC_BSPC, _______, _______, KC_DEL,  _______, _______,
+        _______, _______, _______, _______, _______, _______,                            SK_DELWORDPRV, _______, _______, SK_DELWORDNXT, _______, _______,
+                                            _______, _______, _______,                  _______, _______, _______
     )
 };
 
@@ -250,14 +273,26 @@ static bool sft_spc_repeating = false;
 static uint16_t sft_spc_timer = 0;
 static uint16_t sft_spc_last_tap = 0;
 
-// Oneshot modifier states (only shift remains; Alt/Ctrl/GUI now on bottom-row mod-taps)
-oneshot_state os_shft_state = os_up_unqueued;
-
-// Oneshot modifier timers (for auto-cancel after timeout)
-static uint16_t os_shft_timer = 0;
-
 // Swapper state
 static bool sw_win_active = false;
+
+// Select latch state: real Shift, scoped to the FAVS layer
+static bool sel_latch_active = false;
+
+static void sel_latch_off(void) {
+    if (sel_latch_active) {
+        unregister_code(KC_LSFT);
+        sel_latch_active = false;
+    }
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    // Latch lifecycle: released on leaving FAVS; delete hold (NAV_DEL) wins over select
+    if (!layer_state_cmp(state, FAVS) || layer_state_cmp(state, NAV_DEL)) {
+        sel_latch_off();
+    }
+    return state;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process dead keys FIRST (before semantic keys and oneshots)
@@ -272,9 +307,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     // Update swapper
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
-
-    // Update oneshot shift (Alt/Ctrl/GUI now on bottom-row mod-taps with Chordal Hold)
-    update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record, &os_shft_timer);
 
     // Update oneshot morphing modifier
     update_mod_morph_oneshot(MM_GUICTRL, keycode, record);
@@ -298,6 +330,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        case SEL_LATCH:
+            if (record->event.pressed) {
+                if (sel_latch_active) {
+                    sel_latch_off();
+                } else {
+                    register_code(KC_LSFT);
+                    sel_latch_active = true;
+                }
+            }
+            return false;
+
+        case KC_ESC:
+            // Esc bails out of an active selection latch (mirrors oneshot cancel)
+            if (record->event.pressed) {
+                sel_latch_off();
+            }
+            break;
+
         case SFT_LEAD:
             if (record->event.pressed) {
                 sft_lead_timer = timer_read();
@@ -375,7 +425,6 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 // Define keys that should be ignored by oneshot logic (allows stacking modifiers)
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case OS_SHFT:
         case MM_GUICTRL:
         case KC_LSFT:
         case KC_RSFT:
@@ -387,6 +436,8 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
         case KC_RGUI:
         case MO(FAVS):
         case MO(SYMBOLS):
+        case MO(NAV_DEL):
+        case SEL_LATCH:
         case QK_LAYER_LOCK:
         case TO(BASE):
             return true;
@@ -398,7 +449,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
 // Define keys that should be ignored by swapper (allows changing direction)
 bool is_swapper_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case OS_SHFT:
+        case SEL_LATCH:
         case KC_LSFT:
         case KC_RSFT:
             return true;
@@ -454,7 +505,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
 #if ONESHOT_MOD_TIMEOUT > 0
 void matrix_scan_user(void) {
-    check_oneshot_timeout(&os_shft_state, KC_LSFT, &os_shft_timer);
     check_mod_morph_timeout();
 }
 #endif

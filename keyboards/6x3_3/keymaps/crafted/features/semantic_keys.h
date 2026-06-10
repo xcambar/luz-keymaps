@@ -37,7 +37,11 @@
         SK_DOCBEG, \
         SK_DOCEND, \
         SK_LINEBEG, \
-        SK_LINEEND \
+        SK_LINEEND, \
+        SK_DELWORDPRV, \
+        SK_DELWORDNXT, \
+        SK_DELLINEBEG, \
+        SK_DELLINEEND \
     )
 
 // Process semantic keys - call from process_record_user()

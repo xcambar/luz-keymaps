@@ -28,12 +28,9 @@
 enum custom_keycodes {
     SFT_LEAD = SAFE_RANGE,  // Shift on hold, Leader on tap
     SFT_SPC,                 // Shift on hold, Space on tap
-    OS_SHFT,                 // Oneshot shift
-    OS_CTRL,                 // Oneshot control
-    OS_ALT,                  // Oneshot alt
-    OS_GUI,                  // Oneshot GUI
     SW_WIN,                  // Switch window (cmd-tab)
     MM_GUICTRL,              // Modifier swappable between GUI and Ctrl
+    SEL_LATCH,               // Shift latch scoped to the FAVS layer (tap to toggle)
 
     // Semantic keys (expanded from SEMANTIC_KEYS_LIST macro)
     SEMANTIC_KEYS_LIST,
