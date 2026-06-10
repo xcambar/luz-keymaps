@@ -197,15 +197,15 @@ path.combo {
 </g>
 <g transform="translate(510, 45)" class="key nav keypos-6">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<text x="0" y="0" class="key nav tap">L←</text>
+<text x="0" y="0" class="key nav tap">PgUp</text>
 </g>
 <g transform="translate(570, 38)" class="key nav keypos-7">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<text x="0" y="0" class="key nav tap">D↓</text>
+<text x="0" y="0" class="key nav tap">L←</text>
 </g>
 <g transform="translate(630, 30)" class="key nav keypos-8">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<text x="0" y="0" class="key nav tap">D↑</text>
+<use href="#mdi:arrow-up" xlink:href="#mdi:arrow-up" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:arrow-up"/>
 </g>
 <g transform="translate(690, 38)" class="key nav keypos-9">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
@@ -246,15 +246,15 @@ path.combo {
 </g>
 <g transform="translate(510, 105)" class="key nav keypos-18">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<use href="#mdi:arrow-left" xlink:href="#mdi:arrow-left" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:arrow-left"/>
+<text x="0" y="0" class="key nav tap">PgDn</text>
 </g>
 <g transform="translate(570, 98)" class="key nav keypos-19">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<use href="#mdi:arrow-down" xlink:href="#mdi:arrow-down" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:arrow-down"/>
+<use href="#mdi:arrow-left" xlink:href="#mdi:arrow-left" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:arrow-left"/>
 </g>
 <g transform="translate(630, 90)" class="key nav keypos-20">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<use href="#mdi:arrow-up" xlink:href="#mdi:arrow-up" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:arrow-up"/>
+<use href="#mdi:arrow-down" xlink:href="#mdi:arrow-down" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:arrow-down"/>
 </g>
 <g transform="translate(690, 98)" class="key nav keypos-21">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
@@ -290,17 +290,15 @@ path.combo {
 <g transform="translate(330, 165)" class="key keypos-29">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
-<g transform="translate(510, 165)" class="key nav keypos-30">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<text x="0" y="0" class="key nav tap">W←</text>
+<g transform="translate(510, 165)" class="key keypos-30">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
 <g transform="translate(570, 158)" class="key nav keypos-31">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<text x="0" y="0" class="key nav tap">PgDn</text>
+<text x="0" y="0" class="key nav tap">W←</text>
 </g>
-<g transform="translate(630, 150)" class="key nav keypos-32">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<text x="0" y="0" class="key nav tap">PgUp</text>
+<g transform="translate(630, 150)" class="key keypos-32">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 </g>
 <g transform="translate(690, 158)" class="key nav keypos-33">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>

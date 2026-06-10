@@ -187,12 +187,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
      /*
       * FAVS Layer (Layer 2) - Favorite shortcuts and navigation
+      * WASD-style inverted-T arrows; magnitude grows away from home row (line above, word below)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │L← │D↓ │D↑ │L→ │   │   │
+      * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│Lck│Dl⊙│G/C│Sl⊙│SWn│       │ ← │ ↓ │ ↑ │ → │Ent│Del│
+      * │Esc│Lck│Dl⊙│G/C│Sl⊙│SWn│       │PgD│ ← │ ↓ │ → │Ent│Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │Udo│Cut│Cpy│Pst│   │       │W← │PgD│PgU│W→ │   │   │
+      * │   │Udo│Cut│Cpy│Pst│   │       │   │W← │   │W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
       *               │   ├───┐           ┌───┤   │
@@ -203,13 +204,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * Lck=Layer Lock (keep FAVS without holding the thumb)
       * Sl⊙=Select latch: tap to hold Shift until FAVS is released (or tap again/Esc)
       * Dl⊙=Delete hold: momentary NAV_DEL sub-layer (hold-only, destructive op)
-      * L←=Line Begin, L→=Line End, D↑=Doc Begin, D↓=Doc End
-      * W←=Word Left, W→=Word Right
+      * L←=Line Begin, L→=Line End, W←=Word Left, W→=Word Right
+      * PgU/PgD=vertical pair on inner column (doc begin/end dropped)
       */
     [FAVS] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              SK_LINEBEG, SK_DOCEND, SK_DOCBEG, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  QK_LLCK, MO(NAV_DEL), MM_GUICTRL, SEL_LATCH, SW_WIN,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT,  KC_DEL,
-        KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              SK_WORDPRV, KC_PGDN, KC_PGUP, SK_WORDNXT, KC_NO,   KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
+        KC_ESC,  QK_LLCK, MO(NAV_DEL), MM_GUICTRL, SEL_LATCH, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  KC_DEL,
+        KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   KC_NO,
                                             KC_NO,   KC_NO,   KC_NO,                  KC_NO,   KC_LSFT, KC_NO
     ),
      /*
@@ -240,20 +241,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * NAV_DEL Layer (Layer 4) - Deletion sub-layer, active only while Dl⊙ is held on FAVS
       * Vim-like operator grammar: row = granularity, each deletion sits on the motion it consumes
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │DlB│ ▽ │ ▽ │DlE│   │   │  line: delete to begin/end
+      * │   │   │   │   │   │   │       │ ▽ │DlB│ ▽ │DlE│   │   │  line: delete to begin/end
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │ ▽ │ ✗ │(▽)│ ✗ │ ✗ │ ▽ │       │Bsp│ ▽ │ ▽ │Del│ ▽ │ ▽ │  char: backspace/delete
+      * │ ▽ │ ✗ │(▽)│ ✗ │ ✗ │ ▽ │       │ ▽ │Bsp│ ▽ │Del│ ▽ │ ▽ │  char: backspace/delete
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │ ▽ │ ▽ │ ▽ │ ▽ │   │       │DlW│ ▽ │ ▽ │Dl→│   │   │  word: delete back/forward
+      * │   │ ▽ │ ▽ │ ▽ │ ▽ │   │       │   │DlW│ ▽ │Dl→│   │   │  word: delete back/forward
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      * ▽=transparent (FAVS motions/clipboard stay live: navigate and Undo without releasing)
+      * ▽=transparent (FAVS motions/clipboard stay live: navigate, page, Undo without releasing)
       * ✗=blocked: Lck (would lock delete mode), G/C, Sl⊙ (delete wins over select)
       * (▽)=Dl⊙ itself (the held MO key)
       */
     [NAV_DEL] = LAYOUT_split_3x6_3(
-        _______, _______, _______, _______, _______, _______,                            SK_DELLINEBEG, _______, _______, SK_DELLINEEND, _______, _______,
-        _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______,                            KC_BSPC, _______, _______, KC_DEL,  _______, _______,
-        _______, _______, _______, _______, _______, _______,                            SK_DELWORDPRV, _______, _______, SK_DELWORDNXT, _______, _______,
+        _______, _______, _______, _______, _______, _______,                            _______, SK_DELLINEBEG, _______, SK_DELLINEEND, _______, _______,
+        _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______,                            _______, KC_BSPC, _______, KC_DEL,  _______, _______,
+        _______, _______, _______, _______, _______, _______,                            _______, SK_DELWORDPRV, _______, SK_DELWORDNXT, _______, _______,
                                             _______, _______, _______,                  _______, _______, _______
     )
 };
