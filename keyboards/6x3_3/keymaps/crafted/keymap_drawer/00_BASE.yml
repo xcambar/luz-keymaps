@@ -20,7 +20,7 @@ layers:
               { t: $$mdi:backspace-outline$$, type: editing },
           ]
         - [
-              "",
+              { t: $$mdi:format-letter-case-upper$$, h: "Caps Word", type: editing },
               X,
               { t: Q, h: LAlt, type: modifier },
               { t: W, h: LGui, type: modifier },
@@ -31,15 +31,15 @@ layers:
               { t: ",", h: RGui, type: modifier },
               { t: ".", h: RAlt, type: modifier },
               { t: "-", s: "/", type: symbol },
-              "",
+              { t: "_", s: "|", type: symbol },
           ]
         - [
-              "",
-              { t: $$mdi:apple-keyboard-shift$$, h: "Leader", type: modifier },
+              { t: $$mdi:keyboard-esc$$, type: editing },
+              { t: $$mdi:apple-keyboard-shift$$, type: modifier },
               { t: $$mdi:layers-outline$$, h: FAVS (MO), type: layer },
               { t: $$mdi:layers-outline$$, h: SYMBOLS (MO), type: layer },
-              { t: $$mdi:apple-keyboard-shift$$, h: "Space", type: modifier },
-              "",
+              { t: $$mdi:keyboard-space$$, type: editing },
+              { t: $$mdi:keyboard-return$$, type: editing },
           ]
 
 combos:
@@ -61,6 +61,11 @@ combos:
           - "Base (Gallium East)"
     - key_positions: [12, 23]
       key: QK_BOOT (Tab+Bsp)
+      layers:
+          - "Base (Gallium East)"
+    - key_positions: [37, 40]
+      key: Compose
+      align: bottom
       layers:
           - "Base (Gallium East)"
 

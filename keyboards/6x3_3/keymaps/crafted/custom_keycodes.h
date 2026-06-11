@@ -26,11 +26,11 @@
 
 // Custom keycodes for the xavier keymap
 enum custom_keycodes {
-    SFT_LEAD = SAFE_RANGE,  // Shift on hold, Leader on tap
-    SFT_SPC,                 // Shift on hold, Space on tap
-    SW_WIN,                  // Switch window (cmd-tab)
+    SW_WIN = SAFE_RANGE,     // Switch window (cmd-tab)
     MM_GUICTRL,              // Modifier swappable between GUI and Ctrl
     SEL_LATCH,               // Shift latch scoped to the FAVS layer (tap to toggle)
+    MD_FENCE,                // Markdown code fence: types ```
+    ARROW_OP,                // Tap: ->  Shift: =>
 
     // Semantic keys (expanded from SEMANTIC_KEYS_LIST macro)
     SEMANTIC_KEYS_LIST,

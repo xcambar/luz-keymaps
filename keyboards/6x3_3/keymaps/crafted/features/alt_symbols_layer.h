@@ -12,22 +12,17 @@
 
 // Alternative symbols layer keycodes using CUSTOM_KEYCODES macro
 #define ALT_SYMBOLS_LAYER_LIST CUSTOM_KEYCODES(ALT_SYMBOLS_LAYER, \
-        SL_1, \
-        SL_2, \
-        SL_3, \
-        SL_4, \
-        SL_5, \
-        SL_6, \
-        SL_7, \
-        SL_9, \
-        SL_0, \
+        SL_AT, \
+        SL_GRV, \
+        SL_EQL, \
+        SL_DLR, \
+        SL_AMPR, \
         SL_BSLS, \
         SL_LPRN, \
         SL_RPRN, \
         SL_LBRC, \
         SL_RBRC, \
-        SL_SCLN, \
-        SL_TILD \
+        SL_SCLN \
     )
 
 // Macro to generate a pair of key overrides for a symbols layer key

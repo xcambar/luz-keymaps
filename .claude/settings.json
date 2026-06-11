@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.qmk.fm)",
+      "WebFetch(domain:blog.zsa.io)",
+      "mcp__plugin_claude-mem_mcp-search__get_observations",
+      "Read(//home/xav/qmk_firmware/keyboards/**)",
+      "Bash(xargs ls -la)",
+      "Read(//home/xav/qmk_firmware/quantum/**)",
+      "Skill(build-keymap-pdf)",
+      "Skill(build-keymap-pdf:*)",
+      "Bash(sed -i 's/- Bottom-row mod-taps with Chordal Hold \\(positions 26-28 left, 31-33 right\\)/- Bottom-row mod-taps with Chordal Hold \\(positions 26-28 left, 31-33 right\\)\\\\n- FAVS left home row: Esc, QK_LLCK, MO\\(NAV_DEL\\) delete-hold, MM_GUICTRL, SEL_LATCH, SW_WIN \\(since June 2026\\)/' MEMORY.md)",
+      "Bash(sed -i '/FAVS home row positions 13-15 are KC_TRNS/d' MEMORY.md)",
+      "Read(//home/xav/.claude/projects/-home-xav-code-qmk-userspace/memory/**)",
+      "Bash(sed -i '/Callum-style oneshot shift \\(OS_SHFT\\) still active/d' MEMORY.md)"
+    ]
+  }
+}

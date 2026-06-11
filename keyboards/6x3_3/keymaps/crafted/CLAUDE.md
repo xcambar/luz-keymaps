@@ -197,7 +197,7 @@ Right hand:
 3. **Parse illustrations** - Use ASCII art comments for visual reference
 4. **Identify key types**:
    - Simple keys: `KC_A` → `A`
-   - Transparent: `KC_TRNS` → `""`
+   - Transparent: `KC_TRNS` → `{ t: "▽", type: trans }` when it falls through to a real key on a lower layer; `""` when the fall-through resolves to KC_NO
    - No-op: `KC_NO` → `""`
    - Custom keycodes: Look up in `enum custom_keycodes` comments (OS_SHFT, OS_CTRL, OS_ALT, OS_GUI, SW_WIN, MM_GUICTRL)
    - Layer keys: Parse `MO(n)`, `TO(n)`, `QK_LAYER_LOCK`
@@ -213,7 +213,7 @@ Right hand:
 ## Special Considerations
 
 - **Custom keycodes**: Oneshot modifiers (OS_SHFT, OS_CTRL, OS_ALT, OS_GUI), window swapper (SW_WIN), and morphing modifier (MM_GUICTRL)
-- **Empty positions**: Use empty string `""` for KC_NO and KC_TRNS
+- **Empty positions**: Use empty string `""` for KC_NO; mark KC_TRNS with `{ t: "▽", type: trans }` if a lower layer provides a real key at that position (resolve the fall-through chain), else `""`
 - **Combo positions**: Calculate from the visual layout (0-indexed, left-to-right, top-to-bottom)
 - **Weak corners**: When XC_WEAK_CORNERS is enabled, corner positions show placeholder keys with actual characters produced via combos
 

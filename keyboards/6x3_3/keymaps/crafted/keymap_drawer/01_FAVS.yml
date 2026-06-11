@@ -29,11 +29,11 @@ layers:
               { t: $$mdi:arrow-left$$, type: nav },
               { t: $$mdi:arrow-down$$, type: nav },
               { t: $$mdi:arrow-right$$, type: nav },
-              { t: $$mdi:keyboard-return$$, type: editing },
+              "",
               { t: Del, type: editing },
           ]
         - [
-              "",
+              { t: "▽", type: trans },
               { t: Undo, type: system },
               { t: Cut, type: system },
               { t: Copy, type: system },
@@ -44,15 +44,15 @@ layers:
               "",
               { t: "W→", type: nav },
               "",
-              "",
+              { t: "▽", type: trans },
           ]
         - [
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
               "",
               "",
-              "",
-              "",
-              { t: $$mdi:apple-keyboard-shift$$, type: modifier },
-              "",
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
           ]
 
 draw_config:

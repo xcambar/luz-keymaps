@@ -25,6 +25,21 @@
 // Custom keycodes (must be included before feature_base_layer.h)
 #include "custom_keycodes.h"
 
+// Alt-symbol pairs used directly in keymaps[] (plain keycodes when alt symbols are off)
+#ifdef XC_ALT_BASE_SYMBOLS
+#    define XC_UNDS AS_UNDS
+#    define XC_QUOT AS_QUOT
+#    define XC_COMM AS_COMM
+#    define XC_DOT  AS_DOT
+#    define XC_MINS AS_MINS
+#else
+#    define XC_UNDS KC_UNDS
+#    define XC_QUOT KC_QUOT
+#    define XC_COMM KC_COMM
+#    define XC_DOT  KC_DOT
+#    define XC_MINS KC_MINS
+#endif
+
 // Base layer switch
 #include "feature_base_layer.h"
 
@@ -67,6 +82,7 @@ enum combo_events {
     COMBO_PRINT_OS,
     COMBO_SWITCH_LAYOUT,
     COMBO_PRINT_LAYOUT,
+    COMBO_COMPOSE,
 #ifdef XC_WEAK_CORNERS
     COMBO_WC_TL,
     COMBO_WC_TR,
@@ -80,12 +96,14 @@ const uint16_t PROGMEM switch_os[] = {_04_, LCTL_T(_28_), COMBO_END};  // Left h
 const uint16_t PROGMEM print_os[] = {_03_, LCTL_T(_28_), _04_, COMBO_END};  // Left hand: print OS name
 const uint16_t PROGMEM switch_layout[] = {_07_, RCTL_T(_31_), COMBO_END};  // Right hand mirror: toggle default layout
 const uint16_t PROGMEM print_layout[] = {_08_, RCTL_T(_31_), _07_, COMBO_END};  // Right hand mirror: print layout name
+const uint16_t PROGMEM compose_combo[] = {KC_LSFT, KC_SPC, COMBO_END};  // Both inner thumbs tapped together: arm Compose
 
 combo_t key_combos[] = {
     COMBO_ACTION(switch_os),     // COMBO_SWITCH_OS
     COMBO_ACTION(print_os),      // COMBO_PRINT_OS
     COMBO_ACTION(switch_layout), // COMBO_SWITCH_LAYOUT
     COMBO_ACTION(print_layout),  // COMBO_PRINT_LAYOUT
+    COMBO_ACTION(compose_combo), // COMBO_COMPOSE
     XC_WEAK_CORNERS_COMBOS       // COMBO_WC_TL/TR/BL/BR (when XC_WEAK_CORNERS)
     COMBO(boot_combo, QK_BOOT),
 };
@@ -108,27 +126,24 @@ static const uint16_t wc_keycodes[][4] = {
 const key_override_t* key_overrides[] = {
 #ifdef XC_ALT_BASE_SYMBOLS
     ALT_SYMBOL_OVERRIDE(AS_QUOT, KC_QUOT, KC_DQUO), // ' → "
-    // AS_COMM (,→?) and AS_DOT (.→!) handled in process_record_user for mod-tap keys
+    // Plain AS_COMM/AS_DOT (used on SYMBOLS); base-layer mod-tap versions handled in process_record_user
+    ALT_SYMBOL_OVERRIDE(AS_COMM, KC_COMM, KC_QUES), // , → ?
+    ALT_SYMBOL_OVERRIDE(AS_DOT,  KC_DOT,  KC_EXLM), // . → !
     ALT_SYMBOL_OVERRIDE(AS_MINS, KC_MINS, KC_SLSH), // - → /
     ALT_SYMBOL_OVERRIDE(AS_UNDS, KC_UNDS, KC_PIPE), // _ → |
 #endif
-    // This overrides shifted keys on the symbol layers
-    SL_OVERRIDE(SL_1,    KC_1,    KC_AT),   // 1 → @
-    SL_OVERRIDE(SL_2,    KC_2,    KC_DLR),  // 2 → $
-    SL_OVERRIDE(SL_3,    KC_3,    KC_PERC), // 3 → %
-    SL_OVERRIDE(SL_4,    KC_4,    KC_HASH), // 4 → #
-    SL_OVERRIDE(SL_5,    KC_5,    KC_AMPR), // 5 → &
-    SL_OVERRIDE(SL_6,    KC_6,    KC_PLUS), // 6 → +
-    SL_OVERRIDE(SL_7,    KC_7,    KC_EQL),  // 7 → =
-    SL_OVERRIDE(SL_9,    KC_9,    KC_UNDS), // 9 → _
-    SL_OVERRIDE(SL_0,    KC_0,    KC_GRV),  // 0 → `
+    // Shifted pairs on the SYMBOLS layer
+    SL_OVERRIDE(SL_AT,   KC_AT,   KC_HASH), // @ → #
+    SL_OVERRIDE(SL_GRV,  KC_GRV,  KC_TILD), // ` → ~
+    SL_OVERRIDE(SL_EQL,  KC_EQL,  KC_PLUS), // = → +
+    SL_OVERRIDE(SL_DLR,  KC_DLR,  KC_PERC), // $ → %
+    SL_OVERRIDE(SL_AMPR, KC_AMPR, KC_ASTR), // & → *
     SL_OVERRIDE(SL_BSLS, KC_BSLS, KC_CIRC), // \ → ^
     SL_OVERRIDE(SL_LPRN, KC_LPRN, KC_LT),   // ( → <
     SL_OVERRIDE(SL_RPRN, KC_RPRN, KC_GT),   // ) → >
     SL_OVERRIDE(SL_LBRC, KC_LCBR, KC_LBRC), // { → [ (inverted)
     SL_OVERRIDE(SL_RBRC, KC_RCBR, KC_RBRC), // } → ] (inverted)
     SL_OVERRIDE(SL_SCLN, KC_COLN, KC_SCLN), // : → ; (inverted)
-    SL_OVERRIDE(SL_TILD, KC_PIPE, KC_TILD), // | → ~ (inverted)
     NULL
 };
 
@@ -152,13 +167,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │Tab│ A │ S │ D │F/⌘│ G │       │ H │J/⌘│ K │ L │ ; │Bsp│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │ Z │X/A│C/G│V/C│[B]│       │[N]│M/C│,/G│./A│ / │   │
+      * │CW │ Z │X/A│C/G│V/C│[B]│       │[N]│M/C│,/G│./A│ / │ _ │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
-      *               │   ├───┐           ┌───┤   │
-      *               └───┤S/L├───┐   ┌───┤S/␣├───┘
+      *               │Esc├───┐           ┌───┤Ent│
+      *               └───┤Sft├───┐   ┌───┤Spc├───┘
       *                   └───┤FAV│   │SYM├───┘       FAV=FAVS layer, SYM=SYMBOLS layer
       *                       └───┘   └───┘
+      * CW=Caps Word toggle, _=XC_UNDS (_ → | shifted), Esc/Ent on outer thumbs
+      * Esc/Ent/CW/_ fall through on FAVS and SYMBOLS (transparent at 24/35/36/41)
+      * Sft/Spc are plain keys; tapping both together (combo) arms Compose for accents:
+      * E/A/U/O = acute/grave/diaeresis/circumflex dead key, C=ç, N=ñ, W=€, Esc cancels,
+      * any other key passes through unchanged
       * Home-row mod-taps: F/⌘=GUI (Ctrl on Linux), J/⌘=GUI (Ctrl on Linux)
       * Bottom-row mod-taps: X/A=Alt, C/G=GUI, V/C=Ctrl | M/C=Ctrl, ,/G=GUI, ./A=Alt
       * S/L=SFT_LEAD: Hold for Shift, Tap for Leader
@@ -170,8 +190,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
         KC_NO,    _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, KC_NO,
-                                            KC_NO,   SFT_LEAD, MO(FAVS),               MO(SYMBOLS), SFT_SPC,  KC_NO
+        CW_TOGG, _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
+                                            KC_ESC,  KC_LSFT, MO(FAVS),               MO(SYMBOLS), KC_SPC,  KC_ENT
     ),
      /*
       * BASE_ALT Layer (Layer 1) - Secondary layout (XC_SECONDARY_LAYOUT)
@@ -182,8 +202,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE_ALT] = LAYOUT_split_3x6_3(
         KC_NO,   _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, KC_NO,
-                                            KC_NO,   SFT_LEAD, MO(FAVS),               MO(SYMBOLS), SFT_SPC,  KC_NO
+        CW_TOGG, _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
+                                            KC_ESC,  KC_LSFT, MO(FAVS),               MO(SYMBOLS), KC_SPC,  KC_ENT
     ),
      /*
       * FAVS Layer (Layer 2) - Favorite shortcuts and navigation
@@ -191,15 +211,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│Lck│Dl⊙│G/C│Sl⊙│SWn│       │PgD│ ← │ ↓ │ → │Ent│Del│
+      * │Esc│Lck│Dl⊙│G/C│Sl⊙│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │Udo│Cut│Cpy│Pst│   │       │   │W← │   │W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
-      *               │   ├───┐           ┌───┤   │
-      *               └───┤   ├───┐   ┌───┤Sft├───┘
+      *               │ ▽ ├───┐           ┌───┤ ▽ │
+      *               └───┤ ▽ ├───┐   ┌───┤ ▽ ├───┘
       *                   └───┤   │   │   ├───┘
       *                       └───┘   └───┘
+      * Thumbs ▽ = base Esc / Shift / Space / Enter (36/37/40/41)
       * G/C=MM_GUICTRL (morphing GUI/Ctrl), SWn=Switch Window
       * Lck=Layer Lock (keep FAVS without holding the thumb)
       * Sl⊙=Select latch: tap to hold Shift until FAVS is released (or tap again/Esc)
@@ -209,33 +230,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [FAVS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  QK_LLCK, MO(NAV_DEL), MM_GUICTRL, SEL_LATCH, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  KC_DEL,
-        KC_NO,   SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   KC_NO,
-                                            KC_NO,   KC_NO,   KC_NO,                  KC_NO,   KC_LSFT, KC_NO
+        KC_ESC,  QK_LLCK, MO(NAV_DEL), MM_GUICTRL, SEL_LATCH, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
+        _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   _______,
+                                            _______, _______, KC_NO,                  KC_NO,   _______, _______
     ),
      /*
-      * Layer 3 - Symbols
+      * Layer 3 - SYMBOLS: numpad on the left, symbol field on the right
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │   │   │   │   │   │   │
+      * │   │```│ 7 │ 8 │ 9 │   │       │ ` │ { │ = │ } │ ' │   │
+      * │   │   │   │   │   │   │       │ ~ │ [ │ + │ ] │ " │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │L#0│ 1 │ 2 │ 3 │ 4 │ 5 │       │ 6 │ 7 │ 8 │ 9 │ 0 │Bsp│
-      * │   │ @ │ $ │ % │ # │ & │       │ + │ = │ * │ _ │ ` │   │
+      * │ ▽ │Lck│ 4 │ 5 │ 6 │ 0 │       │ \ │ ( │ @ │ ) │ : │Bsp│
+      * │   │   │   │   │   │   │       │ ^ │ < │ # │ > │ ; │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │ \ │ ( │ { │   │       │   │ } │ ) │ : │ | │   │
-      * │   │   │ ^ │ < │ [ │   │       │   │ ] │ > │ ; │ ~ │   │
+      * │ ▽ │→ ⇒│ 1 │ 2 │ 3 │   │       │ $ │ & │ , │ . │ - │ ▽ │
+      * │   │   │   │   │   │   │       │ % │ * │ ? │ ! │ / │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
-      *               │   ├───┐           ┌───┤   │
-      *               └───┤Sft├───┐   ┌───┤Sft├───┘
-      *                   └───┤   │   │Lck├───┘    L#0=To Base, Lck=Layer Lock
+      *               │ ▽ ├───┐           ┌───┤ ▽ │
+      *               └───┤ ▽ ├───┐   ┌───┤ ▽ ├───┘
+      *                   └───┤   │   │(M)├───┘
       *                       └───┘   └───┘
-      * Note: {/[, }/], :/;, |/~ are inverted (shifted symbol is default)
+      * Numpad in calculator order; open brackets on index, close on ring (editors auto-close),
+      * middle finger keeps high-frequency =/@; pairs stacked by kind ({[ over (<, }] over )>)
+      * , . - ' _ sit on their BASE positions (cross-layer consistency); inverted pairs kept
+      * ```=code fence macro, →⇒=tap "->" / shift "=>"
+      * Lck=Layer Lock: tap to lock (then release MO; 40 ▽ then gives Space), tap again to unlock
+      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, CW_TOGG, XC_UNDS _/|,
+      * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
-        KC_NO,     KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,     KC_NO,    KC_NO,    KC_NO,
-        TO(BASE),  SL_1,     SL_2,     SL_3,     SL_4,    SL_5,                               SL_6,    SL_7,    KC_8,  SL_9,     SL_0,     KC_BSPC,
-        KC_NO,     KC_NO,    SL_BSLS,  SL_LPRN,  SL_LBRC, KC_NO,                              KC_NO,   SL_RBRC, SL_RPRN,  SL_SCLN,  SL_TILD,  KC_NO,
-                                                  KC_NO,   KC_LSFT, KC_NO,                  KC_NO,   KC_NO,   KC_NO
+        KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SL_GRV,  SL_LBRC, SL_EQL,   SL_RBRC,  XC_QUOT,  KC_NO,
+        _______,   QK_LLCK,  KC_4,     KC_5,     KC_6,    KC_0,                               SL_BSLS, SL_LPRN, SL_AT,    SL_RPRN,  SL_SCLN,  KC_BSPC,
+        _______,   ARROW_OP, KC_1,     KC_2,     KC_3,    KC_NO,                              SL_DLR,  SL_AMPR, XC_COMM,  XC_DOT,   XC_MINS,  _______,
+                                                  _______, _______, KC_NO,                  KC_NO,   _______, _______
     ),
      /*
       * NAV_DEL Layer (Layer 4) - Deletion sub-layer, active only while Dl⊙ is held on FAVS
@@ -243,7 +271,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │ ▽ │DlB│ ▽ │DlE│   │   │  line: delete to begin/end
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │ ▽ │ ✗ │(▽)│ ✗ │ ✗ │ ▽ │       │ ▽ │Bsp│ ▽ │Del│ ▽ │ ▽ │  char: backspace/delete
+      * │ ▽ │ ✗ │(▽)│ ✗ │ ✗ │ ▽ │       │ ▽ │Bsp│ ▽ │Del│   │ ▽ │  char: backspace/delete
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │ ▽ │ ▽ │ ▽ │ ▽ │   │       │   │DlW│ ▽ │Dl→│   │   │  word: delete back/forward
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
@@ -263,16 +291,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 static const uint16_t gui_morph_l_sec = LGUI_T(_16_);
 static const uint16_t gui_morph_r_sec = RGUI_T(_19_);
 
-// Variables for SFT_LEAD tap-hold behavior (hold=Shift, tap=Leader)
-static bool sft_lead_held = false;
-static uint16_t sft_lead_timer = 0;
-
-// Variables for SFT_SPC tap-hold behavior (hold=Shift, tap=Space, double-tap=repeat Space)
-static bool sft_spc_held = false;
-static bool sft_spc_used = false;
-static bool sft_spc_repeating = false;
-static uint16_t sft_spc_timer = 0;
-static uint16_t sft_spc_last_tap = 0;
+// Compose state: armed by the Shift+Space thumb combo, consumed by the next keypress
+static bool compose_pending = false;
 
 // Swapper state
 static bool sw_win_active = false;
@@ -296,6 +316,36 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // Compose (accents): the next key picks a dead key or special character.
+    // Unlike the old Leader, unmatched keys pass through unchanged.
+    if (compose_pending && record->event.pressed) {
+        uint16_t kc = keycode;
+        if (IS_QK_MOD_TAP(keycode)) {
+            if (record->tap.count == 0) {
+                return true;  // mod-tap held as modifier: keep compose pending
+            }
+            kc = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
+        }
+        switch (kc) {
+            case KC_LCTL ... KC_RGUI:
+                return true;  // plain modifiers don't consume compose (allows shifted accents)
+            case KC_ESC:
+                compose_pending = false;
+                sel_latch_off();
+                return false;  // cancel
+            case KC_E: compose_pending = false; tap_deadkey_code(DK_ACUTE); return false;
+            case KC_A: compose_pending = false; tap_deadkey_code(DK_GRAVE); return false;
+            case KC_U: compose_pending = false; tap_deadkey_code(DK_DIAE);  return false;
+            case KC_O: compose_pending = false; tap_deadkey_code(DK_CIRC);  return false;
+            case KC_C: compose_pending = false; tap_semkey_code(SK_CEDIL);  return false;
+            case KC_N: compose_pending = false; tap_semkey_code(SK_NTILDE); return false;
+            case KC_W: compose_pending = false; tap_semkey_code(SK_EURO);   return false;
+            default:
+                compose_pending = false;
+                return true;  // pass through unchanged
+        }
+    }
+
     // Process dead keys FIRST (before semantic keys and oneshots)
     if (!process_dead_key(keycode, record)) {
         return false;  // Dead key was handled
@@ -311,11 +361,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     // Update oneshot morphing modifier
     update_mod_morph_oneshot(MM_GUICTRL, keycode, record);
-
-    // Track if another key was pressed while SFT_SPC is held
-    if (sft_spc_held && record->event.pressed && keycode != SFT_SPC) {
-        sft_spc_used = true;
-    }
 
     // OS morph: home-row index mod-taps (positions 16/19) use GUI on macOS, Ctrl on Linux
     // On macOS, LGUI_T/RGUI_T hold behavior is correct as-is; on Linux, swap to Ctrl
@@ -349,47 +394,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case SFT_LEAD:
+        case MD_FENCE:
             if (record->event.pressed) {
-                sft_lead_timer = timer_read();
-                sft_lead_held = true;
-                register_code(KC_LSFT);
-            } else {
-                unregister_code(KC_LSFT);
-                if (sft_lead_held && timer_elapsed(sft_lead_timer) < TAPPING_TERM) {
-                    leader_start();
-                }
-                sft_lead_held = false;
+                uint8_t saved = get_mods();
+                clear_mods();
+                SEND_STRING("```");
+                set_mods(saved);
             }
             return false;
 
-        case SFT_SPC:
+        case ARROW_OP:
             if (record->event.pressed) {
-                if (timer_elapsed(sft_spc_last_tap) < TAPPING_TERM) {
-                    // Double-tap: hold Space (auto-repeats)
-                    sft_spc_repeating = true;
-                    register_code(KC_SPC);
-                } else {
-                    // First press: Shift
-                    sft_spc_timer = timer_read();
-                    sft_spc_held = true;
-                    sft_spc_used = false;
-                    sft_spc_repeating = false;
-                    register_code(KC_RSFT);
-                }
-            } else {
-                if (sft_spc_repeating) {
-                    unregister_code(KC_SPC);
-                    sft_spc_last_tap = timer_read();  // allow triple-tap
-                    sft_spc_repeating = false;
-                } else {
-                    unregister_code(KC_RSFT);
-                    if (sft_spc_held && !sft_spc_used && timer_elapsed(sft_spc_timer) < TAPPING_TERM) {
-                        tap_code(KC_SPC);
-                        sft_spc_last_tap = timer_read();
-                    }
-                    sft_spc_held = false;
-                }
+                uint8_t saved = get_mods();
+                clear_mods();
+                send_string((saved & MOD_MASK_SHIFT) ? "=>" : "->");
+                set_mods(saved);
             }
             return false;
 
@@ -440,7 +459,6 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
         case MO(NAV_DEL):
         case SEL_LATCH:
         case QK_LAYER_LOCK:
-        case TO(BASE):
             return true;
         default:
             return false;
@@ -490,6 +508,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 }
             }
             break;
+        case COMBO_COMPOSE:
+            if (pressed) {
+                compose_pending = true;
+            }
+            break;
 #ifdef XC_WEAK_CORNERS
         case COMBO_WC_TL: case COMBO_WC_TR:
         case COMBO_WC_BL: case COMBO_WC_BR:
@@ -497,7 +520,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 uint8_t layer = get_highest_layer(default_layer_state);
                 uint8_t corner = combo_index - COMBO_WC_TL;
                 if (layer >= ARRAY_SIZE(wc_keycodes)) layer = BASE;
-                tap_code(wc_keycodes[layer][corner]);
+                uint16_t kc = wc_keycodes[layer][corner];
+                // Combos bypass Caps Word's shift logic; apply it here for letters
+                if (is_caps_word_on() && kc >= KC_A && kc <= KC_Z) {
+                    tap_code16(LSFT(kc));
+                } else {
+                    tap_code(kc);
+                }
             }
             break;
 #endif
@@ -510,35 +539,24 @@ void matrix_scan_user(void) {
 }
 #endif
 
-// End leader sequence immediately after first keypress (all sequences are single-key)
-bool leader_add_user(uint16_t keycode) {
-    return true;
-}
-
-// Leader key sequences for special characters and dead keys
-// W = Euro (€), C = Cedilla (ç), N = Ñ
-// E = acute (é), A = grave (à), U = diaeresis (ü), O = circumflex (ô)
-void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_W)) {
-        // Euro: €
-        tap_semkey_code(SK_EURO);
-    } else if (leader_sequence_one_key(KC_C)) {
-        // Cedilla: ç
-        tap_semkey_code(SK_CEDIL);
-    } else if (leader_sequence_one_key(KC_N)) {
-        // N with tilde: ñ
-        tap_semkey_code(SK_NTILDE);
-    } else if (leader_sequence_one_key(KC_E)) {
-        // Acute: é
-        tap_deadkey_code(DK_ACUTE);
-    } else if (leader_sequence_one_key(KC_A)) {
-        // Grave: à
-        tap_deadkey_code(DK_GRAVE);
-    } else if (leader_sequence_one_key(KC_U)) {
-        // Diaeresis: ü
-        tap_deadkey_code(DK_DIAE);
-    } else if (leader_sequence_one_key(KC_O)) {
-        // Circumflex: ô
-        tap_deadkey_code(DK_CIRC);
+// Caps Word: same as QMK default, plus AS_UNDS so SCREAMING_SNAKE survives the
+// custom underscore keycode (default would deactivate on an unknown keycode)
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+#ifdef XC_ALT_BASE_SYMBOLS
+        case AS_UNDS:
+#endif
+            return true;
+        default:
+            return false;
     }
 }
+

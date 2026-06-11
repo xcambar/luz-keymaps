@@ -11,42 +11,49 @@ layers:
               "",
               "",
               "",
-              "",
+              { t: "▽", type: trans },
               { t: "⌫ L←", type: editing },
-              "",
+              { t: "▽", type: trans },
               { t: "⌦ L→", type: editing },
               "",
               "",
           ]
         - [
-              "",
+              { t: "▽", type: trans },
               "",
               { type: held },
               "",
               "",
-              "",
-              "",
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
               { t: $$mdi:backspace-outline$$, type: editing },
-              "",
+              { t: "▽", type: trans },
               { t: Del, type: editing },
               "",
-              "",
+              { t: "▽", type: trans },
           ]
         - [
-              "",
-              "",
-              "",
-              "",
-              "",
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
               "",
               "",
               { t: "⌫ W←", type: editing },
               "",
               { t: "⌦ W→", type: editing },
               "",
-              "",
+              { t: "▽", type: trans },
           ]
-        - ["", "", { type: held }, "", "", ""]
+        - [
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+              { type: held },
+              "",
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+          ]
 
 draw_config:
     key_h: 60
