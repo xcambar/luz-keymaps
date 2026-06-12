@@ -13,8 +13,10 @@ jobs:
       qmk_repo: qmk/qmk_firmware
       qmk_ref: master
       preparation_command: |
-        find . -type l | while read link; do
-          target=$(readlink -f "$link")
+        # Materialize the userspace keymap symlinks (scoped to our keyboards/ tree:
+        # `find .` would also walk the qmk_firmware checkout and choke on its symlinks)
+        find keyboards -type l | while read link; do
+          target=$(readlink -f "$link") || { echo "Unresolvable symlink: $link" >&2; exit 1; }
           rm "$link"
           cp -r "$target" "$link"
         done
