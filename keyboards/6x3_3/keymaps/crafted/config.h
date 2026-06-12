@@ -14,8 +14,5 @@
 // Flow Tap: disable hold during fast typing bursts (QMK May 2025)
 #define FLOW_TAP_TERM 150
 
-// Tapping force hold - prevents accidental taps when rolling
-#define TAPPING_FORCE_HOLD_PER_KEY
-
 // Combos always reference layer 0 keycodes, so they work regardless of active base layer
 #define COMBO_ONLY_FROM_LAYER 0

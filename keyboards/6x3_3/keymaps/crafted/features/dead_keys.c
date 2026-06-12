@@ -28,7 +28,7 @@ typedef struct {
 
 // Lookup table for dead keys by platform
 // macOS: Uses Option (Left Alt) key combinations
-// Linux: Uses AltGr (Right Alt) combinations - same as leader key sequences
+// Linux: Uses AltGr (Right Alt) combinations (EurKEY layout)
 // These trigger the OS's compose/dead key system
 // Format: [DK_ndx(keycode)] = {mac_key, linux_key}
 static const deadkey_map_t deadkey_table[DK_count] = {

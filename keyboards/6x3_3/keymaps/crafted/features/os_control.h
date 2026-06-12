@@ -23,8 +23,5 @@ uint8_t get_os_platform(void);
 // Get the current OS platform name as a string
 const char* get_os_platform_name(void);
 
-// Set the current OS platform
-void set_os_platform(uint8_t os);
-
 // Toggle to the next OS platform (cycles through all supported OSes)
 void toggle_os_platform(void);

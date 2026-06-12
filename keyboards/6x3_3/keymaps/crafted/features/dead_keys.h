@@ -13,7 +13,6 @@
  * Design goals:
  * - Platform-independent using Unicode input
  * - Data-driven: accent combinations stored in lookup tables
- * - Compatible with oneshot modifiers and semantic keys
  *
  * Usage in keymap.c:
  * 1. Include this header after custom_keycodes.h
@@ -35,5 +34,5 @@
 // Returns true to continue processing, false if handled
 bool process_dead_key(uint16_t keycode, keyrecord_t *record);
 
-// Tap the platform-specific dead key (for use in leader sequences, etc.)
+// Tap the platform-specific dead key (for use in Compose, etc.)
 void tap_deadkey_code(uint16_t dk);

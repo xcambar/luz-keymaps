@@ -6,7 +6,7 @@
 
 #include "os_control.h"
 
-// Current OS platform (defaults to macOS)
+// Current OS platform (defaults to Linux)
 static uint8_t current_os = OS_Linux;
 
 // OS platform names
@@ -26,13 +26,6 @@ const char* get_os_platform_name(void) {
         return os_names[current_os];
     }
     return "Unknown";
-}
-
-// Set the current OS platform
-void set_os_platform(uint8_t os) {
-    if (os < _OS_COUNT) {
-        current_os = os;
-    }
 }
 
 // Toggle to the next OS platform (cycles through all supported OSes)

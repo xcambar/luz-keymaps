@@ -11,7 +11,6 @@
  * that automatically send the correct keystroke for Mac or Linux.
  *
  * Design goals:
- * - Compatible with Callum-style oneshot modifiers
  * - Data-driven: keycodes stored in lookup table by platform
  * - Proper C file structure (no static variables in headers)
  *
@@ -48,5 +47,5 @@
 // Returns true to continue processing, false if handled
 bool process_semkey(uint16_t keycode, keyrecord_t *record);
 
-// Tap the platform-specific keycode sequence for a semantic key (for use in leader sequences, etc.)
+// Tap the platform-specific keycode sequence for a semantic key (for use in Compose, etc.)
 void tap_semkey_code(uint16_t sk);

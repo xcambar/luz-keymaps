@@ -117,10 +117,7 @@ static uint16_t registered_semkey_code = KC_NO;
 // Process semantic keys - call from process_record_user()
 // Returns true to continue processing, false if handled
 //
-// IMPORTANT: Oneshot compatibility:
-// - Reads modifier state with get_mods() to detect shift for morphing
-// - Clears shift when consumed for the morph
-// - Lets oneshot system clean up the physical key state
+// Shift morphing: reads get_mods() to detect shift, clears it when consumed
 bool process_semkey(uint16_t keycode, keyrecord_t *record) {
     // Not a semantic key? Continue normal processing
     if (!is_SemKey(keycode)) {
@@ -136,7 +133,6 @@ bool process_semkey(uint16_t keycode, keyrecord_t *record) {
         if (keycode == SK_COPY && (mods & MOD_MASK_SHIFT)) {
             actual_keycode = SK_CUT;
             // Clear shift - we've consumed it for the morph
-            // Don't restore it; let the oneshot system clean up
             del_mods(MOD_MASK_SHIFT);
         }
 

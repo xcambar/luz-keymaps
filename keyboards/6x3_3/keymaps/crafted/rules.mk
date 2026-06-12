@@ -16,15 +16,13 @@ SRC += features/os_control.c
 SRC += features/swapper.c
 SRC += features/semantic_keys.c
 SRC += features/dead_keys.c
-SRC += features/alt_symbols.c
-SRC += features/alt_symbols_layer.c
 
 
 ###################
 # Custom options
 #
 
-# Layout selection: qwerty, gallium, focal, graphite, or radial
+# Layout selection: qwerty, gallium, focal, graphite, or gallium_east
 XC_LAYOUT ?=gallium_east
 
 # Secondary (alternate base) layout: qwerty, gallium, focal, graphite, or gallium_east

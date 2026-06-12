@@ -17,7 +17,6 @@
  *                                 └─────┘   └─────┘
  */
 
-#include "keymap_eurkey.h"
 #include QMK_KEYBOARD_H
 #include <stdbool.h>
 #include <stdint.h>
@@ -162,8 +161,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * any other key passes through unchanged
       * Home-row mod-taps: F/⌘=GUI (Ctrl on Linux), J/⌘=GUI (Ctrl on Linux)
       * Bottom-row mod-taps: X/A=Alt, C/G=GUI, V/C=Ctrl | M/C=Ctrl, ,/G=GUI, ./A=Alt
-      * S/L=SFT_LEAD: Hold for Shift, Tap for Leader
-      * S/␣=SFT_SPC: Hold for Shift, Tap for Space (if no other key pressed)
       * Chordal Hold: opposite-hands rule prevents same-hand roll misfires
       * Weak corners: [Q] [P] [B] [N] - only when XC_WEAK_CORNERS enabled, else actual keys
       * Combos: W+E→Q I+O→P C+V→B M+,→N (when weak corners on); boot lives on ADJUST
