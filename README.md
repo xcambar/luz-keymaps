@@ -1,90 +1,70 @@
 # Xavier's Split Keyboard Keymaps
 
-QMK keymaps for two split keyboards sharing the same **3x6+3** layout (6 columns, 3 rows, 3 thumb keys per side). As a user who regularly switches between macOS and Linux, I needed keyboards that provide a consistent experience across devices.
+QMK keymaps for keyboards with a **3x6+3** layout.
+
+Two keymaps live here: 
+
+- **`zen`**, a minimal QWERTY fallback (3 layers, no custom features)
+- **`crafted`**, the daily driver described below.
 
 ## Keyboards
 
-Both keyboards use the same physical layout and share the same keymaps via symlinks.
+Both boards run the same keymaps via symlinks:
 
 | Keyboard | MCU | Firmware |
 |----------|-----|----------|
 | **Kaly42** (`kaly/kaly42`) | STM32 | `.bin` |
 | **Cantor Pro v3** (`42keebs/cantor_pro/v3/left`) | RP2040 | `.uf2` |
 
-## Keymaps
+## Crafted
 
-### zen
+An opinionated keymap built around **Gallium East** as its base alpha layer: four main layers (BASE, NAV/FAVS, SYMBOLS, ADJUST), plus a hold-only delete sub-layer (NAV_DEL, reachable from NAV/FAVS).
 
-A minimal, no-frills QWERTY keymap with just 3 layers:
-
-- **BASE** — Standard QWERTY with Tab, Ctrl, Shift on the left column; Esc, GUI, and layer keys on thumbs
-- **CODE** — Digits on the top row, brackets/symbols on home and bottom rows
-- **NAV** — F-keys on top row, arrow keys and Home/PgDn/PgUp/End on home and bottom rows
-
-No custom features, no macros, no combos (except bootloader). Good as a fallback or starting point.
-
-#### Building zen
-
-```bash
-qmk compile -kb kaly/kaly42 -km zen
-qmk compile -kb 42keebs/cantor_pro/v3/left -km zen
-```
-
-### crafted
-
-This layout doesn't use the full range of keys available on the keyboards, it is effectiveky a (5.6.5)_2 keymap (where capital `X` is the home key):
-
-```
- xxxxx   xxxxx
-xxxxXx   xXxxxx
- xxxxx   xxxxx
-     Xx xX 
-```
-
-It is quite feature-rich and opinionated, with an emphasis on **short finger travel**, **platform independence**, and **semantics over shortcuts**. Instead of memorizing different shortcuts for each platform, you use semantic commands that translate to the correct keystroke(s) for your current OS.
-
-#### The keymap
-
-<!-- KEYMAP DRAWER><-->
-![BASE Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.png)
-![FAVS Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_FAVS.png)
-![SYMBOLS Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_SYMBOLS.png)
-![ACCENTS Layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ACCENTS.png)
-<!-- END KEYMAP DRAWER><-->
+A secondary base layer (QWERTY by default) can be toggled from the ADJUST layer.
 
 
-#### Ergonomics
+### Design principles
 
-- **Pinky fingers** only reach **downward** and **1U lateral (outward)** from home. No pinky ever reaches upward or diagonally. This motivated the **weak corners feature** (corner keys accessible via combos) and outer columns using **only the home row position**.
-- **Index fingers** avoid inner diagonal reaches (the awkward hand twist toward B/N in QWERTY).
-- **2-key thumb clusters** supplemented by the outer pinky home-row key, rather than 3-key thumb arcs — fewer keys means better proprioception and fewer misfires.
+The design sticks to three rules:
 
-#### Features
+1. **No sticky state.** Every piece of state is either momentary (dies with the key) or layer-scoped (dies with the layer). Nothing queues, nothing times out, nothing needs remembering.
+2. **Cross-layer consistency.** The same output lives on the same physical position on every layer, even when that costs space. One spatial memory per symbol. Especially important for Modifiers and the whole thumb cluster.
+3. **Destructive actions are gated.** Deleting requires a sustained hold; the bootloader hides behind a three-key gesture.
 
-- **Platform-aware semantic keys** — Undo/Cut/Copy/Paste, special characters (€, ç, ñ), text navigation, and application switching work identically on macOS and Linux. Inspired by [HandsDown](https://sites.google.com/alanreiser.com/handsdown).
-- **Dead key accents** — Type accented characters (á, è, ô, ü, ñ...) naturally using OS-native dead key triggers.
-- **Callum-style oneshot modifiers** — Tap a modifier, then tap your key. No holding required. Works seamlessly with semantic keys and shift morphing.
-- **Weak corners** — Corner keys accessible via combos from adjacent positions, keeping fingers closer to home.
-- **Alternative symbol systems** — Optional base layer symbol replacements (`XC_ALT_BASE_SYMBOLS`) and an alternative SYMBOLS layer (`XC_ALT_SYMBOLS_LAYER`) with inverted pairs and custom shift behaviors.
-- **Multiple base layouts** — `qwerty`, `gallium`, `gallium_east`, `focal`, `graphite`, `radial`.
+### Key mechanisms
 
-#### Technical Implementation
+What you'd actually notice while typing:
 
-**Feature modularity** — Each feature is a self-contained `.c`/`.h` pair:
+- **Single-purpose thumbs**: `Esc · Shift · NAV ‖ SYM · Space · Enter`, the same on every layer; no tap-hold logic anywhere on the cluster.
+- **Compose**: tap Shift+Space together, then `E/A/U/O` for an acute/grave/diaeresis/circumflex dead key, and additionally `C`→ç, `N`→ñ, `W`→€; any other key passes through unchanged.
+- **Navigation** features:
+  - **Modifier-free motions**: per-character/word/line and forward/backward navigation, each on a single key. No modifier chords involved.
+  - **Select latch**: on NAV, tap once and Shift stays held while you arrow around for selection; it releases with the layer (or via Esc). Text selection never requires holding a key.
+  - **Hold-to-delete**: still on NAV, hold the ring finger and the horizontal motions become deletions at the same granularity (line / char / word).
+- **One-handed numpad**: SYMBOLS puts calculator-order digits on the left hand; with Layer Lock, numbers can be entered while the right hand stays on the mouse.
+- **Symbols organized by traffic**: the most-used symbols sit on the strongest fingers: `=+` and `@#` on the middle finger, opening brackets on the index column, closing brackets on the ring (cheap, since editors auto-close). Punctuation is consistent between BASE and SYMBOLS, and related siblings are as much as possible organized by pairs.
 
-| Module | Purpose |
-|--------|---------|
-| `semantic_keys` | Platform-independent commands (Undo, Cut, Euro, etc.) |
-| `dead_keys` | OS dead key triggers |
-| `oneshot` | Callum-style oneshot modifiers |
-| `mod_morph` | Shift morphing system |
-| `os_control` | Runtime OS detection and switching |
-| `alt_symbols` | Alternative base layer symbols |
-| `alt_symbols_layer` | Alternative SYMBOLS layer configuration |
+#### Other honorable features
 
-Custom keycodes use the `CUSTOM_KEYCODES()` macro pattern for auto-generated start markers and count values. Dead keys are processed before semantic keys, oneshot modifiers integrate cleanly with morphing, and key overrides are scoped to specific layers.
+Some features are available for convenience:
+- **Weak corners** (optional): the four hardest-to-reach corner keys are disabled and their letters (B, ', Z, K) are produced by pressing the two neighboring keys together, keeping pinkies and indexes off the worst diagonals.
+- **Swapper**: hold-free window switching — one key repeats Cmd/Alt-Tab while the firmware holds the modifier for you, releasing it when you leave the layer.
+- **Platform independence**: clipboard, word/line navigation, deletions, accents, and the GUI/Ctrl modifier resolve at runtime to the correct macOS or Linux chords; the active OS is toggled (and can be printed) from ADJUST.
+- **Caps Word**: dedicated key for `SCREAMING_SNAKE` and friends; survives the custom underscore and capitalizes combo-produced letters.
 
-#### Building crafted
+### The layers
+
+<!-- KEYMAP DRAWER -->
+![BASE layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.png)
+![FAVS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_FAVS.png)
+![SYMBOLS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_SYMBOLS.png)
+![NAV_DEL layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_NAV_DEL.png)
+![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/04_ADJUST.png)
+<!-- END KEYMAP DRAWER -->
+
+Legend: ▽ = transparent (falls through to a real key below), red = held to stay on the layer. A printable PDF lives at [`keymap_drawer/crafted.pdf`](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/crafted.pdf); diagrams rebuild with `keymap_drawer/build_pdf.sh`.
+
+### Building
 
 ```bash
 qmk compile -kb kaly/kaly42 -km crafted
@@ -97,13 +77,14 @@ With a different base layout:
 XC_LAYOUT=graphite qmk compile -kb kaly/kaly42 -km crafted
 ```
 
-Feature flags (environment variables or `rules.mk`):
+Build options (`rules.mk` or environment):
 
-- **`XC_WEAK_CORNERS`** (default: `yes`) — Lazy corner keys via combos
-- **`XC_ALT_BASE_SYMBOLS`** (auto-enabled with weak corners) — Alternative base layer symbols
-- **`XC_ALT_SYMBOLS_LAYER`** (default: `no`) — Alternative SYMBOLS layer with inverted pairs
+- **`XC_LAYOUT`** (default: `gallium_east`) — base layout: `qwerty`, `gallium`, `gallium_east`, `focal`, `graphite`
+- **`XC_SECONDARY_LAYOUT`** (default: `qwerty`) — the alternate base layer, toggled from ADJUST
+- **`XC_WEAK_CORNERS`** (default: `yes`) — corner letters via combos
+- **`XC_ALT_BASE_SYMBOLS`** (default: `yes`) — semantic shift pairs on the base layer
 
-## Building All Targets
+All targets at once:
 
 ```bash
 qmk userspace-compile
@@ -111,9 +92,11 @@ qmk userspace-compile
 
 ## Inspiration
 
-- **Callum-style oneshot modifiers** — For superior ergonomics over home row mods
-- **Precondition's approach** — Platform-aware key handling philosophy
-- **HandsDown semantic keys** — Extended navigation and editing commands
+- **[HandsDown](https://sites.google.com/alanreiser.com/handsdown)** — semantic, platform-aware editing commands
+- **[Gallium](https://github.com/GalileoBlues/Gallium) East** — the alpha layout
+- **Pascal Getreuer's QMK work** — Chordal Hold, Caps Word, and the wider tap-hold tuning vocabulary
+- **Callum-style oneshot modifiers** — an early influence, since fully replaced by layer-scoped latches and plain momentary mods
+- **[keymap-drawer](https://github.com/caksoylar/keymap-drawer)** — the layer diagrams
 
 ## License
 

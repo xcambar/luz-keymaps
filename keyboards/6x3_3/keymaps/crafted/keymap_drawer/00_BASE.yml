@@ -20,7 +20,11 @@ layers:
               { t: $$mdi:backspace-outline$$, type: editing },
           ]
         - [
-              { t: $$mdi:format-letter-case-upper$$, h: "Caps Word", type: editing },
+              {
+                  t: $$mdi:format-letter-case-upper$$,
+                  h: "Caps Word",
+                  type: editing,
+              },
               X,
               { t: Q, h: LAlt, type: modifier },
               { t: W, h: LGui, type: modifier },
