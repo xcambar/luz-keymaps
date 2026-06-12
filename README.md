@@ -29,7 +29,7 @@ A lot of effort went into building a keymap that is easy to memorize and require
 
 1. **No sticky state.** Every piece of state is either momentary (dies with the key) or layer-scoped (dies with the layer). Nothing queues, nothing times out, nothing needs remembering.
 2. **Cross-layer consistency.** The same output lives on the same physical position on every layer, even when that costs space. One spatial memory per symbol. Especially important for Modifiers and the whole thumb cluster.
-3. **No dual-function keys** With the exception of Bottom Row mods, no single key has a dual behavior that would depend on hold, tap-dance or otherwise. It complements the cross-layer consistency to an easy-to-learn keymap.
+3. **No dual-function keys.** With the exception of the mod-taps (bottom row, plus GUI/Ctrl on the index home keys), no single key has a dual behavior that would depend on hold, tap-dance or otherwise. It complements the cross-layer consistency, making the keymap easy to learn.
 
 ### Key mechanisms
 

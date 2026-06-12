@@ -15,6 +15,10 @@ KEYMAP_NAME="$(basename "$(dirname "$(dirname "$(realpath "$0")")")")"
 OUTDIR="$(mktemp -d)"
 trap 'rm -rf "$OUTDIR"' EXIT
 
+# SVG pattern for held keys (referenced by .key.held CSS as url(#stripes));
+# injected into every generated SVG since CSS alone cannot define SVG patterns
+STRIPES='<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs>'
+
 # High-contrast draw_config substituted for the embedded one, for the print PDF only
 PRINT_CONFIG=$(cat <<'EOF'
 draw_config:
@@ -24,7 +28,8 @@ draw_config:
         .key rect { fill: white; stroke: black; stroke-width: 1.2; }
         .key :not(rect) { fill: black; }
         .key.trans :not(rect) { fill: #777777; }
-        .key.held rect { fill: #bbbbbb; }
+        .key.modtap.hold { font-weight: bold; }
+        .key.held rect { fill: url(#stripes); stroke: #555555; }
         .combo rect { fill: white; stroke: black; }
 EOF
 )
@@ -35,6 +40,7 @@ for yml in [0-9]*.yml; do
 
     # Color version (committed; referenced by the README and the color PDF)
     uvx --from keymap-drawer keymap draw "$yml" > "$name.svg"
+    sed -i "s|</svg>|$STRIPES</svg>|" "$name.svg"
     convert -density 150 "$name.svg" "$name.png"
     cp "$name.png" "$OUTDIR/color_$name.png"
 
@@ -42,6 +48,7 @@ for yml in [0-9]*.yml; do
     awk '/^draw_config:/{exit} {print}' "$yml" > "$OUTDIR/$name.print.yml"
     printf '%s\n' "$PRINT_CONFIG" >> "$OUTDIR/$name.print.yml"
     uvx --from keymap-drawer keymap draw "$OUTDIR/$name.print.yml" > "$OUTDIR/$name.print.svg"
+    sed -i "s|</svg>|$STRIPES</svg>|" "$OUTDIR/$name.print.svg"
     convert -density 150 "$OUTDIR/$name.print.svg" "$OUTDIR/print_$name.png"
 
     echo "  $yml -> $name.svg -> $name.png (+ print variant)"

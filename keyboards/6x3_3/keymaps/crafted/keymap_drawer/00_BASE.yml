@@ -4,16 +4,16 @@ layout:
 
 layers:
     "Base (Gallium East)":
-        - ["", "", L, C, D, V, J, F, O, U, "", ""]
+        - [{ type: none }, { type: none }, L, C, D, V, J, F, O, U, { type: none }, { type: none }]
         - [
-              { t: $$mdi:keyboard-tab$$, type: nav },
+              { t: $$mdi:keyboard-tab$$, type: editing },
               N,
               R,
               S,
-              { t: T, h: "⌘/Ctrl", type: modifier },
+              { t: T, h: "⌘/Ctrl", type: modtap },
               G,
               Y,
-              { t: H, h: "⌘/Ctrl", type: modifier },
+              { t: H, h: "⌘/Ctrl", type: modtap },
               E,
               A,
               I,
@@ -23,17 +23,17 @@ layers:
               {
                   t: $$mdi:format-letter-case-upper$$,
                   h: "Caps Word",
-                  type: editing,
+                  type: state,
               },
               X,
-              { t: Q, h: LAlt, type: modifier },
-              { t: W, h: LGui, type: modifier },
-              { t: M, h: LCtrl, type: modifier },
-              "",
-              "",
-              { t: P, h: RCtrl, type: modifier },
-              { t: ",", h: RGui, type: modifier },
-              { t: ".", h: RAlt, type: modifier },
+              { t: Q, h: LAlt, type: modtap },
+              { t: W, h: LGui, type: modtap },
+              { t: M, h: LCtrl, type: modtap },
+              { type: none },
+              { type: none },
+              { t: P, h: RCtrl, type: modtap },
+              { t: ",", h: RGui, type: symbol modtap },
+              { t: ".", h: RAlt, type: symbol modtap },
               { t: "-", s: "/", type: symbol },
               { t: "_", s: "|", type: symbol },
           ]
@@ -64,7 +64,7 @@ combos:
       layers:
           - "Base (Gallium East)"
     - key_positions: [37, 40]
-      key: Compose
+      key: { t: Compose, type: state }
       align: bottom
       layers:
           - "Base (Gallium East)"
@@ -75,17 +75,18 @@ draw_config:
     arc_scale: 1.0
     append_colon_to_layer_header: false
     svg_extra_style: |
-        .key.modifier rect { fill: #d6e5f5; stroke: #4a7ab8; }
-        .key.modifier :not(rect) { fill: #4a7ab8; }
-        .key.nav rect { fill: #d9f0d9; stroke: #5ca75c; }
-        .key.nav :not(rect) { fill: #5ca75c; }
-        .key.editing rect { fill: #ffe4d1; stroke: #e88a3a; }
-        .key.editing :not(rect) { fill: #e88a3a; }
+        /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+        /* Tier 1 - ambient content categories (default dark text) */
+        /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+           purple = layers, blue = navigation (incl. latches), orange = everything else */
+        .key.none rect { fill: white; }
+        .key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
         .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
         .key.layer :not(rect) { fill: #9a5fa1; }
-        .key.system rect { fill: #fff4d1; stroke: #e8b52a; }
-        .key.system :not(rect) { fill: #e8b52a; }
-        .key.symbol rect { fill: #d4f0e8; stroke: #4aa78a; }
-        .key.symbol :not(rect) { fill: #4aa78a; }
-        .key.accent rect { fill: #ffe0d6; stroke: #e86d4a; }
-        .key.accent :not(rect) { fill: #e86d4a; }
+        .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.editing rect, .key.system rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+        .key.modifier :not(rect) { fill: #b06c1f; }
+        .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+        .key.held rect { fill: url(#stripes); stroke: #999999; }
+        .combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
+        .combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }

@@ -5,31 +5,31 @@ layout:
 layers:
     FAVS:
         - [
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
               { t: PgUp, type: nav },
               { t: "L←", type: nav },
               { t: $$mdi:arrow-up$$, type: nav },
               { t: "L→", type: nav },
-              "",
-              "",
+              { type: none },
+              { type: none },
           ]
         - [
               { t: $$mdi:keyboard-esc$$, type: editing },
               { t: $$mdi:lock-outline$$, h: "Layer Lock", type: layer },
-              { t: $$mdi:backspace-outline$$, h: "Delete (hold)", type: layer },
-              { t: $$mdi:apple-keyboard-shift$$, h: "Latch", type: modifier },
-              { t: $$mdi:star-four-points-box$$, h: "GUI/Ctrl", type: modifier },
-              { t: $$mdi:swap-horizontal$$, type: system },
+              { t: $$mdi:backspace-outline$$, h: "Delete (hold)", type: nav },
+              { t: $$mdi:apple-keyboard-shift$$, h: "Latch", type: nav },
+              { t: $$mdi:star-four-points-box$$, h: "GUI/Ctrl", type: modtap },
+              { t: $$mdi:swap-horizontal$$, type: state },
               { t: PgDn, type: nav },
               { t: $$mdi:arrow-left$$, type: nav },
               { t: $$mdi:arrow-down$$, type: nav },
               { t: $$mdi:arrow-right$$, type: nav },
-              "",
+              { type: none },
               { t: Del, type: editing },
           ]
         - [
@@ -38,18 +38,18 @@ layers:
               { t: Cut, type: system },
               { t: Copy, type: system },
               { t: Paste, type: system },
-              "",
-              "",
+              { type: none },
+              { type: none },
               { t: "W←", type: nav },
-              "",
+              { type: none },
               { t: "W→", type: nav },
-              "",
+              { type: none },
               { t: "▽", type: trans },
           ]
         - [
               { t: "▽", type: trans },
               { t: "▽", type: trans },
-              "",
+              { type: none },
               { t: $$mdi:layers-triple-outline$$, h: "ADJUST", type: layer },
               { t: "▽", type: trans },
               { t: "▽", type: trans },
@@ -59,17 +59,18 @@ draw_config:
     key_h: 60
     append_colon_to_layer_header: false
     svg_extra_style: |
-        .key.modifier rect { fill: #d6e5f5; stroke: #4a7ab8; }
-        .key.modifier :not(rect) { fill: #4a7ab8; }
-        .key.nav rect { fill: #d9f0d9; stroke: #5ca75c; }
-        .key.nav :not(rect) { fill: #5ca75c; }
-        .key.editing rect { fill: #ffe4d1; stroke: #e88a3a; }
-        .key.editing :not(rect) { fill: #e88a3a; }
+        /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+        /* Tier 1 - ambient content categories (default dark text) */
+        /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+           purple = layers, blue = navigation (incl. latches), orange = everything else */
+        .key.none rect { fill: white; }
+        .key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
         .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
         .key.layer :not(rect) { fill: #9a5fa1; }
-        .key.system rect { fill: #fff4d1; stroke: #e8b52a; }
-        .key.system :not(rect) { fill: #e8b52a; }
-        .key.symbol rect { fill: #d4f0e8; stroke: #4aa78a; }
-        .key.symbol :not(rect) { fill: #4aa78a; }
-        .key.accent rect { fill: #ffe0d6; stroke: #e86d4a; }
-        .key.accent :not(rect) { fill: #e86d4a; }
+        .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.editing rect, .key.system rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+        .key.modifier :not(rect) { fill: #b06c1f; }
+        .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+        .key.held rect { fill: url(#stripes); stroke: #999999; }
+        .combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
+        .combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }

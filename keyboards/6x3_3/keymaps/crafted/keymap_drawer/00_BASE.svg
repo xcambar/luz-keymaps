@@ -1,29 +1,29 @@
 <svg width="900" height="397" viewBox="0 0 900 397" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>/* start glyphs */
 <svg id="mdi:apple-keyboard-shift">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-apple-keyboard-shift" viewBox="0 0 24 24"><path d="M15,18V12H17.17L12,6.83L6.83,12H9V18H15M12,4L22,14H17V20H7V14H2L12,4Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-apple-keyboard-shift" viewBox="0 0 24 24"><path d="M15,18V12H17.17L12,6.83L6.83,12H9V18H15M12,4L22,14H17V20H7V14H2L12,4Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:backspace-outline">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-backspace-outline" viewBox="0 0 24 24"><path d="M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12L19,15.59M22,3A2,2 0 0,1 24,5V19A2,2 0 0,1 22,21H7C6.31,21 5.77,20.64 5.41,20.11L0,12L5.41,3.88C5.77,3.35 6.31,3 7,3H22M22,5H7L2.28,12L7,19H22V5Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-backspace-outline" viewBox="0 0 24 24"><path d="M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12L19,15.59M22,3A2,2 0 0,1 24,5V19A2,2 0 0,1 22,21H7C6.31,21 5.77,20.64 5.41,20.11L0,12L5.41,3.88C5.77,3.35 6.31,3 7,3H22M22,5H7L2.28,12L7,19H22V5Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:format-letter-case-upper">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-format-letter-case-upper" viewBox="0 0 24 24"><path d="M20.06,18C20,17.83 19.91,17.54 19.86,17.11C19.19,17.81 18.38,18.16 17.45,18.16C16.62,18.16 15.93,17.92 15.4,17.45C14.87,17 14.6,16.39 14.6,15.66C14.6,14.78 14.93,14.1 15.6,13.61C16.27,13.12 17.21,12.88 18.43,12.88H19.83V12.24C19.83,11.75 19.68,11.36 19.38,11.07C19.08,10.78 18.63,10.64 18.05,10.64C17.53,10.64 17.1,10.76 16.75,11C16.4,11.25 16.23,11.54 16.23,11.89H14.77C14.77,11.46 14.92,11.05 15.22,10.65C15.5,10.25 15.93,9.94 16.44,9.71C16.95,9.5 17.5,9.36 18.13,9.36C19.11,9.36 19.87,9.6 20.42,10.09C20.97,10.58 21.26,11.25 21.28,12.11V16C21.28,16.8 21.38,17.42 21.58,17.88V18H20.06M17.66,16.88C18.11,16.88 18.54,16.77 18.95,16.56C19.35,16.35 19.65,16.07 19.83,15.73V14.16H18.7C16.93,14.16 16.04,14.63 16.04,15.57C16.04,16 16.19,16.3 16.5,16.53C16.8,16.76 17.18,16.88 17.66,16.88M5.46,13.71H9.53L7.5,8.29L5.46,13.71M6.64,6H8.36L13.07,18H11.14L10.17,15.43H4.82L3.86,18H1.93L6.64,6M2,20H13V22H2V20Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-format-letter-case-upper" viewBox="0 0 24 24"><path d="M20.06,18C20,17.83 19.91,17.54 19.86,17.11C19.19,17.81 18.38,18.16 17.45,18.16C16.62,18.16 15.93,17.92 15.4,17.45C14.87,17 14.6,16.39 14.6,15.66C14.6,14.78 14.93,14.1 15.6,13.61C16.27,13.12 17.21,12.88 18.43,12.88H19.83V12.24C19.83,11.75 19.68,11.36 19.38,11.07C19.08,10.78 18.63,10.64 18.05,10.64C17.53,10.64 17.1,10.76 16.75,11C16.4,11.25 16.23,11.54 16.23,11.89H14.77C14.77,11.46 14.92,11.05 15.22,10.65C15.5,10.25 15.93,9.94 16.44,9.71C16.95,9.5 17.5,9.36 18.13,9.36C19.11,9.36 19.87,9.6 20.42,10.09C20.97,10.58 21.26,11.25 21.28,12.11V16C21.28,16.8 21.38,17.42 21.58,17.88V18H20.06M17.66,16.88C18.11,16.88 18.54,16.77 18.95,16.56C19.35,16.35 19.65,16.07 19.83,15.73V14.16H18.7C16.93,14.16 16.04,14.63 16.04,15.57C16.04,16 16.19,16.3 16.5,16.53C16.8,16.76 17.18,16.88 17.66,16.88M5.46,13.71H9.53L7.5,8.29L5.46,13.71M6.64,6H8.36L13.07,18H11.14L10.17,15.43H4.82L3.86,18H1.93L6.64,6M2,20H13V22H2V20Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:keyboard-esc">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-esc" viewBox="0 0 24 24"><path d="M1 7H7V9H3V11H7V13H3V15H7V17H1V7M11 7H15V9H11V11H13C14.11 11 15 11.9 15 13V15C15 16.11 14.11 17 13 17H9V15H13V13H11C9.9 13 9 12.11 9 11V9C9 7.9 9.9 7 11 7M19 7H21C22.11 7 23 7.9 23 9V10H21V9H19V15H21V14H23V15C23 16.11 22.11 17 21 17H19C17.9 17 17 16.11 17 15V9C17 7.9 17.9 7 19 7Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-esc" viewBox="0 0 24 24"><path d="M1 7H7V9H3V11H7V13H3V15H7V17H1V7M11 7H15V9H11V11H13C14.11 11 15 11.9 15 13V15C15 16.11 14.11 17 13 17H9V15H13V13H11C9.9 13 9 12.11 9 11V9C9 7.9 9.9 7 11 7M19 7H21C22.11 7 23 7.9 23 9V10H21V9H19V15H21V14H23V15C23 16.11 22.11 17 21 17H19C17.9 17 17 16.11 17 15V9C17 7.9 17.9 7 19 7Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:keyboard-return">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-return" viewBox="0 0 24 24"><path d="M19,7V11H5.83L9.41,7.41L8,6L2,12L8,18L9.41,16.58L5.83,13H21V7H19Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-return" viewBox="0 0 24 24"><path d="M19,7V11H5.83L9.41,7.41L8,6L2,12L8,18L9.41,16.58L5.83,13H21V7H19Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:keyboard-space">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-space" viewBox="0 0 24 24"><path d="M3 15H5V19H19V15H21V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V15Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-space" viewBox="0 0 24 24"><path d="M3 15H5V19H19V15H21V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V15Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:keyboard-tab">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-tab" viewBox="0 0 24 24"><path d="M20,18H22V6H20M11.59,7.41L15.17,11H1V13H15.17L11.59,16.58L13,18L19,12L13,6L11.59,7.41Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-tab" viewBox="0 0 24 24"><path d="M20,18H22V6H20M11.59,7.41L15.17,11H1V13H15.17L11.59,16.58L13,18L19,12L13,6L11.59,7.41Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:layers-outline">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-layers-outline" viewBox="0 0 24 24"><path d="M12,18.54L19.37,12.8L21,14.07L12,21.07L3,14.07L4.62,12.81L12,18.54M12,16L3,9L12,2L21,9L12,16M12,4.53L6.26,9L12,13.47L17.74,9L12,4.53Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-layers-outline" viewBox="0 0 24 24"><path d="M12,18.54L19.37,12.8L21,14.07L12,21.07L3,14.07L4.62,12.81L12,18.54M12,16L3,9L12,2L21,9L12,16M12,4.53L6.26,9L12,13.47L17.74,9L12,4.53Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 </defs>/* end glyphs */
 <style>/* inherit to force styles through use tags */
 svg path {
@@ -150,29 +150,30 @@ path.combo {
 }
 /* End Tabler Icons Cleanup */
 
-.key.modifier rect { fill: #d6e5f5; stroke: #4a7ab8; }
-.key.modifier :not(rect) { fill: #4a7ab8; }
-.key.nav rect { fill: #d9f0d9; stroke: #5ca75c; }
-.key.nav :not(rect) { fill: #5ca75c; }
-.key.editing rect { fill: #ffe4d1; stroke: #e88a3a; }
-.key.editing :not(rect) { fill: #e88a3a; }
+/* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+/* Tier 1 - ambient content categories (default dark text) */
+/* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+   purple = layers, blue = navigation (incl. latches), orange = everything else */
+.key.none rect { fill: white; }
+.key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
 .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
 .key.layer :not(rect) { fill: #9a5fa1; }
-.key.system rect { fill: #fff4d1; stroke: #e8b52a; }
-.key.system :not(rect) { fill: #e8b52a; }
-.key.symbol rect { fill: #d4f0e8; stroke: #4aa78a; }
-.key.symbol :not(rect) { fill: #4aa78a; }
-.key.accent rect { fill: #ffe0d6; stroke: #e86d4a; }
-.key.accent :not(rect) { fill: #e86d4a; }
+.key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
+.key.editing rect, .key.system rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+.key.modifier :not(rect) { fill: #b06c1f; }
+.key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+.key.held rect { fill: url(#stripes); stroke: #999999; }
+.combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
+.combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
 </style>
 <g transform="translate(30, 0)" class="layer-Base (Gallium East)">
 <text x="0" y="28" class="label" id="Base-Gallium-East">Base (Gallium East)</text>
 <g transform="translate(0, 56)">
-<g transform="translate(30, 45)" class="key keypos-0">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(30, 45)" class="key none keypos-0">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(90, 45)" class="key keypos-1">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(90, 45)" class="key none keypos-1">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(150, 38)" class="key keypos-2">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -206,15 +207,15 @@ path.combo {
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <text x="0" y="0" class="key tap">U</text>
 </g>
-<g transform="translate(750, 45)" class="key keypos-10">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(750, 45)" class="key none keypos-10">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(810, 45)" class="key keypos-11">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(810, 45)" class="key none keypos-11">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(30, 105)" class="key nav keypos-12">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav"/>
-<use href="#mdi:keyboard-tab" xlink:href="#mdi:keyboard-tab" x="-7" y="-7" height="14" width="14.0" class="key nav tap glyph mdi:keyboard-tab"/>
+<g transform="translate(30, 105)" class="key editing keypos-12">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing"/>
+<use href="#mdi:keyboard-tab" xlink:href="#mdi:keyboard-tab" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:keyboard-tab"/>
 </g>
 <g transform="translate(90, 105)" class="key keypos-13">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -228,10 +229,10 @@ path.combo {
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <text x="0" y="0" class="key tap">S</text>
 </g>
-<g transform="translate(270, 98)" class="key modifier keypos-16">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">T</text>
-<text x="0" y="26" class="key modifier hold">⌘/Ctrl</text>
+<g transform="translate(270, 98)" class="key modtap keypos-16">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modtap"/>
+<text x="0" y="0" class="key modtap tap">T</text>
+<text x="0" y="26" class="key modtap hold">⌘/Ctrl</text>
 </g>
 <g transform="translate(330, 105)" class="key keypos-17">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -241,10 +242,10 @@ path.combo {
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <text x="0" y="0" class="key tap">Y</text>
 </g>
-<g transform="translate(570, 98)" class="key modifier keypos-19">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">H</text>
-<text x="0" y="26" class="key modifier hold">⌘/Ctrl</text>
+<g transform="translate(570, 98)" class="key modtap keypos-19">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modtap"/>
+<text x="0" y="0" class="key modtap tap">H</text>
+<text x="0" y="26" class="key modtap hold">⌘/Ctrl</text>
 </g>
 <g transform="translate(630, 90)" class="key keypos-20">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -262,50 +263,50 @@ path.combo {
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing"/>
 <use href="#mdi:backspace-outline" xlink:href="#mdi:backspace-outline" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:backspace-outline"/>
 </g>
-<g transform="translate(30, 165)" class="key editing keypos-24">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing"/>
-<use href="#mdi:format-letter-case-upper" xlink:href="#mdi:format-letter-case-upper" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:format-letter-case-upper"/>
-<text x="0" y="26" class="key editing hold"><tspan style="font-size: 78%">Caps Word</tspan></text>
+<g transform="translate(30, 165)" class="key state keypos-24">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key state"/>
+<use href="#mdi:format-letter-case-upper" xlink:href="#mdi:format-letter-case-upper" x="-7" y="-7" height="14" width="14.0" class="key state tap glyph mdi:format-letter-case-upper"/>
+<text x="0" y="26" class="key state hold"><tspan style="font-size: 78%">Caps Word</tspan></text>
 </g>
 <g transform="translate(90, 165)" class="key keypos-25">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <text x="0" y="0" class="key tap">X</text>
 </g>
-<g transform="translate(150, 158)" class="key modifier keypos-26">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">Q</text>
-<text x="0" y="26" class="key modifier hold">LAlt</text>
+<g transform="translate(150, 158)" class="key modtap keypos-26">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modtap"/>
+<text x="0" y="0" class="key modtap tap">Q</text>
+<text x="0" y="26" class="key modtap hold">LAlt</text>
 </g>
-<g transform="translate(210, 150)" class="key modifier keypos-27">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">W</text>
-<text x="0" y="26" class="key modifier hold">LGui</text>
+<g transform="translate(210, 150)" class="key modtap keypos-27">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modtap"/>
+<text x="0" y="0" class="key modtap tap">W</text>
+<text x="0" y="26" class="key modtap hold">LGui</text>
 </g>
-<g transform="translate(270, 158)" class="key modifier keypos-28">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">M</text>
-<text x="0" y="26" class="key modifier hold">LCtrl</text>
+<g transform="translate(270, 158)" class="key modtap keypos-28">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modtap"/>
+<text x="0" y="0" class="key modtap tap">M</text>
+<text x="0" y="26" class="key modtap hold">LCtrl</text>
 </g>
-<g transform="translate(330, 165)" class="key keypos-29">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(330, 165)" class="key none keypos-29">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(510, 165)" class="key keypos-30">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(510, 165)" class="key none keypos-30">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(570, 158)" class="key modifier keypos-31">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">P</text>
-<text x="0" y="26" class="key modifier hold">RCtrl</text>
+<g transform="translate(570, 158)" class="key modtap keypos-31">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modtap"/>
+<text x="0" y="0" class="key modtap tap">P</text>
+<text x="0" y="26" class="key modtap hold">RCtrl</text>
 </g>
-<g transform="translate(630, 150)" class="key modifier keypos-32">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">,</text>
-<text x="0" y="26" class="key modifier hold">RGui</text>
+<g transform="translate(630, 150)" class="key symbol modtap keypos-32">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key symbol modtap"/>
+<text x="0" y="0" class="key symbol modtap tap">,</text>
+<text x="0" y="26" class="key symbol modtap hold">RGui</text>
 </g>
-<g transform="translate(690, 158)" class="key modifier keypos-33">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<text x="0" y="0" class="key modifier tap">.</text>
-<text x="0" y="26" class="key modifier hold">RAlt</text>
+<g transform="translate(690, 158)" class="key symbol modtap keypos-33">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key symbol modtap"/>
+<text x="0" y="0" class="key symbol modtap tap">.</text>
+<text x="0" y="26" class="key symbol modtap hold">RAlt</text>
 </g>
 <g transform="translate(750, 165)" class="key symbol keypos-34">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key symbol"/>
@@ -360,12 +361,12 @@ path.combo {
 <rect rx="6" ry="6" x="586" y="143" width="28" height="22" class="combo"/>
 <text x="600" y="154" class="combo tap">K</text>
 </g>
-<g class="combo combopos-4">
+<g class="combo state combopos-4">
 <path d="M420,271 h-114 a6.0,6.0 0 0 1 -6.0,-6.0 v-5" class="combo"/>
 <path d="M420,271 h114 a6.0,6.0 0 0 0 6.0,-6.0 v-5" class="combo"/>
-<rect rx="6" ry="6" x="406" y="260" width="28" height="22" class="combo"/>
-<text x="420" y="271" class="combo tap">Compose</text>
+<rect rx="6" ry="6" x="406" y="260" width="28" height="22" class="combo state"/>
+<text x="420" y="271" class="combo state tap">Compose</text>
 </g>
 </g>
 </g>
-</svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>

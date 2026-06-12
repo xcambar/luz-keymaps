@@ -1,26 +1,26 @@
 <svg width="900" height="397" viewBox="0 0 900 397" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>/* start glyphs */
 <svg id="mdi:brightness-5">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-brightness-5" viewBox="0 0 24 24"><path d="M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-brightness-5" viewBox="0 0 24 24"><path d="M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:brightness-7">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-brightness-7" viewBox="0 0 24 24"><path d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-brightness-7" viewBox="0 0 24 24"><path d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:monitor-screenshot">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-monitor-screenshot" viewBox="0 0 24 24"><path d="M9,6H5V10H7V8H9M19,10H17V12H15V14H19M21,16H3V4H21M21,2H3C1.89,2 1,2.89 1,4V16A2,2 0 0,0 3,18H10V20H8V22H16V20H14V18H21A2,2 0 0,0 23,16V4C23,2.89 22.1,2 21,2" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-monitor-screenshot" viewBox="0 0 24 24"><path d="M9,6H5V10H7V8H9M19,10H17V12H15V14H19M21,16H3V4H21M21,2H3C1.89,2 1,2.89 1,4V16A2,2 0 0,0 3,18H10V20H8V22H16V20H14V18H21A2,2 0 0,0 23,16V4C23,2.89 22.1,2 21,2" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:restart">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-restart" viewBox="0 0 24 24"><path d="M12,4C14.1,4 16.1,4.8 17.6,6.3C20.7,9.4 20.7,14.5 17.6,17.6C15.8,19.5 13.3,20.2 10.9,19.9L11.4,17.9C13.1,18.1 14.9,17.5 16.2,16.2C18.5,13.9 18.5,10.1 16.2,7.7C15.1,6.6 13.5,6 12,6V10.6L7,5.6L12,0.6V4M6.3,17.6C3.7,15 3.3,11 5.1,7.9L6.6,9.4C5.5,11.6 5.9,14.4 7.8,16.2C8.3,16.7 8.9,17.1 9.6,17.4L9,19.4C8,19 7.1,18.4 6.3,17.6Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-restart" viewBox="0 0 24 24"><path d="M12,4C14.1,4 16.1,4.8 17.6,6.3C20.7,9.4 20.7,14.5 17.6,17.6C15.8,19.5 13.3,20.2 10.9,19.9L11.4,17.9C13.1,18.1 14.9,17.5 16.2,16.2C18.5,13.9 18.5,10.1 16.2,7.7C15.1,6.6 13.5,6 12,6V10.6L7,5.6L12,0.6V4M6.3,17.6C3.7,15 3.3,11 5.1,7.9L6.6,9.4C5.5,11.6 5.9,14.4 7.8,16.2C8.3,16.7 8.9,17.1 9.6,17.4L9,19.4C8,19 7.1,18.4 6.3,17.6Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:volume-minus">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-minus" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M14,11H22V13H14V11Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-minus" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M14,11H22V13H14V11Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:volume-mute">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-mute" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-mute" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:volume-plus">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-plus" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M14,11H17V8H19V11H22V13H19V16H17V13H14V11Z" /></svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-plus" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M14,11H17V8H19V11H22V13H19V16H17V13H14V11Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 </defs>/* end glyphs */
 <style>/* inherit to force styles through use tags */
 svg path {
@@ -147,74 +147,75 @@ path.combo {
 }
 /* End Tabler Icons Cleanup */
 
-.key.modifier rect { fill: #d6e5f5; stroke: #4a7ab8; }
-.key.modifier :not(rect) { fill: #4a7ab8; }
-.key.nav rect { fill: #d9f0d9; stroke: #5ca75c; }
-.key.nav :not(rect) { fill: #5ca75c; }
-.key.editing rect { fill: #ffe4d1; stroke: #e88a3a; }
-.key.editing :not(rect) { fill: #e88a3a; }
+/* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+/* Tier 1 - ambient content categories (default dark text) */
+/* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+   purple = layers, blue = navigation (incl. latches), orange = everything else */
+.key.none rect { fill: white; }
+.key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
 .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
 .key.layer :not(rect) { fill: #9a5fa1; }
-.key.system rect { fill: #fff4d1; stroke: #e8b52a; }
-.key.system :not(rect) { fill: #e8b52a; }
-.key.symbol rect { fill: #d4f0e8; stroke: #4aa78a; }
-.key.symbol :not(rect) { fill: #4aa78a; }
-.key.accent rect { fill: #ffe0d6; stroke: #e86d4a; }
-.key.accent :not(rect) { fill: #e86d4a; }
+.key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
+.key.editing rect, .key.system rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+.key.modifier :not(rect) { fill: #b06c1f; }
+.key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+.key.held rect { fill: url(#stripes); stroke: #999999; }
+.combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
+.combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
 </style>
 <g transform="translate(30, 0)" class="layer-ADJUST">
 <text x="0" y="28" class="label" id="ADJUST">ADJUST</text>
 <g transform="translate(0, 56)">
-<g transform="translate(30, 45)" class="key keypos-0">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(30, 45)" class="key none keypos-0">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(90, 45)" class="key keypos-1">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F1</text>
-</g>
-<g transform="translate(150, 38)" class="key keypos-2">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F2</text>
-</g>
-<g transform="translate(210, 30)" class="key keypos-3">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F3</text>
-</g>
-<g transform="translate(270, 38)" class="key keypos-4">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F4</text>
-</g>
-<g transform="translate(330, 45)" class="key keypos-5">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F5</text>
-</g>
-<g transform="translate(510, 45)" class="key keypos-6">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F6</text>
-</g>
-<g transform="translate(570, 38)" class="key keypos-7">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F7</text>
-</g>
-<g transform="translate(630, 30)" class="key keypos-8">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F8</text>
-</g>
-<g transform="translate(690, 38)" class="key keypos-9">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F9</text>
-</g>
-<g transform="translate(750, 45)" class="key keypos-10">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F10</text>
-</g>
-<g transform="translate(810, 45)" class="key keypos-11">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-</g>
-<g transform="translate(30, 105)" class="key system keypos-12">
+<g transform="translate(90, 45)" class="key system keypos-1">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
-<use href="#mdi:restart" xlink:href="#mdi:restart" x="-7" y="-7" height="14" width="14.0" class="key system tap glyph mdi:restart"/>
-<text x="0" y="26" class="key system hold">Boot</text>
+<text x="0" y="0" class="key system tap">F1</text>
+</g>
+<g transform="translate(150, 38)" class="key system keypos-2">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F2</text>
+</g>
+<g transform="translate(210, 30)" class="key system keypos-3">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F3</text>
+</g>
+<g transform="translate(270, 38)" class="key system keypos-4">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F4</text>
+</g>
+<g transform="translate(330, 45)" class="key system keypos-5">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F5</text>
+</g>
+<g transform="translate(510, 45)" class="key system keypos-6">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F6</text>
+</g>
+<g transform="translate(570, 38)" class="key system keypos-7">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F7</text>
+</g>
+<g transform="translate(630, 30)" class="key system keypos-8">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F8</text>
+</g>
+<g transform="translate(690, 38)" class="key system keypos-9">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F9</text>
+</g>
+<g transform="translate(750, 45)" class="key system keypos-10">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F10</text>
+</g>
+<g transform="translate(810, 45)" class="key none keypos-11">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
+</g>
+<g transform="translate(30, 105)" class="key danger keypos-12">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key danger"/>
+<use href="#mdi:restart" xlink:href="#mdi:restart" x="-7" y="-7" height="14" width="14.0" class="key danger tap glyph mdi:restart"/>
+<text x="0" y="26" class="key danger hold">Boot</text>
 </g>
 <g transform="translate(90, 105)" class="key system keypos-13">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
@@ -222,22 +223,22 @@ path.combo {
 <tspan x="0" dy="-0.6em">OS</tspan><tspan x="0" dy="1.2em">⇄</tspan>
 </text>
 </g>
-<g transform="translate(150, 98)" class="key keypos-14">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(150, 98)" class="key none keypos-14">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(210, 90)" class="key keypos-15">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(210, 90)" class="key none keypos-15">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(270, 98)" class="key keypos-16">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(270, 98)" class="key none keypos-16">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(330, 105)" class="key keypos-17">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F11</text>
+<g transform="translate(330, 105)" class="key system keypos-17">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F11</text>
 </g>
-<g transform="translate(510, 105)" class="key keypos-18">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">F12</text>
+<g transform="translate(510, 105)" class="key system keypos-18">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
+<text x="0" y="0" class="key system tap">F12</text>
 </g>
 <g transform="translate(570, 98)" class="key system keypos-19">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
@@ -261,8 +262,8 @@ path.combo {
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(30, 165)" class="key keypos-24">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(30, 165)" class="key none keypos-24">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(90, 165)" class="key system keypos-25">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
@@ -270,20 +271,20 @@ path.combo {
 <tspan x="0" dy="-0.6em">OS</tspan><tspan x="0" dy="1.2em">?</tspan>
 </text>
 </g>
-<g transform="translate(150, 158)" class="key keypos-26">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(150, 158)" class="key none keypos-26">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(210, 150)" class="key keypos-27">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(210, 150)" class="key none keypos-27">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(270, 158)" class="key keypos-28">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(270, 158)" class="key none keypos-28">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(330, 165)" class="key keypos-29">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(330, 165)" class="key none keypos-29">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(510, 165)" class="key keypos-30">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(510, 165)" class="key none keypos-30">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(570, 158)" class="key system keypos-31">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key system"/>
@@ -303,8 +304,8 @@ path.combo {
 <tspan x="0" dy="-0.6em">Lyt</tspan><tspan x="0" dy="1.2em">?</tspan>
 </text>
 </g>
-<g transform="translate(810, 165)" class="key keypos-35">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<g transform="translate(810, 165)" class="key none keypos-35">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(240, 225)" class="key trans keypos-36">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
@@ -330,4 +331,4 @@ path.combo {
 </g>
 </g>
 </g>
-</svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>

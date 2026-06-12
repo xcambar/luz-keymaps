@@ -4,15 +4,15 @@ layout:
 
 layers:
     ADJUST:
-        - ["", F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, ""]
+        - [{ type: none }, { t: F1, type: system }, { t: F2, type: system }, { t: F3, type: system }, { t: F4, type: system }, { t: F5, type: system }, { t: F6, type: system }, { t: F7, type: system }, { t: F8, type: system }, { t: F9, type: system }, { t: F10, type: system }, { type: none }]
         - [
-              { t: $$mdi:restart$$, h: "Boot", type: system },
+              { t: $$mdi:restart$$, h: "Boot", type: danger },
               { t: "OS ⇄", type: system },
-              "",
-              "",
-              "",
-              F11,
-              F12,
+              { type: none },
+              { type: none },
+              { type: none },
+              { t: F11, type: system },
+              { t: F12, type: system },
               { t: $$mdi:volume-mute$$, type: system },
               { t: $$mdi:volume-plus$$, type: system },
               { t: $$mdi:brightness-7$$, type: system },
@@ -20,18 +20,18 @@ layers:
               { t: "▽", type: trans },
           ]
         - [
-              "",
+              { type: none },
               { t: "OS ?", type: system },
-              "",
-              "",
-              "",
-              "",
-              "",
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
               { t: $$mdi:monitor-screenshot$$, type: system },
               { t: $$mdi:volume-minus$$, type: system },
               { t: $$mdi:brightness-5$$, type: system },
               { t: "Lyt ?", type: system },
-              "",
+              { type: none },
           ]
         - [
               { t: "▽", type: trans },
@@ -46,17 +46,18 @@ draw_config:
     key_h: 60
     append_colon_to_layer_header: false
     svg_extra_style: |
-        .key.modifier rect { fill: #d6e5f5; stroke: #4a7ab8; }
-        .key.modifier :not(rect) { fill: #4a7ab8; }
-        .key.nav rect { fill: #d9f0d9; stroke: #5ca75c; }
-        .key.nav :not(rect) { fill: #5ca75c; }
-        .key.editing rect { fill: #ffe4d1; stroke: #e88a3a; }
-        .key.editing :not(rect) { fill: #e88a3a; }
+        /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+        /* Tier 1 - ambient content categories (default dark text) */
+        /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+           purple = layers, blue = navigation (incl. latches), orange = everything else */
+        .key.none rect { fill: white; }
+        .key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
         .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
         .key.layer :not(rect) { fill: #9a5fa1; }
-        .key.system rect { fill: #fff4d1; stroke: #e8b52a; }
-        .key.system :not(rect) { fill: #e8b52a; }
-        .key.symbol rect { fill: #d4f0e8; stroke: #4aa78a; }
-        .key.symbol :not(rect) { fill: #4aa78a; }
-        .key.accent rect { fill: #ffe0d6; stroke: #e86d4a; }
-        .key.accent :not(rect) { fill: #e86d4a; }
+        .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.editing rect, .key.system rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+        .key.modifier :not(rect) { fill: #b06c1f; }
+        .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+        .key.held rect { fill: url(#stripes); stroke: #999999; }
+        .combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
+        .combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
