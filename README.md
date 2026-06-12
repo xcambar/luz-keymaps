@@ -1,5 +1,7 @@
 # Xavier's Split Keyboard Keymaps
 
+![](./header.jpeg)
+
 QMK keymaps for keyboards with a **3x6+3** layout.
 
 Two keymaps live here: 
@@ -16,41 +18,40 @@ I have run the keymaps on the following keyboards:
 
 ## The `Crafted` keymap
 
-`Crafted` is an opinionated keymap built around **Gallium East** as its base alpha layer: four main layers (`BASE`, `NAV`/`FAVS`, `SYMBOLS`, `ADJUST`), plus a hold-only delete sub-layer (`NAV_DEL`, reachable from `NAV`/`FAVS`).
+> [Click here](#the-layers) if you want to go straight to an overview of the keymaps
 
-> [!NOTE]
-> **A secondary base layer** (QWERTY by default) can be toggled from the `ADJUST` layer. I have used this layer while I was transitioning from QWERTY to Gallium and I did not want to flash to change the layout.
+`Crafted` is an opinionated keymap built around **Gallium East** as its base alpha layer, alongside two main layers (`NAV/FAVS` and `SYMBOLS`), an `ADJUST` layer for functions, and a hold-only delete sub-layer (reachable from `NAV/FAVS`).
 
 
 ### Design principles
 
-The design sticks to three rules:
+A lot of effort went into building a keymap that is easy to memorize and requires low cognitive overhead. Therefore, the design sticks to three rules:
 
 1. **No sticky state.** Every piece of state is either momentary (dies with the key) or layer-scoped (dies with the layer). Nothing queues, nothing times out, nothing needs remembering.
 2. **Cross-layer consistency.** The same output lives on the same physical position on every layer, even when that costs space. One spatial memory per symbol. Especially important for Modifiers and the whole thumb cluster.
-3. **Destructive actions are gated.** Deleting requires a sustained hold; the bootloader hides behind a three-key gesture.
+3. **No dual-function keys** With the exception of Bottom Row mods, no single key has a dual behavior that would depend on hold, tap-dance or otherwise. It complements the cross-layer consistency to an easy-to-learn keymap.
 
 ### Key mechanisms
 
-What you'd actually notice while typing:
+What you'd actually notice with this keymap:
 
 - **Single-purpose thumbs**: `Esc · Shift · NAV ‖ SYM · Space · Enter`, the same on every layer; no tap-hold logic anywhere on the cluster.
-- **Compose**: tap Shift+Space together, then `E/A/U/O` for an acute/grave/diaeresis/circumflex dead key, and additionally `C`→ç, `N`→ñ, `W`→€; any other key passes through unchanged.
+- **Compose for diacritics**: tap Shift+Space together, then `E/A/U/O` for an acute/grave/diaeresis/circumflex dead key, and additionally `C`→ç, `N`→ñ, `W`→€; any other key passes through unchanged.
 - **Navigation** features:
   - **Modifier-free motions**: per-character/word/line and forward/backward navigation, each on a single key. No modifier chords involved.
   - **Select latch**: on `NAV`, tap once and Shift stays held while you arrow around for selection; it releases with the layer (or via Esc). Text selection never requires holding a key.
   - **Hold-to-delete**: still on `NAV`, hold the ring finger and the horizontal motions become deletions at the same granularity (line / char / word).
 - **One-handed numpad**: `SYMBOLS` puts calculator-order digits on the left hand; with Layer Lock, numbers can be entered while the right hand stays on the mouse.
-- **Symbols organized by traffic**: the most-used symbols sit on the strongest fingers: `=+` and `@#` on the middle finger, opening brackets on the index column, closing brackets on the ring (cheap, since editors auto-close). Punctuation is consistent between `BASE` and `SYMBOLS`, and related siblings are as much as possible organized by pairs.
+- **Secondary base layer**: a second alpha layout (QWERTY by default, via `XC_SECONDARY_LAYOUT`) toggled from `ADJUST` — useful when transitioning between layouts without reflashing.
 
 #### Other honorable features
 
 Some features are available for convenience:
-- **Weak corners** (optional): the four hardest-to-reach corner keys are disabled and their letters (B, ', Z, K) are produced by pressing the two neighboring keys together, keeping pinkies and indexes off the worst diagonals.
+- **Symbols organized by traffic**: the most-used symbols sit on the strongest fingers: `=+` and `@#` on the middle finger, opening brackets on the index column, closing brackets on the ring (cheap, since editors auto-close). Punctuation is consistent between `BASE` and `SYMBOLS`, and related siblings are as much as possible organized by pairs.
 - **Swapper**: hold-free window switching — one key repeats Cmd/Alt-Tab while the firmware holds the modifier for you, releasing it when you leave the layer.
 - **Platform independence**: clipboard, word/line navigation, deletions, accents, and the GUI/Ctrl modifier resolve at runtime to the correct macOS or Linux chords; the active OS is toggled (and can be printed) from `ADJUST`.
+- **Weak corners** (optional): the four hardest-to-reach corner keys are disabled and their letters (B, ', Z, K) are produced by pressing the two neighboring keys together, keeping pinkies and indexes off the worst diagonals.
 - **Caps Word**: dedicated key for `SCREAMING_SNAKE` and friends; survives the custom underscore and capitalizes combo-produced letters.
-- **Secondary base layer**: a second alpha layout (QWERTY by default, via `XC_SECONDARY_LAYOUT`) toggled from `ADJUST` — useful when transitioning between layouts without reflashing.
 
 ### The layers
 
