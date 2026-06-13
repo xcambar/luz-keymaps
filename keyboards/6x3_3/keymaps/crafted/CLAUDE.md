@@ -22,10 +22,9 @@ One self-contained YAML per *rendered* layer, numbered by render order:
 
 ```
 keymap_drawer/00_BASE.yml      # Layer 0  (Gallium East)
-keymap_drawer/01_FAVS.yml      # Layer 2
-keymap_drawer/02_SYMBOLS.yml   # Layer 3
-keymap_drawer/03_NAV_DEL.yml   # Layer 4
-keymap_drawer/04_ADJUST.yml    # Layer 5
+keymap_drawer/01_SYMBOLS.yml   # Layer 3  (render order before FAVS by choice)
+keymap_drawer/02_FAVS.yml      # Layer 2  (also encodes NAV_DEL via coral hints)
+keymap_drawer/03_ADJUST.yml    # Layer 5
 ```
 
 - **BASE_ALT (layer 1, the secondary QWERTY base) is deliberately not rendered.**
@@ -43,7 +42,7 @@ keymap_drawer/04_ADJUST.yml    # Layer 5
 | 1 | BASE_ALT | default-layer toggle (`SW_LYT` on ADJUST)        | no       |
 | 2 | FAVS     | hold left inner thumb `MO(FAVS)` (pos 38)        | yes      |
 | 3 | SYMBOLS  | hold right inner thumb `MO(SYMBOLS)` (pos 39)    | yes      |
-| 4 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | yes      |
+| 4 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | no (shown via coral hints on FAVS) |
 | 5 | ADJUST   | tri-layer: hold both inner thumbs (FAVS+SYMBOLS) | yes      |
 
 ## Key position reference (split_3x6_3)
@@ -63,12 +62,14 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 - `KC_NO` / `XXXXXXX` → `""`
 - `KC_TRNS` / `_______` → `{ t: "▽", type: trans }` **only when the fall-through chain
   reaches a real key**; `""` when it resolves to KC_NO. Resolve the chain with the
-  layers actually active: NAV_DEL → FAVS → BASE; ADJUST → SYMBOLS → FAVS → BASE.
+  layers actually active: ADJUST → SYMBOLS → FAVS → BASE.
 - `MO(LAYER)` → `{ t: $$mdi:layers-outline$$, h: "LAYER (MO)", type: layer }`
 - **Held keys**: on a layer reached by holding, mark the held position(s) with
-  `{ type: held }` — nothing else, no `t:`/`h:`. NAV_DEL has two (14 and 38);
+  `{ type: held }` — nothing else, no `t:`/`h:`. FAVS marks pos 38 held;
   ADJUST has two (38 and 39).
-- Mod-taps → `{ t: X, h: Mod, type: modifier }` (e.g., `LALT_T(KC_Q)` → `{ t: Q, h: LAlt }`)
+- Mod-taps → `{ t: X, h: Mod, type: modtap }` (e.g., `LALT_T(KC_Q)` → `{ t: Q, h: LAlt, type: modtap }`).
+  The `modtap` type highlights **only the hold legend** (key body stays plain); reserve
+  `type: modifier` for keys that are modifiers outright (thumb Shift, SEL_LATCH, MM_GUICTRL).
 - Shifted-pair customs (`SL_*`, `AS_*`, `XC_*`) → `{ t: x, s: y, type: symbol }`,
   e.g., `SL_LPRN` → `{ t: "(", s: "<" }`, `XC_UNDS` → `{ t: "_", s: "|" }`
 
@@ -79,7 +80,8 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | `SW_WIN` | `$$mdi:swap-horizontal$$`, type system |
 | `MM_GUICTRL` | `$$mdi:star-four-points-box$$`, h: "GUI/Ctrl", type modifier |
 | `SEL_LATCH` | `$$mdi:apple-keyboard-shift$$`, h: "Latch", type modifier |
-| `MO(NAV_DEL)` | `$$mdi:backspace-outline$$`, h: "Delete (hold)", type layer |
+| `MO(NAV_DEL)` (FAVS pos 14) | `$$mdi:backspace-outline$$`, h: "hold", type `nav delhold` (blue bg, coral legend) |
+| delete hints | the 6 FAVS horizontal-motion keys carry `h: "⌫"`/`"⌦"` + `type: ... delhint`; `.key.delhint.hold` colors only that hint coral. Encodes the dropped NAV_DEL layer |
 | `QK_LLCK` | `$$mdi:lock-outline$$`, h: "Layer Lock", type layer |
 | `CW_TOGG` | `$$mdi:format-letter-case-upper$$`, h: "Caps Word", type editing |
 | `MD_FENCE` | t: ` ``` `, type symbol |
@@ -121,6 +123,7 @@ block carried in every YAML):
 
 - `modifier` blue · `nav` green · `editing` orange · `layer` purple · `system` yellow
 - `symbol` teal · `trans` (built-in keymap-drawer gray, used for ▽)
+- `modtap` — no rect styling; only the hold legend is colored blue/bold (`.key.modtap.hold`)
 
 ```yaml
 .key.TYPE rect { fill: #light-bg; stroke: #dark-border; }

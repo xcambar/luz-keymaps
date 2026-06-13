@@ -3,54 +3,54 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    NAV_DEL:
+    ADJUST:
         - [
               { type: none },
+              { t: F1, type: editing },
+              { t: F2, type: editing },
+              { t: F3, type: editing },
+              { t: F4, type: editing },
+              { t: F5, type: editing },
+              { t: F6, type: editing },
+              { t: F7, type: editing },
+              { t: F8, type: editing },
+              { t: F9, type: editing },
+              { t: F10, type: editing },
+              { type: none },
+          ]
+        - [
+              { t: $$mdi:restart$$, h: "Boot", type: danger },
+              { t: "OS ⇄", type: system },
               { type: none },
               { type: none },
               { type: none },
-              { type: none },
-              { type: none },
+              { t: F11, type: editing },
+              { t: F12, type: editing },
+              { t: $$mdi:volume-mute$$, type: system },
+              { t: $$mdi:volume-plus$$, type: system },
+              { t: $$mdi:brightness-7$$, type: system },
+              { t: "Layout ⇄", type: system },
               { t: "▽", type: trans },
-              { t: "⌫ L←", type: editing },
-              { t: "▽", type: trans },
-              { t: "⌦ L→", type: editing },
+          ]
+        - [
               { type: none },
+              { t: "OS ?", type: system },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { t: $$mdi:monitor-screenshot$$, h: "Prt Scr", type: system },
+              { t: $$mdi:volume-minus$$, type: system },
+              { t: $$mdi:brightness-5$$, type: system },
+              { t: "Layout ?", type: system },
               { type: none },
           ]
         - [
               { t: "▽", type: trans },
-              { type: none },
+              { t: "▽", type: trans },
               { type: held },
-              { type: none },
-              { type: none },
-              { t: "▽", type: trans },
-              { t: "▽", type: trans },
-              { t: $$mdi:backspace-outline$$, type: editing },
-              { t: "▽", type: trans },
-              { t: Del, type: editing },
-              { type: none },
-              { t: "▽", type: trans },
-          ]
-        - [
-              { t: "▽", type: trans },
-              { t: "▽", type: trans },
-              { t: "▽", type: trans },
-              { t: "▽", type: trans },
-              { t: "▽", type: trans },
-              { type: none },
-              { type: none },
-              { t: "⌫ W←", type: editing },
-              { type: none },
-              { t: "⌦ W→", type: editing },
-              { type: none },
-              { t: "▽", type: trans },
-          ]
-        - [
-              { t: "▽", type: trans },
-              { t: "▽", type: trans },
               { type: held },
-              { type: none },
               { t: "▽", type: trans },
               { t: "▽", type: trans },
           ]
@@ -68,7 +68,9 @@ draw_config:
         .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
         .key.layer :not(rect) { fill: #9a5fa1; }
         .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
-        .key.editing rect, .key.system rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+        .key.delhold :not(rect) { fill: #d6453a; }
+        .key.editing rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
+        .key.system rect { fill: #f9f0c9; stroke: #cdb94e; }
         .key.modifier :not(rect) { fill: #b06c1f; }
         .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
         .key.held rect { fill: url(#stripes); stroke: #999999; }

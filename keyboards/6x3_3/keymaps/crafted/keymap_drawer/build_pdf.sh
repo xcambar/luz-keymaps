@@ -29,6 +29,8 @@ draw_config:
         .key :not(rect) { fill: black; }
         .key.trans :not(rect) { fill: #777777; }
         .key.modtap.hold { font-weight: bold; }
+        .key.delhold :not(rect) { fill: #d6453a; }
+        .key.delhint.hold { fill: #d6453a; font-size: 17px; }
         .key.held rect { fill: url(#stripes); stroke: #555555; }
         .combo rect { fill: white; stroke: black; }
 EOF

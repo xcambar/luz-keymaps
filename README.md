@@ -57,16 +57,16 @@ Some features are available for convenience:
 
 <!-- KEYMAP DRAWER -->
 ![BASE layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.png)
-![FAVS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_FAVS.png)
-![SYMBOLS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_SYMBOLS.png)
-![NAV_DEL layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_NAV_DEL.png)
-![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/04_ADJUST.png)
+![SYMBOLS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_SYMBOLS.png)
+![FAVS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_FAVS.png)
+![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ADJUST.png)
 <!-- END KEYMAP DRAWER -->
 
 > [!NOTE]
 > #### Legend
 > - ▽ = transparent (falls through to a real key below)
-> - red = held to stay on the layer
+> - grey stripes = held to stay on the layer
+> - coral ⌫ / ⌦ on a FAVS motion key = hold the coral **Delete** key to turn that motion into a deletion (replaces a dedicated delete layer)
 > 
 > A printable PDF lives at [`keymap_drawer/crafted.pdf`](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/crafted.pdf).
 
