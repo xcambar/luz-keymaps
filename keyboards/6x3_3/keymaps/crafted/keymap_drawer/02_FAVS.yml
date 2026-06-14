@@ -109,21 +109,24 @@ draw_config:
         /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
            purple = layers, blue = navigation (incl. latches), orange = everything else */
         svg.keymap { fill: #36322e; }
-        .key.none rect { fill: white; }
-        .key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
-        .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
+        .key.none ret.key { fill: white; }
+        .key.none rect.key { fill: white; opacity: 50%; }
+        .key.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.layer rect.key { fill: #ead9eb; stroke: #9a5fa1; }
         .key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
-        .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.nav rect.key { fill: #dbe9f8; stroke: #6b97c9; }
         .key.delhold.tap, .key.delhold.hold, .key.delhold.shifted { fill: #c25f54; }
         .key.delhint.bl { fill: #c25f54; font-size: 19px; transform: translate(3px, 0px); }
         .key.selmode.tap, .key.selmode.hold, .key.selmode.shifted { fill: #0d8b8b; }
         .key.selhint.br { fill: #0d8b8b; transform: translate(-3px, -1px); }
         .key.mode.shifted { font-style: italic; }
-        .key.editing rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
-        .key.system rect { fill: #f9f0c9; stroke: #cdb94e; }
+        .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }
         .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
         .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
         .key.metakey.tap { font-size: 21px; }
-        .key.held rect { fill: url(#stripes); stroke: #999999; }
-        .combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
-        .combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.held rect.key { fill: url(#stripes); stroke: #999999; }
+        .combo.state rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.shifted { transform: translateY(2px); }
+        .key.hold {transform: translateY(-2px); }

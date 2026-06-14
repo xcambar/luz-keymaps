@@ -14,7 +14,16 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
 4. **Build**: run `./build_pdf.sh` from `keymap_drawer/` — it iterates `[0-9]*.yml`,
-   producing one SVG + PNG per file and a merged landscape-A4 `crafted.pdf`.
+   producing one SVG + PNG per file and merged landscape-A4 `crafted.pdf` (color) +
+   `crafted_print.pdf` (flat B/W). **Deps: Inkscape + Source Sans 3 font** (color path).
+
+   The YAML CSS is only the *palette/semantics* source. The build layers two post-processes
+   on top (don't duplicate these in YAML): `bake_corner_nudge` (CSS corner transform → SVG
+   attribute, for ImageMagick) and `apply_design` (the "Direction A" look: Source Sans 3
+   labels with mono kept for literal single-glyph keycodes, warm paper, floating keycap
+   shadows, warm-neutral inactive keys, editorial title). Color SVGs are rasterized with
+   **Inkscape** (the only backend that renders the font + shadow filter + `<use>` glyphs);
+   the flat B/W print path stays on `convert`.
 
 ## Files
 

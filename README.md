@@ -56,10 +56,10 @@ Some features are available for convenience:
 ### The layers
 
 <!-- KEYMAP DRAWER -->
-![BASE layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.png)
-![SYMBOLS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_SYMBOLS.png)
-![FAVS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_FAVS.png)
-![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ADJUST.png)
+![BASE layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.svg)
+![SYMBOLS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_SYMBOLS.svg)
+![FAVS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_FAVS.svg)
+![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ADJUST.svg)
 <!-- END KEYMAP DRAWER -->
 
 > [!NOTE]
