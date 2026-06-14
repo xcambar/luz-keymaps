@@ -6,7 +6,7 @@ layers:
     "Base (Gallium East)":
         - [
               { type: none },
-              { type: none },
+              B,
               L,
               C,
               D,
@@ -15,7 +15,7 @@ layers:
               F,
               O,
               U,
-              { type: none },
+{ t: "'", s: '"', type: symbol },
               { type: none },
           ]
         - [
@@ -42,8 +42,8 @@ layers:
               { t: Q, h: LAlt, type: modtap },
               { t: W, h: LGui, type: modtap },
               { t: M, h: LCtrl, type: modtap },
-              { type: none },
-              { type: none },
+              Z,
+              K,
               { t: P, h: RCtrl, type: modtap },
               { t: ",", h: RGui, type: symbol modtap },
               { t: ".", h: RAlt, type: symbol modtap },
@@ -60,22 +60,6 @@ layers:
           ]
 
 combos:
-    - key_positions: [2, 3]
-      key: B
-      layers:
-          - "Base (Gallium East)"
-    - key_positions: [8, 9]
-      key: { t: "'", s: '"', type: symbol }
-      layers:
-          - "Base (Gallium East)"
-    - key_positions: [27, 28]
-      key: Z
-      layers:
-          - "Base (Gallium East)"
-    - key_positions: [31, 32]
-      key: K
-      layers:
-          - "Base (Gallium East)"
     - key_positions: [37, 40]
       key: { t: Compose, type: state }
       align: bottom

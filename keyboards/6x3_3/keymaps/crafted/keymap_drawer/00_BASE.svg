@@ -180,8 +180,9 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(30, 45)" class="key none keypos-0">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(90, 45)" class="key none keypos-1">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(90, 45)" class="key keypos-1">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">B</text>
 </g>
 <g transform="translate(150, 38)" class="key keypos-2">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -215,8 +216,10 @@ svg.keymap { fill: #36322e; }
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">U</text>
 </g>
-<g transform="translate(750, 45)" class="key none keypos-10">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(750, 45)" class="key symbol keypos-10">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key symbol"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key symbol tap">&#x27;</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="-26" class="key symbol shifted">&quot;</text>
 </g>
 <g transform="translate(810, 45)" class="key none keypos-11">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -295,11 +298,13 @@ svg.keymap { fill: #36322e; }
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key modtap tap">M</text>
 <text x="0" y="26" class="key modtap hold">LCtrl</text>
 </g>
-<g transform="translate(330, 165)" class="key none keypos-29">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(330, 165)" class="key keypos-29">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">Z</text>
 </g>
-<g transform="translate(510, 165)" class="key none keypos-30">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(510, 165)" class="key keypos-30">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">K</text>
 </g>
 <g transform="translate(570, 158)" class="key modtap keypos-31">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key modtap"/>
@@ -352,24 +357,7 @@ svg.keymap { fill: #36322e; }
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key editing"/>
 <use href="#mdi:keyboard-return" xlink:href="#mdi:keyboard-return" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:keyboard-return"/>
 </g>
-<g class="combo combopos-0">
-<rect rx="5" ry="5" x="166" y="23" width="28" height="22" class="combo"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="180" y="34" class="combo tap">B</text>
-</g>
-<g class="combo symbol combopos-1">
-<rect rx="5" ry="5" x="646" y="23" width="28" height="22" class="combo symbol"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="660" y="34" class="combo symbol tap">&#x27;</text>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="660" y="25" class="combo symbol shifted">&quot;</text>
-</g>
-<g class="combo combopos-2">
-<rect rx="5" ry="5" x="226" y="143" width="28" height="22" class="combo"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="240" y="154" class="combo tap">Z</text>
-</g>
-<g class="combo combopos-3">
-<rect rx="5" ry="5" x="586" y="143" width="28" height="22" class="combo"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="600" y="154" class="combo tap">K</text>
-</g>
-<g class="combo state combopos-4">
+<g class="combo state combopos-0">
 <path d="M420,271 h-114 a6.0,6.0 0 0 1 -6.0,-6.0 v-5" class="combo"/>
 <path d="M420,271 h114 a6.0,6.0 0 0 0 6.0,-6.0 v-5" class="combo"/>
 <rect rx="5" ry="5" x="406" y="260" width="28" height="22" class="combo state"/>

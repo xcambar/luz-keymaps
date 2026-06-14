@@ -1,57 +1,31 @@
-# Xavier's Split Keyboard Keymaps
+# Xavier's 3x6+3 Keymaps
 
 ![](./header.jpeg)
 
-QMK keymaps for keyboards with a **3x6+3** layout.
+Keymaps for **3x6+3** keyboards.
 
-Two keymaps live here: 
+Two layouts live in this repository: 
 
 - **`zen`**, a minimal QWERTY fallback (3 layers, no custom features)
-- **`crafted`**, the daily driver described below.
+- **`crafted`**, is my daily driver, described below.
 
-I have run the keymaps on the following keyboards:
+## The `crafted` keymap
 
-| Keyboard | MCU | Firmware |
-|----------|-----|----------|
-| **Kaly42** (`kaly/kaly42`) | STM32 | `.bin` |
-| **Cantor Pro v3** (`42keebs/cantor_pro/v3/left`) | RP2040 | `.uf2` |
+`Crafted` is the keymap I've built to be easy to memorize and bear low cognitive overhead.
 
-## The `Crafted` keymap
+### Main features
 
-> [Click here](#the-layers) if you want to go straight to an overview of the keymaps
+- **Gallium East** as the (configurable) base alphanum layout
+- **Navigation cluster** with per-character/word/line and forward/backward motions, without modifiers.
+- **Select and Delete modes** enabled in the navigation cluster
+- **Compose key** for diacritics
+- **Numpad on the left hand** helps maintain the right hand on the mouse.
+- **OS-aware keys**: Cut/Copy/Paste, app/window switching, unified Ctrl/Cmd key, enable consistent access across macOS and Linux
+- Symbols reorganized by frequency: opening brackets on the index column, and pairs kept together as much as possible.
+- Optional secondary base layer can be toggled at runtime (QWERTY by default). Useful when transitioning between layouts without reflashing.
 
-`Crafted` is an opinionated keymap built around **Gallium East** as its base alpha layer, alongside two main layers (`NAV/FAVS` and `SYMBOLS`), an `ADJUST` layer for functions, and a hold-only delete sub-layer (reachable from `NAV/FAVS`).
-
-
-### Design principles
-
-A lot of effort went into building a keymap that is easy to memorize and requires low cognitive overhead. Therefore, the design sticks to three rules:
-
-1. **No sticky state.** Every piece of state is either momentary (dies with the key) or layer-scoped (dies with the layer). Nothing queues, nothing times out, nothing needs remembering.
-2. **Cross-layer consistency.** The same output lives on the same physical position on every layer, even when that costs space. One spatial memory per symbol. Especially important for Modifiers and the whole thumb cluster.
-3. **No dual-function keys.** With the exception of the mod-taps (bottom row, plus GUI/Ctrl on the index home keys), no single key has a dual behavior that would depend on hold, tap-dance or otherwise. It complements the cross-layer consistency, making the keymap easy to learn.
-
-### Key mechanisms
-
-What you'd actually notice with this keymap:
-
-- **Single-purpose thumbs**: `Esc · Shift · NAV ‖ SYM · Space · Enter`, the same on every layer; no tap-hold logic anywhere on the cluster.
-- **Compose for diacritics**: tap Shift+Space together, then `E/A/U/O` for an acute/grave/diaeresis/circumflex dead key, and additionally `C`→ç, `N`→ñ, `W`→€; any other key passes through unchanged.
-- **Navigation** features:
-  - **Modifier-free motions**: per-character/word/line and forward/backward navigation, each on a single key. No modifier chords involved.
-  - **Select latch**: on `NAV`, tap once and Shift stays held while you arrow around for selection; it releases with the layer (or via Esc). Text selection never requires holding a key.
-  - **Hold-to-delete**: still on `NAV`, hold the ring finger and the horizontal motions become deletions at the same granularity (line / char / word).
-- **One-handed numpad**: `SYMBOLS` puts calculator-order digits on the left hand; with Layer Lock, numbers can be entered while the right hand stays on the mouse.
-- **Secondary base layer**: a second alpha layout (QWERTY by default, via `XC_SECONDARY_LAYOUT`) toggled from `ADJUST` — useful when transitioning between layouts without reflashing.
-
-#### Other honorable features
-
-Some features are available for convenience:
-- **Symbols organized by traffic**: the most-used symbols sit on the strongest fingers: `=+` and `@#` on the middle finger, opening brackets on the index column, closing brackets on the ring (cheap, since editors auto-close). Punctuation is consistent between `BASE` and `SYMBOLS`, and related siblings are as much as possible organized by pairs.
-- **Swapper**: hold-free window switching — one key repeats Cmd/Alt-Tab while the firmware holds the modifier for you, releasing it when you leave the layer.
-- **Platform independence**: clipboard, word/line navigation, deletions, accents, and the GUI/Ctrl modifier resolve at runtime to the correct macOS or Linux chords; the active OS is toggled (and can be printed) from `ADJUST`.
-- **Weak corners** (optional): the four hardest-to-reach corner keys are disabled and their letters (B, ', Z, K) are produced by pressing the two neighboring keys together, keeping pinkies and indexes off the worst diagonals.
-- **Caps Word**: dedicated key for `SCREAMING_SNAKE` and friends; survives the custom underscore and capitalizes combo-produced letters.
+> [!IMPORTANT]
+> By design, the top left and top right keys are never used bevause they're too uncomfortable to reach.
 
 ### The layers
 
@@ -63,14 +37,33 @@ Some features are available for convenience:
 <!-- END KEYMAP DRAWER -->
 
 > [!NOTE]
-> #### Legend
-> - ▽ = transparent (falls through to a real key below)
-> - grey stripes = held to stay on the layer
-> - coral ⌫ / ⌦ on a FAVS motion key = hold the coral **Delete** key to turn that motion into a deletion (replaces a dedicated delete layer)
-> 
 > A printable PDF lives at [`keymap_drawer/crafted.pdf`](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/crafted.pdf).
 
+### Compose & diacritics
+
+Tap **Shift + Space** (both inner thumbs together) to arm Compose, then:
+
+| Key | Output | |
+|-----|--------|--|
+| `e` | ´ acute (dead key) | `Shift+Space`, `e`, `e` → é |
+| `a` | \` grave (dead key) | `Shift+Space`, `a`, `e` → è |
+| `u` | ¨ diaeresis (dead key) | `Shift+Space`, `u`, `e` → ë |
+| `o` | ˆ circumflex (dead key) | `Shift+Space`, `o`, `e` → ê |
+| `c` | ç | |
+| `n` | ñ | |
+| `w` | € | |
+| `Esc` | cancel | |
+
+Any other key cancels Compose and types as usual.
+
 ### Building
+
+I have run the keymaps on the following MCUs:
+
+| MCU | Example Keyboard | 
+|----------|-----|
+| STM32 | **Kaly42** (`kaly/kaly42`) |
+| RP2040 | **Cantor Pro v3** (`42keebs/cantor_pro/v3/left`) |
 
 ```bash
 qmk compile -kb kaly/kaly42 -km crafted
@@ -87,7 +80,7 @@ Build options (`rules.mk` or environment):
 
 - **`XC_LAYOUT`** (default: `gallium_east`) — base layout: `qwerty`, `gallium`, `gallium_east`, `focal`, `graphite`
 - **`XC_SECONDARY_LAYOUT`** (default: `qwerty`) — the alternate base layer, toggled from `ADJUST`
-- **`XC_WEAK_CORNERS`** (default: `yes`) — corner letters via combos
+- **`XC_WEAK_CORNERS`** (default: `yes`) — access corner letters via combos
 - **`XC_ALT_BASE_SYMBOLS`** (default: `yes`) — semantic shift pairs on the base layer
 
 All targets at once:
