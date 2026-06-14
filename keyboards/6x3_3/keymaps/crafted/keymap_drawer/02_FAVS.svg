@@ -27,9 +27,6 @@
 <svg id="mdi:selection">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-selection" viewBox="0 0 24 24"><path d="M2,4C2,2.89 2.9,2 4,2H7V4H4V7H2V4M22,4V7H20V4H17V2H20A2,2 0 0,1 22,4M20,20V17H22V20C22,21.11 21.1,22 20,22H17V20H20M2,20V17H4V20H7V22H4A2,2 0 0,1 2,20M10,2H14V4H10V2M10,20H14V22H10V20M20,10H22V14H20V10M2,10H4V14H2V10Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<svg id="mdi:star-four-points-box">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-star-four-points-box" viewBox="0 0 24 24"><path d="M5 3H19C20.1 3 21 3.89 21 5V19C21 19.53 20.79 20.04 20.41 20.41C20.04 20.79 19.53 21 19 21H5C4.47 21 3.96 20.79 3.59 20.41C3.21 20.04 3 19.53 3 19V5C3 3.89 3.89 3 5 3M12 17L13.56 13.58L17 12L13.56 10.44L12 7L10.43 10.44L7 12L10.43 13.58L12 17Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:swap-horizontal">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-swap-horizontal" viewBox="0 0 24 24"><path d="M21,9L17,5V8H10V10H17V13M7,11L3,15L7,19V16H14V14H7V11Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
@@ -163,20 +160,22 @@ path.combo {
 /* Tier 1 - ambient content categories (default dark text) */
 /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
    purple = layers, blue = navigation (incl. latches), orange = everything else */
+svg.keymap { fill: #36322e; }
 .key.none rect { fill: white; }
 .key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
 .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
-.key.layer :not(rect) { fill: #9a5fa1; }
+.key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
 .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
-.key.delhold :not(rect) { fill: #d6453a; }
-.key.delhint.bl { fill: #d6453a; font-size: 15px; }
-.key.selmode :not(rect) { fill: #0d8b8b; }
-.key.selhint.br { fill: #0d8b8b; }
+.key.delhold.tap, .key.delhold.hold, .key.delhold.shifted { fill: #c25f54; }
+.key.delhint.bl { fill: #c25f54; font-size: 19px; transform: translate(3px, 0px); }
+.key.selmode.tap, .key.selmode.hold, .key.selmode.shifted { fill: #0d8b8b; }
+.key.selhint.br { fill: #0d8b8b; transform: translate(-3px, -1px); }
 .key.mode.shifted { font-style: italic; }
 .key.editing rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
 .key.system rect { fill: #f9f0c9; stroke: #cdb94e; }
-.key.modifier :not(rect) { fill: #b06c1f; }
+.key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
 .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+.key.metakey.tap { font-size: 21px; }
 .key.held rect { fill: url(#stripes); stroke: #999999; }
 .combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
 .combo.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
@@ -205,28 +204,28 @@ path.combo {
 <g transform="translate(510, 45)" class="key nav selhint keypos-6">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav selhint"/>
 <text x="0" y="0" class="key nav selhint tap">PgUp</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(570, 38)" class="key nav delhint selhint keypos-7">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
 <text x="0" y="0" class="key nav delhint selhint tap">
 <tspan x="0" dy="-0.6em">Line</tspan><tspan x="0" dy="1.2em">🡨</tspan>
 </text>
-<text x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<text transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(630, 30)" class="key nav selhint keypos-8">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav selhint"/>
 <use href="#mdi:arrow-up" xlink:href="#mdi:arrow-up" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tap glyph mdi:arrow-up"/>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(690, 38)" class="key nav delhint selhint keypos-9">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
 <text x="0" y="0" class="key nav delhint selhint tap">
 <tspan x="0" dy="-0.6em">Line</tspan><tspan x="0" dy="1.2em">🡪</tspan>
 </text>
-<text x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<text transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(750, 45)" class="key none keypos-10">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -255,10 +254,10 @@ path.combo {
 <text x="0" y="26" class="key nav selmode mode hold">select</text>
 <text x="0" y="-26" class="key nav selmode mode shifted">toggle</text>
 </g>
-<g transform="translate(270, 98)" class="key editing modtap keypos-16">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing modtap"/>
-<use href="#mdi:star-four-points-box" xlink:href="#mdi:star-four-points-box" x="-7" y="-7" height="14" width="14.0" class="key editing modtap tap glyph mdi:star-four-points-box"/>
-<text x="0" y="26" class="key editing modtap hold"><tspan style="font-size: 88%">GUI/Ctrl</tspan></text>
+<g transform="translate(270, 98)" class="key editing modtap metakey keypos-16">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing modtap metakey"/>
+<text x="0" y="0" class="key editing modtap metakey tap">◇</text>
+<text x="0" y="26" class="key editing modtap metakey hold">⌘/Ctrl</text>
 </g>
 <g transform="translate(330, 105)" class="key state keypos-17">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key state"/>
@@ -268,24 +267,24 @@ path.combo {
 <g transform="translate(510, 105)" class="key nav selhint keypos-18">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav selhint"/>
 <text x="0" y="0" class="key nav selhint tap">PgDn</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(570, 98)" class="key nav delhint selhint keypos-19">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
 <use href="#mdi:arrow-left" xlink:href="#mdi:arrow-left" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tap glyph mdi:arrow-left"/>
-<text x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<text transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(630, 90)" class="key nav selhint keypos-20">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav selhint"/>
 <use href="#mdi:arrow-down" xlink:href="#mdi:arrow-down" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tap glyph mdi:arrow-down"/>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(690, 98)" class="key nav delhint selhint keypos-21">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
 <use href="#mdi:arrow-right" xlink:href="#mdi:arrow-right" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tap glyph mdi:arrow-right"/>
-<text x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<text transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(750, 105)" class="key none keypos-22">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -325,8 +324,8 @@ path.combo {
 <text x="0" y="0" class="key nav delhint selhint tap">
 <tspan x="0" dy="-0.6em">Word</tspan><tspan x="0" dy="1.2em">🡨</tspan>
 </text>
-<text x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<text transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(630, 150)" class="key none keypos-32">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -336,8 +335,8 @@ path.combo {
 <text x="0" y="0" class="key nav delhint selhint tap">
 <tspan x="0" dy="-0.6em">Word</tspan><tspan x="0" dy="1.2em">🡪</tspan>
 </text>
-<text x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
-<use href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<text transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(750, 165)" class="key none keypos-34">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key none"/>

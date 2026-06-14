@@ -154,15 +154,16 @@ path.combo {
 /* Tier 1 - ambient content categories (default dark text) */
 /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
    purple = layers, blue = navigation (incl. latches), orange = everything else */
+svg.keymap { fill: #36322e; }
 .key.none rect { fill: white; }
 .key.symbol rect { fill: #e9f5f0; stroke: #bedfd2; }
 .key.layer rect { fill: #ead9eb; stroke: #9a5fa1; }
-.key.layer :not(rect) { fill: #9a5fa1; }
+.key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
 .key.nav rect { fill: #dbe9f8; stroke: #6b97c9; }
-.key.delhold :not(rect) { fill: #d6453a; }
+.key.delhold.tap, .key.delhold.hold, .key.delhold.shifted { fill: #c25f54; }
 .key.editing rect, .key.state rect, .key.danger rect, .key.modifier rect { fill: #fdebd9; stroke: #dd9d57; }
 .key.system rect { fill: #f9f0c9; stroke: #cdb94e; }
-.key.modifier :not(rect) { fill: #b06c1f; }
+.key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
 .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
 .key.held rect { fill: url(#stripes); stroke: #999999; }
 .combo.state rect { fill: #fdebd9; stroke: #dd9d57; }
@@ -324,9 +325,9 @@ path.combo {
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing"/>
 <use href="#mdi:keyboard-esc" xlink:href="#mdi:keyboard-esc" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:keyboard-esc"/>
 </g>
-<g transform="translate(300, 240)" class="key modifier keypos-37">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key modifier"/>
-<use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-7" y="-7" height="14" width="14.0" class="key modifier tap glyph mdi:apple-keyboard-shift"/>
+<g transform="translate(300, 240)" class="key editing keypos-37">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key editing"/>
+<use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(360, 255)" class="key layer keypos-38">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key layer"/>

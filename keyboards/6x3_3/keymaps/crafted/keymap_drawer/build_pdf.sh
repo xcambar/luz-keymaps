@@ -19,18 +19,48 @@ trap 'rm -rf "$OUTDIR"' EXIT
 # injected into every generated SVG since CSS alone cannot define SVG patterns
 STRIPES='<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs>'
 
+# ImageMagick's SVG coder honors the SVG transform *attribute* but ignores the CSS
+# transform *property*. keymap-drawer only emits CSS, so bake the corner-glyph nudge
+# (.key.delhint.bl / .key.selhint.br) from the CSS into transform attributes on the
+# bl/br elements. Keeps the YAML CSS as the single source of truth. (rsvg-convert is
+# not an option: it drops keymap-drawer's <use>-of-nested-<svg> glyphs entirely.)
+bake_corner_nudge() {
+    python3 - "$1" <<'PY'
+import re, sys
+p = sys.argv[1]
+s = open(p, encoding='utf-8').read()
+def css_tf(token):
+    m = re.search(r'\.' + token + r'\b[^{]*\{[^}]*?transform:\s*(translate\([^)]*\))', s)
+    return re.sub(r'px', '', m.group(1)) if m else None
+tfs = {'bl': css_tf('bl'), 'br': css_tf('br')}
+def repl(m):
+    tag, cls = m.group(0), m.group(1).split()
+    if 'transform=' in tag:
+        return tag
+    for pos in ('bl', 'br'):
+        if pos in cls and tfs[pos]:
+            return re.sub(r'^(<\w+)', r'\1 transform="%s"' % tfs[pos], tag, count=1)
+    return tag
+s = re.sub(r'<(?:text|use)\b[^>]*?class="([^"]*)"[^>]*?>', repl, s)
+open(p, 'w', encoding='utf-8').write(s)
+PY
+}
+
 # High-contrast draw_config substituted for the embedded one, for the print PDF only
 PRINT_CONFIG=$(cat <<'EOF'
 draw_config:
     key_h: 60
+    glyph_shifted_size: 16
     append_colon_to_layer_header: false
     svg_extra_style: |
+        /* B/W print: white keys, black legends; meaning carried by shape + position.
+           Avoid the :not() pseudo-class — librsvg (the PNG backend) ignores it. */
         .key rect { fill: white; stroke: black; stroke-width: 1.2; }
-        .key :not(rect) { fill: black; }
-        .key.trans :not(rect) { fill: #777777; }
+        .key.trans.tap { fill: #777777; }
         .key.modtap.hold { font-weight: bold; }
-        .key.delhold :not(rect) { fill: #d6453a; }
-        .key.delhint.hold { fill: #d6453a; font-size: 17px; }
+        .key.mode.shifted { font-style: italic; }
+        .key.delhint.bl { font-size: 15px; transform: translate(3px, -3px); }
+        .key.selhint.br { transform: translate(-3px, -3px); }
         .key.held rect { fill: url(#stripes); stroke: #555555; }
         .combo rect { fill: white; stroke: black; }
 EOF
@@ -43,6 +73,7 @@ for yml in [0-9]*.yml; do
     # Color version (committed; referenced by the README and the color PDF)
     uvx --from keymap-drawer keymap draw "$yml" > "$name.svg"
     sed -i "s|</svg>|$STRIPES</svg>|" "$name.svg"
+    bake_corner_nudge "$name.svg"
     convert -density 150 "$name.svg" "$name.png"
     cp "$name.png" "$OUTDIR/color_$name.png"
 
@@ -51,6 +82,7 @@ for yml in [0-9]*.yml; do
     printf '%s\n' "$PRINT_CONFIG" >> "$OUTDIR/$name.print.yml"
     uvx --from keymap-drawer keymap draw "$OUTDIR/$name.print.yml" > "$OUTDIR/$name.print.svg"
     sed -i "s|</svg>|$STRIPES</svg>|" "$OUTDIR/$name.print.svg"
+    bake_corner_nudge "$OUTDIR/$name.print.svg"
     convert -density 150 "$OUTDIR/$name.print.svg" "$OUTDIR/print_$name.png"
 
     echo "  $yml -> $name.svg -> $name.png (+ print variant)"
