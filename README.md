@@ -80,7 +80,7 @@ Build options (`rules.mk` or environment):
 
 - **`XC_LAYOUT`** (default: `gallium_east`) — base layout: `qwerty`, `gallium`, `gallium_east`, `focal`, `graphite`
 - **`XC_SECONDARY_LAYOUT`** (default: `qwerty`) — the alternate base layer, toggled from `ADJUST`
-- **`XC_WEAK_CORNERS`** (default: `yes`) — access corner letters via combos
+- **`XC_WEAK_CORNERS`** (default: `no`) — access corner letters via combos
 - **`XC_ALT_BASE_SYMBOLS`** (default: `yes`) — semantic shift pairs on the base layer
 
 All targets at once:

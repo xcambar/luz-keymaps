@@ -27,7 +27,7 @@ XC_LAYOUT ?=gallium_east
 
 # Secondary (alternate base) layout: qwerty, gallium, focal, graphite, or gallium_east
 XC_SECONDARY_LAYOUT ?= qwerty
-XC_WEAK_CORNERS = yes
+XC_WEAK_CORNERS = no
 
 # Alternative symbols for the base layer
 XC_ALT_BASE_SYMBOLS ?= yes
