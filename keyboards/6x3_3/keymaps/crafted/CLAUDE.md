@@ -3,7 +3,7 @@
 ## Purpose
 
 Keep the per-layer YAML files in `keymap_drawer/` in sync with `keymap.c`, then build
-SVGs, PNGs, and the PDF via `keymap_drawer/build_pdf.sh`. The YAMLs follow the
+the SVGs and the PDFs via `keymap_drawer/build_pdf.sh`. The YAMLs follow the
 keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
@@ -14,8 +14,9 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
 4. **Build**: run `./build_pdf.sh` from `keymap_drawer/` — it iterates `[0-9]*.yml`,
-   producing one SVG + PNG per file and merged landscape-A4 `crafted.pdf` (color) +
-   `crafted_print.pdf` (flat B/W). **Deps: Inkscape + Source Sans 3 font** (color path).
+   producing one committed SVG per file plus merged landscape-A4 `crafted.pdf` (color) +
+   `crafted_print.pdf` (flat B/W). PNGs are rendered only into the build temp dir as PDF
+   intermediates (not committed). **Deps: Inkscape + Source Sans 3 font** (color path).
 
    The YAML CSS is only the *palette/semantics* source. The build layers two post-processes
    on top (don't duplicate these in YAML): `bake_corner_nudge` (CSS corner transform → SVG
@@ -41,7 +42,7 @@ keymap_drawer/03_ADJUST.yml    # Layer 5
   `layout_name: LAYOUT_split_3x6_3`), `layers:`, and `draw_config:` block.
   Keep the `draw_config` identical across all files.
 - When a layer is removed from keymap.c, delete its YAML *and* its generated
-  `.svg`/`.png` artifacts; renumber if render order changes.
+  `.svg` artifact; renumber if render order changes.
 
 ## Layers (from keymap.c)
 
@@ -150,5 +151,5 @@ block carried in every YAML):
 ## Verification
 
 After any sync, run `./build_pdf.sh` and confirm it completes; visually check changed
-PNGs. The firmware itself is verified separately with
+SVGs. The firmware itself is verified separately with
 `qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted`.

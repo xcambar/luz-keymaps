@@ -1,7 +1,8 @@
 #!/bin/bash
 # Builds ALL diagram outputs:
-#   NN_*.svg / NN_*.png  - color, committed, used by the README ("Direction A" styling)
+#   NN_*.svg             - color, committed, used by the README ("Direction A" styling)
 #   <keymap>.pdf         - color landscape A4 PDF for onscreen use
+#   (PNGs are intermediate only: rendered into the temp dir for the PDFs, not committed)
 #   <keymap>_print.pdf   - ADDITIONAL printer-friendly PDF: white keys, black
 #                          strokes/text, flat (no paper/shadow), for B&W printers
 # Requires: keymap-drawer (via uvx), ImageMagick (convert), ghostscript (gs),
@@ -130,13 +131,13 @@ echo "Generating SVGs and PNGs..."
 for yml in [0-9]*.yml; do
     name="${yml%.yml}"
 
-    # Color version (committed; referenced by the README and the color PDF)
+    # Color SVG is committed (referenced by the README); its PNG is a temp-only
+    # intermediate consumed by the color PDF, so render it straight into OUTDIR.
     uvx --from keymap-drawer keymap draw "$yml" > "$name.svg"
     sed -i "s|</svg>|$STRIPES</svg>|" "$name.svg"
     bake_corner_nudge "$name.svg"
     apply_design "$name.svg"
-    inkscape "$name.svg" --export-type=png --export-filename="$name.png" --export-dpi=150 >/dev/null 2>&1
-    cp "$name.png" "$OUTDIR/color_$name.png"
+    inkscape "$name.svg" --export-type=png --export-filename="$OUTDIR/color_$name.png" --export-dpi=150 >/dev/null 2>&1
 
     # Print variant (temp files only; ends up solely inside the print PDF)
     awk '/^draw_config:/{exit} {print}' "$yml" > "$OUTDIR/$name.print.yml"
@@ -146,7 +147,7 @@ for yml in [0-9]*.yml; do
     bake_corner_nudge "$OUTDIR/$name.print.svg"
     convert -density 150 "$OUTDIR/$name.print.svg" "$OUTDIR/print_$name.png"
 
-    echo "  $yml -> $name.svg -> $name.png (+ print variant)"
+    echo "  $yml -> $name.svg (+ temp PNG and print variant for the PDFs)"
 done
 
 # compose_pdf <png-prefix> <output-pdf> <page-bg>
