@@ -40,7 +40,12 @@
         SK_DELWORDPRV, \
         SK_DELWORDNXT, \
         SK_DELLINEBEG, \
-        SK_DELLINEEND \
+        SK_DELLINEEND, \
+        SK_TABNEW, \
+        SK_TABCLOSE, \
+        SK_TABREOPEN, \
+        SK_TABLEFT, \
+        SK_TABRIGHT \
     )
 
 // Process semantic keys - call from process_record_user()

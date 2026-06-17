@@ -8,7 +8,12 @@ layers:
               { type: none },
               { type: none },
               { type: none },
-              { type: none },
+              {
+                  s: hold,
+                  t: $$mdi:tab$$,
+                  h: tabs,
+                  type: nav tabmode mode,
+              },
               { type: none },
               { type: none },
               { br: $$mdi:selection$$, t: PgUp, type: nav selhint },
@@ -18,7 +23,12 @@ layers:
                   t: "Line 🡨",
                   type: nav delhint selhint,
               },
-              { br: $$mdi:selection$$, t: $$mdi:arrow-up$$, type: nav selhint },
+              {
+                  tr: "+",
+                  br: $$mdi:selection$$,
+                  t: $$mdi:arrow-up$$,
+                  type: nav selhint tabhint,
+              },
               {
                   bl: "⌦",
                   br: $$mdi:selection$$,
@@ -47,21 +57,24 @@ layers:
               { t: $$mdi:swap-horizontal$$, type: state, h: "win swap" },
               { br: $$mdi:selection$$, t: PgDn, type: nav selhint },
               {
+                  tr: "‹",
                   bl: "⌫",
                   br: $$mdi:selection$$,
                   t: $$mdi:arrow-left$$,
-                  type: nav delhint selhint,
+                  type: nav delhint selhint tabhint,
               },
               {
+                  tr: "×",
                   br: $$mdi:selection$$,
                   t: $$mdi:arrow-down$$,
-                  type: nav selhint,
+                  type: nav selhint tabhint,
               },
               {
+                  tr: "›",
                   bl: "⌦",
                   br: $$mdi:selection$$,
                   t: $$mdi:arrow-right$$,
-                  type: nav delhint selhint,
+                  type: nav delhint selhint tabhint,
               },
               { type: none },
               { t: Del, type: editing },
@@ -80,7 +93,7 @@ layers:
                   t: "Word 🡨",
                   type: nav delhint selhint,
               },
-              { type: none },
+              { tr: "↺", type: none tabhint },
               {
                   bl: "⌦",
                   br: $$mdi:selection$$,
@@ -119,6 +132,8 @@ draw_config:
         .key.delhint.bl { fill: #c25f54; font-size: 19px; transform: translate(3px, 0px); }
         .key.selmode.tap, .key.selmode.hold, .key.selmode.shifted { fill: #0d8b8b; }
         .key.selhint.br { fill: #0d8b8b; transform: translate(-3px, -1px); }
+        .key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1; }
+        .key.tabhint.tr { fill: #9a5fa1; font-size: 19px; transform: translate(-3px, 1px); }
         .key.mode.shifted { font-style: italic; }
         .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
         .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }

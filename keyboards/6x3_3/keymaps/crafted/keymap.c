@@ -57,6 +57,7 @@ enum layers {
     FAVS,
     SYMBOLS,
     NAV_DEL,
+    TABS,
     ADJUST
 };
 
@@ -187,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * FAVS Layer (Layer 2) - Favorite shortcuts and navigation
       * WASD-style inverted-T arrows; magnitude grows away from home row (line above, word below)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
+      * │   │   │   │Tab│   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │Esc│Lck│Dl⊙│Sl⊙│G/C│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
@@ -205,11 +206,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * Lck=Layer Lock (keep FAVS without holding the thumb)
       * Sl⊙=Select latch: tap to hold Shift until FAVS is released (or tap again/Esc)
       * Dl⊙=Delete hold: momentary NAV_DEL sub-layer (hold-only, destructive op)
+      * Tab=Tab mode: momentary TABS sub-layer (hold-only) — browser tab management
       * L←=Line Begin, L→=Line End, W←=Word Left, W→=Word Right
       * PgU/PgD=vertical pair on inner column (doc begin/end dropped)
       */
     [FAVS] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   MO(TABS), KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
         KC_ESC,  QK_LLCK, MO(NAV_DEL), SEL_LATCH, MM_GUICTRL, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
         _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   _______,
                                             _______, _______, KC_NO,                  _______, _______, _______
@@ -266,7 +268,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * ADJUST Layer (Layer 5) - tri-layer: hold both inner thumbs (FAVS + SYMBOLS)
+      * TABS Layer - Browser tab management, active only while the trigger (pos 3) is held on FAVS
+      * Inverted-T reusing the cursor cluster: index column = tab lifecycle, home-row arms = switch
+      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
+      * │   │   │   │(▽)│   │   │       │   │   │New│   │   │   │  New=Ctrl/Cmd+T
+      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
+      * │   │   │   │   │   │   │       │   │ ◀ │Cls│ ▶ │   │   │  ◀/▶=switch tab, Cls=close
+      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
+      * │   │   │   │   │   │   │       │   │   │Rop│   │   │   │  Rop=reopen (Ctrl/Cmd+Shift+T)
+      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
+      * (▽)=trigger itself (the held MO key); thumbs ▽ keep Esc/Shift/Space/Enter live.
+      * All chords are OS-aware semantic keys (Linux Ctrl / macOS Cmd, Chrome/Safari positional switch).
+      */
+    [TABS] = LAYOUT_split_3x6_3(
+        KC_NO,   KC_NO,   KC_NO,   _______, KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABNEW, KC_NO,     KC_NO,   KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_TABLEFT, SK_TABCLOSE, SK_TABRIGHT, KC_NO, KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABREOPEN, KC_NO,   KC_NO,   KC_NO,
+                                            _______, _______, _______,                  _______, _______, _______
+    ),
+     /*
+      * ADJUST Layer (Layer 6) - tri-layer: hold both inner thumbs (FAVS + SYMBOLS)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │F1 │F2 │F3 │F4 │F5 │       │F6 │F7 │F8 │F9 │F10│   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤

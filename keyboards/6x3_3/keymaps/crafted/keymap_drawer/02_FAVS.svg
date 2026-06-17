@@ -30,6 +30,9 @@
 <svg id="mdi:swap-horizontal">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-swap-horizontal" viewBox="0 0 24 24"><path d="M21,9L17,5V8H10V10H17V13M7,11L3,15L7,19V16H14V14H7V11Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<svg id="mdi:tab">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-tab" viewBox="0 0 24 24"><path d="M21,3H3A2,2 0 0,0 1,5V19A2,2 0 0,0 3,21H21A2,2 0 0,0 23,19V5A2,2 0 0,0 21,3M21,19H3V5H13V9H21V19Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
+<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 </defs>/* end glyphs */
 <style>/* inherit to force styles through use tags */
 svg path {
@@ -174,6 +177,8 @@ svg.keymap { fill: #36322e; }
 .key.delhint.bl { fill: #c25f54; font-size: 19px; transform: translate(3px, 0px); }
 .key.selmode.tap, .key.selmode.hold, .key.selmode.shifted { fill: #0d8b8b; }
 .key.selhint.br { fill: #0d8b8b; transform: translate(-3px, -1px); }
+.key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1; }
+.key.tabhint.tr { fill: #9a5fa1; font-size: 19px; transform: translate(-3px, 1px); }
 .key.mode.shifted { font-style: italic; }
 .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
 .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }
@@ -198,8 +203,11 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(150, 38)" class="key none keypos-2">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(210, 30)" class="key none keypos-3">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(210, 30)" class="key nav tabmode mode keypos-3">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav tabmode mode"/>
+<use href="#mdi:tab" xlink:href="#mdi:tab" x="-7" y="-7" height="14" width="14.0" class="key nav tabmode mode tap glyph mdi:tab"/>
+<text x="0" y="26" class="key nav tabmode mode hold">tabs</text>
+<text x="0" y="-26" class="key nav tabmode mode shifted">hold</text>
 </g>
 <g transform="translate(270, 38)" class="key none keypos-4">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -220,10 +228,11 @@ svg.keymap { fill: #36322e; }
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(630, 30)" class="key nav selhint keypos-8">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selhint"/>
-<use href="#mdi:arrow-up" xlink:href="#mdi:arrow-up" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tap glyph mdi:arrow-up"/>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
+<g transform="translate(630, 30)" class="key nav selhint tabhint keypos-8">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selhint tabhint"/>
+<use href="#mdi:arrow-up" xlink:href="#mdi:arrow-up" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tabhint tap glyph mdi:arrow-up"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav selhint tabhint tr">+</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint tabhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(690, 38)" class="key nav delhint selhint keypos-9">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
@@ -275,22 +284,25 @@ svg.keymap { fill: #36322e; }
 <text x="0" y="0" class="key nav selhint tap">PgDn</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(570, 98)" class="key nav delhint selhint keypos-19">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
-<use href="#mdi:arrow-left" xlink:href="#mdi:arrow-left" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tap glyph mdi:arrow-left"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<g transform="translate(570, 98)" class="key nav delhint selhint tabhint keypos-19">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint tabhint"/>
+<use href="#mdi:arrow-left" xlink:href="#mdi:arrow-left" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tabhint tap glyph mdi:arrow-left"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav delhint selhint tabhint tr">‹</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint tabhint bl">⌫</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint tabhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(630, 90)" class="key nav selhint keypos-20">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selhint"/>
-<use href="#mdi:arrow-down" xlink:href="#mdi:arrow-down" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tap glyph mdi:arrow-down"/>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
+<g transform="translate(630, 90)" class="key nav selhint tabhint keypos-20">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selhint tabhint"/>
+<use href="#mdi:arrow-down" xlink:href="#mdi:arrow-down" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tabhint tap glyph mdi:arrow-down"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav selhint tabhint tr">×</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint tabhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(690, 98)" class="key nav delhint selhint keypos-21">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
-<use href="#mdi:arrow-right" xlink:href="#mdi:arrow-right" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tap glyph mdi:arrow-right"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<g transform="translate(690, 98)" class="key nav delhint selhint tabhint keypos-21">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint tabhint"/>
+<use href="#mdi:arrow-right" xlink:href="#mdi:arrow-right" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tabhint tap glyph mdi:arrow-right"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav delhint selhint tabhint tr">›</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint tabhint bl">⌦</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint tabhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(750, 105)" class="key none keypos-22">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -333,8 +345,9 @@ svg.keymap { fill: #36322e; }
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(630, 150)" class="key none keypos-32">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(630, 150)" class="key none tabhint keypos-32">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none tabhint"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key none tabhint tr">↺</text>
 </g>
 <g transform="translate(690, 158)" class="key nav delhint selhint keypos-33">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>

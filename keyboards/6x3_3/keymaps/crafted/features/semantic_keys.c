@@ -62,6 +62,13 @@ static const semkey_map_t semkey_table[SK_count] = {
     [SK_ndx(SK_DELLINEBEG)] = {{G(KC_BSPC), KC_NO},       {S(KC_HOME), KC_BSPC, KC_NO}}, // Delete to line beginning
     [SK_ndx(SK_DELLINEEND)] = {{C(KC_K), KC_NO},          {S(KC_END), KC_BSPC, KC_NO}},  // Delete to line end
 
+    // Browser tab management (TABS sub-layer). macOS switch chords are Chrome/Safari positional.
+    [SK_ndx(SK_TABNEW)]    = {{G(KC_T), KC_NO},           {C(KC_T), KC_NO}},                  // New tab:    Cmd/Ctrl+T
+    [SK_ndx(SK_TABCLOSE)]  = {{G(KC_W), KC_NO},           {C(KC_W), KC_NO}},                  // Close tab:  Cmd/Ctrl+W
+    [SK_ndx(SK_TABREOPEN)] = {{G(S(KC_T)), KC_NO},        {C(S(KC_T)), KC_NO}},               // Reopen tab: Cmd/Ctrl+Shift+T
+    [SK_ndx(SK_TABLEFT)]   = {{G(A(KC_LEFT)), KC_NO},     {C(KC_PGUP), KC_NO}},               // Tab left:   Cmd+Opt+Left / Ctrl+PgUp
+    [SK_ndx(SK_TABRIGHT)]  = {{G(A(KC_RGHT)), KC_NO},     {C(KC_PGDN), KC_NO}},               // Tab right:  Cmd+Opt+Right / Ctrl+PgDn
+
     // Add Warpd later...
 
     // [SK_ndx(SK_HISTPRV)] = {{G(KC_LBRC), KC_NO},          {LALT(KC_LEFT), KC_NO}},   // BROWSER BACK
