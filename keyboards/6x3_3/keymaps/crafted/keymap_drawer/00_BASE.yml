@@ -54,7 +54,7 @@ layers:
               { t: $$mdi:keyboard-esc$$, type: editing },
               { t: $$mdi:apple-keyboard-shift$$, type: editing },
               { t: $$mdi:layers-outline$$, h: FAVS (MO), type: layer },
-              { t: $$mdi:layers-outline$$, h: SYMBOLS (MO), type: layer },
+              { t: $$mdi:keyboard-return$$, h: SYMBOLS, type: layer },
               { t: $$mdi:keyboard-space$$, type: editing },
               { t: $$mdi:keyboard-return$$, type: editing },
           ]
