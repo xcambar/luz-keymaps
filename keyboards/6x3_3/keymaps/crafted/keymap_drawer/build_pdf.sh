@@ -150,6 +150,16 @@ for yml in [0-9]*.yml; do
     echo "  $yml -> $name.svg (+ temp PNG and print variant for the PDFs)"
 done
 
+# Modes reference page: a hand-built table (not a keymap-drawer layer), generated in
+# the Direction A look and rasterised as the page after 03_ADJUST. The committed SVG
+# already carries its final styling, so it skips bake_corner_nudge/apply_design. The
+# print PDF gets a desaturated copy.
+echo "Generating modes reference page..."
+python3 make_modes_page.py > 04_MODES.svg
+inkscape 04_MODES.svg --export-type=png --export-filename="$OUTDIR/color_04_MODES.png" --export-dpi=150 >/dev/null 2>&1
+convert "$OUTDIR/color_04_MODES.png" -colorspace Gray "$OUTDIR/print_04_MODES.png"
+echo "  make_modes_page.py -> 04_MODES.svg (+ PNGs for the PDFs)"
+
 # compose_pdf <png-prefix> <output-pdf> <page-bg>
 compose_pdf() {
     local prefix="$1" out="$2" bg="$3"

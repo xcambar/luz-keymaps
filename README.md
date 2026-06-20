@@ -36,40 +36,13 @@ Two layouts live in this repository:
 ![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ADJUST.svg)
 <!-- END KEYMAP DRAWER -->
 
+The FAVS navigation modes — the base cursor/clipboard layer plus the three sub-modes that
+layer on top of it (Select, Delete, Tabs):
+
+![Navigation modes](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/04_MODES.svg)
+
 > [!NOTE]
 > A printable PDF lives at [`keymap_drawer/crafted.pdf`](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/crafted.pdf).
-
-### Navigation modes
-
-Holding the left inner thumb enters **Navigation** — the cursor and clipboard layer shown
-above. Three sub-modes layer on top of it without ever leaving: tap or hold a trigger and the
-relevant keys change role. The table below maps each key to what it does in every mode.
-
-| Mode | Engage | Exit |
-|------|--------|------|
-| **Navigation** (base) | Hold the left inner thumb — or tap **Layer Lock** to keep it on hands-free | Release the thumb (or tap **Layer Lock** again) |
-| **Select** · `Sl⊙` | Tap (toggle) | Tap again, **Esc**, or leaving Navigation |
-| **Delete** · `Dl⊙` | Hold | Release (hold-only) |
-| **Tabs** | Hold | Release (hold-only) |
-
-Select and Delete are mutually exclusive: starting a deletion clears an active selection latch.
-
-| Key | Navigation (base) | Select · `Sl⊙` | Delete · `Dl⊙` | Tabs |
-|-----|-------------------|-----------------|-----------------|------|
-| `←` | Char left | Select char left | Backspace | Previous tab |
-| `→` | Char right | Select char right | Forward-delete | Next tab |
-| `↑` | Line up | Select line up | · | New tab |
-| `↓` | Line down | Select line down | · | Close tab |
-| `◀◀` | Word back | Select word back | Delete word back | Page back |
-| `▶▶` | Word forward | Select word forward | Delete word forward | Page forward |
-| `⏮` | Line start | Select to line start | Delete to line start | · |
-| `⏭` | Line end | Select to line end | Delete to line end | · |
-| `PgUp` | Page up | Select page up | · | · |
-| `PgDn` | Page down | Select page down | · | · |
-| `●` | · | · | · | Reopen tab |
-
-`·` = the key has no special role in that mode (it keeps its Navigation behaviour, or nothing).
-Tab actions are OS-aware (Firefox & Chrome, macOS & Linux).
 
 ### Compose & diacritics
 

@@ -37,6 +37,19 @@ keymap_drawer/02_FAVS.yml      # Layer 2  (FAVS; sub-modes are in the README tab
 keymap_drawer/03_ADJUST.yml    # Layer 5
 ```
 
+**Non-layer page:** `make_modes_page.py` generates `04_MODES.svg` — a hand-built reference
+table for the FAVS navigation modes (mirrors the README "Navigation modes" section), styled
+to match the Direction A look (warm paper, the category palette, floating-shadow cards). It is
+**not** a keymap-drawer layer: `build_pdf.sh` runs the script after the `[0-9]*.yml` loop and
+rasterises `04_MODES.svg` straight to the PDFs as the page after 03_ADJUST (color via Inkscape;
+the print PDF gets a `-colorspace Gray` copy). Its SVG already carries final styling, so it
+**skips** `bake_corner_nudge`/`apply_design`. Edit the `MODES`/`ROWS` data tables in the script
+to change the page. **Font gotcha:** single-glyph keycaps (`⏮ ⏭ ◀ ▶ ●` …) must use the **mono**
+stack via an *inline* `style="font-family:…"` (a `<style> text{…}` rule would override a
+presentation attribute), and **no `font-weight`** — `⏮`/`⏭` live only in fallback fonts
+(FreeSerif/FreeSans) and a bold request makes fontconfig draw blank `.notdef` (or, in sans,
+garbage "Z"/"Y").
+
 - **BASE_ALT (layer 1, the secondary QWERTY base) is deliberately not rendered.**
 - Each file contains its own `layout:` (`qmk_keyboard: cantor`,
   `layout_name: LAYOUT_split_3x6_3`), `layers:`, and `draw_config:` block.
