@@ -20,20 +20,20 @@ layers:
               {
                   bl: "⌫",
                   br: $$mdi:selection$$,
-                  t: "Line 🡨",
-                  type: nav delhint selhint,
+                  t: "⏮",
+                  type: nav delhint selhint lineedge,
               },
               {
                   tr: "+",
                   br: $$mdi:selection$$,
-                  t: $$mdi:arrow-up$$,
+                  t: "▲",
                   type: nav selhint tabhint,
               },
               {
                   bl: "⌦",
                   br: $$mdi:selection$$,
-                  t: "Line 🡪",
-                  type: nav delhint selhint,
+                  t: "⏭",
+                  type: nav delhint selhint lineedge,
               },
               { type: none },
               { type: none },
@@ -60,20 +60,20 @@ layers:
                   tr: "‹",
                   bl: "⌫",
                   br: $$mdi:selection$$,
-                  t: $$mdi:arrow-left$$,
+                  t: "◀",
                   type: nav delhint selhint tabhint,
               },
               {
                   tr: "×",
                   br: $$mdi:selection$$,
-                  t: $$mdi:arrow-down$$,
+                  t: "▼",
                   type: nav selhint tabhint,
               },
               {
                   tr: "›",
                   bl: "⌦",
                   br: $$mdi:selection$$,
-                  t: $$mdi:arrow-right$$,
+                  t: "▶",
                   type: nav delhint selhint tabhint,
               },
               { type: none },
@@ -88,17 +88,19 @@ layers:
               { type: none },
               { type: none },
               {
+                  tr: "◅",
                   bl: "⌫",
                   br: $$mdi:selection$$,
-                  t: "Word 🡨",
-                  type: nav delhint selhint,
+                  t: "◀◀",
+                  type: nav delhint selhint tabhint,
               },
               { tr: "↺", type: none tabhint },
               {
+                  tr: "▻",
                   bl: "⌦",
                   br: $$mdi:selection$$,
-                  t: "Word 🡪",
-                  type: nav delhint selhint,
+                  t: "▶▶",
+                  type: nav delhint selhint tabhint,
               },
               { type: none },
               { t: "▽", type: trans },
@@ -140,6 +142,7 @@ draw_config:
         .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
         .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
         .key.metakey.tap { font-size: 21px; }
+        .key.lineedge.tap { font-size: 30px; }
         .key.held rect.key { fill: url(#stripes); stroke: #999999; }
         .combo.state rect.key { fill: #fdebd9; stroke: #dd9d57; }
         .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }

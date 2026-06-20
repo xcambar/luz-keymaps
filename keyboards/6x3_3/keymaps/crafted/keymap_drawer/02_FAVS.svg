@@ -1,17 +1,5 @@
 <svg width="900" height="397" viewBox="0 0 900 397" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="sh" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="1.6"/></filter></defs><rect x="0" y="0" width="100%" height="100%" fill="#faf8f4"/>
 <defs>/* start glyphs */
-<svg id="mdi:arrow-down">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-arrow-down" viewBox="0 0 24 24"><path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<svg id="mdi:arrow-left">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-arrow-left" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<svg id="mdi:arrow-right">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-arrow-right" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<svg id="mdi:arrow-up">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-arrow-up" viewBox="0 0 24 24"><path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:backspace-outline">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-backspace-outline" viewBox="0 0 24 24"><path d="M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12L19,15.59M22,3A2,2 0 0,1 24,5V19A2,2 0 0,1 22,21H7C6.31,21 5.77,20.64 5.41,20.11L0,12L5.41,3.88C5.77,3.35 6.31,3 7,3H22M22,5H7L2.28,12L7,19H22V5Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
@@ -185,6 +173,7 @@ svg.keymap { fill: #36322e; }
 .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
 .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
 .key.metakey.tap { font-size: 21px; }
+.key.lineedge.tap { font-size: 30px; }
 .key.held rect.key { fill: url(#stripes); stroke: #999999; }
 .combo.state rect.key { fill: #fdebd9; stroke: #dd9d57; }
 .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
@@ -220,27 +209,23 @@ svg.keymap { fill: #36322e; }
 <text x="0" y="0" class="key nav selhint tap">PgUp</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(570, 38)" class="key nav delhint selhint keypos-7">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
-<text x="0" y="0" class="key nav delhint selhint tap">
-<tspan x="0" dy="-0.6em">Line</tspan><tspan x="0" dy="1.2em">🡨</tspan>
-</text>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<g transform="translate(570, 38)" class="key nav delhint selhint lineedge keypos-7">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint lineedge"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key nav delhint selhint lineedge tap">⏮</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint lineedge bl">⌫</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint lineedge br glyph mdi:selection"/>
 </g>
 <g transform="translate(630, 30)" class="key nav selhint tabhint keypos-8">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selhint tabhint"/>
-<use href="#mdi:arrow-up" xlink:href="#mdi:arrow-up" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tabhint tap glyph mdi:arrow-up"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key nav selhint tabhint tap">▲</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav selhint tabhint tr">+</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint tabhint br glyph mdi:selection"/>
 </g>
-<g transform="translate(690, 38)" class="key nav delhint selhint keypos-9">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
-<text x="0" y="0" class="key nav delhint selhint tap">
-<tspan x="0" dy="-0.6em">Line</tspan><tspan x="0" dy="1.2em">🡪</tspan>
-</text>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<g transform="translate(690, 38)" class="key nav delhint selhint lineedge keypos-9">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint lineedge"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key nav delhint selhint lineedge tap">⏭</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint lineedge bl">⌦</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint lineedge br glyph mdi:selection"/>
 </g>
 <g transform="translate(750, 45)" class="key none keypos-10">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -286,20 +271,20 @@ svg.keymap { fill: #36322e; }
 </g>
 <g transform="translate(570, 98)" class="key nav delhint selhint tabhint keypos-19">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint tabhint"/>
-<use href="#mdi:arrow-left" xlink:href="#mdi:arrow-left" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tabhint tap glyph mdi:arrow-left"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key nav delhint selhint tabhint tap">◀</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav delhint selhint tabhint tr">‹</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint tabhint bl">⌫</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint tabhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(630, 90)" class="key nav selhint tabhint keypos-20">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selhint tabhint"/>
-<use href="#mdi:arrow-down" xlink:href="#mdi:arrow-down" x="-7" y="-7" height="14" width="14.0" class="key nav selhint tabhint tap glyph mdi:arrow-down"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key nav selhint tabhint tap">▼</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav selhint tabhint tr">×</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav selhint tabhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(690, 98)" class="key nav delhint selhint tabhint keypos-21">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint tabhint"/>
-<use href="#mdi:arrow-right" xlink:href="#mdi:arrow-right" x="-7" y="-7" height="14" width="14.0" class="key nav delhint selhint tabhint tap glyph mdi:arrow-right"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key nav delhint selhint tabhint tap">▶</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav delhint selhint tabhint tr">›</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint tabhint bl">⌦</text>
 <use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint tabhint br glyph mdi:selection"/>
@@ -337,25 +322,23 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(510, 165)" class="key none keypos-30">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(570, 158)" class="key nav delhint selhint keypos-31">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
-<text x="0" y="0" class="key nav delhint selhint tap">
-<tspan x="0" dy="-0.6em">Word</tspan><tspan x="0" dy="1.2em">🡨</tspan>
-</text>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌫</text>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<g transform="translate(570, 158)" class="key nav delhint selhint tabhint keypos-31">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint tabhint"/>
+<text x="0" y="0" class="key nav delhint selhint tabhint tap">◀◀</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav delhint selhint tabhint tr">◅</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint tabhint bl">⌫</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint tabhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(630, 150)" class="key none tabhint keypos-32">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none tabhint"/>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key none tabhint tr">↺</text>
 </g>
-<g transform="translate(690, 158)" class="key nav delhint selhint keypos-33">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint"/>
-<text x="0" y="0" class="key nav delhint selhint tap">
-<tspan x="0" dy="-0.6em">Word</tspan><tspan x="0" dy="1.2em">🡪</tspan>
-</text>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint bl">⌦</text>
-<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint br glyph mdi:selection"/>
+<g transform="translate(690, 158)" class="key nav delhint selhint tabhint keypos-33">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhint selhint tabhint"/>
+<text x="0" y="0" class="key nav delhint selhint tabhint tap">▶▶</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="26" y="-26" class="key nav delhint selhint tabhint tr">▻</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" transform="translate(3, 0)" x="-26" y="26" class="key nav delhint selhint tabhint bl">⌦</text>
+<use transform="translate(-3, -1)" href="#mdi:selection" xlink:href="#mdi:selection" x="16" y="16" height="10" width="10.0" class="key nav delhint selhint tabhint br glyph mdi:selection"/>
 </g>
 <g transform="translate(750, 165)" class="key none keypos-34">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>

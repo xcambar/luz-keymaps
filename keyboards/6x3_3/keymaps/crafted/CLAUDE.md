@@ -94,7 +94,7 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | `MO(NAV_DEL)` (FAVS pos 14) | `$$mdi:backspace-outline$$`, h: "hold", type `nav delhold` (blue bg, coral legend) |
 | delete hints | the 6 FAVS horizontal-motion keys carry `h: "⌫"`/`"⌦"` + `type: ... delhint`; `.key.delhint.hold` colors only that hint coral. Encodes the dropped NAV_DEL layer |
 | `MO(TABS)` (FAVS pos 3) | `s: hold`, `t: $$mdi:tab$$`, `h: tabs`, type `nav tabmode mode` — blue `nav` key, purple legends via `.key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1 }` (legend-position selectors like `delhold`/`selmode` — **not** `:not(rect)`, which the color Inkscape PDF path silently drops), italic "hold" via `.key.mode.shifted`. Trigger for the TABS sub-layer, same idiom as `Dl⊙`/`Sl⊙` |
-| tab hints | 5 FAVS right-hand keys carry a purple `tr` corner glyph + `type: ... tabhint` (`.key.tabhint.tr` colors it `#9a5fa1`, matching the trigger): `+` New (pos 8 ↑), `‹`/`›` switch (pos 19/21 ←/→), `×` Close (pos 20 ↓), `↺` Reopen (pos 32). Encodes the hold-only TABS layer |
+| tab hints | 7 FAVS right-hand keys carry a purple `tr` corner glyph + `type: ... tabhint` (`.key.tabhint.tr` colors it `#9a5fa1`, matching the trigger): `+` New (pos 8 ↑), `‹`/`›` switch tab (pos 19/21 ←/→), `×` Close (pos 20 ↓), `↺` Reopen (pos 32), `◅`/`▻` page back/forward (pos 31/33 — history navigation, distinct from the `‹`/`›` switch glyphs). Encodes the hold-only TABS layer |
 | `QK_LLCK` | `$$mdi:lock-outline$$`, h: "Layer Lock", type layer |
 | `CW_TOGG` | `$$mdi:format-letter-case-upper$$`, h: "Caps Word", type editing |
 | `MD_FENCE` | t: ` ``` `, type symbol |
@@ -102,7 +102,7 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | `SW_OS` / `PR_OS` | "OS ⇄" / "OS ?", type system |
 | `SW_LYT` / `PR_LYT` | "Lyt ⇄" / "Lyt ?", type system |
 | `QK_BOOT` | `$$mdi:restart$$`, h: "Boot", type system |
-| `SK_*` semantic keys | Undo/Cut/Copy/Paste (system); `W←`/`W→`/`L←`/`L→` and deletions `⌫ W←` etc. (nav/editing) |
+| `SK_*` semantic keys | Undo/Cut/Copy/Paste (system); cursor-motion granularity uses one **media-triangle magnitude scale** so the *reach* reads at a glance — triangle count = distance: **char** = single triangle `◀ ▶ ▲ ▼` (U+25C0/25B6/25B2/25BC), **word** = double triangle `◀◀`/`▶▶` (jump), **line** begin/end = `⏮`/`⏭` (U+23EE/U+23ED, double-triangle-to-bar = "hit the wall"). **Render gotchas (Inkscape + Source Sans 3):** the plain rewind/fast-forward codepoints `⏪`/`⏩` (U+23EA/U+23E9) do NOT render — they fall back to "B"/"A" — so word uses two literal `◀`/`▶` glyphs, not `⏪⏩`. `⏮`/`⏭` *do* render. Line was deliberately NOT `⇤⇥` or `arrow-collapse` (read as the Tab glyph beside the TABS cluster). Deletions reuse the same positions with `⌫`/`⌦` hints (nav/editing) |
 
 Semantic (`SK_*`) and dead (`DK_*`) keys are OS-aware; render their *meaning*, not chords.
 

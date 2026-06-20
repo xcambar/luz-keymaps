@@ -275,15 +275,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │   │   │   │   │   │       │   │ ◀ │Cls│ ▶ │   │   │  ◀/▶=switch tab, Cls=close
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │   │   │Rop│   │   │   │  Rop=reopen (Ctrl/Cmd+Shift+T)
+      * │   │   │   │   │   │   │       │   │ ◅ │Rop│ ▻ │   │   │  ◅/▻=page back/forward, Rop=reopen
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       * (▽)=trigger itself (the held MO key); thumbs ▽ keep Esc/Shift/Space/Enter live.
-      * All chords are OS-aware semantic keys (Linux Ctrl / macOS Cmd, Chrome/Safari positional switch).
+      * Switch row over history row: both horizontal pairs flank the central Close/Reopen column.
+      * All chords are OS-aware semantic keys (Linux Ctrl/Alt / macOS Cmd, Chrome/Safari positional switch;
+      * history back/forward = Cmd+[ ] / Alt+arrows, identical in Firefox & Chrome).
       */
     [TABS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   _______, KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABNEW, KC_NO,     KC_NO,   KC_NO,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_TABLEFT, SK_TABCLOSE, SK_TABRIGHT, KC_NO, KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABREOPEN, KC_NO,   KC_NO,   KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_HISTPRV, SK_TABREOPEN, SK_HISTNXT, KC_NO, KC_NO,
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*

@@ -45,7 +45,9 @@
         SK_TABCLOSE, \
         SK_TABREOPEN, \
         SK_TABLEFT, \
-        SK_TABRIGHT \
+        SK_TABRIGHT, \
+        SK_HISTPRV, \
+        SK_HISTNXT \
     )
 
 // Process semantic keys - call from process_record_user()

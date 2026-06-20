@@ -69,10 +69,11 @@ static const semkey_map_t semkey_table[SK_count] = {
     [SK_ndx(SK_TABLEFT)]   = {{G(A(KC_LEFT)), KC_NO},     {C(KC_PGUP), KC_NO}},               // Tab left:   Cmd+Opt+Left / Ctrl+PgUp
     [SK_ndx(SK_TABRIGHT)]  = {{G(A(KC_RGHT)), KC_NO},     {C(KC_PGDN), KC_NO}},               // Tab right:  Cmd+Opt+Right / Ctrl+PgDn
 
-    // Add Warpd later...
+    // Browser history navigation (prev/next page). Firefox & Chrome on both platforms.
+    [SK_ndx(SK_HISTPRV)]   = {{G(KC_LBRC), KC_NO},        {A(KC_LEFT), KC_NO}},               // Page back:    Cmd+[ / Alt+Left
+    [SK_ndx(SK_HISTNXT)]   = {{G(KC_RBRC), KC_NO},        {A(KC_RGHT), KC_NO}},               // Page forward: Cmd+] / Alt+Right
 
-    // [SK_ndx(SK_HISTPRV)] = {{G(KC_LBRC), KC_NO},          {LALT(KC_LEFT), KC_NO}},   // BROWSER BACK
-    // [SK_ndx(SK_HISTNXT)] = {{G(KC_RBRC), KC_NO},          {LALT(KC_RIGHT), KC_NO}},  // BROWSER FWD
+    // Add Warpd later...
 };
 
 // Tap a sequence of keycodes for a semantic key (public function)
