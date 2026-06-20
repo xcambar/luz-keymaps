@@ -8,33 +8,13 @@ layers:
               { type: none },
               { type: none },
               { type: none },
-              {
-                  s: hold,
-                  t: $$mdi:tab$$,
-                  h: tabs,
-                  type: nav tabmode mode,
-              },
+              { s: hold, t: $$mdi:tab$$, h: tabs, type: nav tabmode mode },
               { type: none },
               { type: none },
-              { br: $$mdi:selection$$, t: PgUp, type: nav selhint },
-              {
-                  bl: "⌫",
-                  br: $$mdi:selection$$,
-                  t: "⏮",
-                  type: nav delhint selhint lineedge,
-              },
-              {
-                  tr: "+",
-                  br: $$mdi:selection$$,
-                  t: "▲",
-                  type: nav selhint tabhint,
-              },
-              {
-                  bl: "⌦",
-                  br: $$mdi:selection$$,
-                  t: "⏭",
-                  type: nav delhint selhint lineedge,
-              },
+              { t: PgUp, type: nav },
+              { t: "⏮", type: nav lineedge },
+              { t: "▲", type: nav },
+              { t: "⏭", type: nav lineedge },
               { type: none },
               { type: none },
           ]
@@ -55,27 +35,10 @@ layers:
               },
               { t: "◇", h: "⌘/Ctrl", type: editing modtap metakey },
               { t: $$mdi:swap-horizontal$$, type: state, h: "win swap" },
-              { br: $$mdi:selection$$, t: PgDn, type: nav selhint },
-              {
-                  tr: "‹",
-                  bl: "⌫",
-                  br: $$mdi:selection$$,
-                  t: "◀",
-                  type: nav delhint selhint tabhint,
-              },
-              {
-                  tr: "×",
-                  br: $$mdi:selection$$,
-                  t: "▼",
-                  type: nav selhint tabhint,
-              },
-              {
-                  tr: "›",
-                  bl: "⌦",
-                  br: $$mdi:selection$$,
-                  t: "▶",
-                  type: nav delhint selhint tabhint,
-              },
+              { t: PgDn, type: nav },
+              { t: "◀", type: nav },
+              { t: "▼", type: nav },
+              { t: "▶", type: nav },
               { type: none },
               { t: Del, type: editing },
           ]
@@ -87,21 +50,9 @@ layers:
               { t: Paste, type: system },
               { type: none },
               { type: none },
-              {
-                  tr: "◅",
-                  bl: "⌫",
-                  br: $$mdi:selection$$,
-                  t: "◀◀",
-                  type: nav delhint selhint tabhint,
-              },
-              { tr: "↺", type: none tabhint },
-              {
-                  tr: "▻",
-                  bl: "⌦",
-                  br: $$mdi:selection$$,
-                  t: "▶▶",
-                  type: nav delhint selhint tabhint,
-              },
+              { t: "◀◀", type: nav },
+              { t: "●", type: nav },
+              { t: "▶▶", type: nav },
               { type: none },
               { t: "▽", type: trans },
           ]
@@ -131,18 +82,15 @@ draw_config:
         .key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
         .key.nav rect.key { fill: #dbe9f8; stroke: #6b97c9; }
         .key.delhold.tap, .key.delhold.hold, .key.delhold.shifted { fill: #c25f54; }
-        .key.delhint.bl { fill: #c25f54; font-size: 19px; transform: translate(3px, 0px); }
         .key.selmode.tap, .key.selmode.hold, .key.selmode.shifted { fill: #0d8b8b; }
-        .key.selhint.br { fill: #0d8b8b; transform: translate(-3px, -1px); }
         .key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1; }
-        .key.tabhint.tr { fill: #9a5fa1; font-size: 19px; transform: translate(-3px, 1px); }
         .key.mode.shifted { font-style: italic; }
         .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
         .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }
         .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
         .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
         .key.metakey.tap { font-size: 21px; }
-        .key.lineedge.tap { font-size: 30px; }
+        .key.lineedge.tap { font-size: 25px; }
         .key.held rect.key { fill: url(#stripes); stroke: #999999; }
         .combo.state rect.key { fill: #fdebd9; stroke: #dd9d57; }
         .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }

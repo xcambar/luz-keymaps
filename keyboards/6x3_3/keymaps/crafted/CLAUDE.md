@@ -33,7 +33,7 @@ One self-contained YAML per *rendered* layer, numbered by render order:
 ```
 keymap_drawer/00_BASE.yml      # Layer 0  (Gallium East)
 keymap_drawer/01_SYMBOLS.yml   # Layer 3  (render order before FAVS by choice)
-keymap_drawer/02_FAVS.yml      # Layer 2  (also encodes NAV_DEL via coral hints)
+keymap_drawer/02_FAVS.yml      # Layer 2  (FAVS; sub-modes are in the README table, not on-key hints)
 keymap_drawer/03_ADJUST.yml    # Layer 5
 ```
 
@@ -52,8 +52,8 @@ keymap_drawer/03_ADJUST.yml    # Layer 5
 | 1 | BASE_ALT | default-layer toggle (`SW_LYT` on ADJUST)        | no       |
 | 2 | FAVS     | hold left inner thumb `MO(FAVS)` (pos 38)        | yes      |
 | 3 | SYMBOLS  | hold right inner thumb `MO(SYMBOLS)` (pos 39)    | yes      |
-| 4 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | no (shown via coral hints on FAVS) |
-| 5 | TABS     | hold tab trigger (pos 3) while on FAVS — hold-only | no (shown via magenta hints on FAVS) |
+| 4 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | no (per-key roles in the README modes table) |
+| 5 | TABS     | hold tab trigger (pos 3) while on FAVS — hold-only | no (per-key roles in the README modes table) |
 | 6 | ADJUST   | tri-layer: hold both inner thumbs (FAVS+SYMBOLS) | yes      |
 
 ## Key position reference (split_3x6_3)
@@ -91,10 +91,9 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | `SW_WIN` | `$$mdi:swap-horizontal$$`, type system |
 | `MM_GUICTRL` | `$$mdi:star-four-points-box$$`, h: "GUI/Ctrl", type modifier |
 | `SEL_LATCH` | `$$mdi:apple-keyboard-shift$$`, h: "Latch", type modifier |
-| `MO(NAV_DEL)` (FAVS pos 14) | `$$mdi:backspace-outline$$`, h: "hold", type `nav delhold` (blue bg, coral legend) |
-| delete hints | the 6 FAVS horizontal-motion keys carry `h: "⌫"`/`"⌦"` + `type: ... delhint`; `.key.delhint.hold` colors only that hint coral. Encodes the dropped NAV_DEL layer |
-| `MO(TABS)` (FAVS pos 3) | `s: hold`, `t: $$mdi:tab$$`, `h: tabs`, type `nav tabmode mode` — blue `nav` key, purple legends via `.key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1 }` (legend-position selectors like `delhold`/`selmode` — **not** `:not(rect)`, which the color Inkscape PDF path silently drops), italic "hold" via `.key.mode.shifted`. Trigger for the TABS sub-layer, same idiom as `Dl⊙`/`Sl⊙` |
-| tab hints | 7 FAVS right-hand keys carry a purple `tr` corner glyph + `type: ... tabhint` (`.key.tabhint.tr` colors it `#9a5fa1`, matching the trigger): `+` New (pos 8 ↑), `‹`/`›` switch tab (pos 19/21 ←/→), `×` Close (pos 20 ↓), `↺` Reopen (pos 32), `◅`/`▻` page back/forward (pos 31/33 — history navigation, distinct from the `‹`/`›` switch glyphs). Encodes the hold-only TABS layer |
+| `MO(NAV_DEL)` (FAVS pos 14) | `$$mdi:backspace-outline$$`, h: "hold", type `nav delhold` (blue bg, coral legend). Trigger for the NAV_DEL sub-layer; per-key roles live in the README "Navigation modes" table, **not** as on-key hints |
+| `MO(TABS)` (FAVS pos 3) | `s: hold`, `t: $$mdi:tab$$`, `h: tabs`, type `nav tabmode mode` — blue `nav` key, purple legends via `.key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1 }` (legend-position selectors like `delhold`/`selmode` — **not** `:not(rect)`, which the color Inkscape PDF path silently drops), italic "hold" via `.key.mode.shifted`. Trigger for the TABS sub-layer; per-key roles in the README modes table |
+| nav cluster (right hand) | each movement key carries **only** its movement glyph — no corner hints. The Select / Delete / Tabs sub-modes reuse these same positions, but those roles are documented in the README "Navigation modes" table, deliberately **not** as on-key glyphs (keeps the cluster legible). `delhint`/`selhint`/`tabhint` tokens + their CSS were removed when the hints were dropped |
 | `QK_LLCK` | `$$mdi:lock-outline$$`, h: "Layer Lock", type layer |
 | `CW_TOGG` | `$$mdi:format-letter-case-upper$$`, h: "Caps Word", type editing |
 | `MD_FENCE` | t: ` ``` `, type symbol |
@@ -102,7 +101,7 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | `SW_OS` / `PR_OS` | "OS ⇄" / "OS ?", type system |
 | `SW_LYT` / `PR_LYT` | "Lyt ⇄" / "Lyt ?", type system |
 | `QK_BOOT` | `$$mdi:restart$$`, h: "Boot", type system |
-| `SK_*` semantic keys | Undo/Cut/Copy/Paste (system); cursor-motion granularity uses one **media-triangle magnitude scale** so the *reach* reads at a glance — triangle count = distance: **char** = single triangle `◀ ▶ ▲ ▼` (U+25C0/25B6/25B2/25BC), **word** = double triangle `◀◀`/`▶▶` (jump), **line** begin/end = `⏮`/`⏭` (U+23EE/U+23ED, double-triangle-to-bar = "hit the wall"). **Render gotchas (Inkscape + Source Sans 3):** the plain rewind/fast-forward codepoints `⏪`/`⏩` (U+23EA/U+23E9) do NOT render — they fall back to "B"/"A" — so word uses two literal `◀`/`▶` glyphs, not `⏪⏩`. `⏮`/`⏭` *do* render. Line was deliberately NOT `⇤⇥` or `arrow-collapse` (read as the Tab glyph beside the TABS cluster). Deletions reuse the same positions with `⌫`/`⌦` hints (nav/editing) |
+| `SK_*` semantic keys | Undo/Cut/Copy/Paste (system); cursor-motion granularity uses one **media-triangle magnitude scale** so the *reach* reads at a glance — triangle count = distance: **char** = single triangle `◀ ▶ ▲ ▼` (U+25C0/25B6/25B2/25BC), **word** = double triangle `◀◀`/`▶▶` (jump), **line** begin/end = `⏮`/`⏭` (U+23EE/U+23ED, double-triangle-to-bar = "hit the wall"). **Render gotchas (Inkscape + Source Sans 3):** the plain rewind/fast-forward codepoints `⏪`/`⏩` (U+23EA/U+23E9) do NOT render — they fall back to "B"/"A" — so word uses two literal `◀`/`▶` glyphs, not `⏪⏩`. `⏮`/`⏭` *do* render. Line was deliberately NOT `⇤⇥` or `arrow-collapse` (read as the Tab glyph beside the TABS cluster). The cluster shows movement glyphs only; sub-mode roles (deletions, tab actions) reusing these positions are in the README modes table, not on-key hints (nav/editing) |
 
 Semantic (`SK_*`) and dead (`DK_*`) keys are OS-aware; render their *meaning*, not chords.
 
