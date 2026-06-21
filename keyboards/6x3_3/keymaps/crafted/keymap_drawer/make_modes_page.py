@@ -21,21 +21,21 @@ MONO   = "SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace"
 # Per-mode accent colours (fill = key tint, stroke = border, ink = legend text)
 MODES = [
     {"name": "Navigation", "tag": "base",  "fill": "#dbe9f8", "stroke": "#6b97c9", "ink": "#2f5a86",
-     "engage": "Hold left inner thumb", "exit": "Release (or Layer Lock)"},
+     "trig": "FAVS layer",   "engage": "Hold the FAVS key", "exit": "Release (or Layer Lock)"},
     {"name": "Select",     "tag": "Sl⊙",   "fill": "#d9ecec", "stroke": "#0d8b8b", "ink": "#0d7c7c",
-     "engage": "Tap — toggle",          "exit": "Tap again / Esc"},
+     "trig": "tap Sl⊙",      "engage": "Tap — toggle",      "exit": "Tap again / Esc"},
     {"name": "Delete",     "tag": "Dl⊙",   "fill": "#f7ddd9", "stroke": "#c25f54", "ink": "#bb554a",
-     "engage": "Hold",                  "exit": "Release (hold-only)"},
+     "trig": "hold Dl⊙",     "engage": "Hold",              "exit": "Release (hold-only)"},
     {"name": "Tabs",       "tag": "hold",  "fill": "#ead9eb", "stroke": "#9a5fa1", "ink": "#8a4f91",
-     "engage": "Hold",                  "exit": "Release (hold-only)"},
+     "trig": "hold tab key", "engage": "Hold",              "exit": "Release (hold-only)"},
 ]
 
 # Matrix rows: (key glyph, Navigation, Select, Delete, Tabs).  "·" = no special role.
 ROWS = [
-    ("←",  "Char left",     "Select char left",     "Backspace",            "Previous tab"),
-    ("→",  "Char right",    "Select char right",    "Forward-delete",       "Next tab"),
-    ("↑",  "Line up",       "Select line up",       "·",                    "New tab"),
-    ("↓",  "Line down",     "Select line down",     "·",                    "Close tab"),
+    ("◀",  "Char left",     "Select char left",     "Backspace",            "Previous tab"),
+    ("▶",  "Char right",    "Select char right",    "Forward-delete",       "Next tab"),
+    ("▲",  "Line up",       "Select line up",       "·",                    "New tab"),
+    ("▼",  "Line down",     "Select line down",     "·",                    "Close tab"),
     ("◀◀", "Word back",     "Select word back",     "Delete word back",     "Page back"),
     ("▶▶", "Word forward",  "Select word forward",  "Delete word forward",  "Page forward"),
     ("⏮",  "Line start",    "Select to line start", "Delete to line start", "·"),
@@ -44,6 +44,21 @@ ROWS = [
     ("PgDn","Page down",    "Select page down",     "·",                    "·"),
     ("●",  "·",             "·",                    "·",                    "Reopen tab"),
 ]
+
+# ── markdown twin (keeps the README "Reference tables" block in sync) ──────────
+# `make_modes_page.py --md` prints just the table; build_pdf.sh injects it between
+# the <!-- BEGIN/END NAV TABLE --> markers in the README.
+import sys
+if "--md" in sys.argv:
+    # trigger baked into each column header (which key/layer), so the table stands alone
+    hdr = "| Key | " + " | ".join(f'{m["name"]} ({m["trig"]})' for m in MODES) + " |"
+    sep = "|-----|" + "|".join(["------"] * len(MODES)) + "|"
+    body = ["| " + " | ".join(row) + " |" for row in ROWS]
+    legend = ("`·` = the key keeps its Navigation role in that mode. "
+              "Select and Delete are mutually exclusive. "
+              "Tab actions are OS-aware (Firefox & Chrome, macOS & Linux).")
+    print("\n".join([hdr, sep, *body, "", legend]))
+    sys.exit()
 
 # ── layout geometry ───────────────────────────────────────────────────────────
 W, MX = 980, 40
@@ -72,7 +87,7 @@ add(f'<style>text{{font-family:{SANS};fill:{INK};}}</style>')
 add(f'<text x="{MX}" y="50" font-size="26" font-weight="600" '
     f'letter-spacing="1.2" fill="{TITLE}">Navigation modes</text>')
 add(f'<text x="{MX}" y="78" font-size="13.5" fill="{MUTED}">'
-    'Hold the left inner thumb to navigate; tap or hold a trigger to layer a sub-mode on top.</text>')
+    'The FAVS layer cursor cluster, with Select / Delete / Tabs sub-modes layered on top.</text>')
 
 # ── mode cards ────────────────────────────────────────────────────────────────
 for i, m in enumerate(MODES):

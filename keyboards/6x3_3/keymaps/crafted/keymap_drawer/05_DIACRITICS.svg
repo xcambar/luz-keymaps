@@ -1,0 +1,48 @@
+<svg width="980" height="564" viewBox="0 0 980 564" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs><filter id="sh" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
+<rect x="0" y="0" width="100%" height="100%" fill="#faf8f4"/>
+<style>text{font-family:'Source Sans 3','Source Sans Pro',sans-serif;fill:#36322e;}</style>
+<text x="40" y="50" font-size="26" font-weight="600" letter-spacing="1.2" fill="#5a5048">Compose &amp; diacritics</text>
+<text x="40" y="78" font-size="13.5" fill="#8a8076">Press Shift + Space on the base layer to arm Compose, then press one key.</text>
+<rect x="41.5" y="100.5" width="900" height="66" rx="8" ry="8" fill="#3a2f25" opacity="0.10" filter="url(#sh)"/>
+<rect x="40" y="98" width="900" height="66" rx="8" ry="8" fill="#fdebd9" stroke="#dd9d57" stroke-width="1.3"/>
+<line x1="508.0" y1="112" x2="508.0" y2="150" stroke="#dd9d57" stroke-width="1" opacity="0.5"/>
+<text x="58" y="126" font-size="13" font-weight="700" fill="#a8671c">Arm</text>
+<text x="58" y="148" font-size="14.5" fill="#36322e"><tspan font-weight="600">Shift + Space</tspan><tspan dx="12" fill="#8a8076" font-size="12.5">from the base layer</tspan></text>
+<text x="526.0" y="126" font-size="13" font-weight="700" fill="#a8671c">Cancel</text>
+<text x="526.0" y="148" font-size="14.5" fill="#36322e"><tspan font-weight="600">Esc</tspan><tspan dx="12" fill="#8a8076" font-size="12.5">any other key types as usual</tspan></text>
+<text x="88.0" y="215" font-size="12" font-weight="600" text-anchor="middle" fill="#8a8076">Key</text>
+<text x="152" y="215" font-size="12" font-weight="600" fill="#8a8076">Produces</text>
+<text x="392" y="215" font-size="12" font-weight="600" fill="#8a8076">Example</text>
+<rect x="40" y="220" width="900" height="2" rx="1" fill="#dd9d57"/>
+<rect x="40" y="224" width="96" height="270" rx="4" ry="4" fill="#fdebd9"/>
+<text x="152" y="243.0" font-size="11.5" font-weight="700" letter-spacing="0.6" fill="#a8671c">DEAD KEYS<tspan dx="8" fill="#8a8076" font-weight="400" letter-spacing="0">— press, then type the base letter</tspan></text>
+<rect x="152" y="249.0" width="64.8" height="2" rx="1" fill="#dd9d57"/>
+<text x="88.0" y="274.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">e</text>
+<text x="152" y="274.0" font-size="13.5" fill="#36322e">´  acute</text>
+<text x="392" y="274.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   e   e   →   é</text>
+<rect x="136" y="284" width="804" height="30" fill="#f1ece4"/>
+<text x="88.0" y="304.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">a</text>
+<text x="152" y="304.0" font-size="13.5" fill="#36322e">`  grave</text>
+<text x="392" y="304.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   a   e   →   è</text>
+<text x="88.0" y="334.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">u</text>
+<text x="152" y="334.0" font-size="13.5" fill="#36322e">¨  diaeresis</text>
+<text x="392" y="334.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   u   e   →   ë</text>
+<rect x="136" y="344" width="804" height="30" fill="#f1ece4"/>
+<text x="88.0" y="364.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">o</text>
+<text x="152" y="364.0" font-size="13.5" fill="#36322e">ˆ  circumflex</text>
+<text x="392" y="364.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   o   e   →   ê</text>
+<text x="152" y="393.0" font-size="11.5" font-weight="700" letter-spacing="0.6" fill="#a8671c">DIRECT<tspan dx="8" fill="#8a8076" font-weight="400" letter-spacing="0">— prints the character immediately</tspan></text>
+<rect x="152" y="399.0" width="43.2" height="2" rx="1" fill="#dd9d57"/>
+<text x="88.0" y="424.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">c</text>
+<text x="152" y="424.0" font-size="13.5" fill="#36322e">ç</text>
+<text x="392" y="424.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   c   →   ç</text>
+<rect x="136" y="434" width="804" height="30" fill="#f1ece4"/>
+<text x="88.0" y="454.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">n</text>
+<text x="152" y="454.0" font-size="13.5" fill="#36322e">ñ</text>
+<text x="392" y="454.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   n   →   ñ</text>
+<text x="88.0" y="484.0" font-size="14" font-weight="600" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" text-anchor="middle" fill="#36322e">w</text>
+<text x="152" y="484.0" font-size="13.5" fill="#36322e">€  euro</text>
+<text x="392" y="484.0" font-size="12.5" style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" fill="#8a8076">Shift+Space   w   →   €</text>
+<text x="40" y="522" font-size="11.5" fill="#8a8076">Dead keys wait for a base letter, so the same accent works on any vowel (é á í ó ú · è à ì ò ù …). Accents are OS-aware (macOS &amp; Linux).</text>
+</svg>
