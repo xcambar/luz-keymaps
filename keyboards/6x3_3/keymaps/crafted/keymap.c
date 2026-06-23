@@ -190,9 +190,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │Tab│   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│Lck│Dl⊙│Sl⊙│G/C│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
+      * │Esc│   │Dl⊙│Sl⊙│G/C│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │Udo│Cut│Cpy│Pst│   │       │   │W← │   │W→ │   │   │
+      * │   │Udo│Cut│Cpy│Pst│Lck│       │   │W← │   │W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
       *               │ ▽ ├───┐           ┌───┤ ▽ │
@@ -212,8 +212,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [FAVS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   MO(TABS), KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  QK_LLCK, MO(NAV_DEL), SEL_LATCH, MM_GUICTRL, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
-        _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, KC_NO,                              KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   _______,
+        KC_ESC,  KC_NO,   MO(NAV_DEL), SEL_LATCH, MM_GUICTRL, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
+        _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, QK_LLCK,                            KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   _______,
                                             _______, _______, KC_NO,                  _______, _______, _______
     ),
      /*
@@ -222,10 +222,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │   │```│ 7 │ 8 │ 9 │   │       │ ` │ { │ = │ } │ ' │   │
       * │   │   │   │   │   │   │       │ ~ │ [ │ + │ ] │ " │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │ ▽ │Lck│ 4 │ 5 │ 6 │ 0 │       │ \ │ ( │ @ │ ) │ : │Bsp│
+      * │ ▽ │ 0 │ 1 │ 2 │ 3 │   │       │ \ │ ( │ @ │ ) │ : │Bsp│
       * │   │   │   │   │   │   │       │ ^ │ < │ # │ > │ ; │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │ ▽ │→ ⇒│ 1 │ 2 │ 3 │   │       │ $ │ & │ , │ . │ - │ ▽ │
+      * │ ▽ │→ ⇒│ 4 │ 5 │ 6 │Lck│       │ $ │ & │ , │ . │ - │ ▽ │
       * │   │   │   │   │   │   │       │ % │ * │ ? │ ! │ / │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
@@ -233,7 +233,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *               └───┤ ▽ ├───┐   ┌───┤ ▽ ├───┘
       *                   └───┤   │   │(M)├───┘
       *                       └───┘   └───┘
-      * Numpad in calculator order; open brackets on index, close on ring (editors auto-close),
+      * Numpad: home row 0-3 (0 on ring), 4-6 below, 7-9 on top; open brackets on index, close on ring (editors auto-close),
       * middle finger keeps high-frequency =/@; pairs stacked by kind ({[ over (<, }] over )>)
       * , . - ' _ sit on their BASE positions (cross-layer consistency); inverted pairs kept
       * ```=code fence macro, →⇒=tap "->" / shift "=>"
@@ -243,8 +243,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
         KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SL_GRV,  SL_LBRC, SL_EQL,   SL_RBRC,  XC_QUOT,  KC_NO,
-        _______,   QK_LLCK,  KC_4,     KC_5,     KC_6,    KC_0,                               SL_BSLS, SL_LPRN, SL_AT,    SL_RPRN,  SL_SCLN,  KC_BSPC,
-        _______,   ARROW_OP, KC_1,     KC_2,     KC_3,    KC_NO,                              SL_DLR,  SL_AMPR, XC_COMM,  XC_DOT,   XC_MINS,  _______,
+        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SL_BSLS, SL_LPRN, SL_AT,    SL_RPRN,  SL_SCLN,  KC_BSPC,
+        _______,   ARROW_OP, KC_4,     KC_5,     KC_6,    QK_LLCK,                            SL_DLR,  SL_AMPR, XC_COMM,  XC_DOT,   XC_MINS,  _______,
                                                   _______, _______, _______,                  KC_NO,   _______, _______
     ),
      /*
@@ -253,9 +253,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │ ▽ │DlB│ ▽ │DlE│   │   │  line: delete to begin/end
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │ ▽ │ ✗ │(▽)│ ✗ │ ✗ │ ▽ │       │ ▽ │Bsp│ ▽ │Del│   │ ▽ │  char: backspace/delete
+      * │ ▽ │ ▽ │(▽)│ ✗ │ ✗ │ ▽ │       │ ▽ │Bsp│ ▽ │Del│   │ ▽ │  char: backspace/delete
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │ ▽ │ ▽ │ ▽ │ ▽ │   │       │   │DlW│ ▽ │Dl→│   │   │  word: delete back/forward
+      * │   │ ▽ │ ▽ │ ▽ │ ▽ │ ✗ │       │   │DlW│ ▽ │Dl→│   │   │  word: delete back/forward
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       * ▽=transparent (FAVS motions/clipboard stay live: navigate, page, Undo without releasing)
       * ✗=blocked: Lck (would lock delete mode), G/C, Sl⊙ (delete wins over select)
@@ -263,8 +263,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [NAV_DEL] = LAYOUT_split_3x6_3(
         _______, _______, _______, _______, _______, _______,                            _______, SK_DELLINEBEG, _______, SK_DELLINEEND, _______, _______,
-        _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______,                            _______, KC_BSPC, _______, KC_DEL,  _______, _______,
-        _______, _______, _______, _______, _______, _______,                            _______, SK_DELWORDPRV, _______, SK_DELWORDNXT, _______, _______,
+        _______, _______, _______, XXXXXXX, XXXXXXX, _______,                            _______, KC_BSPC, _______, KC_DEL,  _______, _______,
+        _______, _______, _______, _______, _______, XXXXXXX,                            _______, SK_DELWORDPRV, _______, SK_DELWORDNXT, _______, _______,
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*

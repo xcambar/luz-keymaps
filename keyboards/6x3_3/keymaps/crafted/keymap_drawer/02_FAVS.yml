@@ -20,7 +20,7 @@ layers:
           ]
         - [
               { t: $$mdi:keyboard-esc$$, type: editing },
-              { t: $$mdi:lock-outline$$, h: "Layer Lock", type: layer },
+              { type: none },
               {
                   s: hold,
                   t: $$mdi:backspace-outline$$,
@@ -48,7 +48,7 @@ layers:
               { t: Cut, type: system },
               { t: Copy, type: system },
               { t: Paste, type: system },
-              { type: none },
+              { t: $$mdi:lock-outline$$, h: "Layer Lock", type: layer },
               { type: none },
               { t: "◀◀", type: nav },
               { t: "●", type: nav },

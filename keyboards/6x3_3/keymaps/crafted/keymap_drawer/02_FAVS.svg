@@ -227,10 +227,8 @@ svg.keymap { fill: #36322e; }
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key editing"/>
 <use href="#mdi:keyboard-esc" xlink:href="#mdi:keyboard-esc" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:keyboard-esc"/>
 </g>
-<g transform="translate(90, 105)" class="key layer keypos-13">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key layer"/>
-<use href="#mdi:lock-outline" xlink:href="#mdi:lock-outline" x="-7" y="-7" height="14" width="14.0" class="key layer tap glyph mdi:lock-outline"/>
-<text x="0" y="26" class="key layer hold"><tspan style="font-size: 70%">Layer Lock</tspan></text>
+<g transform="translate(90, 105)" class="key none keypos-13">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(150, 98)" class="key nav delhold mode keypos-14">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav delhold mode"/>
@@ -297,8 +295,10 @@ svg.keymap { fill: #36322e; }
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key system"/>
 <text x="0" y="0" class="key system tap">Paste</text>
 </g>
-<g transform="translate(330, 165)" class="key none keypos-29">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(330, 165)" class="key layer keypos-29">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key layer"/>
+<use href="#mdi:lock-outline" xlink:href="#mdi:lock-outline" x="-7" y="-7" height="14" width="14.0" class="key layer tap glyph mdi:lock-outline"/>
+<text x="0" y="26" class="key layer hold"><tspan style="font-size: 70%">Layer Lock</tspan></text>
 </g>
 <g transform="translate(510, 165)" class="key none keypos-30">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>

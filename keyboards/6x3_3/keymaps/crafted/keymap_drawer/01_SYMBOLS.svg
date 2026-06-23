@@ -216,26 +216,24 @@ svg.keymap { fill: #36322e; }
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(90, 105)" class="key layer keypos-13">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key layer"/>
-<use href="#mdi:lock-outline" xlink:href="#mdi:lock-outline" x="-7" y="-7" height="14" width="14.0" class="key layer tap glyph mdi:lock-outline"/>
-<text x="0" y="26" class="key layer hold"><tspan style="font-size: 70%">Layer Lock</tspan></text>
+<g transform="translate(90, 105)" class="key keypos-13">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">0</text>
 </g>
 <g transform="translate(150, 98)" class="key keypos-14">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">4</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">1</text>
 </g>
 <g transform="translate(210, 90)" class="key keypos-15">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">5</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">2</text>
 </g>
 <g transform="translate(270, 98)" class="key keypos-16">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">6</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">3</text>
 </g>
-<g transform="translate(330, 105)" class="key keypos-17">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">0</text>
+<g transform="translate(330, 105)" class="key none keypos-17">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(510, 105)" class="key symbol keypos-18">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key symbol"/>
@@ -277,18 +275,20 @@ svg.keymap { fill: #36322e; }
 </g>
 <g transform="translate(150, 158)" class="key keypos-26">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">1</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">4</text>
 </g>
 <g transform="translate(210, 150)" class="key keypos-27">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">2</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">5</text>
 </g>
 <g transform="translate(270, 158)" class="key keypos-28">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">3</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key tap">6</text>
 </g>
-<g transform="translate(330, 165)" class="key none keypos-29">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
+<g transform="translate(330, 165)" class="key layer keypos-29">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key layer"/>
+<use href="#mdi:lock-outline" xlink:href="#mdi:lock-outline" x="-7" y="-7" height="14" width="14.0" class="key layer tap glyph mdi:lock-outline"/>
+<text x="0" y="26" class="key layer hold"><tspan style="font-size: 70%">Layer Lock</tspan></text>
 </g>
 <g transform="translate(510, 165)" class="key symbol keypos-30">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key symbol"/>
