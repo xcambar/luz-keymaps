@@ -3,7 +3,7 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    FAVS:
+    "2 · Navigation & Editing":
         - [
               { type: none },
               { type: none },
@@ -65,7 +65,7 @@ layers:
               { t: "▽", type: trans },
               { t: "▽", type: trans },
               { type: held },
-              { t: $$mdi:layers-triple-outline$$, h: "ADJUST", type: layer },
+              { t: $$mdi:layers-triple-outline$$, h: "3", type: layer },
               { t: "▽", type: trans },
               { t: "▽", type: trans },
           ]

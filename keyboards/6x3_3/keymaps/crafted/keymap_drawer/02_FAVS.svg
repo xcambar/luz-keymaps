@@ -177,8 +177,8 @@ svg.keymap { fill: #36322e; }
 .key.shifted { transform: translateY(2px); }
 .key.hold {transform: translateY(-2px); }
 </style>
-<g transform="translate(30, 0)" class="layer-FAVS">
-<text x="0" y="28" class="label" id="FAVS">FAVS</text>
+<g transform="translate(30, 0)" class="layer-2 · Navigation &amp; Editing">
+<text x="0" y="28" class="label" id="Navigation--Editing">2 · Navigation &amp; Editing</text>
 <g transform="translate(0, 56)">
 <g transform="translate(30, 45)" class="key none keypos-0">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -334,7 +334,7 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(480, 255)" class="key layer keypos-39">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key layer"/>
 <use href="#mdi:layers-triple-outline" xlink:href="#mdi:layers-triple-outline" x="-7" y="-7" height="14" width="14.0" class="key layer tap glyph mdi:layers-triple-outline"/>
-<text x="0" y="26" class="key layer hold">ADJUST</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="26" class="key layer hold">3</text>
 </g>
 <g transform="translate(540, 240)" class="key trans keypos-40">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>

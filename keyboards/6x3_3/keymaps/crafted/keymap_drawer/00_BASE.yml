@@ -3,7 +3,7 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    "Base (Gallium East)":
+    "0 · Base (Gallium East)":
         - [
               { type: none },
               B,
@@ -53,8 +53,8 @@ layers:
         - [
               { t: $$mdi:keyboard-esc$$, type: editing },
               { t: $$mdi:apple-keyboard-shift$$, type: editing },
-              { t: $$mdi:layers-outline$$, h: FAVS (MO), type: layer },
-              { t: $$mdi:keyboard-return$$, h: SYMBOLS, type: layer },
+              { t: $$mdi:layers-outline$$, h: "2", type: layer },
+              { t: $$mdi:keyboard-return$$, h: "1", type: layer },
               { t: $$mdi:keyboard-space$$, type: editing },
               { t: $$mdi:keyboard-return$$, type: editing },
           ]
@@ -64,7 +64,7 @@ combos:
       key: { t: Compose, type: state }
       align: bottom
       layers:
-          - "Base (Gallium East)"
+          - "0 · Base (Gallium East)"
 
 draw_config:
     key_h: 60

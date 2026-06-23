@@ -3,7 +3,7 @@ layout:
     layout_name: LAYOUT_split_3x6_3
 
 layers:
-    SYMBOLS:
+    "1 · Numbers & Symbols":
         - [
               { type: none },
               { t: "```", type: symbol },
@@ -49,7 +49,7 @@ layers:
         - [
               { t: "▽", type: trans },
               { t: "▽", type: trans },
-              { t: $$mdi:layers-triple-outline$$, h: "ADJUST", type: layer },
+              { t: $$mdi:layers-triple-outline$$, h: "3", type: layer },
               { type: held },
               { t: "▽", type: trans },
               { t: "▽", type: trans },

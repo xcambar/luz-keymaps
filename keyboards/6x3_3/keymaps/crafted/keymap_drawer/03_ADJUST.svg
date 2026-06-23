@@ -171,8 +171,8 @@ svg.keymap { fill: #36322e; }
 .key.shifted { transform: translateY(2px); }
 .key.hold {transform: translateY(-2px); }
 </style>
-<g transform="translate(30, 0)" class="layer-ADJUST">
-<text x="0" y="28" class="label" id="ADJUST">ADJUST</text>
+<g transform="translate(30, 0)" class="layer-3 · System &amp; Function">
+<text x="0" y="28" class="label" id="System--Function">3 · System &amp; Function</text>
 <g transform="translate(0, 56)">
 <g transform="translate(30, 45)" class="key none keypos-0">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
