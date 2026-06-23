@@ -188,9 +188,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * FAVS Layer (Layer 2) - Favorite shortcuts and navigation
       * WASD-style inverted-T arrows; magnitude grows away from home row (line above, word below)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │Tab│   │   │       │PgU│L← │ ↑ │L→ │   │   │
+      * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│   │Dl⊙│Sl⊙│G/C│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
+      * │Esc│   │Dl⊙│Tab│Sl⊙│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │Udo│Cut│Cpy│Pst│Lck│       │   │W← │   │W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
@@ -200,8 +200,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┤   │   │   ├───┘
       *                       └───┘   └───┘
       * Thumbs ▽ = base Esc / Shift / Space / Enter (36/37/40/41)
-      * G/C=MM_GUICTRL: plain momentary GUI (macOS) / Ctrl (Linux) — same index finger
-      * as the BASE T-morph, so the modifier lives on one finger across layers
       * SWn=Switch Window
       * Lck=Layer Lock (keep FAVS without holding the thumb)
       * Sl⊙=Select latch: tap to hold Shift until FAVS is released (or tap again/Esc)
@@ -211,8 +209,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * PgU/PgD=vertical pair on inner column (doc begin/end dropped)
       */
     [FAVS] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   MO(TABS), KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  KC_NO,   MO(NAV_DEL), SEL_LATCH, MM_GUICTRL, SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
+        KC_ESC,  KC_NO,   MO(NAV_DEL), MO(TABS),  SEL_LATCH,  SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
         _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, QK_LLCK,                            KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   _______,
                                             _______, _______, KC_NO,                  _______, _______, _______
     ),
@@ -258,7 +256,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │   │ ▽ │ ▽ │ ▽ │ ▽ │ ✗ │       │   │DlW│ ▽ │Dl→│   │   │  word: delete back/forward
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       * ▽=transparent (FAVS motions/clipboard stay live: navigate, page, Undo without releasing)
-      * ✗=blocked: Lck (would lock delete mode), G/C, Sl⊙ (delete wins over select)
+      * ✗=blocked: Lck (lock delete mode), Tab (tab mode), Sl⊙ (delete wins over select)
       * (▽)=Dl⊙ itself (the held MO key)
       */
     [NAV_DEL] = LAYOUT_split_3x6_3(
@@ -268,12 +266,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * TABS Layer - Browser tab management, active only while the trigger (pos 3) is held on FAVS
+      * TABS Layer - Browser tab management, active only while the trigger (pos 15) is held on FAVS
       * Inverted-T reusing the cursor cluster: index column = tab lifecycle, home-row arms = switch
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │   │   │   │(▽)│   │   │       │   │   │New│   │   │   │  New=Ctrl/Cmd+T
+      * │   │   │   │   │   │   │       │   │   │New│   │   │   │  New=Ctrl/Cmd+T
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │   │   │   │   │   │   │       │   │ ◀ │Cls│ ▶ │   │   │  ◀/▶=switch tab, Cls=close
+      * │   │   │   │(▽)│   │   │       │   │ ◀ │Cls│ ▶ │   │   │  ◀/▶=switch tab, Cls=close
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │   │   │   │   │   │       │   │ ◅ │Rop│ ▻ │   │   │  ◅/▻=page back/forward, Rop=reopen
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
@@ -283,8 +281,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * history back/forward = Cmd+[ ] / Alt+arrows, identical in Firefox & Chrome).
       */
     [TABS] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,   KC_NO,   _______, KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABNEW, KC_NO,     KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_TABLEFT, SK_TABCLOSE, SK_TABRIGHT, KC_NO, KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABNEW, KC_NO,     KC_NO,   KC_NO,
+        KC_NO,   KC_NO,   KC_NO,   _______, KC_NO,   KC_NO,                              KC_NO,   SK_TABLEFT, SK_TABCLOSE, SK_TABRIGHT, KC_NO, KC_NO,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_HISTPRV, SK_TABREOPEN, SK_HISTNXT, KC_NO, KC_NO,
                                             _______, _______, _______,                  _______, _______, _______
     ),
@@ -412,19 +410,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-
-        case MM_GUICTRL: {
-            // Plain momentary morph: GUI on macOS, Ctrl elsewhere (mirrors the BASE index morph)
-            static uint8_t mm_mod = KC_NO;
-            if (record->event.pressed) {
-                mm_mod = (get_os_platform() == OS_MacOS) ? KC_LGUI : KC_LCTL;
-                register_code(mm_mod);
-            } else if (mm_mod != KC_NO) {
-                unregister_code(mm_mod);
-                mm_mod = KC_NO;
-            }
-            return false;
-        }
 
         case KC_ESC:
             // Esc bails out of an active selection latch (mirrors oneshot cancel)

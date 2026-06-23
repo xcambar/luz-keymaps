@@ -189,11 +189,8 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(150, 38)" class="key none keypos-2">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(210, 30)" class="key nav tabmode mode keypos-3">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav tabmode mode"/>
-<use href="#mdi:tab" xlink:href="#mdi:tab" x="-7" y="-7" height="14" width="14.0" class="key nav tabmode mode tap glyph mdi:tab"/>
-<text x="0" y="26" class="key nav tabmode mode hold">tabs</text>
-<text x="0" y="-26" class="key nav tabmode mode shifted">hold</text>
+<g transform="translate(210, 30)" class="key none keypos-3">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(270, 38)" class="key none keypos-4">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
@@ -236,16 +233,17 @@ svg.keymap { fill: #36322e; }
 <text x="0" y="26" class="key nav delhold mode hold">delete</text>
 <text x="0" y="-26" class="key nav delhold mode shifted">hold</text>
 </g>
-<g transform="translate(210, 90)" class="key nav selmode mode keypos-15">
+<g transform="translate(210, 90)" class="key nav tabmode mode keypos-15">
+<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav tabmode mode"/>
+<use href="#mdi:tab" xlink:href="#mdi:tab" x="-7" y="-7" height="14" width="14.0" class="key nav tabmode mode tap glyph mdi:tab"/>
+<text x="0" y="26" class="key nav tabmode mode hold">tabs</text>
+<text x="0" y="-26" class="key nav tabmode mode shifted">hold</text>
+</g>
+<g transform="translate(270, 98)" class="key nav selmode mode keypos-16">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selmode mode"/>
 <use href="#mdi:selection" xlink:href="#mdi:selection" x="-7" y="-7" height="14" width="14.0" class="key nav selmode mode tap glyph mdi:selection"/>
 <text x="0" y="26" class="key nav selmode mode hold">select</text>
 <text x="0" y="-26" class="key nav selmode mode shifted">toggle</text>
-</g>
-<g transform="translate(270, 98)" class="key editing modtap metakey keypos-16">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key editing modtap metakey"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key editing modtap metakey tap">◇</text>
-<text x="0" y="26" class="key editing modtap metakey hold">⌘/Ctrl</text>
 </g>
 <g transform="translate(330, 105)" class="key state keypos-17">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key state"/>

@@ -27,7 +27,6 @@
 // Custom keycodes for the xavier keymap
 enum custom_keycodes {
     SW_WIN = SAFE_RANGE,     // Switch window (cmd-tab)
-    MM_GUICTRL,              // Modifier swappable between GUI and Ctrl
     SEL_LATCH,               // Shift latch scoped to the FAVS layer (tap to toggle)
     MD_FENCE,                // Markdown code fence: types ```
     ARROW_OP,                // Tap: ->  Shift: =>
