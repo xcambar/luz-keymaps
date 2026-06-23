@@ -30,7 +30,7 @@ layers:
               { t: $$mdi:volume-plus$$, type: system },
               { t: $$mdi:brightness-7$$, type: system },
               { t: "Layout ⇄", type: system },
-              { t: "▽", type: trans },
+              { type: none },
           ]
         - [
               { type: none },

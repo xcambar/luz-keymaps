@@ -30,7 +30,7 @@ layers:
               { t: "@", s: "#", type: symbol },
               { t: ")", s: ">", type: symbol },
               { t: ":", s: ";", type: symbol },
-              { t: $$mdi:backspace-outline$$, type: editing },
+              { t: "▽", type: trans },
           ]
         - [
               { t: "▽", type: trans },

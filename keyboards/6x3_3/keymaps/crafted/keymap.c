@@ -220,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │   │```│ 7 │ 8 │ 9 │   │       │ ` │ { │ = │ } │ ' │   │
       * │   │   │   │   │   │   │       │ ~ │ [ │ + │ ] │ " │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │ ▽ │ 0 │ 1 │ 2 │ 3 │   │       │ \ │ ( │ @ │ ) │ : │Bsp│
+      * │ ▽ │ 0 │ 1 │ 2 │ 3 │   │       │ \ │ ( │ @ │ ) │ : │ ▽ │
       * │   │   │   │   │   │   │       │ ^ │ < │ # │ > │ ; │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │ ▽ │→ ⇒│ 4 │ 5 │ 6 │Lck│       │ $ │ & │ , │ . │ - │ ▽ │
@@ -236,12 +236,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * , . - ' _ sit on their BASE positions (cross-layer consistency); inverted pairs kept
       * ```=code fence macro, →⇒=tap "->" / shift "=>"
       * Lck=Layer Lock: tap to lock (then release MO; 40 ▽ then gives Space), tap again to unlock
-      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, CW_TOGG, XC_UNDS _/|,
+      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, CW_TOGG, XC_UNDS _/|, Bspc at 23,
       * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
         KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SL_GRV,  SL_LBRC, SL_EQL,   SL_RBRC,  XC_QUOT,  KC_NO,
-        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SL_BSLS, SL_LPRN, SL_AT,    SL_RPRN,  SL_SCLN,  KC_BSPC,
+        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SL_BSLS, SL_LPRN, SL_AT,    SL_RPRN,  SL_SCLN,  _______,
         _______,   ARROW_OP, KC_4,     KC_5,     KC_6,    QK_LLCK,                            SL_DLR,  SL_AMPR, XC_COMM,  XC_DOT,   XC_MINS,  _______,
                                                   _______, _______, _______,                  KC_NO,   _______, _______
     ),
@@ -291,7 +291,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │F1 │F2 │F3 │F4 │F5 │       │F6 │F7 │F8 │F9 │F10│   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Bot│OS⇄│   │   │   │F11│       │F12│Mut│Vl↑│Br↑│Ly⇄│ ▽ │
+      * │Bot│OS⇄│   │   │   │F11│       │F12│Mut│Vl↑│Br↑│Ly⇄│   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │OS?│   │   │   │   │       │   │Scr│Vl↓│Br↓│Ly?│   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
@@ -301,11 +301,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * OS⇄/OS?=toggle/print OS (left, as the old combos), Ly⇄/Ly?=toggle/print default layout
       * (right, as the old combos) — switch on home row, print below it; Scr=PrtScr (Linux;
       * macOS screenshots stay on Cmd+Shift+3/4); Mut=Mute
-      * ▽ at 23 = Bspc (via SYMBOLS); thumbs ▽ as everywhere (Esc/Shift/Space/Ent)
+      * pos 23 = KC_NO (was Bspc via SYMBOLS fall-through; SYMBOLS 23 is now ▽ so the
+      * dependency was removed); thumbs ▽ as everywhere (Esc/Shift/Space/Ent)
       */
     [ADJUST] = LAYOUT_split_3x6_3(
         KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_NO,
-        QK_BOOT, SW_OS,   KC_NO,   KC_NO,   KC_NO,   KC_F11,                             KC_F12,  KC_MUTE, KC_VOLU, KC_BRIU, SW_LYT,  _______,
+        QK_BOOT, SW_OS,   KC_NO,   KC_NO,   KC_NO,   KC_F11,                             KC_F12,  KC_MUTE, KC_VOLU, KC_BRIU, SW_LYT,  KC_NO,
         KC_NO,   PR_OS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_PSCR, KC_VOLD, KC_BRID, PR_LYT,  KC_NO,
                                             _______, _______, _______,                  _______, _______, _______
     )

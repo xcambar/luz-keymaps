@@ -266,9 +266,8 @@ svg.keymap { fill: #36322e; }
 <tspan x="0" dy="-0.6em">Layout</tspan><tspan x="0" dy="1.2em">⇄</tspan>
 </text>
 </g>
-<g transform="translate(810, 105)" class="key trans keypos-23">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(810, 105)" class="key none keypos-23">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(30, 165)" class="key none keypos-24">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>

@@ -1,8 +1,5 @@
 <svg width="900" height="397" viewBox="0 0 900 397" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="sh" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="1.6"/></filter></defs><rect x="0" y="0" width="100%" height="100%" fill="#faf8f4"/>
 <defs>/* start glyphs */
-<svg id="mdi:backspace-outline">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-backspace-outline" viewBox="0 0 24 24"><path d="M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12L19,15.59M22,3A2,2 0 0,1 24,5V19A2,2 0 0,1 22,21H7C6.31,21 5.77,20.64 5.41,20.11L0,12L5.41,3.88C5.77,3.35 6.31,3 7,3H22M22,5H7L2.28,12L7,19H22V5Z" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
-<defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <svg id="mdi:layers-triple-outline">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-layers-triple-outline" viewBox="0 0 24 24"><path d="M12 16.54L19.37 10.8L21 12.07L12 19.07L3 12.07L4.62 10.81L12 16.54M12 14L3 7L12 0L21 7L12 14M12 2.53L6.26 7L12 11.47L17.74 7L12 2.53M12 21.47L19.37 15.73L21 17L12 24L3 17L4.62 15.74L12 21.47" /><defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
 <defs><pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#efefef"/><rect width="4" height="8" fill="#c8c8c8"/></pattern></defs></svg>
@@ -260,9 +257,9 @@ svg.keymap { fill: #36322e; }
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key symbol tap">:</text>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="-26" class="key symbol shifted">;</text>
 </g>
-<g transform="translate(810, 105)" class="key editing keypos-23">
-<rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key editing"/>
-<use href="#mdi:backspace-outline" xlink:href="#mdi:backspace-outline" x="-7" y="-7" height="14" width="14.0" class="key editing tap glyph mdi:backspace-outline"/>
+<g transform="translate(810, 105)" class="key trans keypos-23">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g transform="translate(30, 165)" class="key trans keypos-24">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
