@@ -148,14 +148,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │Tab│ A │ S │ D │F/⌘│ G │       │ H │J/⌘│ K │ L │ ; │Bsp│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │CW │ Z │X/A│C/G│V/C│[B]│       │[N]│M/C│,/G│./A│ / │ _ │
+      * │   │ Z │X/A│C/G│V/C│[B]│       │[N]│M/C│,/G│./A│ / │ _ │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       *               ┌───┐                   ┌───┐
       *               │Esc├───┐           ┌───┤Ent│
       *               └───┤Sft├───┐   ┌───┤Spc├───┘
       *                   └───┤FAV│   │SYM├───┘       FAV=FAVS layer, SYM=SYMBOLS layer
       *                       └───┘   └───┘
-      * CW=Caps Word toggle, _=XC_UNDS (_ → | shifted), Esc/Ent on outer thumbs
+      * pos 24 empty (Caps Word now via double-tap Shift), _=XC_UNDS (_ → | shifted), Esc/Ent on outer thumbs
       * Esc/Ent/CW/_ fall through on FAVS and SYMBOLS (transparent at 24/35/36/41)
       * Sft/Spc are plain keys; tapping both together (combo) arms Compose for accents:
       * E/A/U/O = acute/grave/diaeresis/circumflex dead key, C=ç, N=ñ, W=€, Esc cancels,
@@ -169,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
         KC_NO,    _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        CW_TOGG, _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
+        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
                                             KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
     ),
      /*
@@ -181,7 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE_ALT] = LAYOUT_split_3x6_3(
         KC_NO,   _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        CW_TOGG, _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
+        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
                                             KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
     ),
      /*
@@ -236,7 +236,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * , . - ' _ sit on their BASE positions (cross-layer consistency); inverted pairs kept
       * ```=code fence macro, →⇒=tap "->" / shift "=>"
       * Lck=Layer Lock: tap to lock (then release MO; 40 ▽ then gives Space), tap again to unlock
-      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, CW_TOGG, XC_UNDS _/|, Bspc at 23,
+      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, XC_UNDS _/|, Bspc at 23,
       * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
@@ -514,27 +514,22 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 uint8_t corner = combo_index - COMBO_WC_TL;
                 if (layer >= ARRAY_SIZE(wc_keycodes)) layer = BASE;
                 uint16_t kc = wc_keycodes[layer][corner];
-                // Combos bypass Caps Word's shift logic; apply it here for letters
-                if (is_caps_word_on() && kc >= KC_A && kc <= KC_Z) {
-                    tap_code16(LSFT(kc));
-                } else {
-                    tap_code(kc);
-                }
             }
             break;
 #endif
     }
 }
 
-
-// Caps Word: same as QMK default, plus AS_UNDS so SCREAMING_SNAKE survives the
-// custom underscore keycode (default would deactivate on an unknown keycode)
+// Caps Word: QMK default plus AS_UNDS so SCREAMING_SNAKE_CASE survives the BASE
+// alt-symbol underscore (a custom keycode the default would treat as word-breaking).
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
+        // Continue Caps Word, applying shift so the letter is uppercased:
         case KC_A ... KC_Z:
         case KC_MINS:
             add_weak_mods(MOD_BIT(KC_LSFT));
             return true;
+        // Continue Caps Word without shifting:
         case KC_1 ... KC_0:
         case KC_BSPC:
         case KC_DEL:
@@ -544,7 +539,6 @@ bool caps_word_press_user(uint16_t keycode) {
 #endif
             return true;
         default:
-            return false;
+            return false;  // any other key ends Caps Word
     }
 }
-

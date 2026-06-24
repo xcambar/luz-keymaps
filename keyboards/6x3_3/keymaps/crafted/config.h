@@ -16,3 +16,10 @@
 
 // Combos always reference layer 0 keycodes, so they work regardless of active base layer
 #define COMBO_ONLY_FROM_LAYER 0
+
+// Caps Word: double-tap Left Shift to turn it on (QMK-native; pos 37 is plain KC_LSFT,
+// which the built-in detector requires — it wouldn't work with a mod-tap/Space-Cadet shift).
+// NOTE: do NOT also enable CAPS_WORD_INVERT_ON_SHIFT — it strands a real Left Shift on the
+// activating double-tap (its handle_shift swallows the Shift release once Caps Word is on),
+// leaving Shift stuck down. Without it, Shift simply ends Caps Word (and Space ends it too).
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD

@@ -33,7 +33,7 @@ layers:
               { t: "▽", type: trans },
           ]
         - [
-              { t: "▽", type: trans },
+              { type: none },
               { t: "->", s: "=>", type: symbol },
               "4",
               "5",

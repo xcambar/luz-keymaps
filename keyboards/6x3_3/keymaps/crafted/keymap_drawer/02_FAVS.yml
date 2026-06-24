@@ -48,7 +48,7 @@ layers:
               { t: Del, type: editing },
           ]
         - [
-              { t: "▽", type: trans },
+              { type: none },
               { t: Undo, type: system },
               { t: Cut, type: system },
               { t: Copy, type: system },

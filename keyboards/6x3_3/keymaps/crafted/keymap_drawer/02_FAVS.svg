@@ -273,9 +273,8 @@ svg.keymap { fill: #36322e; }
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key editing"/>
 <text x="0" y="0" class="key editing tap">Del</text>
 </g>
-<g transform="translate(30, 165)" class="key trans keypos-24">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(30, 165)" class="key none keypos-24">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(90, 165)" class="key system keypos-25">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key system"/>
