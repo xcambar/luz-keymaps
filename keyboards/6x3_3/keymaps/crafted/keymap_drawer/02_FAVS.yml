@@ -59,7 +59,7 @@ layers:
               { t: "●", type: nav },
               { t: "▶▶", type: nav },
               { type: none },
-              { t: "▽", type: trans },
+              { type: none },
           ]
         - [
               { t: "▽", type: trans },

@@ -315,9 +315,8 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(750, 165)" class="key none keypos-34">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
-<g transform="translate(810, 165)" class="key trans keypos-35">
-<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(810, 165)" class="key none keypos-35">
+<rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key none"/>
 </g>
 <g transform="translate(240, 225)" class="key trans keypos-36">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>
