@@ -24,13 +24,6 @@
 // Custom keycodes (must be included before the base layout header)
 #include "custom_keycodes.h"
 
-// Alt-symbol pairs used directly in keymaps[]
-#define XC_UNDS AS_UNDS
-#define XC_QUOT AS_QUOT
-#define XC_COMM AS_COMM
-#define XC_DOT  AS_DOT
-#define XC_MINS AS_MINS
-
 // Base layout: Gallium East (defines the _XX_ position macros)
 #include "layouts/gallium_east.h"
 
@@ -58,9 +51,8 @@ enum layers {
 // Include dead keys header
 #include "features/dead_keys.h"
 
-// Include alternative symbols header
-#include "features/alt_symbols.h"
-#include "features/alt_symbols_layer.h"
+// Include symbol keycodes header
+#include "features/symbols.h"
 
 // Combo indices — must match key_combos[] order exactly
 enum combo_events {
@@ -87,27 +79,30 @@ static const uint16_t wc_keycodes[][4] = {
 };
 #endif
 
-// Key Overrides for alternative base symbols (custom keycodes)
+// Key Overrides — one per symbol keycode, mapping unshifted/shifted output on
+// all layers. Placement (base vs SYMBOLS) decides where each is reachable.
 
 const key_override_t* key_overrides[] = {
-    ALT_SYMBOL_OVERRIDE(AS_QUOT, KC_QUOT, KC_DQUO), // ' → "
-    // Plain AS_COMM/AS_DOT (used on SYMBOLS); base-layer mod-tap versions handled in process_record_user
-    ALT_SYMBOL_OVERRIDE(AS_COMM, KC_COMM, KC_QUES), // , → ?
-    ALT_SYMBOL_OVERRIDE(AS_DOT,  KC_DOT,  KC_EXLM), // . → !
-    ALT_SYMBOL_OVERRIDE(AS_MINS, KC_MINS, KC_SLSH), // - → /
-    ALT_SYMBOL_OVERRIDE(AS_UNDS, KC_UNDS, KC_PIPE), // _ → |
-    // Shifted pairs on the SYMBOLS layer
-    SL_OVERRIDE(SL_AT,   KC_AT,   KC_HASH), // @ → #
-    SL_OVERRIDE(SL_GRV,  KC_GRV,  KC_TILD), // ` → ~
-    SL_OVERRIDE(SL_EQL,  KC_EQL,  KC_PLUS), // = → +
-    SL_OVERRIDE(SL_DLR,  KC_DLR,  KC_PERC), // $ → %
-    SL_OVERRIDE(SL_AMPR, KC_AMPR, KC_ASTR), // & → *
-    SL_OVERRIDE(SL_BSLS, KC_BSLS, KC_CIRC), // \ → ^
-    SL_OVERRIDE(SL_LPRN, KC_LPRN, KC_LT),   // ( → <
-    SL_OVERRIDE(SL_RPRN, KC_RPRN, KC_GT),   // ) → >
-    SL_OVERRIDE(SL_LBRC, KC_LCBR, KC_LBRC), // { → [ (inverted)
-    SL_OVERRIDE(SL_RBRC, KC_RCBR, KC_RBRC), // } → ] (inverted)
-    SL_OVERRIDE(SL_SCLN, KC_COLN, KC_SCLN), // : → ; (inverted)
+    // Symbols privileged onto the base layer
+    SYM_OVERRIDE(SY_QUOT, KC_QUOT, KC_DQUO), // ' → "
+    SYM_OVERRIDE(SY_MINS, KC_MINS, KC_SLSH), // - → /
+    SYM_OVERRIDE(SY_UNDS, KC_UNDS, KC_PIPE), // _ → |
+    // , and . also appear on SYMBOLS via these keycodes; on base they are mod-tap
+    // homes whose ?/! shift is handled in process_record_user instead
+    SYM_OVERRIDE(SY_COMM, KC_COMM, KC_QUES), // , → ?
+    SYM_OVERRIDE(SY_DOT,  KC_DOT,  KC_EXLM), // . → !
+    // SYMBOLS-layer symbols
+    SYM_OVERRIDE(SY_AT,   KC_AT,   KC_HASH), // @ → #
+    SYM_OVERRIDE(SY_GRV,  KC_GRV,  KC_TILD), // ` → ~
+    SYM_OVERRIDE(SY_EQL,  KC_EQL,  KC_PLUS), // = → +
+    SYM_OVERRIDE(SY_DLR,  KC_DLR,  KC_PERC), // $ → %
+    SYM_OVERRIDE(SY_AMPR, KC_AMPR, KC_ASTR), // & → *
+    SYM_OVERRIDE(SY_BSLS, KC_BSLS, KC_CIRC), // \ → ^
+    SYM_OVERRIDE(SY_LPRN, KC_LPRN, KC_LT),   // ( → <
+    SYM_OVERRIDE(SY_RPRN, KC_RPRN, KC_GT),   // ) → >
+    SYM_OVERRIDE(SY_LBRC, KC_LCBR, KC_LBRC), // { → [ (inverted)
+    SYM_OVERRIDE(SY_RBRC, KC_RCBR, KC_RBRC), // } → ] (inverted)
+    SYM_OVERRIDE(SY_SCLN, KC_COLN, KC_SCLN), // : → ; (inverted)
     NULL
 };
 
@@ -138,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *               └───┤Sft├───┐   ┌───┤Spc├───┘
       *                   └───┤FAV│   │SYM├───┘       FAV=FAVS layer, SYM=SYMBOLS layer
       *                       └───┘   └───┘
-      * pos 24 empty (Caps Word now via double-tap Shift), _=XC_UNDS (_ → | shifted), Esc/Ent on outer thumbs
+      * pos 24 empty (Caps Word now via double-tap Shift), _=SY_UNDS (_ → | shifted), Esc/Ent on outer thumbs
       * Esc/Ent fall through on FAVS and SYMBOLS (transparent thumbs at 36/41); SYMBOLS
       * also inherits _ at 35, but FAVS 35 is dead (KC_NO) — nav layer doesn't want it
       * Sft/Spc are plain keys; tapping both together (combo) arms Compose for accents:
@@ -153,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
         KC_NO,    _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
+        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, SY_UNDS,
                                             KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
     ),
      /*
@@ -208,13 +203,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * , . - ' _ sit on their BASE positions (cross-layer consistency); inverted pairs kept
       * ```=code fence macro, →⇒=tap "->" / shift "=>"
       * Lck=Layer Lock: tap to lock (then release MO; 40 ▽ then gives Space), tap again to unlock
-      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, XC_UNDS _/|, Bspc at 23,
+      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, SY_UNDS _/|, Bspc at 23,
       * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
-        KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SL_GRV,  SL_LBRC, SL_EQL,   SL_RBRC,  XC_QUOT,  KC_NO,
-        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SL_BSLS, SL_LPRN, SL_AT,    SL_RPRN,  SL_SCLN,  _______,
-        _______,   ARROW_OP, KC_4,     KC_5,     KC_6,    QK_LLCK,                            SL_DLR,  SL_AMPR, XC_COMM,  XC_DOT,   XC_MINS,  _______,
+        KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SY_GRV,  SY_LBRC, SY_EQL,   SY_RBRC,  SY_QUOT,  KC_NO,
+        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SY_BSLS, SY_LPRN, SY_AT,    SY_RPRN,  SY_SCLN,  _______,
+        _______,   ARROW_OP, KC_4,     KC_5,     KC_6,    QK_LLCK,                            SY_DLR,  SY_AMPR, SY_COMM,  SY_DOT,   SY_MINS,  _______,
                                                   _______, _______, _______,                  KC_NO,   _______, _______
     ),
      /*
@@ -469,7 +464,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     }
 }
 
-// Caps Word: QMK default plus AS_UNDS so SCREAMING_SNAKE_CASE survives the BASE
+// Caps Word: QMK default plus SY_UNDS so SCREAMING_SNAKE_CASE survives the BASE
 // alt-symbol underscore (a custom keycode the default would treat as word-breaking).
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
@@ -483,7 +478,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_BSPC:
         case KC_DEL:
         case KC_UNDS:
-        case AS_UNDS:
+        case SY_UNDS:
             return true;
         default:
             return false;  // any other key ends Caps Word

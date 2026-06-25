@@ -92,8 +92,8 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 - Mod-taps → `{ t: X, h: Mod, type: modtap }` (e.g., `LALT_T(KC_Q)` → `{ t: Q, h: LAlt, type: modtap }`).
   The `modtap` type highlights **only the hold legend** (key body stays plain); reserve
   `type: modifier` for keys that are modifiers outright (thumb Shift, SEL_LATCH).
-- Shifted-pair customs (`SL_*`, `AS_*`, `XC_*`) → `{ t: x, s: y, type: symbol }`,
-  e.g., `SL_LPRN` → `{ t: "(", s: "<" }`, `XC_UNDS` → `{ t: "_", s: "|" }`
+- Shifted-pair symbol customs (`SY_*`) → `{ t: x, s: y, type: symbol }`,
+  e.g., `SY_LPRN` → `{ t: "(", s: "<" }`, `SY_UNDS` → `{ t: "_", s: "|" }`
 
 ### Custom keycodes in this keymap
 
