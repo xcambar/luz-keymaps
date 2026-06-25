@@ -110,15 +110,8 @@ qmk compile -kb kaly/kaly42 -km crafted
 qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted
 ```
 
-With a different base layout:
-
-```bash
-XC_LAYOUT=graphite qmk compile -kb kaly/kaly42 -km crafted
-```
-
 Build options (`rules.mk` or environment):
 
-- **`XC_LAYOUT`** (default: `gallium_east`) — base layout: `qwerty`, `gallium`, `gallium_east`, `focal`, `graphite`
 - **`XC_WEAK_CORNERS`** (default: `no`) — access corner letters via combos
 - **`XC_ALT_BASE_SYMBOLS`** (default: `yes`) — semantic shift pairs on the base layer
 

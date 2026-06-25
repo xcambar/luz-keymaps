@@ -21,7 +21,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-// Custom keycodes (must be included before feature_base_layer.h)
+// Custom keycodes (must be included before the base layout header)
 #include "custom_keycodes.h"
 
 // Alt-symbol pairs used directly in keymaps[] (plain keycodes when alt symbols are off)
@@ -39,8 +39,8 @@
 #    define XC_MINS KC_MINS
 #endif
 
-// Base layer switch
-#include "feature_base_layer.h"
+// Base layout: Gallium East (defines the _XX_ position macros)
+#include "layouts/gallium_east.h"
 
 // Weak corners feature
 #include "feature_weak_corners.h"

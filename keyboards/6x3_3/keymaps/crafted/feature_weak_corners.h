@@ -18,8 +18,7 @@
 #ifdef XC_WEAK_CORNERS
     #define WC_CORNER(key) KC_NO  // Blank corner on any layer; combo drives output via wc_keycodes table
 
-    // WC_OUT_01/10/29/30 are defined in the active layout file (e.g. layouts/graphite.h)
-    // Only one layout file is included per build, so the correct values are always set.
+    // WC_OUT_01/10/29/30 are defined in the base layout file (layouts/gallium_east.h).
 
     const uint16_t PROGMEM weak_corner_l_tl_combo[] = {_02_, _03_, COMBO_END};  // → TL corner
     const uint16_t PROGMEM weak_corner_r_tr_combo[] = {_08_, _09_, COMBO_END};  // → TR corner

@@ -22,9 +22,6 @@ SRC += features/dead_keys.c
 # Custom options
 #
 
-# Layout selection: qwerty, gallium, focal, graphite, or gallium_east
-XC_LAYOUT ?=gallium_east
-
 XC_WEAK_CORNERS = no
 
 # Alternative symbols for the base layer
@@ -32,9 +29,6 @@ XC_ALT_BASE_SYMBOLS ?= yes
 ###################
 # This manipulates the options
 #
-
-# Pass layout name to the preprocessor as a lowercase token
-OPT_DEFS += -DXC_LAYOUT=$(XC_LAYOUT)
 
 ifeq ($(strip $(XC_WEAK_CORNERS)), yes)
     OPT_DEFS += -DXC_WEAK_CORNERS

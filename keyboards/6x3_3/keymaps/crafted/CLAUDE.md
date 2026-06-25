@@ -8,8 +8,8 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
 
-1. **Read configuration first** — `rules.mk` (`XC_LAYOUT`,
-   `XC_WEAK_CORNERS`, `COMBO_ENABLE`) and `config.h`. Never ask for what these files state.
+1. **Read configuration first** — `rules.mk` (`XC_WEAK_CORNERS`, `XC_ALT_BASE_SYMBOLS`,
+   `COMBO_ENABLE`) and `config.h`. Never ask for what these files state.
 2. **Parse `keymap.c`** — `enum layers`, the `LAYOUT_split_3x6_3` blocks, `key_combos[]`,
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
@@ -60,7 +60,7 @@ garbage "Z"/"Y").
 
 | # | Layer    | Access                                          | Rendered |
 |---|----------|--------------------------------------------------|----------|
-| 0 | BASE     | default (Gallium East via `XC_LAYOUT`)           | yes      |
+| 0 | BASE     | default (Gallium East)                           | yes      |
 | 1 | FAVS     | hold left inner thumb `MO(FAVS)` (pos 38)        | yes      |
 | 2 | SYMBOLS  | hold right inner thumb `MO(SYMBOLS)` (pos 39)    | yes      |
 | 3 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | no (per-key roles in the README modes table) |
