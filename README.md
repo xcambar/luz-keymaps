@@ -110,10 +110,6 @@ qmk compile -kb kaly/kaly42 -km crafted
 qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted
 ```
 
-Build options (`rules.mk` or environment):
-
-- **`XC_WEAK_CORNERS`** (default: `no`) — access corner letters via combos
-
 All targets at once:
 
 ```bash

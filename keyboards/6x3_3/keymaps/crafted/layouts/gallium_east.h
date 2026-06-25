@@ -3,47 +3,31 @@
 // Gallium v2 (Rowstag) is optimized for row-staggered keyboards
 // https://github.com/GalileoBlues/Gallium
 
-// GALLIUM places alternative symbols at positions 10, 23, 32, 33, 34
-#define _23_ SY_UNDS             // _ → |
-#define _10_ WC_CORNER(SY_QUOT)  // ' → "
-#define _32_ SY_COMM             // , → ?
-#define _33_ SY_DOT              // . → !
-#define _34_ SY_MINS             // - → /
-
-// Base keycodes for mod-tap positions (bypass custom alt-symbol keycodes)
-#define _32_KC KC_COMM
-#define _33_KC KC_DOT
-
-#ifdef XC_WEAK_CORNERS
-    #define WC_OUT_01 KC_B
-    #define WC_OUT_10 KC_QUOT
-    #define WC_OUT_29 KC_Z
-    #define WC_OUT_30 KC_K
-#endif
-
 /*
  * Gallium v2 EAST - Actual Keycodes
  * https://www.reddit.com/r/KeyboardLayouts/comments/1rym73o/introducing_galliumeast/
  * https://cyanophage.github.io/playground.html?layout=blcdvjfou%2C-nrstgyheai%2Fqxwmzkp%27%3B.%5C%5E&mode=ergo&lan=english&thumb=l
  *
  * ┌─────┬─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┬─────┐
- * │     │  B  │  L  │  C  │  D  │  V  │       │  J  │  F  │  O  │  U  │  ,  │     │
+ * │     │  B  │  L  │  C  │  D  │  V  │       │  J  │  F  │  O  │  U  │  '  │     │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┼─────┤
- * │     │  N  │  R  │  S  │  T  │  G  │       │  Y  │  H  │  E  │  A  │  I  │  '  │
+ * │     │  N  │  R  │  S  │  T  │  G  │       │  Y  │  H  │  E  │  A  │  I  │  _  │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┼─────┤
- * │     │  X  │  Q  │  W  │  M  │  Z  │       │  K  │  P  │  ;  │  .  │  /  │     │
+ * │     │  X  │  Q  │  W  │  M  │  Z  │       │  K  │  P  │  ,  │  .  │  -  │     │
  * └─────┴─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┴─────┘
  *                     ┌─────┐                           ┌─────┐
  *                     │     ├─────┐               ┌─────┤     │
  *                     └─────┤     ├─────┐   ┌─────┤     ├─────┘
  *                           └─────┤     │   │     ├─────┘
  *                                 └─────┘   └─────┘
+ *
+ * Symbol positions (10/23/32/33/34) are SY_* shifted-pair keycodes; the comment
+ * on each shows its tap → shift output.
  */
 
 // Row 0 (top row, columns 0-11)
-// Position 10 is defined at top of file (alt symbols feature)
 #define _00_ KC_NO
-#define _01_ WC_CORNER(KC_B)
+#define _01_ KC_B
 #define _02_ KC_L
 #define _03_ KC_C
 #define _04_ KC_D
@@ -52,11 +36,10 @@
 #define _07_ KC_F
 #define _08_ KC_O
 #define _09_ KC_U
-// _10_ defined above
+#define _10_ SY_QUOT             // ' → "
 #define _11_ KC_NO
 
 // Row 1 (home row, columns 12-23)
-// Position 23 is defined at top of file (alt symbols feature)
 #define _12_ KC_NO
 #define _13_ KC_N
 #define _14_ KC_R
@@ -68,21 +51,20 @@
 #define _20_ KC_E
 #define _21_ KC_A
 #define _22_ KC_I
-// _23_ defined above
+#define _23_ SY_UNDS             // _ → |
 
 // Row 2 (bottom row, columns 24-35)
-// Positions 32, 33, 34 are defined at top of file (alt symbols feature)
 #define _24_ KC_NO
 #define _25_ KC_X
 #define _26_ KC_Q
 #define _27_ KC_W
 #define _28_ KC_M
-#define _29_ WC_CORNER(KC_Z)
-#define _30_ WC_CORNER(KC_K)
+#define _29_ KC_Z
+#define _30_ KC_K
 #define _31_ KC_P
-// _32_ defined above
-// _33_ defined above
-// _34_ defined above
+#define _32_ SY_COMM             // , → ?
+#define _33_ SY_DOT              // . → !
+#define _34_ SY_MINS             // - → /
 #define _35_ KC_NO
 
 // Thumb cluster (keys 36-41)
@@ -92,3 +74,9 @@
 #define _39_ KC_NO
 #define _40_ KC_NO
 #define _41_ KC_NO
+
+// Base keycodes for the pos 32/33 mod-taps — plain comma/dot so the mod-tap tap
+// bypasses the SY_COMM/SY_DOT custom keycodes (their ?/! shift is done in
+// process_record_user instead).
+#define _32_KC KC_COMM
+#define _33_KC KC_DOT

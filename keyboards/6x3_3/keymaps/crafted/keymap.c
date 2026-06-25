@@ -27,9 +27,6 @@
 // Base layout: Gallium East (defines the _XX_ position macros)
 #include "layouts/gallium_east.h"
 
-// Weak corners feature
-#include "feature_weak_corners.h"
-
 // Callum-style swapper
 #include "features/swapper.h"
 
@@ -57,27 +54,13 @@ enum layers {
 // Combo indices — must match key_combos[] order exactly
 enum combo_events {
     COMBO_COMPOSE,
-#ifdef XC_WEAK_CORNERS
-    COMBO_WC_TL,
-    COMBO_WC_TR,
-    COMBO_WC_BL,
-    COMBO_WC_BR,
-#endif
 };
 
 const uint16_t PROGMEM compose_combo[] = {KC_LSFT, KC_SPC, COMBO_END};  // Both inner thumbs tapped together: arm Compose
 
 combo_t key_combos[] = {
     COMBO_ACTION(compose_combo), // COMBO_COMPOSE
-    XC_WEAK_CORNERS_COMBOS       // COMBO_WC_TL/TR/BL/BR (when XC_WEAK_CORNERS)
 };
-
-#ifdef XC_WEAK_CORNERS
-// Runtime lookup: [layer][corner] — TL=0, TR=1, BL=2, BR=3
-static const uint16_t wc_keycodes[][4] = {
-    [BASE] = { WC_OUT_01, WC_OUT_10, WC_OUT_29, WC_OUT_30 },
-};
-#endif
 
 // Key Overrides — one per symbol keycode, mapping unshifted/shifted output on
 // all layers. Placement (base vs SYMBOLS) decides where each is reachable.
@@ -142,8 +125,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * Home-row mod-taps: F/⌘=GUI (Ctrl on Linux), J/⌘=GUI (Ctrl on Linux)
       * Bottom-row mod-taps: X/A=Alt, C/G=GUI, V/C=Ctrl | M/C=Ctrl, ,/G=GUI, ./A=Alt
       * Chordal Hold: opposite-hands rule prevents same-hand roll misfires
-      * Weak corners: [Q] [P] [B] [N] - only when XC_WEAK_CORNERS enabled, else actual keys
-      * Combos: W+E→Q I+O→P C+V→B M+,→N (when weak corners on); boot lives on ADJUST
       */
     [BASE] = LAYOUT_split_3x6_3(
         KC_NO,    _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
@@ -450,17 +431,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 compose_pending = true;
             }
             break;
-#ifdef XC_WEAK_CORNERS
-        case COMBO_WC_TL: case COMBO_WC_TR:
-        case COMBO_WC_BL: case COMBO_WC_BR:
-            if (pressed) {
-                uint8_t layer = get_highest_layer(default_layer_state);
-                uint8_t corner = combo_index - COMBO_WC_TL;
-                if (layer >= ARRAY_SIZE(wc_keycodes)) layer = BASE;
-                uint16_t kc = wc_keycodes[layer][corner];
-            }
-            break;
-#endif
     }
 }
 

@@ -8,8 +8,8 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
 
-1. **Read configuration first** — `rules.mk` (`XC_WEAK_CORNERS`, `COMBO_ENABLE`)
-   and `config.h`. Never ask for what these files state.
+1. **Read configuration first** — `rules.mk` (`COMBO_ENABLE`) and `config.h`.
+   Never ask for what these files state.
 2. **Parse `keymap.c`** — `enum layers`, the `LAYOUT_split_3x6_3` blocks, `key_combos[]`,
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
@@ -118,10 +118,6 @@ Semantic (`SK_*`) and dead (`DK_*`) keys are OS-aware; render their *meaning*, n
 
 | key_positions | Output | Note |
 |---------------|--------|------|
-| [2, 3]   | B   | weak corner (when `XC_WEAK_CORNERS`) |
-| [8, 9]   | `{ t: "'", s: '"' }` | weak corner |
-| [27, 28] | Z   | weak corner |
-| [31, 32] | K   | weak corner |
 | [37, 40] | Compose | both inner-ish thumbs; arms the accent compose (`align: bottom`) |
 
 Combos go in `00_BASE.yml` only. Use `align:` only for non-adjacent positions.
