@@ -1,6 +1,10 @@
 name: Build QMK firmware
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [main]      # CI build check on main (no release)
+    tags: ['v*']          # versioned release on tag push
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -22,8 +26,33 @@ jobs:
         done
         cp -r keyboards/42keebs qmk_firmware/keyboards/
 
-  publish:
-    name: 'QMK Userspace Publish'
-    uses: qmk/.github/.github/workflows/qmk_userspace_publish.yml@main
-    if: always() && !cancelled()
+  # Versioned GitHub release, only on a v* tag. Pulls the firmware the build job produced
+  # and the changelog section from CHANGELOG.md (no rolling "latest" release any more).
+  release:
+    name: 'Tagged release'
     needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download built firmware
+        run: gh run download "${{ github.run_id }}" --name Firmware --dir firmware
+      - name: Publish release from CHANGELOG.md
+        run: |
+          set -euo pipefail
+          tag="${{ github.ref_name }}"
+          # Body: lines after the matching "## v<tag> …" heading, up to the next "## v" heading.
+          awk -v tag="$tag" '/^## v/{ if (g) exit; if ($2==tag) { g=1; next } } g { print }' CHANGELOG.md > body.md
+          # Title: the heading text without the leading "## " (keeps any " — Codename").
+          title=$(awk -v tag="$tag" '/^## v/ && $2==tag { sub(/^## /,""); print; exit }' CHANGELOG.md)
+          if [ ! -s body.md ] || [ -z "$title" ]; then
+            echo "::error::No CHANGELOG.md section found for $tag"; exit 1
+          fi
+          mapfile -t fw < <(find firmware -type f \( -name '*.uf2' -o -name '*.bin' -o -name '*.hex' \) | sort)
+          if [ "${#fw[@]}" -eq 0 ]; then echo "::error::no firmware artifacts found"; exit 1; fi
+          echo "Releasing $tag (\"$title\") with ${#fw[@]} firmware file(s):"; printf '  %s\n' "${fw[@]}"
+          gh release create "$tag" --title "$title" --notes-file body.md "${fw[@]}"
