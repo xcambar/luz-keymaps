@@ -24,20 +24,12 @@
 // Custom keycodes (must be included before the base layout header)
 #include "custom_keycodes.h"
 
-// Alt-symbol pairs used directly in keymaps[] (plain keycodes when alt symbols are off)
-#ifdef XC_ALT_BASE_SYMBOLS
-#    define XC_UNDS AS_UNDS
-#    define XC_QUOT AS_QUOT
-#    define XC_COMM AS_COMM
-#    define XC_DOT  AS_DOT
-#    define XC_MINS AS_MINS
-#else
-#    define XC_UNDS KC_UNDS
-#    define XC_QUOT KC_QUOT
-#    define XC_COMM KC_COMM
-#    define XC_DOT  KC_DOT
-#    define XC_MINS KC_MINS
-#endif
+// Alt-symbol pairs used directly in keymaps[]
+#define XC_UNDS AS_UNDS
+#define XC_QUOT AS_QUOT
+#define XC_COMM AS_COMM
+#define XC_DOT  AS_DOT
+#define XC_MINS AS_MINS
 
 // Base layout: Gallium East (defines the _XX_ position macros)
 #include "layouts/gallium_east.h"
@@ -98,14 +90,12 @@ static const uint16_t wc_keycodes[][4] = {
 // Key Overrides for alternative base symbols (custom keycodes)
 
 const key_override_t* key_overrides[] = {
-#ifdef XC_ALT_BASE_SYMBOLS
     ALT_SYMBOL_OVERRIDE(AS_QUOT, KC_QUOT, KC_DQUO), // ' → "
     // Plain AS_COMM/AS_DOT (used on SYMBOLS); base-layer mod-tap versions handled in process_record_user
     ALT_SYMBOL_OVERRIDE(AS_COMM, KC_COMM, KC_QUES), // , → ?
     ALT_SYMBOL_OVERRIDE(AS_DOT,  KC_DOT,  KC_EXLM), // . → !
     ALT_SYMBOL_OVERRIDE(AS_MINS, KC_MINS, KC_SLSH), // - → /
     ALT_SYMBOL_OVERRIDE(AS_UNDS, KC_UNDS, KC_PIPE), // _ → |
-#endif
     // Shifted pairs on the SYMBOLS layer
     SL_OVERRIDE(SL_AT,   KC_AT,   KC_HASH), // @ → #
     SL_OVERRIDE(SL_GRV,  KC_GRV,  KC_TILD), // ` → ~
@@ -427,7 +417,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-#ifdef XC_ALT_BASE_SYMBOLS
         // Alt-symbol shifted behavior for mod-tap keys (positions 32-33)
         // Mod-tap uses basic keycodes; custom shift handled here instead of key overrides
         case RGUI_T(KC_COMM):  // , → ? when shifted
@@ -442,7 +431,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-#endif
     }
     return true;
 }
@@ -495,9 +483,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_BSPC:
         case KC_DEL:
         case KC_UNDS:
-#ifdef XC_ALT_BASE_SYMBOLS
         case AS_UNDS:
-#endif
             return true;
         default:
             return false;  // any other key ends Caps Word

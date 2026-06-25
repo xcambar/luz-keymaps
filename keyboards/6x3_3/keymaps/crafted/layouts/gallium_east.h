@@ -4,28 +4,15 @@
 // https://github.com/GalileoBlues/Gallium
 
 // GALLIUM places alternative symbols at positions 10, 23, 32, 33, 34
-#ifdef XC_ALT_BASE_SYMBOLS
-    #define _23_ AS_UNDS  // _ → |
-    #define _10_ WC_CORNER(AS_QUOT)  // ' → "
-    #define _32_ AS_COMM             // , → ?
-    #define _33_ AS_DOT              // . → !
-    #define _34_ AS_MINS             // - → /
-#else
-    #define _10_ WC_CORNER(KC_COMM)  // , (default)
-    #define _23_ KC_QUOT             // ' (default)
-    #define _32_ KC_SCLN             // ; / :
-    #define _33_ KC_DOT              // . / >
-    #define _34_ KC_SLSH             // / / ?
-#endif
+#define _23_ AS_UNDS             // _ → |
+#define _10_ WC_CORNER(AS_QUOT)  // ' → "
+#define _32_ AS_COMM             // , → ?
+#define _33_ AS_DOT              // . → !
+#define _34_ AS_MINS             // - → /
 
 // Base keycodes for mod-tap positions (bypass custom alt-symbol keycodes)
-#ifdef XC_ALT_BASE_SYMBOLS
-    #define _32_KC KC_COMM
-    #define _33_KC KC_DOT
-#else
-    #define _32_KC _32_
-    #define _33_KC _33_
-#endif
+#define _32_KC KC_COMM
+#define _33_KC KC_DOT
 
 #ifdef XC_WEAK_CORNERS
     #define WC_OUT_01 KC_B

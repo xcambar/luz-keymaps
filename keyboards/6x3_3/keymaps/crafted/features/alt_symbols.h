@@ -11,8 +11,6 @@
 #include <stdint.h>
 #include "quantum.h"
 
-#ifdef XC_ALT_BASE_SYMBOLS
-
 // Alternative symbols list using CUSTOM_KEYCODES macro from custom_keycodes.h
 // Expands to: _ALT_SYMBOLS_START, AS_QUOT, ..., _ALT_SYMBOLS_COUNT
 #define ALT_SYMBOLS_LIST CUSTOM_KEYCODES(ALT_SYMBOLS, \
@@ -36,5 +34,3 @@
     &ko_make_with_layers( \
         MOD_MASK_SHIFT, trigger, shifted, ~0 \
     )
-
-#endif // XC_ALT_BASE_SYMBOLS

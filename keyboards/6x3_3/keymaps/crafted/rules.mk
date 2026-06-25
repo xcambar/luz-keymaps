@@ -23,18 +23,11 @@ SRC += features/dead_keys.c
 #
 
 XC_WEAK_CORNERS = no
-
-# Alternative symbols for the base layer
-XC_ALT_BASE_SYMBOLS ?= yes
 ###################
 # This manipulates the options
 #
 
 ifeq ($(strip $(XC_WEAK_CORNERS)), yes)
     OPT_DEFS += -DXC_WEAK_CORNERS
-endif
-
-ifeq ($(strip $(XC_ALT_BASE_SYMBOLS)), yes)
-    OPT_DEFS += -DXC_ALT_BASE_SYMBOLS
 endif
 

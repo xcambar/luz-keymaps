@@ -113,7 +113,6 @@ qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted
 Build options (`rules.mk` or environment):
 
 - **`XC_WEAK_CORNERS`** (default: `no`) — access corner letters via combos
-- **`XC_ALT_BASE_SYMBOLS`** (default: `yes`) — semantic shift pairs on the base layer
 
 All targets at once:
 

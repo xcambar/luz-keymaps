@@ -8,8 +8,8 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
 
-1. **Read configuration first** — `rules.mk` (`XC_WEAK_CORNERS`, `XC_ALT_BASE_SYMBOLS`,
-   `COMBO_ENABLE`) and `config.h`. Never ask for what these files state.
+1. **Read configuration first** — `rules.mk` (`XC_WEAK_CORNERS`, `COMBO_ENABLE`)
+   and `config.h`. Never ask for what these files state.
 2. **Parse `keymap.c`** — `enum layers`, the `LAYOUT_split_3x6_3` blocks, `key_combos[]`,
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).

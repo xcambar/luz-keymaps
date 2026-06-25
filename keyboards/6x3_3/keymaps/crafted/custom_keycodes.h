@@ -39,10 +39,8 @@ enum custom_keycodes {
     // Dead keys (expanded from DEAD_KEYS_LIST macro)
     DEAD_KEYS_LIST,
 
-#ifdef XC_ALT_BASE_SYMBOLS
     // Alternative symbols (expanded from ALT_SYMBOLS_LIST macro)
     ALT_SYMBOLS_LIST,
-#endif
 
     // Alternative symbols layer (expanded from ALT_SYMBOLS_LAYER_LIST macro)
     ALT_SYMBOLS_LAYER_LIST,
