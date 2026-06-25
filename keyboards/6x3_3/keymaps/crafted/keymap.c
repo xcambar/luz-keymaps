@@ -53,7 +53,6 @@
 
 enum layers {
     BASE = 0,
-    BASE_ALT,
     FAVS,
     SYMBOLS,
     NAV_DEL,
@@ -92,14 +91,8 @@ combo_t key_combos[] = {
 #ifdef XC_WEAK_CORNERS
 // Runtime lookup: [layer][corner] — TL=0, TR=1, BL=2, BR=3
 static const uint16_t wc_keycodes[][4] = {
-    [BASE]     = { WC_OUT_01, WC_OUT_10, WC_OUT_29, WC_OUT_30 },
-#   define XC_LAYOUT_SWITCH_TARGET XC_SECONDARY_LAYOUT
-#   include "feature_layout_switch.h"
-    [BASE_ALT] = { WC_OUT_01, WC_OUT_10, WC_OUT_29, WC_OUT_30 },
+    [BASE] = { WC_OUT_01, WC_OUT_10, WC_OUT_29, WC_OUT_30 },
 };
-// Restore primary _XX_ macros for keymaps[BASE] below
-#   define XC_LAYOUT_SWITCH_TARGET XC_LAYOUT
-#   include "feature_layout_switch.h"
 #endif
 
 // Key Overrides for alternative base symbols (custom keycodes)
@@ -137,9 +130,9 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
                        '*', '*', '*',  '*', '*', '*'
     );
 
-// Snapshot primary layout morph keycodes (preprocessor expands _16_/_19_ NOW, before layout switch)
-static const uint16_t gui_morph_l_pri = LGUI_T(_16_);
-static const uint16_t gui_morph_r_pri = RGUI_T(_19_);
+// Snapshot the home-row index morph keycodes (preprocessor expands _16_/_19_ here)
+static const uint16_t gui_morph_l = LGUI_T(_16_);
+static const uint16_t gui_morph_r = RGUI_T(_19_);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
@@ -174,19 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
     ),
      /*
-      * BASE_ALT Layer (Layer 1) - Secondary layout (XC_SECONDARY_LAYOUT)
-      * Same abstract structure as BASE; _XX_ macros expand to secondary layout keycodes.
-      */
-#   define XC_LAYOUT_SWITCH_TARGET XC_SECONDARY_LAYOUT
-#   include "feature_layout_switch.h"
-    [BASE_ALT] = LAYOUT_split_3x6_3(
-        KC_NO,   _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
-        KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, XC_UNDS,
-                                            KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
-    ),
-     /*
-      * FAVS Layer (Layer 2) - Favorite shortcuts and navigation
+      * FAVS Layer - Favorite shortcuts and navigation
       * WASD-style inverted-T arrows; magnitude grows away from home row (line above, word below)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
@@ -299,23 +280,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * Fn keys on the top row (F1-F10), F11/F12 continue on the inner home columns
       * Bot=QK_BOOT at the Tab position (sole bootloader access; the BASE combo was removed)
       * Volume (middle col) and Brightness (ring col) as vertical pairs: up on home, down below
-      * OS⇄/OS?=toggle/print OS (left, as the old combos), Ly⇄/Ly?=toggle/print default layout
-      * (right, as the old combos) — switch on home row, print below it; Scr=PrtScr (Linux;
+      * OS⇄/OS?=toggle/print OS (left, as the old combos); Scr=PrtScr (Linux;
       * macOS screenshots stay on Cmd+Shift+3/4); Mut=Mute
       * pos 23 = KC_NO (was Bspc via SYMBOLS fall-through; SYMBOLS 23 is now ▽ so the
       * dependency was removed); thumbs ▽ as everywhere (Esc/Shift/Space/Ent)
       */
     [ADJUST] = LAYOUT_split_3x6_3(
         KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_NO,
-        QK_BOOT, SW_OS,   KC_NO,   KC_NO,   KC_NO,   KC_F11,                             KC_F12,  KC_MUTE, KC_VOLU, KC_BRIU, SW_LYT,  KC_NO,
-        KC_NO,   PR_OS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_PSCR, KC_VOLD, KC_BRID, PR_LYT,  KC_NO,
+        QK_BOOT, SW_OS,   KC_NO,   KC_NO,   KC_NO,   KC_F11,                             KC_F12,  KC_MUTE, KC_VOLU, KC_BRIU, KC_NO,   KC_NO,
+        KC_NO,   PR_OS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_PSCR, KC_VOLD, KC_BRID, KC_NO,   KC_NO,
                                             _______, _______, _______,                  _______, _______, _______
     )
 };
-
-// Snapshot secondary layout morph keycodes (_16_/_19_ are now secondary after layout switch)
-static const uint16_t gui_morph_l_sec = LGUI_T(_16_);
-static const uint16_t gui_morph_r_sec = RGUI_T(_19_);
 
 // Compose state: armed by the Shift+Space thumb combo, consumed by the next keypress
 static bool compose_pending = false;
@@ -391,11 +367,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // OS morph: home-row index mod-taps (positions 16/19) use GUI on macOS, Ctrl on Linux
     // On macOS, LGUI_T/RGUI_T hold behavior is correct as-is; on Linux, swap to Ctrl
     if (get_os_platform() != OS_MacOS && !record->tap.count) {
-        if (keycode == gui_morph_l_pri || keycode == gui_morph_l_sec) {
+        if (keycode == gui_morph_l) {
             if (record->event.pressed) register_code(KC_LCTL); else unregister_code(KC_LCTL);
             return false;
         }
-        if (keycode == gui_morph_r_pri || keycode == gui_morph_r_sec) {
+        if (keycode == gui_morph_r) {
             if (record->event.pressed) register_code(KC_RCTL); else unregister_code(KC_RCTL);
             return false;
         }
@@ -448,22 +424,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case PR_OS:
             if (record->event.pressed) {
                 send_string(get_os_platform_name());
-            }
-            return false;
-
-        case SW_LYT:
-            if (record->event.pressed) {
-                if (get_highest_layer(default_layer_state) == BASE) {
-                    default_layer_set(1UL << BASE_ALT);
-                } else {
-                    default_layer_set(1UL << BASE);
-                }
-            }
-            return false;
-
-        case PR_LYT:
-            if (record->event.pressed) {
-                send_string(get_highest_layer(default_layer_state) == BASE ? XC_LAYOUT_NAME : XC_SECONDARY_LAYOUT_NAME);
             }
             return false;
 

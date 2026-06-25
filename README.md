@@ -22,7 +22,6 @@ Two layouts live in this repository:
 - **Numpad on the left hand** helps maintain the right hand on the mouse.
 - **OS-aware keys**: Cut/Copy/Paste, app/window switching, unified Ctrl/Cmd key, enable consistent access across macOS and Linux
 - Symbols reorganized by frequency: opening brackets on the index column, and pairs kept together as much as possible.
-- Optional secondary base layer can be toggled at runtime (QWERTY by default). Useful when transitioning between layouts without reflashing.
 
 > [!IMPORTANT]
 > By design, the top left and top right keys are never used bevause they're too uncomfortable to reach.
@@ -120,7 +119,6 @@ XC_LAYOUT=graphite qmk compile -kb kaly/kaly42 -km crafted
 Build options (`rules.mk` or environment):
 
 - **`XC_LAYOUT`** (default: `gallium_east`) — base layout: `qwerty`, `gallium`, `gallium_east`, `focal`, `graphite`
-- **`XC_SECONDARY_LAYOUT`** (default: `qwerty`) — the alternate base layer, toggled from `ADJUST`
 - **`XC_WEAK_CORNERS`** (default: `no`) — access corner letters via combos
 - **`XC_ALT_BASE_SYMBOLS`** (default: `yes`) — semantic shift pairs on the base layer
 

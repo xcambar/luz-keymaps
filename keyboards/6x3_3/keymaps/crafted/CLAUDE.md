@@ -8,7 +8,7 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
 
-1. **Read configuration first** — `rules.mk` (`XC_LAYOUT`, `XC_SECONDARY_LAYOUT`,
+1. **Read configuration first** — `rules.mk` (`XC_LAYOUT`,
    `XC_WEAK_CORNERS`, `COMBO_ENABLE`) and `config.h`. Never ask for what these files state.
 2. **Parse `keymap.c`** — `enum layers`, the `LAYOUT_split_3x6_3` blocks, `key_combos[]`,
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
@@ -50,7 +50,6 @@ presentation attribute), and **no `font-weight`** — `⏮`/`⏭` live only in f
 (FreeSerif/FreeSans) and a bold request makes fontconfig draw blank `.notdef` (or, in sans,
 garbage "Z"/"Y").
 
-- **BASE_ALT (layer 1, the secondary QWERTY base) is deliberately not rendered.**
 - Each file contains its own `layout:` (`qmk_keyboard: cantor`,
   `layout_name: LAYOUT_split_3x6_3`), `layers:`, and `draw_config:` block.
   Keep the `draw_config` identical across all files.
@@ -62,12 +61,11 @@ garbage "Z"/"Y").
 | # | Layer    | Access                                          | Rendered |
 |---|----------|--------------------------------------------------|----------|
 | 0 | BASE     | default (Gallium East via `XC_LAYOUT`)           | yes      |
-| 1 | BASE_ALT | default-layer toggle (`SW_LYT` on ADJUST)        | no       |
-| 2 | FAVS     | hold left inner thumb `MO(FAVS)` (pos 38)        | yes      |
-| 3 | SYMBOLS  | hold right inner thumb `MO(SYMBOLS)` (pos 39)    | yes      |
-| 4 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | no (per-key roles in the README modes table) |
-| 5 | TABS     | hold tab trigger (pos 3) while on FAVS — hold-only | no (per-key roles in the README modes table) |
-| 6 | ADJUST   | tri-layer: hold both inner thumbs (FAVS+SYMBOLS) | yes      |
+| 1 | FAVS     | hold left inner thumb `MO(FAVS)` (pos 38)        | yes      |
+| 2 | SYMBOLS  | hold right inner thumb `MO(SYMBOLS)` (pos 39)    | yes      |
+| 3 | NAV_DEL  | hold `Dl⊙` (pos 14) while on FAVS — hold-only    | no (per-key roles in the README modes table) |
+| 4 | TABS     | hold tab trigger (pos 15) while on FAVS — hold-only | no (per-key roles in the README modes table) |
+| 5 | ADJUST   | tri-layer: hold both inner thumbs (FAVS+SYMBOLS) | yes      |
 
 ## Key position reference (split_3x6_3)
 
@@ -111,7 +109,6 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | `MD_FENCE` | t: ` ``` `, type symbol |
 | `ARROW_OP` | `{ t: "->", s: "=>" }`, type symbol |
 | `SW_OS` / `PR_OS` | "OS ⇄" / "OS ?", type system |
-| `SW_LYT` / `PR_LYT` | "Lyt ⇄" / "Lyt ?", type system |
 | `QK_BOOT` | `$$mdi:restart$$`, h: "Boot", type system |
 | `SK_*` semantic keys | Undo/Cut/Copy/Paste (system); cursor-motion granularity uses one **media-triangle magnitude scale** so the *reach* reads at a glance — triangle count = distance: **char** = single triangle `◀ ▶ ▲ ▼` (U+25C0/25B6/25B2/25BC), **word** = double triangle `◀◀`/`▶▶` (jump), **line** begin/end = `⏮`/`⏭` (U+23EE/U+23ED, double-triangle-to-bar = "hit the wall"). **Render gotchas (Inkscape + Source Sans 3):** the plain rewind/fast-forward codepoints `⏪`/`⏩` (U+23EA/U+23E9) do NOT render — they fall back to "B"/"A" — so word uses two literal `◀`/`▶` glyphs, not `⏪⏩`. `⏮`/`⏭` *do* render. Line was deliberately NOT `⇤⇥` or `arrow-collapse` (read as the Tab glyph beside the TABS cluster). The cluster shows movement glyphs only; sub-mode roles (deletions, tab actions) reusing these positions are in the README modes table, not on-key hints (nav/editing) |
 

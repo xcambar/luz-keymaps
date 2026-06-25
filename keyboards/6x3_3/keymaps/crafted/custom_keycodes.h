@@ -32,8 +32,6 @@ enum custom_keycodes {
     ARROW_OP,                // Tap: ->  Shift: =>
     SW_OS,                   // Toggle OS platform (macOS/Linux)
     PR_OS,                   // Type the current OS platform name
-    SW_LYT,                  // Toggle default base layout (primary/secondary)
-    PR_LYT,                  // Type the current layout name
 
     // Semantic keys (expanded from SEMANTIC_KEYS_LIST macro)
     SEMANTIC_KEYS_LIST,
