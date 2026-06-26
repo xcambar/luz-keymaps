@@ -1,0 +1,81 @@
+layout:
+    qmk_keyboard: cantor
+    layout_name: LAYOUT_split_3x6_3
+
+layers:
+    "1 · Numbers & Symbols":
+        - [
+              { type: none },
+              { t: "```", type: symbol },
+              "7",
+              "8",
+              "9",
+              { type: none },
+              { t: "=", s: "+", type: symbol },
+              { t: "{", s: "[", type: symbol },
+              { t: "@", s: "#", type: symbol },
+              { t: "}", s: "]", type: symbol },
+              { t: "`", s: "~", type: symbol },
+              { type: none },
+          ]
+        - [
+              { type: none },
+              "0",
+              "1",
+              "2",
+              "3",
+              { type: none },
+              { t: "-", s: "_", type: symbol },
+              { t: "(", s: "<", type: symbol },
+              { t: "$", s: "%", type: symbol },
+              { t: ")", s: ">", type: symbol },
+              { t: "\\", s: "^", type: symbol },
+              { t: "&", s: "*", type: symbol },
+          ]
+        - [
+              { type: none },
+              { t: "->", s: "=>", type: symbol },
+              "4",
+              "5",
+              "6",
+              { t: $$mdi:lock-outline$$, h: "Layer Lock", type: layer },
+              { t: "/", s: "|", type: symbol },
+              { t: "'", s: '"', type: symbol },
+              { t: ".", s: "!", type: symbol },
+              { t: ",", s: "?", type: symbol },
+              { t: ":", s: ";", type: symbol },
+              { type: none },
+          ]
+        - [
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+              { t: $$mdi:layers-triple-outline$$, h: "3", type: layer },
+              { type: held },
+              { t: "▽", type: trans },
+              { t: "▽", type: trans },
+          ]
+
+draw_config:
+    key_h: 60
+    append_colon_to_layer_header: false
+    svg_extra_style: |
+        /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+        /* Tier 1 - ambient content categories (default dark text) */
+        /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+           purple = layers, blue = navigation (incl. latches), orange = everything else */
+        svg.keymap { fill: #36322e; }
+        .key.none rect.key { fill: white; opacity: 50%; }
+        .key.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.layer rect.key { fill: #ead9eb; stroke: #9a5fa1; }
+        .key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
+        .key.nav rect.key { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.delhold.tap, .key.delhold.hold, .key.delhold.shifted { fill: #c25f54; }
+        .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }
+        .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
+        .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+        .key.held rect.key { fill: url(#stripes); stroke: #999999; }
+        .combo.state rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.shifted { transform: translateY(2px); }
+        .key.hold {transform: translateY(-2px); }
