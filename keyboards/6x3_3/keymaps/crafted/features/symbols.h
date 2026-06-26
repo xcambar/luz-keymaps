@@ -32,8 +32,8 @@
 // The symbol set: X(NAME, shifted). Unshifted output is always KC_<NAME>.
 #define SYMBOL_TABLE(X)                       \
     X(QUOT, KC_DQUO)          /* ' -> " */    \
-    X(MINS, KC_SLSH)          /* - -> / */    \
-    X(UNDS, KC_PIPE)          /* _ -> | */    \
+    X(MINS, KC_UNDS)          /* - -> _ */    \
+    X(SLSH, KC_PIPE)          /* / -> | */    \
     X(COMM, SY_COMM_SHIFTED)  /* , -> ? */    \
     X(DOT,  SY_DOT_SHIFTED)   /* . -> ! */    \
     X(AT,   KC_HASH)          /* @ -> # */    \

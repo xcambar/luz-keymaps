@@ -43,7 +43,7 @@ layers:
               { t: "&", s: "*", type: symbol },
               { t: ",", s: "?", type: symbol },
               { t: ".", s: "!", type: symbol },
-              { t: "-", s: "/", type: symbol },
+              { t: "-", s: "_", type: symbol },
               { t: "▽", type: trans },
           ]
         - [

@@ -41,10 +41,10 @@ layers:
               Z,
               K,
               { t: P, h: RCtrl, type: modtap },
-              { t: ",", h: RGui, type: symbol modtap },
-              { t: ".", h: RAlt, type: symbol modtap },
-              { t: "-", s: "/", type: symbol },
-              { t: "_", s: "|", type: symbol },
+              { t: ",", s: "?", h: RGui, type: symbol modtap },
+              { t: ".", s: "!", h: RAlt, type: symbol modtap },
+              { t: "-", s: "_", type: symbol },
+              { t: "/", s: "|", type: symbol },
           ]
         - [
               { t: $$mdi:keyboard-esc$$, type: editing },

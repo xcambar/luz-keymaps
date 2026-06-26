@@ -309,7 +309,7 @@ svg.keymap { fill: #36322e; }
 <g transform="translate(750, 165)" class="key symbol keypos-34">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key symbol"/>
 <text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="0" class="key symbol tap">-</text>
-<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="-26" class="key symbol shifted">/</text>
+<text style="font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace" x="0" y="-26" class="key symbol shifted">_</text>
 </g>
 <g transform="translate(810, 165)" class="key trans keypos-35">
 <rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key trans"/>

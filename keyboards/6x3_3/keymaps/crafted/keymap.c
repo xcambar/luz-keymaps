@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *               └───┤Sft├───┐   ┌───┤Spc├───┘
       *                   └───┤FAV│   │SYM├───┘       FAV=FAVS layer, SYM=SYMBOLS layer
       *                       └───┘   └───┘
-      * pos 24 empty (Caps Word now via double-tap Shift), _=SY_UNDS (_ → | shifted), Esc/Ent on outer thumbs
+      * pos 24 empty (Caps Word now via double-tap Shift); pos 34=SY_MINS (- → _), pos 35=SY_SLSH (/ → |); Esc/Ent on outer thumbs
       * Esc/Ent fall through on FAVS and SYMBOLS (transparent thumbs at 36/41); SYMBOLS
       * also inherits _ at 35, but FAVS 35 is dead (KC_NO) — nav layer doesn't want it
       * Sft/Spc are plain keys; tapping both together (combo) arms Compose for accents:
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
         KC_NO,    _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
-        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, SY_UNDS,
+        KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, SY_SLSH,
                                             KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
     ),
      /*
@@ -168,10 +168,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                       └───┘   └───┘
       * Numpad: home row 0-3 (0 on ring), 4-6 below, 7-9 on top; open brackets on index, close on ring (editors auto-close),
       * middle finger keeps high-frequency =/@; pairs stacked by kind ({[ over (<, }] over )>)
-      * , . - ' _ sit on their BASE positions (cross-layer consistency); inverted pairs kept
+      * , . - ' / sit on their BASE positions (cross-layer consistency); inverted pairs kept
       * ```=code fence macro, →⇒=tap "->" / shift "=>"
       * Lck=Layer Lock: tap to lock (then release MO; 40 ▽ then gives Space), tap again to unlock
-      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, SY_UNDS _/|, Bspc at 23,
+      * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, SY_SLSH //|, Bspc at 23,
       * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
@@ -410,13 +410,15 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     }
 }
 
-// Caps Word: QMK default plus SY_UNDS so SCREAMING_SNAKE_CASE survives the BASE
-// alt-symbol underscore (a custom keycode the default would treat as word-breaking).
+// Caps Word: QMK default, plus SY_MINS so SCREAMING_SNAKE_CASE survives the underscore.
+// `_` is the shifted face of the SY_MINS (`-`) key, so weak-shifting SY_MINS makes it
+// emit `_` under Caps Word (the override turns the held shift into KC_UNDS).
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
-        // Continue Caps Word, applying shift so the letter is uppercased:
+        // Continue Caps Word, applying shift (uppercases letters; turns `-` into `_`):
         case KC_A ... KC_Z:
         case KC_MINS:
+        case SY_MINS:
             add_weak_mods(MOD_BIT(KC_LSFT));
             return true;
         // Continue Caps Word without shifting:
@@ -424,7 +426,6 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_BSPC:
         case KC_DEL:
         case KC_UNDS:
-        case SY_UNDS:
             return true;
         default:
             return false;  // any other key ends Caps Word
