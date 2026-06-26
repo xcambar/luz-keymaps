@@ -62,37 +62,11 @@ combo_t key_combos[] = {
     COMBO_ACTION(compose_combo), // COMBO_COMPOSE
 };
 
-// Single source of truth for the , / . shifted partners. Base positions 32/33 are
-// mod-taps, so their ?/! shift can't ride a key override (a mod-tap can't tap a
-// custom keycode) — process_record_user applies it by hand. Both that handler and
-// the SY_COMM/SY_DOT override below read these, so the mapping is defined once.
-#define SY_COMM_SHIFTED KC_QUES   // , → ?
-#define SY_DOT_SHIFTED  KC_EXLM   // . → !
-
-// Key Overrides — one per symbol keycode, mapping unshifted/shifted output on
-// all layers. Placement (base vs SYMBOLS) decides where each is reachable.
-
+// Key Overrides — generated from SYMBOL_TABLE (one unshifted/shifted pair per
+// symbol, on all layers). The table and the SY_*_SHIFTED constants it references
+// live in features/symbols.h; add a symbol there, not here.
 const key_override_t* key_overrides[] = {
-    // Symbols privileged onto the base layer
-    SYM_OVERRIDE(SY_QUOT, KC_QUOT, KC_DQUO), // ' → "
-    SYM_OVERRIDE(SY_MINS, KC_MINS, KC_SLSH), // - → /
-    SYM_OVERRIDE(SY_UNDS, KC_UNDS, KC_PIPE), // _ → |
-    // , and . also appear on SYMBOLS via these keycodes; on base they are mod-tap
-    // homes whose ?/! shift is handled in process_record_user instead
-    SYM_OVERRIDE(SY_COMM, KC_COMM, SY_COMM_SHIFTED), // , → ?
-    SYM_OVERRIDE(SY_DOT,  KC_DOT,  SY_DOT_SHIFTED),  // . → !
-    // SYMBOLS-layer symbols
-    SYM_OVERRIDE(SY_AT,   KC_AT,   KC_HASH), // @ → #
-    SYM_OVERRIDE(SY_GRV,  KC_GRV,  KC_TILD), // ` → ~
-    SYM_OVERRIDE(SY_EQL,  KC_EQL,  KC_PLUS), // = → +
-    SYM_OVERRIDE(SY_DLR,  KC_DLR,  KC_PERC), // $ → %
-    SYM_OVERRIDE(SY_AMPR, KC_AMPR, KC_ASTR), // & → *
-    SYM_OVERRIDE(SY_BSLS, KC_BSLS, KC_CIRC), // \ → ^
-    SYM_OVERRIDE(SY_LPRN, KC_LPRN, KC_LT),   // ( → <
-    SYM_OVERRIDE(SY_RPRN, KC_RPRN, KC_GT),   // ) → >
-    SYM_OVERRIDE(SY_LBRC, KC_LCBR, KC_LBRC), // { → [ (inverted)
-    SYM_OVERRIDE(SY_RBRC, KC_RCBR, KC_RBRC), // } → ] (inverted)
-    SYM_OVERRIDE(SY_SCLN, KC_COLN, KC_SCLN), // : → ; (inverted)
+    SYMBOL_TABLE(SYM_OVR)
     NULL
 };
 
@@ -108,6 +82,12 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
 // Snapshot the home-row index morph keycodes (preprocessor expands _16_/_19_ here)
 static const uint16_t gui_morph_l = LGUI_T(_16_);
 static const uint16_t gui_morph_r = RGUI_T(_19_);
+
+// Mod-tap keycodes for the , / . base positions (32/33), named for SYM_MODTAP_SHIFT
+// (symbols.h). Must equal what the BASE keymap places there so the generated case
+// labels match; the shifted glyphs (SY_*_SHIFTED) live in features/symbols.h.
+#define SY_COMM_MODTAP RGUI_T(_32_KC)
+#define SY_DOT_MODTAP  RALT_T(_33_KC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
@@ -195,8 +175,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
-        KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SY_GRV,  SY_LBRC, SY_EQL,   SY_RBRC,  SY_QUOT,  KC_NO,
-        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SY_BSLS, SY_LPRN, SY_AT,    SY_RPRN,  SY_SCLN,  _______,
+        KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SY_GRV,  SY_LCBR, SY_EQL,   SY_RCBR,  SY_QUOT,  KC_NO,
+        _______,   KC_0,     KC_1,     KC_2,     KC_3,    KC_NO,                              SY_BSLS, SY_LPRN, SY_AT,    SY_RPRN,  SY_COLN,  _______,
         _______,   ARROW_OP, KC_4,     KC_5,     KC_6,    QK_LLCK,                            SY_DLR,  SY_AMPR, SY_COMM,  SY_DOT,   SY_MINS,  _______,
                                                   _______, _______, _______,                  KC_NO,   _______, _______
     ),
@@ -401,8 +381,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         // Custom shifted glyph for the , / . mod-taps (pos 32/33); logic in symbols.h
-        SYM_MODTAP_SHIFT(RGUI_T(_32_KC), SY_COMM_SHIFTED) // , → ?
-        SYM_MODTAP_SHIFT(RALT_T(_33_KC), SY_DOT_SHIFTED)  // . → !
+        SYM_MODTAP_SHIFT(COMM) // , → ?
+        SYM_MODTAP_SHIFT(DOT)  // . → !
     }
     return true;
 }
