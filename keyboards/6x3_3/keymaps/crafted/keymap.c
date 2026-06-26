@@ -62,6 +62,13 @@ combo_t key_combos[] = {
     COMBO_ACTION(compose_combo), // COMBO_COMPOSE
 };
 
+// Single source of truth for the , / . shifted partners. Base positions 32/33 are
+// mod-taps, so their ?/! shift can't ride a key override (a mod-tap can't tap a
+// custom keycode) — process_record_user applies it by hand. Both that handler and
+// the SY_COMM/SY_DOT override below read these, so the mapping is defined once.
+#define SY_COMM_SHIFTED KC_QUES   // , → ?
+#define SY_DOT_SHIFTED  KC_EXLM   // . → !
+
 // Key Overrides — one per symbol keycode, mapping unshifted/shifted output on
 // all layers. Placement (base vs SYMBOLS) decides where each is reachable.
 
@@ -72,8 +79,8 @@ const key_override_t* key_overrides[] = {
     SYM_OVERRIDE(SY_UNDS, KC_UNDS, KC_PIPE), // _ → |
     // , and . also appear on SYMBOLS via these keycodes; on base they are mod-tap
     // homes whose ?/! shift is handled in process_record_user instead
-    SYM_OVERRIDE(SY_COMM, KC_COMM, KC_QUES), // , → ?
-    SYM_OVERRIDE(SY_DOT,  KC_DOT,  KC_EXLM), // . → !
+    SYM_OVERRIDE(SY_COMM, KC_COMM, SY_COMM_SHIFTED), // , → ?
+    SYM_OVERRIDE(SY_DOT,  KC_DOT,  SY_DOT_SHIFTED),  // . → !
     // SYMBOLS-layer symbols
     SYM_OVERRIDE(SY_AT,   KC_AT,   KC_HASH), // @ → #
     SYM_OVERRIDE(SY_GRV,  KC_GRV,  KC_TILD), // ` → ~
@@ -393,20 +400,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        // Alt-symbol shifted behavior for mod-tap keys (positions 32-33)
-        // Mod-tap uses basic keycodes; custom shift handled here instead of key overrides
-        case RGUI_T(KC_COMM):  // , → ? when shifted
-        case RALT_T(KC_DOT):   // . → ! when shifted
-            if (record->tap.count && record->event.pressed) {
-                uint8_t mods = get_mods() | get_oneshot_mods();
-                if (mods & MOD_MASK_SHIFT) {
-                    unregister_mods(MOD_MASK_SHIFT);
-                    tap_code16(keycode == RGUI_T(KC_COMM) ? KC_QUES : KC_EXLM);
-                    register_mods(mods & MOD_MASK_SHIFT);
-                    return false;
-                }
-            }
-            break;
+        // Custom shifted glyph for the , / . mod-taps (pos 32/33); logic in symbols.h
+        SYM_MODTAP_SHIFT(RGUI_T(_32_KC), SY_COMM_SHIFTED) // , → ?
+        SYM_MODTAP_SHIFT(RALT_T(_33_KC), SY_DOT_SHIFTED)  // . → !
     }
     return true;
 }

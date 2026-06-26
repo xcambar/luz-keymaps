@@ -10,9 +10,10 @@
 // not a property of the keycode.
 //
 // Exception: base positions 32/33 (`,` `.`) are mod-tap homes (RGUI_T/RALT_T on
-// plain KC_COMM/KC_DOT), so their `?`/`!` shift is handled in process_record_user
-// — key overrides don't fire on a mod-tap's tap keycode. SY_COMM/SY_DOT still
-// exist for those symbols where they appear directly (e.g. on SYMBOLS).
+// plain KC_COMM/KC_DOT), so their `?`/`!` shift can't ride a key override — a
+// mod-tap never taps a custom keycode. SYM_MODTAP_SHIFT (below) supplies it from
+// process_record_user. SY_COMM/SY_DOT still exist for where those symbols appear
+// directly (e.g. on SYMBOLS).
 
 #pragma once
 
@@ -52,3 +53,23 @@
     &ko_make_with_layers( \
         MOD_MASK_SHIFT, trigger, shifted, ~0 \
     )
+
+// Companion to SYM_OVERRIDE for a symbol that lives on a mod-tap (its tap is a
+// plain basic keycode, so a key override can't give it a custom shifted glyph).
+// Expands to a process_record_user switch CASE: when the mod-tap is tapped while
+// Shift is held, emit `shifted` instead. Drop it straight into the switch — needs
+// `record` in scope, and a `default`/other cases around it as usual.
+// Usage (inside process_record_user's switch):
+//   SYM_MODTAP_SHIFT(RGUI_T(KC_COMM), KC_QUES)   // , → ? on the pos-32 mod-tap
+#define SYM_MODTAP_SHIFT(modtap_kc, shifted) \
+    case modtap_kc: \
+        if (record->tap.count && record->event.pressed) { \
+            uint8_t mods = get_mods() | get_oneshot_mods(); \
+            if (mods & MOD_MASK_SHIFT) { \
+                unregister_mods(MOD_MASK_SHIFT); \
+                tap_code16(shifted); \
+                register_mods(mods & MOD_MASK_SHIFT); \
+                return false; \
+            } \
+        } \
+        break;
