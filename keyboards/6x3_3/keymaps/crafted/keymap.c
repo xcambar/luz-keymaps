@@ -33,14 +33,8 @@
 // OS control for platform-aware features
 #include "features/os_control.h"
 
-enum layers {
-    BASE = 0,
-    FAVS,
-    SYMBOLS,
-    NAV_DEL,
-    TABS,
-    ADJUST
-};
+// Luz shared layer model (BASE + EXTEND/SYMBOLS + EXTEND_DEL/EXTEND_TABS/ADJUST)
+#include "luz/layers.h"
 
 // Include semantic keys header
 #include "features/semantic_keys.h"
@@ -101,11 +95,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *               ┌───┐                   ┌───┐
       *               │Esc├───┐           ┌───┤Ent│
       *               └───┤Sft├───┐   ┌───┤Spc├───┘
-      *                   └───┤FAV│   │SYM├───┘       FAV=FAVS layer, SYM=SYMBOLS layer
+      *                   └───┤FAV│   │SYM├───┘       FAV=EXTEND layer, SYM=SYMBOLS layer
       *                       └───┘   └───┘
       * pos 24 empty (Caps Word now via double-tap Shift); pos 34=SY_MINS (- → _), pos 35=SY_SLSH (/ → |); Esc/Ent on outer thumbs
-      * Esc/Ent fall through on FAVS and SYMBOLS (transparent thumbs at 36/41); SYMBOLS
-      * also inherits _ at 35, but FAVS 35 is dead (KC_NO) — nav layer doesn't want it
+      * Esc/Ent fall through on EXTEND and SYMBOLS (transparent thumbs at 36/41); SYMBOLS
+      * also inherits _ at 35, but EXTEND 35 is dead (KC_NO) — nav layer doesn't want it
       * Sft/Spc are plain keys; tapping both together (combo) arms Compose for accents:
       * E/A/U/O = acute/grave/diaeresis/circumflex dead key, C=ç, N=ñ, W=€, Esc cancels,
       * any other key passes through unchanged
@@ -117,10 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,    _01_,    _02_,    _03_,    _04_,    _05_,                               _06_,    _07_,    _08_,    _09_,    _10_,    KC_NO,
         KC_TAB,  _13_,    _14_,    _15_,    LGUI_T(_16_), _17_,                           _18_,    RGUI_T(_19_), _20_,    _21_,    _22_,    KC_BSPC,
         KC_NO,   _25_,    LALT_T(_26_), LGUI_T(_27_), LCTL_T(_28_), _29_,               _30_,    RCTL_T(_31_), RGUI_T(_32_KC), RALT_T(_33_KC), _34_, SY_SLSH,
-                                            KC_ESC,  KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
+                                            KC_ESC,  KC_LSFT, MO(EXTEND),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ENT
     ),
      /*
-      * FAVS Layer - Favorite shortcuts and navigation
+      * EXTEND Layer - Favorite shortcuts and navigation
       * WASD-style inverted-T arrows; magnitude grows away from home row (line above, word below)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
@@ -136,16 +130,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                       └───┘   └───┘
       * Thumbs ▽ = base Esc / Shift / Space / Enter (36/37/40/41)
       * SWn=Switch Window
-      * Lck=Layer Lock (keep FAVS without holding the thumb)
-      * Sl⊙=Select latch: tap to hold Shift until FAVS is released (or tap again/Esc)
-      * Dl⊙=Delete hold: momentary NAV_DEL sub-layer (hold-only, destructive op)
-      * Tab=Tab mode: momentary TABS sub-layer (hold-only) — browser tab management
+      * Lck=Layer Lock (keep EXTEND without holding the thumb)
+      * Sl⊙=Select latch: tap to hold Shift until EXTEND is released (or tap again/Esc)
+      * Dl⊙=Delete hold: momentary EXTEND_DEL sub-layer (hold-only, destructive op)
+      * Tab=Tab mode: momentary EXTEND_TABS sub-layer (hold-only) — browser tab management
       * L←=Line Begin, L→=Line End, W←=Word Left, W→=Word Right
       * PgU/PgD=vertical pair on inner column (doc begin/end dropped)
       */
-    [FAVS] = LAYOUT_split_3x6_3(
+    [EXTEND] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  KC_NO,   MO(NAV_DEL), MO(TABS),  SEL_LATCH,  SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
+        KC_ESC,  KC_NO,   MO(EXTEND_DEL), MO(EXTEND_TABS),  SEL_LATCH,  SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
         _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, QK_LLCK,                            KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   KC_NO,
                                             _______, _______, KC_NO,                  _______, _______, _______
     ),
@@ -172,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ```=code fence macro, →⇒=tap "->" / shift "=>"
       * Lck=Layer Lock: tap to lock (then release MO; 40 ▽ then gives Space), tap again to unlock
       * (M)=held MO(SYMBOLS) thumb, ▽=fall-through to base (Tab, SY_SLSH //|, Bspc at 23,
-      * and thumbs Esc/Shift/Space/Ent — same pattern as FAVS)
+      * and thumbs Esc/Shift/Space/Ent — same pattern as EXTEND)
       */
     [SYMBOLS] = LAYOUT_split_3x6_3(
         KC_NO,     MD_FENCE, KC_7,     KC_8,     KC_9,    KC_NO,                              SY_GRV,  SY_LCBR, SY_EQL,   SY_RCBR,  SY_QUOT,  KC_NO,
@@ -181,7 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   _______, _______, _______,                  KC_NO,   _______, _______
     ),
      /*
-      * NAV_DEL Layer (Layer 4) - Deletion sub-layer, active only while Dl⊙ is held on FAVS
+      * EXTEND_DEL Layer (Layer 4) - Deletion sub-layer, active only while Dl⊙ is held on EXTEND
       * Vim-like operator grammar: row = granularity, each deletion sits on the motion it consumes
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │ ▽ │DlB│ ▽ │DlE│   │   │  line: delete to begin/end
@@ -190,18 +184,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │ ▽ │ ▽ │ ▽ │ ▽ │ ✗ │       │   │DlW│ ▽ │Dl→│   │   │  word: delete back/forward
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      * ▽=transparent (FAVS motions/clipboard stay live: navigate, page, Undo without releasing)
+      * ▽=transparent (EXTEND motions/clipboard stay live: navigate, page, Undo without releasing)
       * ✗=blocked: Lck (lock delete mode), Tab (tab mode), Sl⊙ (delete wins over select)
       * (▽)=Dl⊙ itself (the held MO key)
       */
-    [NAV_DEL] = LAYOUT_split_3x6_3(
+    [EXTEND_DEL] = LAYOUT_split_3x6_3(
         _______, _______, _______, _______, _______, _______,                            _______, SK_DELLINEBEG, _______, SK_DELLINEEND, _______, _______,
         _______, _______, _______, XXXXXXX, XXXXXXX, _______,                            _______, KC_BSPC, _______, KC_DEL,  _______, _______,
         _______, _______, _______, _______, _______, XXXXXXX,                            _______, SK_DELWORDPRV, _______, SK_DELWORDNXT, _______, _______,
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * TABS Layer - Browser tab management, active only while the trigger (pos 15) is held on FAVS
+      * EXTEND_TABS Layer - Browser tab management, active only while the trigger (pos 15) is held on EXTEND
       * Inverted-T reusing the cursor cluster: index column = tab lifecycle, home-row arms = switch
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │   │   │New│   │   │   │  New=Ctrl/Cmd+T
@@ -215,14 +209,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * All chords are OS-aware semantic keys (Linux Ctrl/Alt / macOS Cmd, Chrome/Safari positional switch;
       * history back/forward = Cmd+[ ] / Alt+arrows, identical in Firefox & Chrome).
       */
-    [TABS] = LAYOUT_split_3x6_3(
+    [EXTEND_TABS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABNEW, KC_NO,     KC_NO,   KC_NO,
         KC_NO,   KC_NO,   KC_NO,   _______, KC_NO,   KC_NO,                              KC_NO,   SK_TABLEFT, SK_TABCLOSE, SK_TABRIGHT, KC_NO, KC_NO,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_HISTPRV, SK_TABREOPEN, SK_HISTNXT, KC_NO, KC_NO,
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * ADJUST Layer (Layer 6) - tri-layer: hold both inner thumbs (FAVS + SYMBOLS)
+      * ADJUST Layer (Layer 6) - tri-layer: hold both inner thumbs (EXTEND + SYMBOLS)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │F1 │F2 │F3 │F4 │F5 │       │F6 │F7 │F8 │F9 │F10│   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
@@ -252,7 +246,7 @@ static bool compose_pending = false;
 // Swapper state
 static bool sw_win_active = false;
 
-// Select latch state: real Shift, scoped to the FAVS layer
+// Select latch state: real Shift, scoped to the EXTEND layer
 static bool sel_latch_active = false;
 
 static void sel_latch_off(void) {
@@ -263,11 +257,11 @@ static void sel_latch_off(void) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    // ADJUST tri-layer: active while both FAVS and SYMBOLS are held
-    state = update_tri_layer_state(state, FAVS, SYMBOLS, ADJUST);
+    // ADJUST tri-layer: active while both EXTEND and SYMBOLS are held
+    state = update_tri_layer_state(state, EXTEND, SYMBOLS, ADJUST);
 
-    // Latch lifecycle: released on leaving FAVS; delete hold (NAV_DEL) wins over select
-    if (!layer_state_cmp(state, FAVS) || layer_state_cmp(state, NAV_DEL)) {
+    // Latch lifecycle: released on leaving EXTEND; delete hold (EXTEND_DEL) wins over select
+    if (!layer_state_cmp(state, EXTEND) || layer_state_cmp(state, EXTEND_DEL)) {
         sel_latch_off();
     }
     return state;

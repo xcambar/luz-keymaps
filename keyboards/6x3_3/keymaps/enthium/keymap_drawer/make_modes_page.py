@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate 04_MODES.svg — a reference page for the FAVS navigation modes.
+"""Generate 04_MODES.svg — a reference page for the EXTEND navigation modes.
 
 This is NOT a keymap-drawer layer; it's a hand-built table page that mirrors the
 "Navigation modes" section of the README, styled to match the Direction A look of
@@ -8,7 +8,7 @@ shadows). build_pdf.sh runs this and rasterises the result into the PDFs as the
 page after 03_ADJUST. Edit the data tables below to change the page.
 """
 
-# ── Direction A palette (kept in sync with 02_FAVS.yml's svg_extra_style) ──────
+# ── Direction A palette (kept in sync with 02_EXTEND.yml's svg_extra_style) ──────
 PAPER  = "#faf8f4"
 INK    = "#36322e"   # default text
 MUTED  = "#8a8076"   # secondary text
@@ -21,7 +21,7 @@ MONO   = "SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace"
 # Per-mode accent colours (fill = key tint, stroke = border, ink = legend text)
 MODES = [
     {"name": "Navigation", "tag": "base",  "fill": "#dbe9f8", "stroke": "#6b97c9", "ink": "#2f5a86",
-     "trig": "FAVS layer",   "engage": "Hold the FAVS key", "exit": "Release (or Layer Lock)"},
+     "trig": "EXTEND layer",   "engage": "Hold the EXTEND key", "exit": "Release (or Layer Lock)"},
     {"name": "Select",     "tag": "Sl⊙",   "fill": "#d9ecec", "stroke": "#0d8b8b", "ink": "#0d7c7c",
      "trig": "tap Sl⊙",      "engage": "Tap — toggle",      "exit": "Tap again / Esc"},
     {"name": "Delete",     "tag": "Dl⊙",   "fill": "#f7ddd9", "stroke": "#c25f54", "ink": "#bb554a",
@@ -87,7 +87,7 @@ add(f'<style>text{{font-family:{SANS};fill:{INK};}}</style>')
 add(f'<text x="{MX}" y="50" font-size="26" font-weight="600" '
     f'letter-spacing="1.2" fill="{TITLE}">Navigation modes</text>')
 add(f'<text x="{MX}" y="78" font-size="13.5" fill="{MUTED}">'
-    'The FAVS layer cursor cluster, with Select / Delete / Tabs sub-modes layered on top.</text>')
+    'The EXTEND layer cursor cluster, with Select / Delete / Tabs sub-modes layered on top.</text>')
 
 # ── mode cards ────────────────────────────────────────────────────────────────
 for i, m in enumerate(MODES):

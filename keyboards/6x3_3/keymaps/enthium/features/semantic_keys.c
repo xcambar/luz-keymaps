@@ -55,14 +55,14 @@ static const semkey_map_t semkey_table[SK_count] = {
     [SK_ndx(SK_LINEBEG)] = {{G(KC_LEFT), KC_NO},          {KC_HOME, KC_NO}},         // Go to beginning of line
     [SK_ndx(SK_LINEEND)] = {{G(KC_RIGHT), KC_NO},         {KC_END, KC_NO}},          // Go to end of line
 
-    // Deletion keys (NAV_DEL sub-layer)
+    // Deletion keys (EXTEND_DEL sub-layer)
     // Line deletions are GUI-tuned; shells use their own bindings (Ctrl-U / Ctrl-K)
     [SK_ndx(SK_DELWORDPRV)] = {{LALT(KC_BSPC), KC_NO},    {C(KC_BSPC), KC_NO}},          // Delete word backward
     [SK_ndx(SK_DELWORDNXT)] = {{LALT(KC_DEL), KC_NO},     {C(KC_DEL), KC_NO}},           // Delete word forward
     [SK_ndx(SK_DELLINEBEG)] = {{G(KC_BSPC), KC_NO},       {S(KC_HOME), KC_BSPC, KC_NO}}, // Delete to line beginning
     [SK_ndx(SK_DELLINEEND)] = {{C(KC_K), KC_NO},          {S(KC_END), KC_BSPC, KC_NO}},  // Delete to line end
 
-    // Browser tab management (TABS sub-layer). macOS switch chords are Chrome/Safari positional.
+    // Browser tab management (EXTEND_TABS sub-layer). macOS switch chords are Chrome/Safari positional.
     [SK_ndx(SK_TABNEW)]    = {{G(KC_T), KC_NO},           {C(KC_T), KC_NO}},                  // New tab:    Cmd/Ctrl+T
     [SK_ndx(SK_TABCLOSE)]  = {{G(KC_W), KC_NO},           {C(KC_W), KC_NO}},                  // Close tab:  Cmd/Ctrl+W
     [SK_ndx(SK_TABREOPEN)] = {{G(S(KC_T)), KC_NO},        {C(S(KC_T)), KC_NO}},               // Reopen tab: Cmd/Ctrl+Shift+T

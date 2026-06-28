@@ -31,7 +31,7 @@ Two layouts live in this repository:
 <!-- KEYMAP DRAWER -->
 ![BASE layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/00_BASE.svg)
 ![SYMBOLS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/01_SYMBOLS.svg)
-![FAVS layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_FAVS.svg)
+![EXTEND layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/02_EXTEND.svg)
 ![ADJUST layer](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/03_ADJUST.svg)
 <!-- END KEYMAP DRAWER -->
 ![Navigation modes](./keyboards/6x3_3/keymaps/crafted/keymap_drawer/04_MODES.svg)
@@ -49,11 +49,11 @@ Two layouts live in this repository:
 <details>
 <summary><strong>Navigation modes</strong></summary>
 
-FAVS cursor layer + Select / Delete / Tabs sub-modes
+EXTEND cursor layer + Select / Delete / Tabs sub-modes
 
 <!-- BEGIN NAV TABLE -->
 
-| Key | Navigation (FAVS layer) | Select (tap Sl⊙) | Delete (hold Dl⊙) | Tabs (hold tab key) |
+| Key | Navigation (EXTEND layer) | Select (tap Sl⊙) | Delete (hold Dl⊙) | Tabs (hold tab key) |
 |-----|------|------|------|------|
 | ◀ | Char left | Select char left | Backspace | Previous tab |
 | ▶ | Char right | Select char right | Forward-delete | Next tab |

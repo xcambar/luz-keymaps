@@ -33,28 +33,28 @@ Placeholder: Returns `KC_NO` (does nothing)
 ## Usage
 
 ### Basic Usage
-1. Hold **FAVS** layer (bottom right thumb key)
+1. Hold **EXTEND** layer (bottom right thumb key)
 2. Press an accent key from the top row (Q/W/E/R/T positions)
-3. Release FAVS
+3. Release EXTEND
 4. Type the letter you want to accent
 
 ### Examples
 
 **Type "café":**
-- `c` `a` `f` `[FAVS + Q]` `e` → café
+- `c` `a` `f` `[EXTEND + Q]` `e` → café
 
 **Type "naïve":**
-- `n` `a` `[FAVS + R]` `i` `v` `e` → naïve
+- `n` `a` `[EXTEND + R]` `i` `v` `e` → naïve
 
 **Type "señor":**
-- `s` `e` `[FAVS + T]` `n` `o` `r` → señor
+- `s` `e` `[EXTEND + T]` `n` `o` `r` → señor
 
 ## Keymap Placement
 
 Dead keys are on the top row of the SYMBOLS layer:
 
 ```
-SYMBOLS Layer (accessed via FAVS):
+SYMBOLS Layer (accessed via EXTEND):
 ┌───┬───┬───┬───┬───┬───┐
 │   │ ´ │ ` │ ^ │ ¨ │ ~ │
 │   │ Q │ W │ E │ R │ T │

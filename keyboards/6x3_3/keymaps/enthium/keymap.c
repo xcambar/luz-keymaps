@@ -7,7 +7,7 @@
  *
  * Unlike crafted, this keymap hosts a SINGLE base layout, so the `_XX_`
  * position-macro indirection (the layouts headers) is dropped — the BASE keycodes are
- * written inline below. Everything else (FAVS / SYMBOLS / NAV_DEL / TABS /
+ * written inline below. Everything else (EXTEND / SYMBOLS / EXTEND_DEL / EXTEND_TABS /
  * ADJUST, compose, semantic + dead keys, OS control, the SY_* symbol set) is
  * shared verbatim with crafted.
  *
@@ -56,14 +56,8 @@
 // OS control for platform-aware features
 #include "features/os_control.h"
 
-enum layers {
-    BASE = 0,
-    FAVS,
-    SYMBOLS,
-    NAV_DEL,
-    TABS,
-    ADJUST
-};
+// Luz shared layer model (BASE + EXTEND/SYMBOLS + EXTEND_DEL/EXTEND_TABS/ADJUST)
+#include "luz/layers.h"
 
 // Include semantic keys header
 #include "features/semantic_keys.h"
@@ -120,10 +114,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_Z,    KC_P,    KC_D,    KC_L,         KC_X,                           SY_EQL,  KC_U,         KC_O,    KC_Y,    KC_Q,    KC_NO,
         KC_W,    KC_S,    KC_N,    KC_T,    LGUI_T(KC_H), KC_K,                           SY_MINS, RGUI_T(KC_E), KC_A,    KC_I,    KC_C,    KC_B,
         KC_TAB,  KC_V,    LALT_T(KC_F), LGUI_T(KC_G), LCTL_T(KC_M), KC_J,                 SY_SLSH, SY_QUOT_MODTAP, SY_DOT_MODTAP, SY_COMM_MODTAP, SY_COLN, KC_BSPC,
-                                            KC_R,    KC_LSFT, MO(FAVS),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ESC
+                                            KC_R,    KC_LSFT, MO(EXTEND),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ESC
     ),
      /*
-      * FAVS Layer - Favorite shortcuts and navigation (shared with crafted)
+      * EXTEND Layer - Favorite shortcuts and navigation (shared with crafted)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
@@ -133,9 +127,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
       * Thumbs ▽ = base Esc / Shift / Space / R (36/37/40/41)
       */
-    [FAVS] = LAYOUT_split_3x6_3(
+    [EXTEND] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  KC_NO,   MO(NAV_DEL), MO(TABS),  SEL_LATCH,  SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
+        KC_ESC,  KC_NO,   MO(EXTEND_DEL), MO(EXTEND_TABS),  SEL_LATCH,  SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
         _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, QK_LLCK,                            KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   KC_NO,
                                             _______, _______, KC_NO,                  _______, _______, _______
     ),
@@ -160,25 +154,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   _______, _______, _______,                  KC_NO,   _______, _______
     ),
      /*
-      * NAV_DEL Layer - deletion sub-layer, active only while Dl⊙ is held on FAVS (shared)
+      * EXTEND_DEL Layer - deletion sub-layer, active only while Dl⊙ is held on EXTEND (shared)
       */
-    [NAV_DEL] = LAYOUT_split_3x6_3(
+    [EXTEND_DEL] = LAYOUT_split_3x6_3(
         _______, _______, _______, _______, _______, _______,                            _______, SK_DELLINEBEG, _______, SK_DELLINEEND, _______, _______,
         _______, _______, _______, XXXXXXX, XXXXXXX, _______,                            _______, KC_BSPC, _______, KC_DEL,  _______, _______,
         _______, _______, _______, _______, _______, XXXXXXX,                            _______, SK_DELWORDPRV, _______, SK_DELWORDNXT, _______, _______,
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * TABS Layer - browser tab management, active only while the trigger is held on FAVS (shared)
+      * EXTEND_TABS Layer - browser tab management, active only while the trigger is held on EXTEND (shared)
       */
-    [TABS] = LAYOUT_split_3x6_3(
+    [EXTEND_TABS] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,    SK_TABNEW, KC_NO,     KC_NO,   KC_NO,
         KC_NO,   KC_NO,   KC_NO,   _______, KC_NO,   KC_NO,                              KC_NO,   SK_TABLEFT, SK_TABCLOSE, SK_TABRIGHT, KC_NO, KC_NO,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   SK_HISTPRV, SK_TABREOPEN, SK_HISTNXT, KC_NO, KC_NO,
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * ADJUST Layer - tri-layer: hold both inner thumbs (FAVS + SYMBOLS) (shared with crafted)
+      * ADJUST Layer - tri-layer: hold both inner thumbs (EXTEND + SYMBOLS) (shared with crafted)
       */
     [ADJUST] = LAYOUT_split_3x6_3(
         KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_NO,
@@ -194,7 +188,7 @@ static bool compose_pending = false;
 // Swapper state
 static bool sw_win_active = false;
 
-// Select latch state: real Shift, scoped to the FAVS layer
+// Select latch state: real Shift, scoped to the EXTEND layer
 static bool sel_latch_active = false;
 
 static void sel_latch_off(void) {
@@ -205,11 +199,11 @@ static void sel_latch_off(void) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    // ADJUST tri-layer: active while both FAVS and SYMBOLS are held
-    state = update_tri_layer_state(state, FAVS, SYMBOLS, ADJUST);
+    // ADJUST tri-layer: active while both EXTEND and SYMBOLS are held
+    state = update_tri_layer_state(state, EXTEND, SYMBOLS, ADJUST);
 
-    // Latch lifecycle: released on leaving FAVS; delete hold (NAV_DEL) wins over select
-    if (!layer_state_cmp(state, FAVS) || layer_state_cmp(state, NAV_DEL)) {
+    // Latch lifecycle: released on leaving EXTEND; delete hold (EXTEND_DEL) wins over select
+    if (!layer_state_cmp(state, EXTEND) || layer_state_cmp(state, EXTEND_DEL)) {
         sel_latch_off();
     }
     return state;

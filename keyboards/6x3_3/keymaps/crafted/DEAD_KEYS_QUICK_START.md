@@ -7,9 +7,9 @@ Dead keys let you type accented characters by pressing an accent key followed by
 ## Quick Reference
 
 ### How to Use
-1. **Hold FAVS layer** (bottom right thumb key)
+1. **Hold EXTEND layer** (bottom right thumb key)
 2. **Press an accent key** from the top row
-3. **Release FAVS layer**
+3. **Release EXTEND layer**
 4. **Type the letter** you want to accent
 
 ### Available Accents
@@ -36,11 +36,11 @@ Hold **Shift** while typing the letter:
 
 ## Common Words Examples
 
-- **café**: c a f `[FAVS + Q]` e
-- **naïve**: n a `[FAVS + R]` i v e
-- **señor**: s e `[FAVS + T]` n o r
-- **crème**: c r `[FAVS + W]` e m e
-- **Zürich**: Shift+Z `[FAVS + R]` Shift+u r i c h
+- **café**: c a f `[EXTEND + Q]` e
+- **naïve**: n a `[EXTEND + R]` i v e
+- **señor**: s e `[EXTEND + T]` n o r
+- **crème**: c r `[EXTEND + W]` e m e
+- **Zürich**: Shift+Z `[EXTEND + R]` Shift+u r i c h
 
 ## Platform Setup
 

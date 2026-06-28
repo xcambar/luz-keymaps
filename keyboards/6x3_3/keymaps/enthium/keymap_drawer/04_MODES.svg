@@ -3,12 +3,12 @@
 <rect x="0" y="0" width="100%" height="100%" fill="#faf8f4"/>
 <style>text{font-family:'Source Sans 3','Source Sans Pro',sans-serif;fill:#36322e;}</style>
 <text x="40" y="50" font-size="26" font-weight="600" letter-spacing="1.2" fill="#5a5048">Navigation modes</text>
-<text x="40" y="78" font-size="13.5" fill="#8a8076">The FAVS layer cursor cluster, with Select / Delete / Tabs sub-modes layered on top.</text>
+<text x="40" y="78" font-size="13.5" fill="#8a8076">The EXTEND layer cursor cluster, with Select / Delete / Tabs sub-modes layered on top.</text>
 <rect x="41.5" y="100.5" width="213.0" height="92" rx="8" ry="8" fill="#3a2f25" opacity="0.10" filter="url(#sh)"/>
 <rect x="40.0" y="98" width="213.0" height="92" rx="8" ry="8" fill="#dbe9f8" stroke="#6b97c9" stroke-width="1.3"/>
 <text x="56.0" y="126" font-size="17" font-weight="700" fill="#2f5a86">Navigation</text>
 <text x="239.0" y="125" font-size="12.5" font-style="italic" text-anchor="end" fill="#2f5a86">base</text>
-<text x="56.0" y="151" font-size="12.5" fill="#36322e"><tspan font-weight="600">Engage</tspan>  Hold the FAVS key</text>
+<text x="56.0" y="151" font-size="12.5" fill="#36322e"><tspan font-weight="600">Engage</tspan>  Hold the EXTEND key</text>
 <text x="56.0" y="171" font-size="12.5" fill="#8a8076"><tspan font-weight="600">Exit</tspan>  Release (or Layer Lock)</text>
 <rect x="270.5" y="100.5" width="213.0" height="92" rx="8" ry="8" fill="#3a2f25" opacity="0.10" filter="url(#sh)"/>
 <rect x="269.0" y="98" width="213.0" height="92" rx="8" ry="8" fill="#d9ecec" stroke="#0d8b8b" stroke-width="1.3"/>
