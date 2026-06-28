@@ -21,7 +21,7 @@
 
 #include "features/semantic_keys.h"
 #include "features/dead_keys.h"
-#include "features/symbols.h"
+#include "luz/symbols.h"
 
 // Custom keycodes for the xavier keymap
 enum custom_keycodes {

@@ -1,37 +1,49 @@
-// Symbol keycodes — one unified set, defined by a single table
+// Luz — shared symbol set
+// ----------------------------------------------------------------------------
+// Canonical file at keyboards/6x3_3/luz/symbols.h, symlinked into each Luz
+// variant's keymap directory and #included by its custom_keycodes.h / keymap.c.
+// See LUZ.md (repo root) for the prose spec.
+//
+// The symbol VOCABULARY and BEHAVIOR are a Luz contract, shared verbatim by every
+// variant so muscle memory transfers. What stays per-layout is PLACEMENT — which
+// symbols are privileged onto BASE positions and how the SYMBOLS field is arranged.
+// Placement lives in each keymap.c, not here.
 //
 // Every symbol is a custom keycode (SY_*) whose output comes entirely from a pair
-// of key overrides: the unshifted glyph when no shift is held, a related shifted
-// glyph when shift is held. The overrides are live on ALL layers (~0), so a symbol
-// works wherever it is physically placed — nothing else gates it.
+// of key overrides: the unshifted glyph when no shift is held, a RELATED shifted
+// glyph when shift is held (e.g. ( -> <, { -> [, = -> +). The overrides are live on
+// ALL layers (~0), so a symbol works wherever it is physically placed — nothing
+// else gates it.
 //
 // SYMBOL_TABLE below is the single source of truth: one row per symbol listing the
 // shifted partner. The unshifted output is always KC_<NAME>, so both the keycode
 // enum (custom_keycodes.h) and the key_overrides[] array (keymap.c) are generated
-// from it — add a symbol by adding one row. Names therefore match their unshifted
-// keycode (e.g. SY_LCBR for `{` = KC_LCBR, not SY_LBRC).
+// from it — add a symbol by adding one row, and it appears in every variant. Names
+// therefore match their unshifted keycode (e.g. SY_LCBR for `{` = KC_LCBR, not SY_LBRC).
 //
-// "Privileged" symbols are simply the ones assigned to a base-layer position; the
-// rest are reached on the SYMBOLS layer. Privilege is a placement choice.
-//
-// Exception: base positions 32/33 (`,` `.`) are mod-tap homes (RGUI_T/RALT_T on
-// plain KC_COMM/KC_DOT), so their `?`/`!` shift can't ride a key override — a
-// mod-tap never taps a custom keycode. SYM_MODTAP_SHIFT (below) supplies it from
-// process_record_user, reading the same SY_COMM_SHIFTED/SY_DOT_SHIFTED the table does.
+// Mod-tap exception: a variant may place a symbol on a BASE mod-tap position (e.g.
+// `'`/`,`/`.` on a home-/bottom-row mod-tap). A mod-tap's tap is a plain basic
+// keycode, so it can't ride a key override for its shifted partner — SYM_MODTAP_SHIFT
+// (below) supplies it from process_record_user instead, reading the same
+// SY_*_SHIFTED constants the table uses. WHICH symbols sit on mod-taps (and thus
+// which SYM_MODTAP_SHIFT cases / SY_*_MODTAP defines exist) is a per-layout choice
+// in keymap.c. The three punctuation symbols that can take that role have their
+// shifted partner named below so both the table row and the handler read one define.
 
 #pragma once
 
 #include <stdint.h>
 #include "quantum.h"
 
-// Shifted partners for the , / . mod-taps — named so both the table row and the
-// SYM_MODTAP_SHIFT handler in process_record_user read one definition.
+// Shifted partners for the punctuation symbols that may live on a mod-tap — named
+// so both the table row and the SYM_MODTAP_SHIFT handler read one definition.
+#define SY_QUOT_SHIFTED KC_DQUO   // ' → "
 #define SY_COMM_SHIFTED KC_QUES   // , → ?
 #define SY_DOT_SHIFTED  KC_EXLM   // . → !
 
 // The symbol set: X(NAME, shifted). Unshifted output is always KC_<NAME>.
 #define SYMBOL_TABLE(X)                       \
-    X(QUOT, KC_DQUO)          /* ' -> " */    \
+    X(QUOT, SY_QUOT_SHIFTED)  /* ' -> " */    \
     X(MINS, KC_UNDS)          /* - -> _ */    \
     X(SLSH, KC_PIPE)          /* / -> | */    \
     X(COMM, SY_COMM_SHIFTED)  /* , -> ? */    \

@@ -73,12 +73,77 @@ it; renaming a layer happens in one file.
 
 ---
 
+## The shared symbol set
+
+Symbols are split the same way the layers are: the **vocabulary and behavior** are a Luz
+contract shared verbatim, while **placement** is where each variant keeps its character.
+The shared half lives in [`keyboards/6x3_3/luz/symbols.h`](keyboards/6x3_3/luz/symbols.h)
+(symlinked into each variant, like `layers.h`); placement lives in each `keymap.c`.
+
+### Shared (the contract)
+
+- **A single canonical set of symbol keycodes** (`SY_*`), defined by one table
+  (`SYMBOL_TABLE`) that is the only source of truth. Each row generates both the keycode
+  enum and the key-override array — add a symbol in one place and it exists in every
+  variant.
+- **Related-shift pairing.** Every symbol's unshifted glyph is `KC_<NAME>`; its Shift
+  yields a *related* symbol rather than the QWERTY default — `(`→`<`, `{`→`[`, `=`→`+`,
+  `&`→`*`, `,`→`?`, … This pairing is the muscle-memory-transferable part of Luz.
+- **All-layer override scope.** The unshifted/shifted behavior is delivered by key
+  overrides live on every layer (`~0`), so a symbol behaves identically wherever it is
+  physically placed — nothing gates it by layer.
+- **Mod-tap shift handling.** A variant may place a punctuation symbol on a BASE mod-tap;
+  since a mod-tap's tap can't ride a key override, `SYM_MODTAP_SHIFT` supplies the shifted
+  partner from `process_record_user`, reading the same `SY_*_SHIFTED` constants the table
+  uses. The mechanism is shared; *which* symbols sit on mod-taps is per-layout.
+
+### The pairs
+
+The canonical set — 16 symbols, each `tap` → `shift`. This is the whole contract; adding or
+removing a row here changes every variant.
+
+| Keycode    | Tap | Shift | | Keycode    | Tap | Shift |
+|------------|-----|-------|-|------------|-----|-------|
+| `SY_QUOT`  | `'` | `"`   | | `SY_EQL`   | `=` | `+`   |
+| `SY_MINS`  | `-` | `_`   | | `SY_DLR`   | `$` | `%`   |
+| `SY_SLSH`  | `/` | `\|`  | | `SY_AMPR`  | `&` | `*`   |
+| `SY_COMM`  | `,` | `?`   | | `SY_BSLS`  | `\` | `^`   |
+| `SY_DOT`   | `.` | `!`   | | `SY_LPRN`  | `(` | `<`   |
+| `SY_AT`    | `@` | `#`   | | `SY_RPRN`  | `)` | `>`   |
+| `SY_GRV`   | `` ` `` | `~` | | `SY_LCBR`  | `{` | `[`   |
+|            |     |       | | `SY_RCBR`  | `}` | `]`   |
+|            |     |       | | `SY_COLN`  | `:` | `;`   |
+
+Notes on the pairing logic: brackets group by kind so an unshifted glyph and its shifted
+partner are the same *kind* of bracket (`(`/`<`, `{`/`[`, `}`/`]`); `:`/`;` and `-`/`_`
+keep the two glyphs that share a physical key on a standard layout together; the rest pair a
+symbol with a visually or semantically adjacent one (`=`/`+`, `&`/`*`, `@`/`#`, `` ` ``/`~`).
+
+### Per-layout (placement) — and the principles that govern it
+
+Placement differs between variants because each alpha layout frees up different positions
+(and Enthium mirrors the hands), so the same symbol set is arranged differently. Placement
+is free, but governed by these Luz **principles**:
+
+1. **Privileged symbols sit on BASE positions; the rest live on SYMBOLS.** "Privileged" is
+   purely a placement choice — the high-frequency punctuation a variant wants without a
+   layer hold.
+2. **Numpad on the left hand** (on SYMBOLS), keeping the right hand free for the mouse.
+3. **Opening brackets on the index column**, with bracket pairs kept visually together
+   (open over open, close over close).
+4. **Symbols arranged by frequency** within the SYMBOLS field.
+5. **Cross-layer consistency still applies:** a symbol that appears on both BASE and
+   SYMBOLS sits at the same position on each.
+
+---
+
 ## Status
 
-- [x] **Layer model** — enum, naming, activation, structural rules (this document).
+- [x] **Layer model** — enum, naming, activation, structural rules.
+- [x] **Symbol set** — shared `SY_*` vocabulary + behavior (`luz/symbols.h`); placement
+  per-layout under shared principles.
 - [ ] Homerow / bottom-row mods
 - [ ] Thumb cluster contract
-- [ ] Symbols system
 - [ ] Combos (Compose, …)
 - [ ] Navigation cluster + sub-mode design
 

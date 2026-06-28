@@ -43,7 +43,7 @@
 #include "features/dead_keys.h"
 
 // Include symbol keycodes header
-#include "features/symbols.h"
+#include "luz/symbols.h"
 
 // Combo indices — must match key_combos[] order exactly
 enum combo_events {
@@ -58,7 +58,7 @@ combo_t key_combos[] = {
 
 // Key Overrides — generated from SYMBOL_TABLE (one unshifted/shifted pair per
 // symbol, on all layers). The table and the SY_*_SHIFTED constants it references
-// live in features/symbols.h; add a symbol there, not here.
+// live in luz/symbols.h; add a symbol there, not here.
 const key_override_t* key_overrides[] = {
     SYMBOL_TABLE(SYM_OVR)
     NULL
@@ -79,7 +79,7 @@ static const uint16_t gui_morph_r = RGUI_T(_19_);
 
 // Mod-tap keycodes for the , / . base positions (32/33), named for SYM_MODTAP_SHIFT
 // (symbols.h). Must equal what the BASE keymap places there so the generated case
-// labels match; the shifted glyphs (SY_*_SHIFTED) live in features/symbols.h.
+// labels match; the shifted glyphs (SY_*_SHIFTED) live in luz/symbols.h.
 #define SY_COMM_MODTAP RGUI_T(_32_KC)
 #define SY_DOT_MODTAP  RALT_T(_33_KC)
 
