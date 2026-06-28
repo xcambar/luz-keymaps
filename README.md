@@ -4,10 +4,11 @@
 
 Keymaps for **3x6+3** keyboards.
 
-Two layouts live in this repository: 
+A few keymaps live in this repository:
 
 - **`zen`**, a minimal QWERTY fallback (3 layers, no custom features)
 - **`crafted`**, is my daily driver, described below.
+- **`enthium`** (WIP), the same conventions as `crafted` ported onto the Enthium layout.
 
 ## The `crafted` keymap
 
