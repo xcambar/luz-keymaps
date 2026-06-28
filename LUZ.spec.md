@@ -25,9 +25,10 @@ Everything above BASE is Luz, and is shared verbatim.
 
 This is the first and load-bearing Luz convention: a fixed set of six layers with fixed
 roles, ordering, and activation. The enum is defined once, in the canonical shared header
-[`keyboards/6x3_3/luz/layers.h`](keyboards/6x3_3/luz/layers.h), which is symlinked into
-each variant's keymap directory and `#include`d by its `keymap.c`. No variant redefines
-it; renaming a layer happens in one file.
+[`keyboards/6x3_3/luz/layers.h`](keyboards/6x3_3/luz/layers.h). Each variant's `rules.mk`
+adds the shared dir's parent to the include path (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`)
+and `#include`s it as `"luz/layers.h"`. No variant redefines the enum; renaming a layer
+happens in one file.
 
 | # | Layer         | Role                                            | Activation                                  | Shared |
 |---|---------------|-------------------------------------------------|---------------------------------------------|--------|
@@ -82,7 +83,7 @@ it; renaming a layer happens in one file.
 Symbols are split the same way the layers are: the **vocabulary and behavior** are a Luz
 contract shared verbatim, while **placement** is where each variant keeps its character.
 The shared half lives in [`keyboards/6x3_3/luz/symbols.h`](keyboards/6x3_3/luz/symbols.h)
-(symlinked into each variant, like `layers.h`); placement lives in each `keymap.c`.
+(on the include path, like `layers.h`); placement lives in each `keymap.c`.
 
 ### Shared (the contract)
 
@@ -186,7 +187,7 @@ Modifiers are placed by **position, not by letter** — every variant carries th
 the same physical key, so chording for shortcuts is identical muscle memory across layouts.
 The only thing that changes per layout is the alpha under each mod, which is just BASE. The
 positional, shareable parts live in
-[`keyboards/6x3_3/luz/mods.h`](keyboards/6x3_3/luz/mods.h) (symlinked, like `layers.h`).
+[`keyboards/6x3_3/luz/mods.h`](keyboards/6x3_3/luz/mods.h) (on the include path, like `layers.h`).
 
 ### The scheme
 

@@ -1,8 +1,9 @@
 // Luz — shared mod system
 // ----------------------------------------------------------------------------
-// Canonical file at keyboards/6x3_3/luz/mods.h, symlinked into each Luz variant's
-// keymap directory and #included by its keymap.c. See LUZ.md (repo root) for the
-// prose spec.
+// Canonical file at keyboards/6x3_3/luz/mods.h, shared by every Luz variant. Each
+// variant's rules.mk puts this dir's parent on the include path
+// (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`), so keymap.c can `#include "luz/mods.h"`.
+// See LUZ.md (repo root) for the prose spec.
 //
 // The MOD PLACEMENT and BEHAVIOR are a Luz contract: every variant carries the same
 // modifier on the same physical position, so chording for shortcuts is identical
