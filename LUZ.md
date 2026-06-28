@@ -146,7 +146,7 @@ keystroke*. Being able to write accents, diacritics and other common symbols is 
 ### How it works
 
 - **Arming:** tap the two **middle thumbs together** — `Shift` (pos 37) + `Space` (pos 40).
-  This is the only combo in Luz (see *Why a combo* below). It sets a one-shot "compose
+  This is the only combo in Luz. It sets a one-shot "compose
   pending" state; the thumbs otherwise remain plain Shift and Space.
 - **Consuming:** the next key picks the result, then compose disarms:
 
@@ -176,13 +176,53 @@ verbatim (the handler is byte-identical between variants).
 
 ---
 
+## The mod system
+
+Modifiers are placed by **position, not by letter** — every variant carries the same mod on
+the same physical key, so chording for shortcuts is identical muscle memory across layouts.
+The only thing that changes per layout is the alpha under each mod, which is just BASE. The
+positional, shareable parts live in
+[`keyboards/6x3_3/luz/mods.h`](keyboards/6x3_3/luz/mods.h) (symlinked, like `layers.h`).
+
+### The scheme
+
+- **Bottom-row mod-taps**, mirrored `Alt – GUI – Ctrl` from the outer column inward: left
+  `26=Alt 27=GUI 28=Ctrl`, right `31=Ctrl 32=GUI 33=Alt`. Keeping the full trio off the home
+  row leaves the home keys clean for typing.
+- **Home-row index morph** (pos 16 / 19): a GUI mod-tap that is the unified **Cmd/Ctrl
+  shortcut key** — GUI on macOS, **Ctrl on Linux** (the hold is rewritten by
+  `LUZ_INDEX_GUI_MORPH`). This is what makes `⌘C`/`^C` and friends the same chord on both OSes.
+- **Thumbs carry no bottom-row-style mod-taps**; the only thumb modifier is plain `Shift` (37).
+
+### Shared (the contract) → `luz/mods.h`
+
+- **Chordal Hold handedness array** (`chordal_hold_layout`) — purely positional (`L`/`R`/`*`,
+  thumbs exempt), so it is defined once here and identical for every variant.
+- **The Cmd/Ctrl morph** — `LUZ_INDEX_GUI_MORPH(keycode, record, morph_l, morph_r)`, a macro
+  that expands inside `process_record_user` (same idiom as `SYM_MODTAP_SHIFT`): on a non-macOS
+  platform it registers Ctrl for the held index morph keys. The per-layout `morph_l`/`morph_r`
+  snapshots stay in `keymap.c` because they wrap that layout's index letter.
+- **Tap-hold tuning** (in each `config.h`, identical, part of the contract): `TAPPING_TERM 240`,
+  `CHORDAL_HOLD`, `PERMISSIVE_HOLD`, `FLOW_TAP_TERM 150`. Chordal Hold's opposite-hands rule
+  prevents same-hand roll misfires; Flow Tap suppresses holds during fast typing bursts.
+
+### Per-layout
+
+Only the letters under the mods — i.e. nothing but BASE. A variant must place its alphas so the
+mod *positions* above still hold (index morph on the index home keys; the Alt/GUI/Ctrl trio on
+the bottom row). Enthium mirrors the hands, but because the scheme is itself mirror-symmetric,
+every letter keeps the same modifier under the opposite hand.
+
+---
+
 ## Status
 
 - [x] **Layer model** — enum, naming, activation, structural rules.
 - [x] **Symbol set** — shared `SY_*` vocabulary + behavior (`luz/symbols.h`); placement
   per-layout under shared principles.
 - [x] **Compose** — chord-armed dead-key/diacritic system; the sole Luz combo + the combo rules.
-- [ ] Homerow / bottom-row mods
+- [x] **Mod system** — positional mod placement; shared Chordal Hold + Cmd/Ctrl morph
+  (`luz/mods.h`); tap-hold tuning contract.
 - [ ] Thumb cluster contract
 - [ ] Navigation cluster + sub-mode design
 

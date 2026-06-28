@@ -64,14 +64,8 @@ const key_override_t* key_overrides[] = {
     NULL
 };
 
-// Chordal Hold handedness: 'L'=left, 'R'=right, '*'=exempt (thumbs)
-const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
-    LAYOUT_split_3x6_3(
-        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
-        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
-        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
-                       '*', '*', '*',  '*', '*', '*'
-    );
+// Luz shared mod system: chordal_hold_layout (positional) + LUZ_INDEX_GUI_MORPH
+#include "luz/mods.h"
 
 // Snapshot the home-row index morph keycodes (preprocessor expands _16_/_19_ here)
 static const uint16_t gui_morph_l = LGUI_T(_16_);
@@ -312,17 +306,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
 
     // OS morph: home-row index mod-taps (positions 16/19) use GUI on macOS, Ctrl on Linux
-    // On macOS, LGUI_T/RGUI_T hold behavior is correct as-is; on Linux, swap to Ctrl
-    if (get_os_platform() != OS_MacOS && !record->tap.count) {
-        if (keycode == gui_morph_l) {
-            if (record->event.pressed) register_code(KC_LCTL); else unregister_code(KC_LCTL);
-            return false;
-        }
-        if (keycode == gui_morph_r) {
-            if (record->event.pressed) register_code(KC_RCTL); else unregister_code(KC_RCTL);
-            return false;
-        }
-    }
+    LUZ_INDEX_GUI_MORPH(keycode, record, gui_morph_l, gui_morph_r);
 
     switch (keycode) {
         case SEL_LATCH:
