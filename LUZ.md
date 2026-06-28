@@ -137,14 +137,53 @@ is free, but governed by these Luz **principles**:
 
 ---
 
+## Compose
+
+Luz produces accented and special characters through a **Compose** mechanism rather than
+through extra layers or per-glyph keys. It is *armed by a chord and consumed by the next
+keystroke*. Being able to write accents, diacritics and other common symbols is treated as a first-class concern of the framework.
+
+### How it works
+
+- **Arming:** tap the two **middle thumbs together** — `Shift` (pos 37) + `Space` (pos 40).
+  This is the only combo in Luz (see *Why a combo* below). It sets a one-shot "compose
+  pending" state; the thumbs otherwise remain plain Shift and Space.
+- **Consuming:** the next key picks the result, then compose disarms:
+
+  | Key | Result |        | Key | Result |
+  |-----|--------|--------|-----|--------|
+  | `E` | acute — `é`     || `C` | `ç` |
+  | `A` | grave — `à`     || `N` | `ñ` |
+  | `U` | diaeresis — `ü` || `W` | `€` |
+  | `O` | circumflex — `ô`|| `Esc` | cancel |
+
+  `E`/`A`/`U`/`O` emit **dead keys** (the accent then combines with the next letter, so
+  `compose → E → a` gives `á`); `C`/`N`/`W` emit the character directly. **Plain modifiers
+  don't consume compose**, so a held Shift still composes — `compose → Shift+E → a` →
+  `Á`. **Any unmapped key passes through unchanged**, disarming compose.
+
+Compose covers the high-frequency accents; the long tail it deliberately omits (e.g. `ß`)
+stays reachable through **`RAlt` (AltGr) on the bottom-row mods**, which produces the OS
+layout's AltGr characters directly — so nothing is locked out, Compose just fast-paths the
+common cases.
+
+### Why mnemonics, not positions
+
+The handler matches on **letter keycodes** (`KC_E`, `KC_A`, …), not physical positions. The
+mnemonics are chosen by meaning — **E** for the most common acute, **C** for cedilla — so they are identical across every variant even
+though those letters sit at different positions in each layout. Compose behavior is shared
+verbatim (the handler is byte-identical between variants).
+
+---
+
 ## Status
 
 - [x] **Layer model** — enum, naming, activation, structural rules.
 - [x] **Symbol set** — shared `SY_*` vocabulary + behavior (`luz/symbols.h`); placement
   per-layout under shared principles.
+- [x] **Compose** — chord-armed dead-key/diacritic system; the sole Luz combo + the combo rules.
 - [ ] Homerow / bottom-row mods
 - [ ] Thumb cluster contract
-- [ ] Combos (Compose, …)
 - [ ] Navigation cluster + sub-mode design
 
 Each convention, as it is defined, is backed by shared code where practical (a shared
