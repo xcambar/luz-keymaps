@@ -215,6 +215,60 @@ every letter keeps the same modifier under the opposite hand.
 
 ---
 
+## The thumb cluster — *deliberately not a convention*
+
+Luz imposes **nothing** on the thumb cluster beyond what other conventions already require:
+the layer model pins the two inner thumbs (EXTEND on the left inner, SYMBOLS layer-tap on the
+right inner), and the mod system puts a plain `Shift` on one thumb. Everything else — the outer
+thumbs especially — is **free per variant**. Crafted uses `Esc`/`Enter` on the outer thumbs;
+Enthium puts `R` on a thumb to free a base slot and moves `Esc` accordingly. That divergence is
+intended, not drift: the thumbs are where a layout spends its spare keys, so Luz leaves them open.
+
+---
+
+## The navigation cluster
+
+EXTEND's **right hand is a modifier-free navigation cluster**; its **left hand hosts the
+controls** and the launch points for three sub-modes. Luz fixes the cluster's *shape* and the
+sub-mode *behavior*; the commands that fill them are **suggested, not imposed** (see below).
+
+### The cluster (shape — the convention)
+
+- **WASD-style inverted-T arrows** on the right hand (`↑` + `← ↓ →`), kept **modifier-free** —
+  no home-row/oneshot mods on the nav layer, so motions stay bare cursor keys (this matters for
+  terminal simultaneity and clean mouse-gesture interplay).
+- **Magnitude grows away from the home row:** character motion on the home arms, **line** motion
+  on the row above (flanking `↑`), **word** motion on the row below; **paging** as a vertical
+  pair on the inner column. Distance from home reads as distance moved.
+
+### The sub-modes (behavior — the convention)
+
+Three sub-modes launch from EXTEND's left home row and **reuse the very same right-hand cursor
+cluster**, layering a role onto a spatial vocabulary you already know:
+
+1. **Select — tap-latch.** Tap `Sl⊙` to hold a real Shift scoped to EXTEND; every cursor motion
+   now extends a selection. Tap again, press `Esc`, or leave EXTEND to release. A *latch*, not a
+   hold, so both hands stay free.
+2. **Delete — hold-only.** Hold `Dl⊙` for the `EXTEND_DEL` sub-layer. Vim-like operator grammar:
+   **row = granularity** (line / char / word), each deletion sitting on the motion it consumes.
+   EXTEND's motions and clipboard stay live underneath via transparency.
+3. **Tabs — hold-only.** Hold the tab trigger for `EXTEND_TABS`: browser tab management on the
+   same inverted-T — index column = tab lifecycle (new / close / reopen), home-row arms = switch,
+   plus history back/forward.
+
+Rules: Delete and Tabs are **hold-only** (momentary, never latched — a destructive or contextual
+mode can't be left on by accident); the sub-modes are **mutually exclusive** (a delete hold wins
+over the select latch, and the latch drops on leaving EXTEND).
+
+### Suggested, not imposed
+
+What *fills* the cluster — the `SK_*` semantic keys (OS-aware clipboard, line/word motion,
+deletions, tab actions) — is a **suggested default set, not a requirement**. A variant may swap
+them, and every **free/empty EXTEND position is open for per-layout functions**. Luz fixes the
+cluster's geometry and the sub-mode mechanics; what rides on top is the layout's to choose.
+
+---
+
 ## Status
 
 - [x] **Layer model** — enum, naming, activation, structural rules.
@@ -223,9 +277,13 @@ every letter keeps the same modifier under the opposite hand.
 - [x] **Compose** — chord-armed dead-key/diacritic system; the sole Luz combo + the combo rules.
 - [x] **Mod system** — positional mod placement; shared Chordal Hold + Cmd/Ctrl morph
   (`luz/mods.h`); tap-hold tuning contract.
-- [ ] Thumb cluster contract
-- [ ] Navigation cluster + sub-mode design
+- [x] **Navigation cluster** — modifier-free inverted-T + three reuse-the-cluster sub-modes
+  (Select latch / Delete hold / Tabs hold); fills are suggested, not imposed.
+- [x] **Thumb cluster** — *decided non-convention:* deliberately free per variant.
 
-Each convention, as it is defined, is backed by shared code where practical (a shared
-header, a shared feature file) and documented here as the authority. Where a convention
-cannot yet be shared as code, this document is the contract the variants are kept against.
+Conventions take whichever form fits them. Some are backed by shared code (`luz/layers.h`,
+`luz/symbols.h`, `luz/mods.h`) so drift is impossible. Others are documentation contracts by
+design — the navigation cluster fixes a *shape and behavior* but deliberately leaves the fill
+to each variant, so imposing code would remove intended latitude. And some things, like the
+thumb cluster, are deliberately left free. In every case this document is the authority the
+variants are kept against.
