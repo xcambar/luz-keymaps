@@ -2,7 +2,7 @@
 // ----------------------------------------------------------------------------
 // This header is the SINGLE SOURCE OF TRUTH for the Luz layer set. It is the
 // canonical file at keyboards/6x3_3/luz/layers.h, symlinked into each Luz
-// variant's keymap directory (crafted = Luz for Gallium, enthium = Luz for
+// variant's keymap directory (luz_for_gallium = Luz for Gallium, luz_for_enthium = Luz for
 // Enthium) and #included by their keymap.c.
 //
 // See LUZ.md (repo root) for the prose spec. The rules in brief:

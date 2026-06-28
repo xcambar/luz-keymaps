@@ -1,14 +1,14 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["kaly/kaly42", "crafted"],
+        ["kaly/kaly42", "luz_for_gallium"],
         ["kaly/kaly42", "zen"],
-        ["kaly/kaly42", "enthium"],
-        ["42keebs/cantor_pro/v3/left", "crafted"],
-        ["42keebs/cantor_pro/v3/right", "crafted"],
+        ["kaly/kaly42", "luz_for_enthium"],
+        ["42keebs/cantor_pro/v3/left", "luz_for_gallium"],
+        ["42keebs/cantor_pro/v3/right", "luz_for_gallium"],
         ["42keebs/cantor_pro/v3/left", "zen"],
         ["42keebs/cantor_pro/v3/right", "zen"],
-        ["42keebs/cantor_pro/v3/left", "enthium"],
-        ["42keebs/cantor_pro/v3/right", "enthium"]
+        ["42keebs/cantor_pro/v3/left", "luz_for_enthium"],
+        ["42keebs/cantor_pro/v3/right", "luz_for_enthium"]
     ]
 }

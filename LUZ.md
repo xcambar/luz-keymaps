@@ -24,8 +24,8 @@ So Luz isn't itself a layout; it's the *frame* a layout drops into. Each concret
 
 | Variant | Letters | Keymap |
 |---------|---------|--------|
-| **Luz for Gallium** | Gallium East | [`crafted`](./keyboards/6x3_3/keymaps/crafted/README.md) — the daily driver |
-| **Luz for Enthium** | Enthium | [`enthium`](./keyboards/6x3_3/keymaps/enthium/README.md) — work in progress |
+| **Luz for Gallium** | Gallium East | [`luz_for_gallium`](./keyboards/6x3_3/keymaps/luz_for_gallium/README.md) — the daily driver |
+| **Luz for Enthium** | Enthium | [`luz_for_enthium`](./keyboards/6x3_3/keymaps/luz_for_enthium/README.md) — work in progress |
 
 ## What you get, everywhere
 
@@ -75,6 +75,6 @@ No half-measures, because half-measures are what break muscle memory.
 ## Going deeper
 
 - [`LUZ.spec.md`](./LUZ.spec.md) — the exact contract: every layer, keycode, position, and rule.
-- The variant READMEs ([crafted](./keyboards/6x3_3/keymaps/crafted/README.md),
-  [enthium](./keyboards/6x3_3/keymaps/enthium/README.md)) — diagrams and specifics per layout.
+- The variant READMEs ([luz_for_gallium](./keyboards/6x3_3/keymaps/luz_for_gallium/README.md),
+  [luz_for_enthium](./keyboards/6x3_3/keymaps/luz_for_enthium/README.md)) — diagrams and specifics per layout.
 - [`keyboards/6x3_3/luz/`](./keyboards/6x3_3/luz/) — the shared code the variants compile against.

@@ -1,10 +1,10 @@
-# `crafted` — Luz for Gallium
+# Luz for Gallium
 
-`crafted` is my daily-driver keymap: the [Luz](../../../../LUZ.md) conventions on the
+`luz_for_gallium` is my daily-driver keymap: the [Luz](../../../../LUZ.md) conventions on the
 **Gallium East** alpha layout, built to be easy to memorize and low on cognitive overhead.
 
 The shared interaction model — layers, mods, symbols, Compose, navigation — is documented
-in [`LUZ.md`](../../../../LUZ.md). This page covers what's specific to `crafted`.
+in [`LUZ.md`](../../../../LUZ.md). This page covers what's specific to `luz_for_gallium`.
 
 ## Main features
 
@@ -28,7 +28,7 @@ in [`LUZ.md`](../../../../LUZ.md). This page covers what's specific to `crafted`
 ![Compose & diacritics](./keymap_drawer/05_DIACRITICS.svg)
 
 > [!NOTE]
-> A printable PDF lives at [`keymap_drawer/crafted.pdf`](./keymap_drawer/crafted.pdf).
+> A printable PDF lives at [`keymap_drawer/luz_for_gallium.pdf`](./keymap_drawer/luz_for_gallium.pdf).
 
 ## Reference tables
 
@@ -89,6 +89,6 @@ Armed from the **base layer** with Shift + Space. Dead keys wait for a base lett
 ## Building
 
 ```bash
-qmk compile -kb kaly/kaly42 -km crafted
-qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted
+qmk compile -kb kaly/kaly42 -km luz_for_gallium
+qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
 ```

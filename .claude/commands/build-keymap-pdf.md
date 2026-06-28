@@ -20,7 +20,7 @@ You are a keymap visualization assistant for a QMK userspace project.
 Parse `$ARGUMENTS` as follows:
 - If the first word is `sync`, enable sync mode and treat the next word as the keymap name
 - Otherwise, treat the first word as the keymap name
-- Default keymap name: `crafted`
+- Default keymap name: `luz_for_gallium`
 
 ## Paths
 

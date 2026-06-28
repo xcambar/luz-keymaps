@@ -13,27 +13,37 @@ Keymaps live in `keyboards/6x3_3/keymaps/` and are symlinked to both keyboards:
 
 ```
 keyboards/6x3_3/keymaps/
-├── crafted/    # Feature-rich keymap (dead keys, semantic keys, alt symbols, mod morphs, etc.)
-└── zen/        # Minimal QWERTY keymap (3 layers: BASE, CODE, NAV)
+├── luz_for_gallium/   # Luz for Gallium (the daily driver; dead keys, semantic keys, symbols, etc.)
+├── luz_for_enthium/   # Luz for Enthium (WIP; same Luz conventions on the Enthium layout)
+└── zen/               # Minimal QWERTY keymap (3 layers: BASE, CODE, NAV)
 
+# kaly symlinks each keymap individually:
 keyboards/kaly/kaly42/keymaps/
-├── crafted -> ../../../6x3_3/keymaps/crafted
+├── luz_for_gallium -> ../../../6x3_3/keymaps/luz_for_gallium
+├── luz_for_enthium -> ../../../6x3_3/keymaps/luz_for_enthium
 └── zen -> ../../../6x3_3/keymaps/zen
 
-keyboards/42keebs/cantor_pro/v3/left/keymaps/
-├── crafted -> ../../../../../6x3_3/keymaps/crafted
-└── zen -> ../../../../../6x3_3/keymaps/zen
+# cantor symlinks the WHOLE keymaps dir (so it picks up all of them):
+keyboards/42keebs/cantor_pro/v3/{left,right}/keymaps -> ../../../../6x3_3/keymaps
 ```
+
+Note: QMK forbids hyphens in keymap names, so the dirs use underscores (`luz_for_gallium`),
+while the human-facing name is "Luz for Gallium".
 
 ### Build Configuration (`qmk.json`)
 ```json
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["kaly/kaly42", "crafted"],
+        ["kaly/kaly42", "luz_for_gallium"],
         ["kaly/kaly42", "zen"],
-        ["42keebs/cantor_pro/v3/left", "crafted"],
-        ["42keebs/cantor_pro/v3/left", "zen"]
+        ["kaly/kaly42", "luz_for_enthium"],
+        ["42keebs/cantor_pro/v3/left", "luz_for_gallium"],
+        ["42keebs/cantor_pro/v3/right", "luz_for_gallium"],
+        ["42keebs/cantor_pro/v3/left", "zen"],
+        ["42keebs/cantor_pro/v3/right", "zen"],
+        ["42keebs/cantor_pro/v3/left", "luz_for_enthium"],
+        ["42keebs/cantor_pro/v3/right", "luz_for_enthium"]
     ]
 }
 ```
@@ -47,9 +57,9 @@ qmk userspace-compile
 
 Build a single target:
 ```sh
-qmk compile -kb kaly/kaly42 -km crafted
+qmk compile -kb kaly/kaly42 -km luz_for_gallium
 qmk compile -kb kaly/kaly42 -km zen
-qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted
+qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
 qmk compile -kb 42keebs/cantor_pro/v3/left -km zen
 ```
 

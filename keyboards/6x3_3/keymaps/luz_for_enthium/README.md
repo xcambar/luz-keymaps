@@ -1,7 +1,7 @@
-# `enthium` — Luz for Enthium *(WIP)*
+# Luz for Enthium *(WIP)*
 
-`enthium` ports the [Luz](../../../../LUZ.md) conventions onto the **Enthium** alpha layout,
-with the hands mirrored. Everything above BASE is shared with `crafted`; only the alpha layer
+`luz_for_enthium` ports the [Luz](../../../../LUZ.md) conventions onto the **Enthium** alpha layout,
+with the hands mirrored. Everything above BASE is shared with `luz_for_gallium`; only the alpha layer
 differs. See [`LUZ.md`](../../../../LUZ.md) for the shared interaction model.
 
 > [!NOTE]
@@ -19,14 +19,14 @@ differs. See [`LUZ.md`](../../../../LUZ.md) for the shared interaction model.
 ![Compose & diacritics](./keymap_drawer/05_DIACRITICS.svg)
 
 > [!NOTE]
-> A printable PDF lives at [`keymap_drawer/enthium.pdf`](./keymap_drawer/enthium.pdf).
+> A printable PDF lives at [`keymap_drawer/luz_for_enthium.pdf`](./keymap_drawer/luz_for_enthium.pdf).
 
 ## Reference tables
 
 > [!NOTE]
 > Searchable, greppable text twins of the diagrams above. Auto-generated from
 > `keymap_drawer/make_*_page.py`. The navigation and Compose behavior is shared Luz, so these
-> match `crafted`.
+> match `luz_for_gallium`.
 
 <details>
 <summary><strong>Navigation modes</strong></summary>
@@ -81,6 +81,6 @@ Armed from the **base layer** with Shift + Space. Dead keys wait for a base lett
 ## Building
 
 ```bash
-qmk compile -kb kaly/kaly42 -km enthium
-qmk compile -kb 42keebs/cantor_pro/v3/left -km enthium
+qmk compile -kb kaly/kaly42 -km luz_for_enthium
+qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_enthium
 ```

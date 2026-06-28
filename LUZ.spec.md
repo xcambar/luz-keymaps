@@ -13,8 +13,8 @@ Luz ships as layout-specific **variants**:
 
 | Variant            | Layout       | Keymap directory                      |
 |--------------------|--------------|----------------------------------------|
-| **Luz for Gallium**| Gallium East | `keyboards/6x3_3/keymaps/crafted`      |
-| **Luz for Enthium**| Enthium      | `keyboards/6x3_3/keymaps/enthium`      |
+| **Luz for Gallium**| Gallium East | `keyboards/6x3_3/keymaps/luz_for_gallium`      |
+| **Luz for Enthium**| Enthium      | `keyboards/6x3_3/keymaps/luz_for_enthium`      |
 
 A *variant* differs from every other variant in exactly one place: **layer 0 (BASE)**.
 Everything above BASE is Luz, and is shared verbatim.

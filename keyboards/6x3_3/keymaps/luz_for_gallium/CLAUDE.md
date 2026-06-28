@@ -14,8 +14,8 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
    and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
 4. **Build**: run `./build_pdf.sh` from `keymap_drawer/` — it iterates `[0-9]*.yml`,
-   producing one committed SVG per file plus merged landscape-A4 `crafted.pdf` (color) +
-   `crafted_print.pdf` (flat B/W). PNGs are rendered only into the build temp dir as PDF
+   producing one committed SVG per file plus merged landscape-A4 `luz_for_gallium.pdf` (color) +
+   `luz_for_gallium_print.pdf` (flat B/W). PNGs are rendered only into the build temp dir as PDF
    intermediates (not committed). **Deps: Inkscape + Source Sans 3 font** (color path).
 
    The YAML CSS is only the *palette/semantics* source. The build layers two post-processes
@@ -159,4 +159,4 @@ block carried in every YAML):
 
 After any sync, run `./build_pdf.sh` and confirm it completes; visually check changed
 SVGs. The firmware itself is verified separately with
-`qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted`.
+`qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium`.

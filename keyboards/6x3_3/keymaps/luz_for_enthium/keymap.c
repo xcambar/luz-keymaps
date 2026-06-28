@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 /*
- * Enthium keymap — a fork of `crafted` for the Enthium alpha layout.
+ * Enthium keymap — a fork of `luz_for_gallium` for the Enthium alpha layout.
  * https://github.com/sunaku/enthium
  *
- * Unlike crafted, this keymap hosts a SINGLE base layout, so the `_XX_`
+ * Unlike luz_for_gallium, this keymap hosts a SINGLE base layout, so the `_XX_`
  * position-macro indirection (the layouts headers) is dropped — the BASE keycodes are
  * written inline below. Everything else (EXTEND / SYMBOLS / EXTEND_DEL / EXTEND_TABS /
  * ADJUST, compose, semantic + dead keys, OS control, the SY_* symbol set) is
- * shared verbatim with crafted.
+ * shared verbatim with luz_for_gallium.
  *
  * Enthium base layout, with the two main (alpha/symbol) clusters MIRRORED left<->right
  * (each of the 3 main rows reversed) — finger roles are preserved, the hands just trade
@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_R,    KC_LSFT, MO(EXTEND),               LT(SYMBOLS, KC_ENT), KC_SPC,  KC_ESC
     ),
      /*
-      * EXTEND Layer - Favorite shortcuts and navigation (shared with crafted)
+      * EXTEND Layer - Favorite shortcuts and navigation (shared with luz_for_gallium)
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,                  _______, _______, _______
     ),
      /*
-      * ADJUST Layer - tri-layer: hold both inner thumbs (EXTEND + SYMBOLS) (shared with crafted)
+      * ADJUST Layer - tri-layer: hold both inner thumbs (EXTEND + SYMBOLS) (shared with luz_for_gallium)
       */
     [ADJUST] = LAYOUT_split_3x6_3(
         KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_NO,

@@ -11,12 +11,9 @@ while each layout keeps its own alphas. It ships as layout-specific *variants*. 
 
 | Keymap | What it is | Details |
 |--------|------------|---------|
-| **`crafted`** | My daily driver — Luz on the **Gallium East** layout | [crafted README](./keyboards/6x3_3/keymaps/crafted/README.md) |
-| **`enthium`** *(WIP)* | Luz on the **Enthium** layout | [enthium README](./keyboards/6x3_3/keymaps/enthium/README.md) |
+| **`luz_for_gallium`** | My daily driver — Luz on the **Gallium East** layout | [luz_for_gallium README](./keyboards/6x3_3/keymaps/luz_for_gallium/README.md) |
+| **`luz_for_enthium`** *(WIP)* | Luz on the **Enthium** layout | [luz_for_enthium README](./keyboards/6x3_3/keymaps/luz_for_enthium/README.md) |
 | **`zen`** | A minimal QWERTY fallback (3 layers, no custom features) | — |
-
-> [!IMPORTANT]
-> By design, the top-left and top-right keys are never used — they're too uncomfortable to reach.
 
 ## Building
 
@@ -30,7 +27,7 @@ I have run these keymaps on:
 Build a single target, or all of them at once:
 
 ```bash
-qmk compile -kb 42keebs/cantor_pro/v3/left -km crafted
+qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
 qmk userspace-compile
 ```
 
