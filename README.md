@@ -1,4 +1,4 @@
-# Luz — a complete keymap for 3x6+3 split keyboards
+# Luz — keymap conventions for 3x6+3 keyboards
 
 ![](./header.jpeg)
 
@@ -40,6 +40,22 @@ The diagram below is the **Luz for Gallium** variant as an illustration:
 
 ---
 
+## Room to grow
+
+Luz fills the keys you actually need, but it **deliberately leaves blanks** and empty positions on
+several layers. Those are yours: map whatever suits
+your workflow onto them, on any layer, without disturbing the shared frame.
+
+---
+
+## Contributing variants
+
+Luz is built to grow, and **new variants are very welcome.** If your favourite alpha layout (Graphite, Focal, Canary, Colemak-DH…) doesn't have one yet, take the existing variants as working examples to copy, and [`LUZ.spec.md`](./LUZ.spec.md) is the contract a variant follows.
+
+Open an issue to discuss, or send a pull request: community-driven variants are exactly how Luz is meant to spread.
+
+---
+
 ## Building
 
 I have run these keymaps on:
@@ -62,14 +78,6 @@ qmk userspace-compile
 - The variant READMEs ([Luz for Gallium](./keyboards/6x3_3/keymaps/luz_for_gallium/README.md), [Luz for Enthium](./keyboards/6x3_3/keymaps/luz_for_enthium/README.md)) — diagrams and per-layout specifics.
 - [`keyboards/6x3_3/luz/`](./keyboards/6x3_3/luz/) — the shared code the variants compile against.
 
-## Contributing variants
-
-Luz is built to grow, and **new variants are very welcome.** If your favourite alpha layout
-(Graphite, Focal, Canary, Colemak-DH…) doesn't have one yet, most of the work is already done:
-everything above the base layer is shared, so a variant mostly comes down to placing the letters
-and the few layout-specific keys. The existing variants are working examples to copy, and
-[`LUZ.spec.md`](./LUZ.spec.md) is the contract a variant follows. Open an issue to discuss, or
-send a pull request — community-driven variants are exactly how Luz is meant to spread.
 
 ## Inspiration
 
