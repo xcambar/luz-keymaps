@@ -26,7 +26,6 @@
 // Custom keycodes for the xavier keymap
 enum custom_keycodes {
     SW_WIN = SAFE_RANGE,     // Switch window (cmd-tab)
-    SEL_LATCH,               // Shift latch scoped to the EXTEND layer (tap to toggle)
     MD_FENCE,                // Markdown code fence: types ```
     ARROW_OP,                // Tap: ->  Shift: =>
     SW_OS,                   // Toggle OS platform (macOS/Linux)

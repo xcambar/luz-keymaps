@@ -22,8 +22,8 @@ MONO   = "SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace"
 MODES = [
     {"name": "Navigation", "tag": "base",  "fill": "#dbe9f8", "stroke": "#6b97c9", "ink": "#2f5a86",
      "trig": "EXTEND layer",   "engage": "Hold the EXTEND key", "exit": "Release (or Layer Lock)"},
-    {"name": "Select",     "tag": "Sl⊙",   "fill": "#d9ecec", "stroke": "#0d8b8b", "ink": "#0d7c7c",
-     "trig": "tap Sl⊙",      "engage": "Tap — toggle",      "exit": "Tap again / Esc"},
+    {"name": "Select",     "tag": "Sel",   "fill": "#d9ecec", "stroke": "#0d8b8b", "ink": "#0d7c7c",
+     "trig": "hold Sel",     "engage": "Hold",              "exit": "Release (hold-only)"},
     {"name": "Delete",     "tag": "Dl⊙",   "fill": "#f7ddd9", "stroke": "#c25f54", "ink": "#bb554a",
      "trig": "hold Dl⊙",     "engage": "Hold",              "exit": "Release (hold-only)"},
     {"name": "Tabs",       "tag": "hold",  "fill": "#ead9eb", "stroke": "#9a5fa1", "ink": "#8a4f91",
@@ -158,7 +158,7 @@ add(f'<text x="{MX}" y="{ly}" font-size="11.5" fill="{MUTED}">'
     'the key keeps its Navigation behaviour.   '
     'Tab actions are OS-aware (Firefox &amp; Chrome, macOS &amp; Linux).</text>')
 add(f'<text x="{MX}" y="{ly+17}" font-size="11.5" fill="{MUTED}">'
-    'Select and Delete are mutually exclusive — starting a deletion clears an active selection latch.</text>')
+    'Select and Delete are mutually exclusive — while Delete is held the Select key is inert.</text>')
 
 add('</svg>')
 print("\n".join(s))

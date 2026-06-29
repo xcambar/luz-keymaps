@@ -34,7 +34,7 @@ layers:
                   type: nav tabmode mode,
               },
               {
-                  s: toggle,
+                  s: hold,
                   t: $$mdi:selection$$,
                   h: select,
                   type: nav selmode mode,
@@ -78,7 +78,7 @@ draw_config:
         /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
         /* Tier 1 - ambient content categories (default dark text) */
         /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
-           purple = layers, blue = navigation (incl. latches), orange = everything else */
+           purple = layers, blue = navigation, orange = everything else */
         svg.keymap { fill: #36322e; }
         .key.none ret.key { fill: white; }
         .key.none rect.key { fill: white; opacity: 50%; }

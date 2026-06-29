@@ -35,7 +35,7 @@ EXTEND cursor layer + Select / Delete / Tabs sub-modes
 
 <!-- BEGIN NAV TABLE -->
 
-| Key | Navigation (EXTEND layer) | Select (tap Sl⊙) | Delete (hold Dl⊙) | Tabs (hold tab key) |
+| Key | Navigation (EXTEND layer) | Select (hold Sel) | Delete (hold Dl⊙) | Tabs (hold tab key) |
 |-----|------|------|------|------|
 | ◀ | Char left | Select char left | Backspace | Previous tab |
 | ▶ | Char right | Select char right | Forward-delete | Next tab |

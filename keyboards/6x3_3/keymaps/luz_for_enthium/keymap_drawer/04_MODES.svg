@@ -13,9 +13,9 @@
 <rect x="270.5" y="100.5" width="213.0" height="92" rx="8" ry="8" fill="#3a2f25" opacity="0.10" filter="url(#sh)"/>
 <rect x="269.0" y="98" width="213.0" height="92" rx="8" ry="8" fill="#d9ecec" stroke="#0d8b8b" stroke-width="1.3"/>
 <text x="285.0" y="126" font-size="17" font-weight="700" fill="#0d7c7c">Select</text>
-<text x="468.0" y="125" font-size="12.5" font-style="italic" text-anchor="end" fill="#0d7c7c">Sl⊙</text>
-<text x="285.0" y="151" font-size="12.5" fill="#36322e"><tspan font-weight="600">Engage</tspan>  Tap — toggle</text>
-<text x="285.0" y="171" font-size="12.5" fill="#8a8076"><tspan font-weight="600">Exit</tspan>  Tap again / Esc</text>
+<text x="468.0" y="125" font-size="12.5" font-style="italic" text-anchor="end" fill="#0d7c7c">Sel</text>
+<text x="285.0" y="151" font-size="12.5" fill="#36322e"><tspan font-weight="600">Engage</tspan>  Hold</text>
+<text x="285.0" y="171" font-size="12.5" fill="#8a8076"><tspan font-weight="600">Exit</tspan>  Release (hold-only)</text>
 <rect x="499.5" y="100.5" width="213.0" height="92" rx="8" ry="8" fill="#3a2f25" opacity="0.10" filter="url(#sh)"/>
 <rect x="498.0" y="98" width="213.0" height="92" rx="8" ry="8" fill="#f7ddd9" stroke="#c25f54" stroke-width="1.3"/>
 <text x="514.0" y="126" font-size="17" font-weight="700" fill="#bb554a">Delete</text>
@@ -99,5 +99,5 @@
 <text x="637.0" y="538.5" font-size="12.5" text-anchor="middle" fill="#b9b0a6">·</text>
 <text x="839.0" y="538.5" font-size="12.5" text-anchor="middle" fill="#36322e">Reopen tab</text>
 <text x="40" y="573" font-size="11.5" fill="#8a8076"><tspan font-weight="700" fill="#b9b0a6">·</tspan>  no special role in that mode — the key keeps its Navigation behaviour.   Tab actions are OS-aware (Firefox &amp; Chrome, macOS &amp; Linux).</text>
-<text x="40" y="590" font-size="11.5" fill="#8a8076">Select and Delete are mutually exclusive — starting a deletion clears an active selection latch.</text>
+<text x="40" y="590" font-size="11.5" fill="#8a8076">Select and Delete are mutually exclusive — while Delete is held the Select key is inert.</text>
 </svg>

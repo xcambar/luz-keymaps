@@ -91,7 +91,7 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
   ADJUST has two (38 and 39).
 - Mod-taps → `{ t: X, h: Mod, type: modtap }` (e.g., `LALT_T(KC_Q)` → `{ t: Q, h: LAlt, type: modtap }`).
   The `modtap` type highlights **only the hold legend** (key body stays plain); reserve
-  `type: modifier` for keys that are modifiers outright (thumb Shift, SEL_LATCH).
+  `type: modifier` for keys that are modifiers outright (thumb Shift).
 - Shifted-pair symbol customs (`SY_*`) → `{ t: x, s: y, type: symbol }`,
   e.g., `SY_LPRN` → `{ t: "(", s: "<" }`, `SY_SLSH` → `{ t: "/", s: "|" }`
 
@@ -100,7 +100,7 @@ YAML rows: three rows of 12 keys, then a thumb row of 6.
 | Keycode | Rendering |
 |---------|-----------|
 | `SW_WIN` | `$$mdi:swap-horizontal$$`, type system |
-| `SEL_LATCH` | `$$mdi:apple-keyboard-shift$$`, h: "Latch", type modifier |
+| `KC_LSFT` (EXTEND pos 16 = Select) | `s: hold`, `t: $$mdi:selection$$`, `h: select`, type `nav selmode mode` — hold for Select (a plain Shift; the right-hand motions then select). Hold-only, like Delete/Tabs |
 | `MO(EXTEND_DEL)` (EXTEND pos 14) | `$$mdi:backspace-outline$$`, h: "hold", type `nav delhold` (blue bg, coral legend). Trigger for the EXTEND_DEL sub-layer; per-key roles live in the README "Navigation modes" table, **not** as on-key hints |
 | `MO(EXTEND_TABS)` (EXTEND pos 3) | `s: hold`, `t: $$mdi:tab$$`, `h: tabs`, type `nav tabmode mode` — blue `nav` key, purple legends via `.key.tabmode.tap, .key.tabmode.hold, .key.tabmode.shifted { fill: #9a5fa1 }` (legend-position selectors like `delhold`/`selmode` — **not** `:not(rect)`, which the color Inkscape PDF path silently drops), italic "hold" via `.key.mode.shifted`. Trigger for the EXTEND_TABS sub-layer; per-key roles in the README modes table |
 | nav cluster (right hand) | each movement key carries **only** its movement glyph — no corner hints. The Select / Delete / Tabs sub-modes reuse these same positions, but those roles are documented in the README "Navigation modes" table, deliberately **not** as on-key glyphs (keeps the cluster legible). `delhint`/`selhint`/`tabhint` tokens + their CSS were removed when the hints were dropped |

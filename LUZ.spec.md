@@ -58,7 +58,7 @@ happens in one file.
   thumb (38); SYMBOLS is a layer-tap (hold = layer, tap = Enter) on the right inner
   thumb (39).
 - **Sub-layers are hold-only and launched from EXTEND.** `EXTEND_DEL` and `EXTEND_TABS`
-  are momentary — never latched — and mutually exclusive with the EXTEND select latch.
+  are momentary — never latched — and mutually exclusive with the EXTEND Select hold.
   A destructive layer you must actively hold cannot be left on by accident.
 - **`ADJUST` is the tri-layer** (both inner thumbs held → `update_tri_layer_state`) and is
   the **only** bootloader path (`QK_BOOT`).
@@ -251,19 +251,18 @@ sub-mode *behavior*; the commands that fill them are **suggested, not imposed** 
 Three sub-modes launch from EXTEND's left home row and **reuse the very same right-hand cursor
 cluster**, layering a role onto a spatial vocabulary you already know:
 
-1. **Select — tap-latch.** Tap `Sl⊙` to hold a real Shift scoped to EXTEND; every cursor motion
-   now extends a selection. Tap again, press `Esc`, or leave EXTEND to release. A *latch*, not a
-   hold, so both hands stay free.
-2. **Delete — hold-only.** Hold `Dl⊙` for the `EXTEND_DEL` sub-layer. Vim-like operator grammar:
+1. **Select — hold.** Hold `Sel` (a plain Shift on EXTEND's home row) and every cursor motion
+   extends a selection instead of moving; release to stop.
+2. **Delete — hold.** Hold `Dl⊙` for the `EXTEND_DEL` sub-layer. Vim-like operator grammar:
    **row = granularity** (line / char / word), each deletion sitting on the motion it consumes.
    EXTEND's motions and clipboard stay live underneath via transparency.
-3. **Tabs — hold-only.** Hold the tab trigger for `EXTEND_TABS`: browser tab management on the
+3. **Tabs — hold.** Hold the tab trigger for `EXTEND_TABS`: browser tab management on the
    same inverted-T — index column = tab lifecycle (new / close / reopen), home-row arms = switch,
    plus history back/forward.
 
-Rules: Delete and Tabs are **hold-only** (momentary, never latched — a destructive or contextual
-mode can't be left on by accident); the sub-modes are **mutually exclusive** (a delete hold wins
-over the select latch, and the latch drops on leaving EXTEND).
+Rules: all three are **hold-only** (momentary, never latched — a destructive or contextual mode
+can't be left on by accident); they are used **one at a time** — the Delete sub-layer blocks the
+Select and Tabs keys.
 
 ### Suggested, not imposed
 
@@ -283,7 +282,7 @@ cluster's geometry and the sub-mode mechanics; what rides on top is the layout's
 - [x] **Mod system** — positional mod placement; shared Chordal Hold + Cmd/Ctrl morph
   (`luz/mods.h`); tap-hold tuning contract.
 - [x] **Navigation cluster** — modifier-free inverted-T + three reuse-the-cluster sub-modes
-  (Select latch / Delete hold / Tabs hold); fills are suggested, not imposed.
+  (Select / Delete / Tabs — all holds); fills are suggested, not imposed.
 - [x] **Thumb cluster** — *decided non-convention:* deliberately free per variant.
 
 Conventions take whichever form fits them. Some are backed by shared code (`luz/layers.h`,

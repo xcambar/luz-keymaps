@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
       * │   │   │   │   │   │   │       │PgU│L← │ ↑ │L→ │   │   │
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Esc│   │Dl⊙│Tab│Sl⊙│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
+      * │Esc│   │Dl⊙│Tab│Sel│SWn│       │PgD│ ← │ ↓ │ → │   │Del│
       * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
       * │   │Udo│Cut│Cpy│Pst│Lck│       │   │W← │   │W→ │   │   │
       * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [EXTEND] = LAYOUT_split_3x6_3(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,  KC_NO,                              KC_PGUP, SK_LINEBEG, KC_UP, SK_LINEEND, KC_NO,   KC_NO,
-        KC_ESC,  KC_NO,   MO(EXTEND_DEL), MO(EXTEND_TABS),  SEL_LATCH,  SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
+        KC_ESC,  KC_NO,   MO(EXTEND_DEL), MO(EXTEND_TABS),  KC_LSFT,    SW_WIN,                    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_DEL,
         _______, SK_UNDO, SK_CUT,  SK_COPY, SK_PSTE, QK_LLCK,                            KC_NO,   SK_WORDPRV, KC_NO, SK_WORDNXT, KC_NO,   KC_NO,
                                             _______, _______, KC_NO,                  _______, _______, _______
     ),
@@ -182,24 +182,9 @@ static bool compose_pending = false;
 // Swapper state
 static bool sw_win_active = false;
 
-// Select latch state: real Shift, scoped to the EXTEND layer
-static bool sel_latch_active = false;
-
-static void sel_latch_off(void) {
-    if (sel_latch_active) {
-        unregister_code(KC_LSFT);
-        sel_latch_active = false;
-    }
-}
-
 layer_state_t layer_state_set_user(layer_state_t state) {
     // ADJUST tri-layer: active while both EXTEND and SYMBOLS are held
     state = update_tri_layer_state(state, EXTEND, SYMBOLS, ADJUST);
-
-    // Latch lifecycle: released on leaving EXTEND; delete hold (EXTEND_DEL) wins over select
-    if (!layer_state_cmp(state, EXTEND) || layer_state_cmp(state, EXTEND_DEL)) {
-        sel_latch_off();
-    }
     return state;
 }
 
@@ -219,7 +204,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return true;  // plain modifiers don't consume compose (allows shifted accents)
             case KC_ESC:
                 compose_pending = false;
-                sel_latch_off();
                 return false;  // cancel
             case KC_E: compose_pending = false; tap_deadkey_code(DK_ACUTE); return false;
             case KC_A: compose_pending = false; tap_deadkey_code(DK_GRAVE); return false;
@@ -251,24 +235,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     LUZ_INDEX_GUI_MORPH(keycode, record, gui_morph_l, gui_morph_r);
 
     switch (keycode) {
-        case SEL_LATCH:
-            if (record->event.pressed) {
-                if (sel_latch_active) {
-                    sel_latch_off();
-                } else {
-                    register_code(KC_LSFT);
-                    sel_latch_active = true;
-                }
-            }
-            return false;
-
-        case KC_ESC:
-            // Esc bails out of an active selection latch (mirrors oneshot cancel)
-            if (record->event.pressed) {
-                sel_latch_off();
-            }
-            break;
-
         case MD_FENCE:
             if (record->event.pressed) {
                 uint8_t saved = get_mods();
@@ -311,7 +277,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Define keys that should be ignored by swapper (allows changing direction)
 bool is_swapper_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case SEL_LATCH:
         case KC_LSFT:
         case KC_RSFT:
             return true;

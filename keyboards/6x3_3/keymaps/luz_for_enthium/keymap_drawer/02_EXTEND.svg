@@ -153,7 +153,7 @@ path.combo {
 /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
 /* Tier 1 - ambient content categories (default dark text) */
 /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
-   purple = layers, blue = navigation (incl. latches), orange = everything else */
+   purple = layers, blue = navigation, orange = everything else */
 svg.keymap { fill: #36322e; }
 .key.none ret.key { fill: white; }
 .key.none rect.key { fill: white; opacity: 50%; }
@@ -243,7 +243,7 @@ svg.keymap { fill: #36322e; }
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key nav selmode mode"/>
 <use href="#mdi:selection" xlink:href="#mdi:selection" x="-7" y="-7" height="14" width="14.0" class="key nav selmode mode tap glyph mdi:selection"/>
 <text x="0" y="26" class="key nav selmode mode hold">select</text>
-<text x="0" y="-26" class="key nav selmode mode shifted">toggle</text>
+<text x="0" y="-26" class="key nav selmode mode shifted">hold</text>
 </g>
 <g transform="translate(330, 105)" class="key state keypos-17">
 <rect x="-25.2" y="-25.5" width="54" height="54" rx="3" ry="3" fill="#3a2f25" opacity="0.16" filter="url(#sh)"/><rect rx="5" ry="5" x="-28" y="-28" width="56" height="56" class="key state"/>
