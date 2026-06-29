@@ -1,10 +1,10 @@
 # Luz for Gallium
 
-`luz_for_gallium` is my daily-driver keymap: the [Luz](../../../../LUZ.md) conventions on the
+`luz_for_gallium` is my daily-driver keymap: the [Luz](../../../../README.md) conventions on the
 **Gallium East** alpha layout, built to be easy to memorize and low on cognitive overhead.
 
 The shared interaction model — layers, mods, symbols, Compose, navigation — is documented
-in [`LUZ.md`](../../../../LUZ.md). This page covers what's specific to `luz_for_gallium`.
+in [the README](../../../../README.md). This page covers what's specific to `luz_for_gallium`.
 
 ## Main features
 

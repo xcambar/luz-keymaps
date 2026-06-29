@@ -1,8 +1,8 @@
 # Luz for Enthium *(WIP)*
 
-`luz_for_enthium` ports the [Luz](../../../../LUZ.md) conventions onto the **Enthium** alpha layout,
+`luz_for_enthium` ports the [Luz](../../../../README.md) conventions onto the **Enthium** alpha layout,
 with the hands mirrored. Everything above BASE is shared with `luz_for_gallium`; only the alpha layer
-differs. See [`LUZ.md`](../../../../LUZ.md) for the shared interaction model.
+differs. See [the README](../../../../README.md) for the shared interaction model.
 
 > [!NOTE]
 > Work in progress — the layout is still settling, so details here may change.

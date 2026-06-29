@@ -2,7 +2,7 @@
 
 > This is the **precise, implementation-facing spec** — the exact contract each variant is
 > kept against (file paths, macros, positions, rules). For a human-friendly tour of *what Luz
-> is and why*, read [`LUZ.md`](./LUZ.md) first; come here for the details.
+> is and why*, read [the README](./README.md) first; come here for the details.
 
 **Luz** is a framework of shared conventions and features for alternative keyboard
 layouts on the `split_3x6_3` (42-key) form factor. It defines a common interaction
