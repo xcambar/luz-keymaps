@@ -1,0 +1,77 @@
+layout:
+    qmk_keyboard: cantor
+    layout_name: LAYOUT_split_3x6_3
+
+# Generic Luz BASE — the shared furniture every variant carries, with the alpha keys left
+# blank (those are layout-specific). Shows only: the mod-taps (home-row index Cmd/Ctrl +
+# bottom-row Alt/GUI/Ctrl), a plain Shift on the left thumb, and Space on the right thumb.
+layers:
+    "BASE — the Luz frame, on any alpha layout":
+        - [
+              { type: none }, { type: none }, { type: none }, { type: none }, { type: none }, { type: none },
+              { type: none }, { type: none }, { type: none }, { type: none }, { type: none }, { type: none },
+          ]
+        - [
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { h: "⌘/Ctrl", type: modtap },
+              { type: none },
+              { type: none },
+              { h: "⌘/Ctrl", type: modtap },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+          ]
+        - [
+              { type: none },
+              { type: none },
+              { h: Alt, type: modtap },
+              { h: GUI, type: modtap },
+              { h: Ctrl, type: modtap },
+              { type: none },
+              { type: none },
+              { h: Ctrl, type: modtap },
+              { h: GUI, type: modtap },
+              { h: Alt, type: modtap },
+              { type: none },
+              { type: none },
+          ]
+        - [
+              { type: none },
+              { t: $$mdi:apple-keyboard-shift$$, type: modifier },
+              { type: none },
+              { type: none },
+              { t: $$mdi:keyboard-space$$, type: editing },
+              { type: none },
+          ]
+
+draw_config:
+    key_h: 60
+    combo_h: 22
+    arc_scale: 1.0
+    append_colon_to_layer_header: false
+    svg_extra_style: |
+        /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+        /* Tier 1 - ambient content categories (default dark text) */
+        /* Palette: grey = alphas/trans (default), white = unused, green = symbols,
+           purple = layers, blue = navigation (incl. latches), orange = everything else */
+        svg.keymap { fill: #36322e; }
+        .key.none rect.key { fill: #efeae1; stroke: #e3ddd2; }
+        .key.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.layer rect.key { fill: #ead9eb; stroke: #9a5fa1; }
+        .key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
+        .key.nav rect.key { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.delhold.tap, .key.delhold.hold, .key.delhold.shifted { fill: #c25f54; }
+        .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }
+        .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
+        .key.modtap rect.key { fill: #dce8f6; stroke: #7ba0cf; }
+        .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+        .key.held rect.key { fill: url(#stripes); stroke: #999999; }
+        .combo.state rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.shifted { transform: translateY(2px); }
+        .key.hold {transform: translateY(-2px); }

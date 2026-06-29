@@ -1,0 +1,79 @@
+layout:
+    qmk_keyboard: cantor
+    layout_name: LAYOUT_split_3x6_3
+
+# Generic Luz SYMBOLS — the numpad (left) and the symbol field (right). The layer-lock and the
+# layer/transparent thumbs are dropped to blanks, so numbers and symbols stand on their own.
+# Each symbol shows tap (top) and its related Shift partner (below).
+layers:
+    "SYMBOLS — numbers & symbols":
+        - [
+              { type: none },
+              { t: "```", type: symbol },
+              "7",
+              "8",
+              "9",
+              { type: none },
+              { t: "`", s: "~", type: symbol },
+              { t: "{", s: "[", type: symbol },
+              { t: "=", s: "+", type: symbol },
+              { t: "}", s: "]", type: symbol },
+              { t: "'", s: '"', type: symbol },
+              { type: none },
+          ]
+        - [
+              { type: none },
+              "0",
+              "1",
+              "2",
+              "3",
+              { type: none },
+              { t: "\\", s: "^", type: symbol },
+              { t: "(", s: "<", type: symbol },
+              { t: "@", s: "#", type: symbol },
+              { t: ")", s: ">", type: symbol },
+              { t: ":", s: ";", type: symbol },
+              { type: none },
+          ]
+        - [
+              { type: none },
+              { t: "->", s: "=>", type: symbol },
+              "4",
+              "5",
+              "6",
+              { type: none },
+              { t: "$", s: "%", type: symbol },
+              { t: "&", s: "*", type: symbol },
+              { t: ",", s: "?", type: symbol },
+              { t: ".", s: "!", type: symbol },
+              { t: "-", s: "_", type: symbol },
+              { type: none },
+          ]
+        - [
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+              { type: none },
+          ]
+
+draw_config:
+    key_h: 60
+    append_colon_to_layer_header: false
+    svg_extra_style: |
+        /* Two-tier palette: pale fills = content regions (ambient), vivid = behavior */
+        svg.keymap { fill: #36322e; }
+        .key.none rect.key { fill: #efeae1; stroke: #e3ddd2; }
+        .key.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.layer rect.key { fill: #ead9eb; stroke: #9a5fa1; }
+        .key.layer.tap, .key.layer.hold, .key.layer.shifted { fill: #9a5fa1; }
+        .key.nav rect.key { fill: #dbe9f8; stroke: #6b97c9; }
+        .key.editing rect.key, .key.state rect.key, .key.danger rect.key, .key.modifier rect.key { fill: #fdebd9; stroke: #dd9d57; }
+        .key.system rect.key { fill: #f9f0c9; stroke: #cdb94e; }
+        .key.modifier.tap, .key.modifier.hold, .key.modifier.shifted { fill: #b06c1f; }
+        .key.modtap.hold { fill: #4a7ab8; font-weight: bold; }
+        .key.held rect.key { fill: url(#stripes); stroke: #999999; }
+        .combo.symbol rect.key { fill: #e9f5f0; stroke: #bedfd2; }
+        .key.shifted { transform: translateY(2px); }
+        .key.hold {transform: translateY(-2px); }
