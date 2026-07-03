@@ -317,3 +317,11 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;  // any other key ends Caps Word
     }
 }
+
+void suspend_power_down_user(void) {
+    // code will run multiple times while keyboard is suspended
+}
+
+void suspend_wakeup_init_user(void) {
+    // code will run on keyboard wakeup
+}
