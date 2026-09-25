@@ -31,6 +31,12 @@ keyboards/kaly/kaly42/keymaps/
 keyboards/42keebs/cantor_pro/v3/{left,right}/keymaps -> ../../../../6x3_3/keymaps
 ```
 
+Everything the variants share lives once in `keyboards/6x3_3/luz/`: the C features
+(`*.c`/`*.h`), `config.h` and `rules.mk` (each variant's are one-line includes), `luz.h`
+(the shared `keymap.c` body, included after `keymaps[]`), and `keymap_drawer/` (the diagram
+build: `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`). A variant holds only its
+`keymap.c` (`keymaps[]` + position-bound defines), `layouts/`, docs and diagram YAMLs.
+
 Note: QMK forbids hyphens in keymap names, so the dirs use underscores (`luz_for_gallium`),
 while the human-facing name is "Luz for Gallium".
 
