@@ -42,8 +42,9 @@ written for.
 This is the first and load-bearing Luz convention: a fixed set of six layers with fixed
 roles, ordering, and activation. The enum is defined once, in the canonical shared header
 [`keyboards/6x3_3/luz/layers.h`](keyboards/6x3_3/luz/layers.h). Each variant's `rules.mk`
-adds the shared dir's parent to the include path (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`)
-and `#include`s it as `"luz/layers.h"`. No variant redefines the enum; renaming a layer
+includes the shared [`luz/rules.mk`](keyboards/6x3_3/luz/rules.mk), which adds the shared dir's
+parent to the include path (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`), so variants
+`#include` it as `"luz/layers.h"`. No variant redefines the enum; renaming a layer
 happens in one file.
 
 | # | Layer         | Role                                            | Activation                                  | Shared |
@@ -331,7 +332,7 @@ persists for the layer).
   `keymap.c` wires it with two calls: `luz_mod_latch_process()` in `process_record_user` (after
   the morph) and `luz_mod_latch_layer_state()` in `layer_state_set_user` (after the tri-layer
   update). The Layer Lock hook is defined in the header, since it is identical everywhere.
-- **Tap-hold tuning** (in each `config.h`, identical, part of the contract): `TAPPING_TERM 240`,
+- **Tap-hold tuning** (in the shared [`luz/config.h`](keyboards/6x3_3/luz/config.h), part of the contract): `TAPPING_TERM 240`,
   `CHORDAL_HOLD`, `PERMISSIVE_HOLD`, `FLOW_TAP_TERM 150`. Chordal Hold's opposite-hands rule
   prevents same-hand roll misfires; Flow Tap suppresses holds during fast typing bursts.
 

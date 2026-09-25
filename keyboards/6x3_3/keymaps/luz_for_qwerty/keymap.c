@@ -22,16 +22,16 @@
 #include <stdint.h>
 
 // Custom keycodes (must be included before the base layout header)
-#include "custom_keycodes.h"
+#include "luz/custom_keycodes.h"
 
 // Base layout: QWERTY (defines the _XX_ position macros)
 #include "layouts/qwerty.h"
 
 // Callum-style swapper
-#include "features/swapper.h"
+#include "luz/swapper.h"
 
 // OS control for platform-aware features
-#include "features/os_control.h"
+#include "luz/os_control.h"
 
 // Luz shared layer model (BASE + EXTEND/SYMBOLS + EXTEND_DEL/EXTEND_TABS/ADJUST)
 #include "luz/layers.h"
@@ -40,10 +40,10 @@
 #include "luz/compose.h"
 
 // Include semantic keys header
-#include "features/semantic_keys.h"
+#include "luz/semantic_keys.h"
 
 // Include dead keys header
-#include "features/dead_keys.h"
+#include "luz/dead_keys.h"
 
 // Include symbol keycodes header
 #include "luz/symbols.h"

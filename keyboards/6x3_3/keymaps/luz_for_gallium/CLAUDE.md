@@ -8,10 +8,10 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
 
-1. **Read configuration first** — `rules.mk` (`COMBO_ENABLE`) and `config.h`.
+1. **Read configuration first** — `luz/rules.mk` (`COMBO_ENABLE`) and `luz/config.h` (shared, in `keyboards/6x3_3/luz/`).
    Never ask for what these files state.
 2. **Parse `keymap.c`** — `enum layers`, the `LAYOUT_split_3x6_3` blocks, `key_combos[]`,
-   and `enum custom_keycodes` (in `custom_keycodes.h` and feature headers).
+   and `enum custom_keycodes` (in `luz/custom_keycodes.h` and the `luz/` feature headers).
 3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
 4. **Build**: run `./build_pdf.sh` from `keymap_drawer/` — it iterates `[0-9]*.yml`,
    producing one committed SVG per file plus merged landscape-A4 `luz_for_gallium.pdf` (color) +

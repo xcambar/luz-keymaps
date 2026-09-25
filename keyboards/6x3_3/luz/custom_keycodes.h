@@ -19,8 +19,8 @@
 #define X_FIRST(first, ...) first
 #define X_REST(first, ...) __VA_ARGS__
 
-#include "features/semantic_keys.h"
-#include "features/dead_keys.h"
+#include "luz/semantic_keys.h"
+#include "luz/dead_keys.h"
 #include "luz/symbols.h"
 
 // Custom keycodes for the xavier keymap

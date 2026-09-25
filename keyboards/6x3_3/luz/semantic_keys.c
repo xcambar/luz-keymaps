@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-#include "../custom_keycodes.h"  // Must be included before semantic_keys.h
+#include "luz/custom_keycodes.h"  // Must be included before semantic_keys.h
 #include "semantic_keys.h"
 #include "os_control.h"
 
