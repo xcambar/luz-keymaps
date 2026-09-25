@@ -40,18 +40,13 @@ static const semkey_map_t semkey_table[SK_count] = {
     [SK_ndx(SK_COPY)]   = {{G(KC_C), KC_NO},              {C(KC_C), KC_NO}},                    // Copy
     [SK_ndx(SK_PSTE)]   = {{G(KC_V), KC_NO},              {C(KC_V), KC_NO}},                    // Paste
 
-    [SK_ndx(SK_SALL)]   = {{G(KC_A), KC_NO},              {C(KC_A), KC_NO}},                    // Select All
-
     [SK_ndx(SK_EURO)]   = {{LALT(S(KC_2)), KC_NO},        {RALT(KC_EQL), KC_E, KC_NO}},         // Euro (€): Mac: Opt+Shift+2 | Linux: AltGr+=, E
     [SK_ndx(SK_CEDIL)]  = {{LALT(KC_C), KC_NO},           {RALT(KC_COMMA), KC_C, KC_NO}},       // Cedilla (ç): Mac: Opt+C | Linux: AltGr+,, C
-    [SK_ndx(SK_NTILDE)] = {{LALT(KC_N), KC_N, KC_NO},     {RALT(LSFT(KC_GRV)), KC_N, KC_NO}},           // Ñ: Mac: Opt+N, N | Linux: AltGr+~, N
 
     // Navigation keys - taken from HandsDown
     // https://github.com/moutis/HandsDown/blob/ac766b44b1454d72b395ee460bcae9f6fe89a700/moutis_semantickeys.c
     [SK_ndx(SK_WORDPRV)] = {{LALT(KC_LEFT), KC_NO},       {C(KC_LEFT), KC_NO}},      // WORD LEFT
     [SK_ndx(SK_WORDNXT)] = {{LALT(KC_RIGHT), KC_NO},      {C(KC_RIGHT), KC_NO}},     // WORD RIGHT
-    [SK_ndx(SK_DOCBEG)]  = {{G(KC_UP), KC_NO},            {C(KC_HOME), KC_NO}},      // Go to start of document
-    [SK_ndx(SK_DOCEND)]  = {{G(KC_DOWN), KC_NO},          {C(KC_END), KC_NO}},       // Go to end of document
     [SK_ndx(SK_LINEBEG)] = {{G(KC_LEFT), KC_NO},          {KC_HOME, KC_NO}},         // Go to beginning of line
     [SK_ndx(SK_LINEEND)] = {{G(KC_RIGHT), KC_NO},         {KC_END, KC_NO}},          // Go to end of line
 

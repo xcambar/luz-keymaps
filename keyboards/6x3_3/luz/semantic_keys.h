@@ -24,14 +24,10 @@
         SK_CUT, \
         SK_COPY, \
         SK_PSTE, \
-        SK_SALL, \
         SK_EURO, \
         SK_CEDIL, \
-        SK_NTILDE, \
         SK_WORDPRV, \
         SK_WORDNXT, \
-        SK_DOCBEG, \
-        SK_DOCEND, \
         SK_LINEBEG, \
         SK_LINEEND, \
         SK_DELWORDPRV, \
