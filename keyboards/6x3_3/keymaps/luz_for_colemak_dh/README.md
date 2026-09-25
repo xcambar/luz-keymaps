@@ -84,7 +84,7 @@ That tension is a finding about the framework, not a defect in this keymap; see 
 
 > [!NOTE]
 > Searchable, greppable text twins of the diagrams above. Auto-generated from
-> `keymap_drawer/make_*_page.py`.
+> `keyboards/6x3_3/luz/keymap_drawer/make_*_page.py`.
 
 <details>
 <summary><strong>Navigation modes</strong></summary>
@@ -146,5 +146,5 @@ qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_colemak_dh
 Diagrams and PDFs:
 
 ```bash
-cd keymap_drawer && ./build_pdf.sh
+keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh luz_for_colemak_dh   # from the repo root
 ```

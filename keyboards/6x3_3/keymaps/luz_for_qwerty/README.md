@@ -93,7 +93,7 @@ per-variant `TAPPING_TERM` would help, and the config contract currently forbids
 
 > [!NOTE]
 > Searchable, greppable text twins of the diagrams above. Auto-generated from
-> `keymap_drawer/make_*_page.py`.
+> `keyboards/6x3_3/luz/keymap_drawer/make_*_page.py`.
 
 <details>
 <summary><strong>Navigation modes</strong></summary>
@@ -155,5 +155,5 @@ qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_qwerty
 Diagrams and PDFs:
 
 ```bash
-cd keymap_drawer && ./build_pdf.sh
+keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh luz_for_qwerty   # from the repo root
 ```
