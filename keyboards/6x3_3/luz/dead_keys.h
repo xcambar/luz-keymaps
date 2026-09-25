@@ -14,10 +14,7 @@
  * - Platform-independent using Unicode input
  * - Data-driven: accent combinations stored in lookup tables
  *
- * Usage in keymap.c:
- * 1. Include this header after custom_keycodes.h
- * 2. Add dead_keys.c to SRC in rules.mk
- * 3. Call process_dead_key() in process_record_user() BEFORE process_semkey()
+ * Wired in luz/luz.h (process_dead_key() before process_semkey()); built via luz/rules.mk.
  */
 
 // Dead keys list using CUSTOM_KEYCODES macro from custom_keycodes.h

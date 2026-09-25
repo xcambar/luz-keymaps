@@ -183,8 +183,8 @@ keystroke*. Being able to write accents, diacritics and other common symbols is 
   every other Luz convention there is no per-variant half: the mod contract puts a plain
   `KC_LSFT` on 37 and Space on 40 in *every* variant, so the positions, the operands and the
   behaviour are all shared. The combo is declared outright in
-  [`keyboards/6x3_3/luz/compose.h`](keyboards/6x3_3/luz/compose.h); a `keymap.c` only references
-  it.
+  [`keyboards/6x3_3/luz/compose.h`](keyboards/6x3_3/luz/compose.h) and wired in the shared
+  [`luz/luz.h`](keyboards/6x3_3/luz/luz.h).
 
   A combo operand must be a key you never type in sequence with the other operand. Shift
   satisfies that by not being a typed character at all — which is what makes this pair safe,
@@ -325,11 +325,11 @@ persists for the layer).
   thumbs exempt), so it is defined once here and identical for every variant.
 - **The Cmd/Ctrl morph** — `LUZ_MORPH_KEY(keycode, record, key, mod)`, a macro
   that expands inside `process_record_user` (same idiom as `SYM_MODTAP_SHIFT`): on a non-macOS
-  platform it registers Ctrl for the held index morph keys. The per-layout `morph_l`/`morph_r`
-  snapshots stay in `keymap.c` because they wrap that layout's index letter.
+  platform it registers Ctrl for the held index morph keys. The per-layout `LUZ_MORPH_L`/`LUZ_MORPH_R`
+  keycodes are defined in `keymap.c` because they wrap that layout's index letter.
 - **The layer-scoped mod latch** — [`keyboards/6x3_3/luz/mod_latch.h`](keyboards/6x3_3/luz/mod_latch.h),
-  pulled in by `mods.h` because it is part of the mod contract rather than a variant feature. A
-  `keymap.c` wires it with two calls: `luz_mod_latch_process()` in `process_record_user` (after
+  pulled in by `mods.h` because it is part of the mod contract rather than a variant feature. The
+  shared [`luz/luz.h`](keyboards/6x3_3/luz/luz.h) wires it with two calls: `luz_mod_latch_process()` in `process_record_user` (after
   the morph) and `luz_mod_latch_layer_state()` in `layer_state_set_user` (after the tri-layer
   update). The Layer Lock hook is defined in the header, since it is identical everywhere.
 - **Tap-hold tuning** (in the shared [`luz/config.h`](keyboards/6x3_3/luz/config.h), part of the contract): `TAPPING_TERM 240`,
