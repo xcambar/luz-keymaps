@@ -50,10 +50,10 @@ scenarios:
     expect: [[A], []]
 ```
 
-Then:
+Then (keyspec currently lives inside the Luz repository; it installs straight from there):
 
 ```sh
-uvx --from 'git+<this repository>#subdirectory=packages/keyspec' keyspec run
+uvx --from 'git+https://github.com/xcambar/luz-keymaps#subdirectory=packages/keyspec' keyspec run
 # or, from a checkout:   uv run --project path/to/keyspec keyspec run
 ```
 
@@ -197,7 +197,7 @@ pins, position N is a single pin), or hardware in the loop.
     git -C qmk_firmware submodule update --init --depth 1 lib/googletest lib/printf
 - uses: astral-sh/setup-uv@v6
 - run: uv tool install qmk
-- run: uvx --from 'git+<this repository>#subdirectory=packages/keyspec' keyspec run --junit keyspec.xml
+- run: uvx --from 'git+https://github.com/xcambar/luz-keymaps#subdirectory=packages/keyspec' keyspec run --junit keyspec.xml
   env:
     QMK_HOME: ${{ github.workspace }}/qmk_firmware
 ```
