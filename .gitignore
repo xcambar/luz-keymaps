@@ -14,3 +14,7 @@
 compile_commands.json
 .clangd/
 .cache/
+
+# luztest
+__pycache__/
+luztest.xml

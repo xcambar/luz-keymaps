@@ -1,0 +1,17 @@
+# luztest targets: which keymap runs on which keyboard, against which scenarios.
+# The same scenario file can serve several keyboards: positions are Luz positions, and
+# each runner maps them onto that keyboard's own matrix.
+
+runners:
+  qmk:                  # QMK's host unit-test harness (tests/luztest/adapters/qmk.py)
+    # qmk_home: ~/qmk_firmware   # default: $QMK_HOME, then `qmk config user.qmk_home`
+    tolerance_ms: 0     # simulated clock: reports land exactly on time
+    settle_ms: 1000     # keep recording this long after the last step
+
+targets:
+  - keymap: luz_for_qwerty
+    keyboard: kaly/kaly42
+    scenarios: scenarios/luz_for_qwerty.yaml
+  - keymap: luz_for_qwerty
+    keyboard: 42keebs/cantor_pro/v3/left
+    scenarios: scenarios/luz_for_qwerty.yaml

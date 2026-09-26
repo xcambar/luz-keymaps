@@ -1,0 +1,243 @@
+# Luz for QWERTY — behavioural scenarios
+#
+# Runner-agnostic: keys are Luz positions (0-41, see CLAUDE.md), outputs are the USB
+# keyboard reports the host receives. The format is documented in tests/README.md.
+#
+# Position cheat-sheet (BASE):
+#    0 ·   1 Q   2 W   3 E   4 R   5 T   |   6 Y   7 U   8 I   9 O  10 P  11 ·
+#   12 Tab 13 A  14 S  15 D  16 F  17 G/⌘ |  18 H/⌘ 19 J 20 K  21 L  22 '  23 Bsp
+#   24 ·  25 Z  26 X/⌥ 27 C/◆ 28 V/⌃ 29 B |  30 N  31 M/⌃ 32 ,/◆ 33 ./⌥ 34 /  35 -
+#                    36 ·  37 ⇧  38 EXT   |  39 SYM/⏎  40 ␣  41 ·
+# (⌘ = the Cmd/Ctrl morph, ◆ = GUI, ⌥ = Alt, ⌃ = Ctrl)
+
+keymap: luz_for_qwerty
+
+defaults:
+  os: linux     # Luz boots on Linux; `os: macos` flips the OS setting before step 1
+  tap: 10       # ms a `tap` step holds the key (well under TAPPING_TERM = 240)
+
+scenarios:
+
+  # ── BASE: letters, Shift, symbols ────────────────────────────────────────────
+
+  - name: plain letters
+    steps: [{tap: 13}, {tap: 14}]            # a s
+    expect: [[A], [], [S], []]
+
+  - name: shift is a plain modifier on thumb 37
+    steps: [{down: 37}, {tap: 13}, {up: 37}]
+    expect: [[LSFT], [LSFT, A], [LSFT], []]
+
+  - name: base symbol taps its unshifted glyph
+    steps: [{tap: 22}]                       # SY_QUOT
+    expect: [[QUOT], []]
+
+  - name: base symbol shifts to its Luz partner (- becomes _)
+    steps: [{down: 37}, {tap: 35}, {up: 37}]  # Shift + SY_MINS
+    expect: [[LSFT], [LSFT, MINS], [LSFT], []]
+
+  - name: comma mod-tap shifts to ? (SYM_MODTAP_SHIFT)
+    description: >
+      A mod-tap's tap can't ride a key override, so SYM_MODTAP_SHIFT lifts Shift, taps
+      KC_QUES (which re-adds it), and restores it. The mod-tap resolves on release (11 ms).
+    steps: [{down: 37}, {tap: 32}, {up: 37}]
+    expect:
+      - [LSFT]
+      - {report: [], at: 11}    # Shift lifted
+      - [LSFT]                  # KC_QUES = Shift + /
+      - [LSFT, SLSH]
+      - [LSFT]
+      - []
+      - [LSFT]                  # Shift restored: the thumb is still down
+      - []
+
+  # ── Tap-hold: bottom-row mod-taps, Chordal Hold, Flow Tap ────────────────────
+
+  - name: mod-tap tapped quickly is its letter
+    steps: [{tap: 26}]                       # X/Alt
+    expect: [[X], []]
+
+  - name: mod-tap held past TAPPING_TERM becomes its modifier
+    steps: [{down: 26}, {wait: 300}, {up: 26}]
+    expect:
+      - {report: [LALT], at: 240}
+      - []
+
+  - name: cross-hand chord resolves as a hold (permissive hold)
+    description: V/Ctrl held, J tapped inside it on the other hand → Ctrl+J before the term.
+    steps: [{down: 28}, {wait: 20}, {tap: 19}, {up: 28}]
+    expect: [[LCTL], [LCTL, J], [LCTL], []]
+
+  - name: same-hand roll stays two taps (Chordal Hold)
+    description: C/GUI then D on the same hand is typing "cd", never GUI+D.
+    steps: [{down: 27}, {wait: 20}, {down: 15}, {up: 27}, {up: 15}]
+    expect: [[C], [C, D], [D], []]
+
+  - name: fast typing forces a tap (Flow Tap)
+    description: V pressed 50 ms after F is inside FLOW_TAP_TERM, so it is a letter even when held.
+    steps: [{tap: 16}, {wait: 50}, {down: 28}, {wait: 300}, {up: 28}]
+    expect: [[F], [], [V], []]
+
+  # ── Cmd/Ctrl morph ───────────────────────────────────────────────────────────
+
+  - name: morph holds Ctrl on Linux
+    steps: [{down: 17}, {wait: 300}, {tap: 22}, {up: 17}]    # hold G/⌘, tap '
+    expect: [[LCTL], [LCTL, QUOT], [LCTL], []]
+
+  - name: morph holds Cmd on macOS
+    os: macos
+    steps: [{down: 17}, {wait: 300}, {tap: 22}, {up: 17}]
+    expect: [[LGUI], [LGUI, QUOT], [LGUI], []]
+
+  - name: morph tapped is its letter
+    steps: [{tap: 17}]
+    expect: [[G], []]
+
+  # ── Caps Word ────────────────────────────────────────────────────────────────
+
+  - name: double-tap Shift arms Caps Word, which shifts - into _
+    description: >
+      Shift is a Compose combo key, so a lone Shift tap is reported when it is released
+      (10 ms), not pressed. Caps Word then keeps a weak Shift between keys until Space.
+    steps: [{tap: 37}, {tap: 37}, {tap: 13}, {tap: 35}, {tap: 14}, {tap: 40}]  # A _ S, space ends it
+    expect:
+      - {report: [LSFT], at: 10}
+      - []
+      - [LSFT]
+      - []
+      - [LSFT]                  # Caps Word on: weak Shift
+      - [LSFT, A]
+      - [LSFT]
+      - [LSFT, MINS]            # - under Shift is _
+      - [LSFT]
+      - [LSFT, S]
+      - [LSFT]
+      - []                      # Space ends Caps Word
+      - [SPC]
+      - []
+
+  # ── Compose (Shift then Space) ───────────────────────────────────────────────
+
+  - name: compose E sends the dead acute, then e becomes é on the host
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 3}, {tap: 3}]
+    expect: [[RALT], [RALT, QUOT], [RALT], [], [E], []]
+
+  - name: compose C sends ç (Linux compose sequence)
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 27}]
+    expect: [[RALT], [RALT, COMM], [RALT], [], [C], []]
+
+  - name: compose W sends € (Linux compose sequence)
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 2}]
+    expect: [[RALT], [RALT, EQL], [RALT], [], [E], []]
+
+  - name: compose on an unmapped key passes it through
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 20}]
+    expect: [[K], []]
+
+  # ── EXTEND: navigation, selection, editing ───────────────────────────────────
+
+  - name: EXTEND arrows
+    steps: [{down: 38}, {tap: 20}, {tap: 21}, {up: 38}]
+    expect: [[DOWN], [], [RGHT], []]
+
+  - name: word motion is Ctrl+arrow on Linux
+    steps: [{down: 38}, {tap: 31}, {up: 38}]
+    expect: [[LCTL], [LCTL, LEFT], [LCTL], []]
+
+  - name: word motion is Alt+arrow on macOS
+    os: macos
+    steps: [{down: 38}, {tap: 31}, {up: 38}]
+    expect: [[LALT], [LALT, LEFT], [LALT], []]
+
+  - name: select mode shifts the motions
+    steps: [{down: 38}, {down: 16}, {tap: 21}, {up: 16}, {up: 38}]
+    expect: [[LSFT], [LSFT, RGHT], [LSFT], []]
+
+  - name: copy is Ctrl+C on Linux
+    steps: [{down: 38}, {tap: 27}, {up: 38}]
+    expect: [[LCTL], [LCTL, C], [LCTL], []]
+
+  - name: shifted copy morphs into cut
+    steps: [{down: 37}, {down: 38}, {tap: 27}, {up: 38}, {up: 37}]
+    expect: [[LSFT], [LCTL], [LCTL, X], [LCTL], []]   # Shift swapped for Ctrl in one report
+
+  - name: delete sub-layer deletes a word backwards
+    steps: [{down: 38}, {down: 14}, {tap: 31}, {up: 14}, {up: 38}]
+    expect: [[LCTL], [LCTL, BSPC], [LCTL], []]
+
+  - name: tab sub-layer opens a new tab
+    steps: [{down: 38}, {down: 15}, {tap: 8}, {up: 15}, {up: 38}]
+    expect: [[LCTL], [LCTL, T], [LCTL], []]
+
+  - name: window switcher holds GUI across taps
+    steps: [{down: 38}, {tap: 17}, {tap: 17}, {up: 38}]
+    expect: [[LGUI], [LGUI, TAB], [LGUI], [LGUI, TAB], [LGUI], []]
+
+  - name: layer lock keeps EXTEND after the thumb is released
+    steps: [{down: 38}, {tap: 29}, {up: 38}, {tap: 20}]
+    expect: [[DOWN], []]
+
+  # ── SYMBOLS: numpad, symbols, macros ─────────────────────────────────────────
+
+  - name: SYMBOLS thumb tapped alone is Enter
+    steps: [{tap: 39}]
+    expect: [[ENT], []]
+
+  - name: numpad under the SYMBOLS thumb
+    steps: [{down: 39}, {tap: 14}, {tap: 15}, {tap: 16}, {up: 39}]   # 1 2 3
+    expect: [[1], [], [2], [], [3], []]
+
+  - name: SYMBOLS paren and its shifted partner
+    description: >
+      ( is Shift+9, so its key override adds Shift. Since QMK 2026 (process_key_override.c)
+      an override that adds a modifier sends it first and waits 10 ms before the key.
+      The SYMBOLS layer-tap resolves when the paren is released (11 ms, permissive hold).
+    steps: [{down: 39}, {tap: 19}, {down: 37}, {tap: 19}, {up: 37}, {up: 39}]   # ( then <
+    expect:
+      - {report: [LSFT], at: 11}
+      - {report: [LSFT, 9], at: 21}   # (
+      - []
+      - [LSFT]                        # the thumb Shift
+      - [LSFT, COMM]                  # <
+      - [LSFT]
+      - []
+
+  - name: arrow macro types -> and => when shifted
+    steps: [{down: 39}, {tap: 25}, {down: 37}, {tap: 25}, {up: 37}, {up: 39}]
+    expect:
+      - [MINS]                  # -
+      - []
+      - [LSFT]                  # > is Shift + .
+      - [LSFT, DOT]
+      - [LSFT]
+      - []
+      - [LSFT]                  # the thumb Shift, flushed from the combo buffer
+      - [EQL]                   # the macro clears Shift: =
+      - []
+      - [LSFT]                  # >
+      - [LSFT, DOT]
+      - [LSFT]
+      - []
+
+  - name: code fence macro
+    steps: [{down: 39}, {tap: 1}, {up: 39}]
+    expect: [[GRV], [], [GRV], [], [GRV], []]
+
+  - name: modifier latch keeps Alt through SYMBOLS
+    description: Alt held on BASE, SYMBOLS entered, Alt released — Alt stays until SYMBOLS ends.
+    steps: [{down: 26}, {wait: 300}, {down: 39}, {up: 26}, {tap: 14}, {tap: 15}, {up: 39}]
+    expect: [[LALT], [LALT, 1], [LALT], [LALT, 2], [LALT], []]
+
+  # ── ADJUST (both inner thumbs) ───────────────────────────────────────────────
+
+  - name: ADJUST F-keys
+    steps: [{down: 38}, {down: 39}, {tap: 1}, {up: 39}, {up: 38}]
+    expect: [[F1], []]
+
+  - name: ADJUST media keys go out as consumer reports
+    steps: [{down: 38}, {down: 39}, {tap: 19}, {up: 39}, {up: 38}]
+    expect: [{consumer: MUTE}, {consumer: none}]
+
+  - name: switching the OS on ADJUST changes the shortcuts
+    steps: [{down: 38}, {down: 39}, {tap: 13}, {up: 39}, {tap: 27}, {up: 38}]   # OS⇄, then copy
+    expect: [[LGUI], [LGUI, C], [LGUI], []]
