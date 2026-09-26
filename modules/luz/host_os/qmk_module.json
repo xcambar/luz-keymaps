@@ -1,0 +1,20 @@
+{
+    "module_name": "Host OS",
+    "maintainer": "xcambar",
+    "license": "GPL-2.0-or-later",
+    "url": "https://github.com/xcambar/luz-keymaps/tree/main/modules/luz/host_os",
+    "keycodes": [
+        {
+            "key": "COMMUNITY_MODULE_HOST_OS_TOGGLE",
+            "aliases": [
+                "CM_OSTG"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_HOST_OS_PRINT",
+            "aliases": [
+                "CM_OSPR"
+            ]
+        }
+    ]
+}

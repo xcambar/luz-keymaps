@@ -1,0 +1,134 @@
+{
+    "module_name": "Semantic Keys",
+    "maintainer": "xcambar",
+    "license": "GPL-2.0-or-later",
+    "url": "https://github.com/xcambar/luz-keymaps/tree/main/modules/luz/semantic_keys",
+    "keycodes": [
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_UNDO",
+            "aliases": [
+                "CM_UNDO"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_CUT",
+            "aliases": [
+                "CM_CUT"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_COPY",
+            "aliases": [
+                "CM_COPY"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_PASTE",
+            "aliases": [
+                "CM_PSTE"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_EURO",
+            "aliases": [
+                "CM_EURO"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_CEDILLA",
+            "aliases": [
+                "CM_CEDL"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_WORD_PREV",
+            "aliases": [
+                "CM_WPRV"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_WORD_NEXT",
+            "aliases": [
+                "CM_WNXT"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_LINE_BEGIN",
+            "aliases": [
+                "CM_LBEG"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_LINE_END",
+            "aliases": [
+                "CM_LEND"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_DEL_WORD_PREV",
+            "aliases": [
+                "CM_DWBK"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_DEL_WORD_NEXT",
+            "aliases": [
+                "CM_DWFW"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_DEL_LINE_BEGIN",
+            "aliases": [
+                "CM_DLBK"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_DEL_LINE_END",
+            "aliases": [
+                "CM_DLFW"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_TAB_NEW",
+            "aliases": [
+                "CM_TNEW"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_TAB_CLOSE",
+            "aliases": [
+                "CM_TCLS"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_TAB_REOPEN",
+            "aliases": [
+                "CM_TROP"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_TAB_LEFT",
+            "aliases": [
+                "CM_TPRV"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_TAB_RIGHT",
+            "aliases": [
+                "CM_TNXT"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_HISTORY_PREV",
+            "aliases": [
+                "CM_HBCK"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_SEMANTIC_HISTORY_NEXT",
+            "aliases": [
+                "CM_HFWD"
+            ]
+        }
+    ]
+}

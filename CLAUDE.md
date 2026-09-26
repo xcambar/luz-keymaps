@@ -1,5 +1,10 @@
 # QMK Userspace
 
+Luz is documentation-first: the normative definition is the specification in `spec/`
+(chapters, RFC 2119 wording, positions 0-41). The QMK keymaps here are reference
+implementations of it; when code and spec disagree, fix the code (or fix the spec first,
+deliberately). `docs/qmk.md` maps spec chapters to code.
+
 ## Project Structure
 
 Two keyboards share the same `split_3x6_3` (6 columns, 3 rows + 3 thumb keys per side) layout.
@@ -31,14 +36,20 @@ keyboards/kaly/kaly42/keymaps/
 keyboards/42keebs/cantor_pro/v3/{left,right}/keymaps -> ../../../../6x3_3/keymaps
 ```
 
-Everything the variants share lives once in `keyboards/6x3_3/luz/`: the C features
-(`*.c`/`*.h`), `config.h` and `rules.mk` (each variant's are one-line includes), `luz.h`
-(the shared `keymap.c` body, included after `keymaps[]`), and `keymap_drawer/` (the diagram
-build: `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`). A variant holds only its
-`keymap.c` (`keymaps[]` + position-bound defines), `layouts/`, docs and diagram YAMLs.
+Everything the variants share lives once in `keyboards/6x3_3/luz/`: `config.h` and `rules.mk`
+(each variant's are one-line includes), `luz.h` (the shared `keymap.c` body, included after
+`keymaps[]`), the layer/symbol/mod/combo headers, and `keymap_drawer/` (the diagram build:
+`keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`). The OS-aware features are QMK
+community modules in `modules/luz/` (host_os, semantic_keys, dead_keys, compose,
+cmd_ctrl_morph, mod_latch, swapper), listed in each variant's `keymap.json` in processing
+order. A variant holds only its `keymap.c` (`keymaps[]` + position-bound defines),
+`keymap.json`, `layouts/`, docs and diagram YAMLs.
 
-Behavioural tests live in `tests/` (`uv run tests/luztest.py run`; see `tests/README.md`):
-scenarios by key position with the expected USB reports, replayed in QMK's host test harness.
+Local builds need the QMK CLI to see this userspace: `qmk config user.overlay_dir=<repo>`
+(a stale overlay_dir hides it, and module generation then fails with "Module not found").
+
+Behavioural tests live in `tests/` (scenarios + `keyspec.yaml`) and run with keyspec, the
+standalone tool in `packages/keyspec/`: `uv run --project packages/keyspec keyspec -c tests/keyspec.yaml run`.
 
 Note: QMK forbids hyphens in keymap names, so the dirs use underscores (`luz_for_gallium`),
 while the human-facing name is "Luz for Gallium".

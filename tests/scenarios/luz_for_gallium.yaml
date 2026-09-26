@@ -1,0 +1,63 @@
+# Luz for Gallium — variant scenarios
+#
+# What depends on Gallium East's letters and symbol placement. The behaviour shared by every
+# variant is in luz.yaml, which runs alongside this file. Keys are Luz positions (0-41,
+# spec/README.md); outputs are the USB reports the host receives.
+#
+# Position cheat-sheet (BASE):
+#    0 ·   1 B   2 L   3 C   4 D   5 V   |   6 J   7 F   8 O   9 U  10 '  11 ·
+#   12 Tab 13 N  14 R  15 S  16 T  17 G/⌘ |  18 Y/⌘ 19 H 20 E  21 A  22 I  23 Bsp
+#   24 ·  25 X  26 Q/⌥ 27 W/◆ 28 M/⌃ 29 Z |  30 K  31 P/⌃ 32 ,/◆ 33 ./⌥ 34 -  35 /
+#                    36 ·  37 ⇧  38 EXT   |  39 SYM/⏎  40 ␣  41 ·
+
+keymap: luz_for_gallium
+
+defaults:
+  setup: linux
+  tap: 10
+
+scenarios:
+
+  - name: plain letters
+    steps: [{tap: 13}, {tap: 20}]            # n e
+    expect: [[N], [], [E], []]
+
+  - name: base symbol shifts to its Luz partner (' becomes ")
+    steps: [{down: 37}, {tap: 10}, {up: 37}]
+    expect: [[LSFT], [LSFT, QUOT], [LSFT], []]
+
+  - name: comma mod-tap shifts to ?
+    steps: [{down: 37}, {tap: 32}, {up: 37}]
+    expect: [[LSFT], {report: [], at: 11}, [LSFT], [LSFT, SLSH], [LSFT], [], [LSFT], []]
+
+  - name: mod-tap tapped quickly is its letter
+    steps: [{tap: 26}]
+    expect: [[Q], []]
+
+  - name: cross-hand chord resolves as a hold
+    steps: [{down: 28}, {wait: 20}, {tap: 19}, {up: 28}]     # Ctrl + H
+    expect: [[LCTL], [LCTL, H], [LCTL], []]
+
+  - name: same-hand roll stays two taps
+    steps: [{down: 27}, {wait: 20}, {down: 15}, {up: 27}, {up: 15}]   # w s
+    expect: [[W], [W, S], [S], []]
+
+  - name: fast typing forces a tap
+    steps: [{tap: 16}, {wait: 50}, {down: 28}, {wait: 300}, {up: 28}]   # t m
+    expect: [[T], [], [M], []]
+
+  - name: morph holds Ctrl on Linux
+    steps: [{down: 17}, {wait: 300}, {tap: 22}, {up: 17}]    # Ctrl + I
+    expect: [[LCTL], [LCTL, I], [LCTL], []]
+
+  - name: morph tapped is its letter
+    steps: [{tap: 18}]
+    expect: [[Y], []]
+
+  - name: double-tap Shift arms Caps Word, which shifts - into _
+    steps: [{tap: 37}, {tap: 37}, {tap: 13}, {tap: 34}, {tap: 40}]   # N _ space
+    expect: [[LSFT], [], [LSFT], [], [LSFT], [LSFT, N], [LSFT], [LSFT, MINS], [LSFT], [], [SPC], []]
+
+  - name: compose E sends the dead acute
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 20}, {tap: 20}]
+    expect: [[RALT], [RALT, QUOT], [RALT], [], [E], []]

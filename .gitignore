@@ -15,6 +15,7 @@ compile_commands.json
 .clangd/
 .cache/
 
-# luztest
+# keyspec
 __pycache__/
-luztest.xml
+keyspec.xml
+.venv/

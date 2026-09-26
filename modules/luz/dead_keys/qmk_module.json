@@ -1,0 +1,38 @@
+{
+    "module_name": "Dead Keys",
+    "maintainer": "xcambar",
+    "license": "GPL-2.0-or-later",
+    "url": "https://github.com/xcambar/luz-keymaps/tree/main/modules/luz/dead_keys",
+    "keycodes": [
+        {
+            "key": "COMMUNITY_MODULE_DEAD_ACUTE",
+            "aliases": [
+                "CM_ACUT"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_DEAD_GRAVE",
+            "aliases": [
+                "CM_GRAV"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_DEAD_CIRC",
+            "aliases": [
+                "CM_CIRC"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_DEAD_DIAE",
+            "aliases": [
+                "CM_DIAE"
+            ]
+        },
+        {
+            "key": "COMMUNITY_MODULE_DEAD_TILDE",
+            "aliases": [
+                "CM_TILD"
+            ]
+        }
+    ]
+}

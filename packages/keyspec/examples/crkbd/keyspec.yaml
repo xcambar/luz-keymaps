@@ -1,0 +1,10 @@
+# keyspec example: QMK's stock Corne keymap (crkbd/rev1:default), straight from
+# qmk_firmware. Run from this directory:  keyspec run
+userspace: .            # no QMK userspace needed: the keymap lives in qmk_firmware
+runners:
+  qmk:
+    layout: LAYOUT_split_3x6_3
+targets:
+  - keymap: default
+    keyboard: crkbd/rev1
+    scenarios: scenarios.yaml

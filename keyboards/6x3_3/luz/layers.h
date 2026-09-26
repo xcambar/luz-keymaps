@@ -5,7 +5,7 @@
 // Each variant's rules.mk puts this dir's parent on the include path
 // (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`), so keymap.c can `#include "luz/layers.h"`.
 //
-// See LUZ.md (repo root) for the prose spec. The rules in brief:
+// See spec/ (repo root) for the specification. The rules in brief:
 //
 //   - BASE (layer 0) is the ONLY layout-specific layer; it carries the
 //     underlying alpha layout (Gallium East / Enthium). Every layer above BASE

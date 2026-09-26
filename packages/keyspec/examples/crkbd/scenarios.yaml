@@ -1,0 +1,23 @@
+# Positions follow LAYOUT_split_3x6_3's key order:
+#    0  1  2  3  4  5 |  6  7  8  9 10 11
+#   12 13 14 15 16 17 | 18 19 20 21 22 23
+#   24 25 26 27 28 29 | 30 31 32 33 34 35
+#            36 37 38 | 39 40 41
+keymap: default
+scenarios:
+  - name: letters
+    steps: [{tap: 1}, {tap: 13}]            # q a
+    expect: [[Q], [], [A], []]
+
+  - name: shift is the bottom-left key
+    steps: [{down: 24}, {tap: 13}, {up: 24}]
+    expect: [[LSFT], [LSFT, A], [LSFT], []]
+
+  - name: arrows on layer 1 (left inner thumb)
+    steps: [{down: 37}, {tap: 18}, {tap: 21}, {up: 37}]
+    expect: [[LEFT], [], [RGHT], []]
+
+  - name: shifted symbols on layer 2 carry their own Shift
+    description: KC_UNDS is Shift+minus; QMK sends the Shift in its own report first.
+    steps: [{down: 40}, {tap: 30}, {up: 40}]
+    expect: [[LSFT], [LSFT, MINS], [LSFT], []]

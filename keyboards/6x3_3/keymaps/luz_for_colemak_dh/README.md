@@ -11,7 +11,7 @@ was not, and it is by far the most widely adopted alternative layout — so it i
 stress test of the claim that Luz drops onto any alphas.
 
 The shared interaction model — layers, mods, symbols, Compose, navigation — is documented
-in [the README](../../../../README.md) and specified in [`LUZ.spec.md`](../../../../LUZ.spec.md).
+in [the README](../../../../README.md) and specified in [the Luz specification](../../../../spec/README.md).
 This page covers what's specific to this variant.
 
 ## Main features
@@ -116,7 +116,7 @@ EXTEND cursor layer + Select / Delete / Tabs sub-modes
 <details>
 <summary><strong>Compose &amp; diacritics</strong></summary>
 
-Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [`LUZ.spec.md`](../../../../LUZ.spec.md#compose).
+Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [the specification](../../../../spec/compose.md).
 
 <!-- BEGIN DIACRITICS TABLE -->
 

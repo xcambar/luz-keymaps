@@ -1,0 +1,56 @@
+# Luz for Colemak-DH — variant scenarios
+#
+# What depends on Colemak Mod-DH's letters and symbol placement. The behaviour shared by
+# every variant is in luz.yaml, which runs alongside this file. Keys are Luz positions (0-41,
+# spec/README.md); outputs are the USB reports the host receives.
+#
+# Position cheat-sheet (BASE):
+#    0 ·   1 Q   2 W   3 F   4 P   5 B   |   6 J   7 L   8 U   9 Y  10 '  11 ·
+#   12 Tab 13 A  14 R  15 S  16 T  17 G/⌘ |  18 M/⌘ 19 N 20 E  21 I  22 O  23 Bsp
+#   24 ·  25 Z  26 X/⌥ 27 C/◆ 28 D/⌃ 29 V |  30 K  31 H/⌃ 32 ,/◆ 33 ./⌥ 34 /  35 -
+#                    36 ·  37 ⇧  38 EXT   |  39 SYM/⏎  40 ␣  41 ·
+
+keymap: luz_for_colemak_dh
+
+defaults:
+  setup: linux
+  tap: 10
+
+scenarios:
+
+  - name: plain letters
+    steps: [{tap: 13}, {tap: 14}]            # a r
+    expect: [[A], [], [R], []]
+
+  - name: base symbol shifts to its Luz partner (- becomes _)
+    steps: [{down: 37}, {tap: 35}, {up: 37}]
+    expect: [[LSFT], [LSFT, MINS], [LSFT], []]
+
+  - name: dot mod-tap shifts to !
+    steps: [{down: 37}, {tap: 33}, {up: 37}]
+    expect: [[LSFT], {report: [], at: 11}, [LSFT], [LSFT, 1], [LSFT], [], [LSFT], []]
+
+  - name: mod-tap tapped quickly is its letter
+    steps: [{tap: 28}]
+    expect: [[D], []]
+
+  - name: cross-hand chord resolves as a hold
+    steps: [{down: 26}, {wait: 20}, {tap: 20}, {up: 26}]     # Alt + E
+    expect: [[LALT], [LALT, E], [LALT], []]
+
+  - name: same-hand roll stays two taps
+    steps: [{down: 31}, {wait: 20}, {down: 20}, {up: 31}, {up: 20}]   # h e
+    expect: [[H], [H, E], [E], []]
+
+  - name: morph holds Cmd on macOS
+    setup: macos
+    steps: [{down: 18}, {wait: 300}, {tap: 13}, {up: 18}]    # Cmd + A (right morph)
+    expect: [[RGUI], [RGUI, A], [RGUI], []]
+
+  - name: right morph holds right Ctrl on Linux
+    steps: [{down: 18}, {wait: 300}, {tap: 13}, {up: 18}]
+    expect: [[RCTL], [RCTL, A], [RCTL], []]
+
+  - name: compose E sends the dead acute
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 20}, {tap: 20}]
+    expect: [[RALT], [RALT, QUOT], [RALT], [], [E], []]

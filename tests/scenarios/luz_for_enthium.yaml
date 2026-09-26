@@ -1,0 +1,56 @@
+# Luz for Enthium — variant scenarios
+#
+# What depends on Enthium's letters and symbol placement, including its two liberties: an R
+# tap under the EXTEND thumb, and `-` under the right morph. The behaviour shared by every
+# variant is in luz.yaml, which runs alongside this file. Keys are Luz positions (0-41,
+# spec/README.md); outputs are the USB reports the host receives.
+#
+# Position cheat-sheet (BASE):
+#    0 ·   1 Z   2 P   3 D   4 L   5 X   |   6 =   7 U   8 O   9 Y  10 Q  11 ·
+#   12 W   13 S  14 N  15 T  16 H  17 K/⌘ |  18 -/⌘ 19 E 20 A  21 I  22 C  23 B
+#   24 Tab 25 V  26 F/⌥ 27 G/◆ 28 M/⌃ 29 J |  30 /  31 '/⌃ 32 ./◆ 33 ,/⌥ 34 :  35 Bsp
+#                    36 ·  37 ⇧  38 R/EXT |  39 SYM/⏎  40 ␣  41 ·
+
+keymap: luz_for_enthium
+
+defaults:
+  setup: linux
+  tap: 10
+
+scenarios:
+
+  - name: plain letters
+    steps: [{tap: 16}, {tap: 19}]            # h e
+    expect: [[H], [], [E], []]
+
+  - name: the EXTEND thumb taps R
+    steps: [{tap: 38}]
+    expect: [[R], []]
+
+  - name: base symbol shifts to its Luz partner (= becomes +)
+    steps: [{down: 37}, {tap: 6}, {up: 37}]
+    expect: [[LSFT], [LSFT, EQL], [LSFT], []]
+
+  - name: quote mod-tap shifts to "
+    steps: [{down: 37}, {tap: 31}, {up: 37}]
+    expect: [[LSFT], {report: [], at: 11}, [LSFT], [LSFT, QUOT], [LSFT], [], [LSFT], []]
+
+  - name: the right morph taps - and shifts it to _
+    steps: [{tap: 18}, {down: 37}, {tap: 18}, {up: 37}]
+    expect: [[MINS], [], [LSFT], [], [LSFT], [LSFT, MINS], [LSFT], [], [LSFT], []]
+
+  - name: mod-tap tapped quickly is its letter
+    steps: [{tap: 26}]
+    expect: [[F], []]
+
+  - name: cross-hand chord resolves as a hold
+    steps: [{down: 28}, {wait: 20}, {tap: 19}, {up: 28}]     # Ctrl + E
+    expect: [[LCTL], [LCTL, E], [LCTL], []]
+
+  - name: morph holds Ctrl on Linux
+    steps: [{down: 17}, {wait: 300}, {tap: 19}, {up: 17}]    # Ctrl + E
+    expect: [[LCTL], [LCTL, E], [LCTL], []]
+
+  - name: compose E sends the dead acute
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 19}, {tap: 19}]
+    expect: [[RALT], [RALT, QUOT], [RALT], [], [E], []]

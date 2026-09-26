@@ -20,7 +20,7 @@
 // Compose is Shift(37)+Space(40). MUST_PRESS_IN_ORDER requires Shift first, so rolling out
 // of a Space into the next word's capital (right thumb still down, left thumb reaching for
 // Shift) cannot fire the combo and swallow the space. Shift-first is the natural gesture,
-// so the constraint costs nothing. See luz/compose.h.
+// so the constraint costs nothing. See luz/compose_combo.h.
 #define COMBO_MUST_PRESS_IN_ORDER
 
 // Split transport resilience — fixes the "slave half dead after macOS sleep/wake" desync.
@@ -38,3 +38,7 @@
 // Shift key. NOTE: do NOT also enable CAPS_WORD_INVERT_ON_SHIFT — its handle_shift swallows
 // the Shift release once Caps Word is on, leaving Shift stuck down.
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
+// luz/mod_latch: modifiers latch while SYMBOLS is up. SYMBOLS is layer 2 (luz/layers.h;
+// luz/luz.h asserts the two agree).
+#define MOD_LATCH_LAYER 2

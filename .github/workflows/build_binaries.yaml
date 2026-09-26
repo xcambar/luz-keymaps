@@ -28,8 +28,8 @@ jobs:
         done
         cp -r keyboards/42keebs qmk_firmware/keyboards/
 
-  # Behavioural keymap tests (tests/README.md): scenarios replayed in QMK's host test
-  # harness, against the same QMK ref as the build above.
+  # Behavioural keymap tests (keyspec, packages/keyspec): the Luz scenarios in tests/,
+  # replayed in QMK's host test harness against the same QMK ref as the build above.
   test:
     name: 'Keymap tests'
     runs-on: ubuntu-latest
@@ -47,13 +47,13 @@ jobs:
       - name: Install the QMK CLI
         run: uv tool install qmk
       - name: Run the scenarios
-        run: uv run tests/luztest.py run --no-color --junit luztest.xml
+        run: uv run --project packages/keyspec keyspec -c tests/keyspec.yaml run --no-color --junit keyspec.xml
       - name: Upload the JUnit report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: luztest-junit
-          path: luztest.xml
+          name: keyspec-junit
+          path: keyspec.xml
           if-no-files-found: ignore
 
   # Versioned GitHub release, only on a v* tag. Pulls the firmware the build job produced
