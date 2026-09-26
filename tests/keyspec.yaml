@@ -1,0 +1,25 @@
+# keyspec targets for the Luz reference implementations (packages/keyspec/README.md).
+# Positions in the scenarios are Luz positions (0-41), the key order of the
+# LAYOUT_split_3x6_3 every Luz board shares; each runner maps them onto that board's matrix.
+
+runners:
+  qmk:                  # QMK's host unit-test harness
+    # qmk_home: ~/qmk_firmware   # default: $QMK_HOME, then `qmk config user.qmk_home`
+    layout: LAYOUT_split_3x6_3
+    tolerance_ms: 0     # simulated clock: reports land exactly on time
+    settle_ms: 1000     # keep recording this long after the last step
+    setups:             # fixtures scenarios can ask for with `setup:`
+      linux:
+        includes: [luz/os_control.h]
+        code: "while (get_os_platform() != OS_Linux) toggle_os_platform();"
+      macos:
+        includes: [luz/os_control.h]
+        code: "while (get_os_platform() != OS_MacOS) toggle_os_platform();"
+
+targets:
+  - keymap: luz_for_qwerty
+    keyboard: kaly/kaly42
+    scenarios: scenarios/luz_for_qwerty.yaml
+  - keymap: luz_for_qwerty
+    keyboard: 42keebs/cantor_pro/v3/left
+    scenarios: scenarios/luz_for_qwerty.yaml

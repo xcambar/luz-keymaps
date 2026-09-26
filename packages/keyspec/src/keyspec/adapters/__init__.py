@@ -5,8 +5,9 @@ Contract (duck-typed):
 
     class Adapter:
         name: str
-        def __init__(self, target: Target, settings: dict): ...
+        def __init__(self, target, settings: dict, userspace: Path, log): ...
         tolerance: int                                   # ms, see compare.py
+        # scenario.setup names fixtures; the adapter resolves them from its settings
         def run(self, scenarios) -> dict[int, list[Observed] | str]
             # scenario.index -> observed reports, or an error string if it could not run
 

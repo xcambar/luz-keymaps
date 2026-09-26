@@ -1,7 +1,7 @@
 # Luz for QWERTY — behavioural scenarios
 #
 # Runner-agnostic: keys are Luz positions (0-41, see CLAUDE.md), outputs are the USB
-# keyboard reports the host receives. The format is documented in tests/README.md.
+# keyboard reports the host receives. Format: packages/keyspec/README.md.
 #
 # Position cheat-sheet (BASE):
 #    0 ·   1 Q   2 W   3 E   4 R   5 T   |   6 Y   7 U   8 I   9 O  10 P  11 ·
@@ -13,7 +13,7 @@
 keymap: luz_for_qwerty
 
 defaults:
-  os: linux     # Luz boots on Linux; `os: macos` flips the OS setting before step 1
+  setup: linux  # Luz's OS setting (fixtures defined in tests/keyspec.yaml); `setup: macos` flips it
   tap: 10       # ms a `tap` step holds the key (well under TAPPING_TERM = 240)
 
 scenarios:
@@ -85,7 +85,7 @@ scenarios:
     expect: [[LCTL], [LCTL, QUOT], [LCTL], []]
 
   - name: morph holds Cmd on macOS
-    os: macos
+    setup: macos
     steps: [{down: 17}, {wait: 300}, {tap: 22}, {up: 17}]
     expect: [[LGUI], [LGUI, QUOT], [LGUI], []]
 
@@ -145,7 +145,7 @@ scenarios:
     expect: [[LCTL], [LCTL, LEFT], [LCTL], []]
 
   - name: word motion is Alt+arrow on macOS
-    os: macos
+    setup: macos
     steps: [{down: 38}, {tap: 31}, {up: 38}]
     expect: [[LALT], [LALT, LEFT], [LALT], []]
 

@@ -1,8 +1,9 @@
 """Scenario files: loading, validation, and the runner-neutral step timeline.
 
-A scenario is a list of steps on Luz key positions (0-41) plus the USB reports the host
-is expected to receive. This module turns the YAML into plain data every adapter can
-replay, so the step semantics (and therefore the timing) are defined once, here.
+A scenario is a list of steps on key *positions* (indexes into the keyboard's layout, in
+the order the layout lists its keys) plus the USB reports the host is expected to receive.
+This module turns the YAML into plain data every adapter can replay, so the step semantics
+(and therefore the timing) are defined once, here.
 """
 from __future__ import annotations
 
@@ -11,17 +12,18 @@ from pathlib import Path
 
 import yaml
 
-POSITIONS = 42
-OSES = ("linux", "macos")
-
 # Modifier names, in HID bit order (bit 0 = LCTL ... bit 7 = RGUI).
 MODS = ("LCTL", "LSFT", "LALT", "LGUI", "RCTL", "RSFT", "RALT", "RGUI")
 
-# Consumer-page usages Luz can send (the ones on ADJUST), by QMK keycode name.
+# Consumer-page usages, by QMK keycode name.
 CONSUMER = {
     "MUTE": 0x00E2, "VOLU": 0x00E9, "VOLD": 0x00EA,
     "BRIU": 0x006F, "BRID": 0x0070,
     "MNXT": 0x00B5, "MPRV": 0x00B6, "MPLY": 0x00CD, "MSTP": 0x00B7,
+    "EJCT": 0x00B8, "MFFD": 0x00B3, "MRWD": 0x00B4,
+    "CALC": 0x0192, "MAIL": 0x018A, "MYCM": 0x0194,
+    "WSCH": 0x0221, "WHOM": 0x0223, "WBAK": 0x0224, "WFWD": 0x0225,
+    "WSTP": 0x0226, "WREF": 0x0227, "WFAV": 0x022A,
 }
 CONSUMER_NAMES = {v: k for k, v in CONSUMER.items()}
 
@@ -69,6 +71,8 @@ class Expected:
 def describe_value(kind: str, value) -> str:
     if kind == "consumer":
         return f"consumer:{value}"
+    if kind != "keyboard":
+        return f"{kind}:{value}"
     return "[" + ", ".join(sorted(value, key=_order)) + "]"
 
 
@@ -79,7 +83,7 @@ def _order(name: str):
 @dataclass
 class Scenario:
     name: str
-    os: str
+    setup: tuple[str, ...]      # named fixtures, resolved per target (e.g. "macos")
     actions: list[Action]
     duration: int               # ms the runner must keep running after the last action
     expect: list[Expected]
@@ -87,12 +91,16 @@ class Scenario:
     index: int = 0
     source: str = ""
 
+    @property
+    def max_position(self) -> int:
+        return max((a.pos for a in self.actions), default=-1)
+
 
 @dataclass
 class Suite:
-    keymap: str
     path: Path
     scenarios: list[Scenario] = field(default_factory=list)
+    keymap: str | None = None   # optional: the keymap the scenarios were written for
 
 
 # The step semantics. Every adapter replays the resulting timeline; none re-interprets
@@ -105,8 +113,8 @@ def _timeline(steps, tap_ms: int, where: str) -> tuple[list[Action], int]:
 
     def act(kind, pos):
         nonlocal t
-        if not isinstance(pos, int) or not 0 <= pos < POSITIONS:
-            raise ScenarioError(f"{where}: position {pos!r} is not in 0..{POSITIONS - 1}")
+        if not isinstance(pos, int) or isinstance(pos, bool) or pos < 0:
+            raise ScenarioError(f"{where}: position {pos!r} is not a non-negative integer")
         if kind == "down" and pos in held:
             raise ScenarioError(f"{where}: position {pos} pressed while already down")
         if kind == "up" and pos not in held:
@@ -117,7 +125,8 @@ def _timeline(steps, tap_ms: int, where: str) -> tuple[list[Action], int]:
 
     for i, step in enumerate(steps):
         here = f"{where}, step {i + 1}"
-        if not isinstance(step, dict) or len(step) != 1 and not ("tap" in step and set(step) <= {"tap", "hold"}):
+        keys = set(step) if isinstance(step, dict) else None
+        if not keys or not (len(keys) == 1 or keys <= {"tap", "hold"}):
             raise ScenarioError(f"{here}: expected one of down/up/tap/wait, got {step!r}")
         if "wait" in step:
             ms = step["wait"]
@@ -165,12 +174,21 @@ def _expected(entry, where: str) -> Expected:
     return Expected("keyboard", names, at)
 
 
+def _names(value, where: str) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    items = value if isinstance(value, list) else [value]
+    if not all(isinstance(v, str) for v in items):
+        raise ScenarioError(f"{where}: setup must be a name or a list of names")
+    return tuple(items)
+
+
 def load(path: Path) -> Suite:
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
-    if not isinstance(data, dict) or "keymap" not in data or "scenarios" not in data:
-        raise ScenarioError(f"{path}: needs top-level `keymap` and `scenarios`")
+    if not isinstance(data, dict) or "scenarios" not in data:
+        raise ScenarioError(f"{path}: needs a top-level `scenarios` list")
     defaults = data.get("defaults") or {}
-    suite = Suite(keymap=data["keymap"], path=path)
+    suite = Suite(path=path, keymap=data.get("keymap"))
     names = set()
     for i, raw in enumerate(data["scenarios"]):
         where = f"{path.name}: scenario {i + 1}"
@@ -180,13 +198,14 @@ def load(path: Path) -> Suite:
         if raw["name"] in names:
             raise ScenarioError(f"{where}: duplicate scenario name")
         names.add(raw["name"])
-        os_ = raw.get("os", defaults.get("os", "linux"))
-        if os_ not in OSES:
-            raise ScenarioError(f"{where}: os must be one of {OSES}")
+        unknown = set(raw) - {"name", "description", "setup", "tap", "steps", "expect"}
+        if unknown:
+            raise ScenarioError(f"{where}: unknown keys {sorted(unknown)}")
+        setup = _names(raw.get("setup", defaults.get("setup")), where)
         actions, end = _timeline(raw.get("steps") or [], raw.get("tap", defaults.get("tap", 10)), where)
         expect = [_expected(e, f"{where}, expect {j + 1}") for j, e in enumerate(raw.get("expect") or [])]
         suite.scenarios.append(Scenario(
-            name=raw["name"], os=os_, actions=actions, duration=end, expect=expect,
+            name=raw["name"], setup=setup, actions=actions, duration=end, expect=expect,
             description=raw.get("description", ""), index=i, source=str(path),
         ))
     return suite
