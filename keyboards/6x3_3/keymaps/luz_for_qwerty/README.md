@@ -13,7 +13,7 @@ symbol set, Compose, the navigation cluster — is above BASE, and none of it re
 where the letters are.
 
 The shared interaction model — layers, mods, symbols, Compose, navigation — is documented
-in [the README](../../../../README.md) and specified in [`LUZ.spec.md`](../../../../LUZ.spec.md).
+in [the README](../../../../README.md) and specified in [the Luz specification](../../../../spec/README.md).
 This page covers what's specific to this variant.
 
 ## Main features
@@ -86,7 +86,7 @@ lapses. And QWERTY's **bottom row is fine**: `X C V` / `M` is ~6.3%, in line wit
 So QWERTY and Colemak-DH stress the frame in *different* places — bottom row for one, index
 column for the other. Neither is fixable by moving Luz's mods, because the whole point is that
 the positions don't move. If the morph misfires in practice, the levers are the ones in
-[`TUNING.md`](../../../../TUNING.md), and the tension is the same one Colemak-DH records: a
+[the open tap-hold questions](../../../../spec/tuning.md), and the tension is the same one Colemak-DH records: a
 per-variant `TAPPING_TERM` would help, and the config contract currently forbids it.
 
 ## Reference tables
@@ -125,7 +125,7 @@ EXTEND cursor layer + Select / Delete / Tabs sub-modes
 <details>
 <summary><strong>Compose &amp; diacritics</strong></summary>
 
-Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [`LUZ.spec.md`](../../../../LUZ.spec.md#compose).
+Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [the specification](../../../../spec/compose.md).
 
 <!-- BEGIN DIACRITICS TABLE -->
 

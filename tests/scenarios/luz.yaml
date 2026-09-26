@@ -1,0 +1,138 @@
+# Luz — shared conformance scenarios
+#
+# Behaviour every Luz variant must show, whatever its letters: only positions that are
+# identical in every variant are used (the thumbs, the bottom-row and morph holds, EXTEND and
+# its sub-layers, the SYMBOLS left half, ADJUST). Each target runs this file together with
+# its variant's own scenarios. Format: packages/keyspec/README.md.
+#
+# Positions (see spec/README.md):
+#    0  1  2  3  4  5 |  6  7  8  9 10 11
+#   12 13 14 15 16 17 | 18 19 20 21 22 23
+#   24 25 26 27 28 29 | 30 31 32 33 34 35
+#            36 37 38 | 39 40 41
+# 37 Shift  38 EXTEND  39 SYMBOLS/Enter  40 Space   17/18 Cmd/Ctrl morph
+# 26/27/28 Alt/GUI/Ctrl mod-taps
+
+defaults:
+  setup: linux  # the host OS setting (fixtures in tests/keyspec.yaml); `setup: macos` flips it
+  tap: 10       # ms a `tap` step holds its key (well under the 240 ms tapping term)
+
+scenarios:
+
+  # ── Holds: the bottom-row mod-taps ───────────────────────────────────────────
+
+  - name: mod-tap held past TAPPING_TERM becomes its modifier
+    steps: [{down: 26}, {wait: 300}, {up: 26}]
+    expect:
+      - {report: [LALT], at: 240}
+      - []
+
+  # ── EXTEND: navigation, selection, editing ───────────────────────────────────
+
+  - name: EXTEND arrows
+    steps: [{down: 38}, {tap: 20}, {tap: 21}, {up: 38}]
+    expect: [[DOWN], [], [RGHT], []]
+
+  - name: word motion is Ctrl+arrow on Linux
+    steps: [{down: 38}, {tap: 31}, {up: 38}]
+    expect: [[LCTL], [LCTL, LEFT], [LCTL], []]
+
+  - name: word motion is Alt+arrow on macOS
+    setup: macos
+    steps: [{down: 38}, {tap: 31}, {up: 38}]
+    expect: [[LALT], [LALT, LEFT], [LALT], []]
+
+  - name: select mode shifts the motions
+    steps: [{down: 38}, {down: 16}, {tap: 21}, {up: 16}, {up: 38}]
+    expect: [[LSFT], [LSFT, RGHT], [LSFT], []]
+
+  - name: copy is Ctrl+C on Linux
+    steps: [{down: 38}, {tap: 27}, {up: 38}]
+    expect: [[LCTL], [LCTL, C], [LCTL], []]
+
+  - name: shifted copy morphs into cut
+    steps: [{down: 37}, {down: 38}, {tap: 27}, {up: 38}, {up: 37}]
+    expect: [[LSFT], [LCTL], [LCTL, X], [LCTL], []]   # Shift swapped for Ctrl in one report
+
+  - name: delete sub-layer deletes a word backwards
+    steps: [{down: 38}, {down: 14}, {tap: 31}, {up: 14}, {up: 38}]
+    expect: [[LCTL], [LCTL, BSPC], [LCTL], []]
+
+  - name: tab sub-layer opens a new tab
+    steps: [{down: 38}, {down: 15}, {tap: 8}, {up: 15}, {up: 38}]
+    expect: [[LCTL], [LCTL, T], [LCTL], []]
+
+  - name: window switcher holds GUI across taps
+    steps: [{down: 38}, {tap: 17}, {tap: 17}, {up: 38}]
+    expect: [[LGUI], [LGUI, TAB], [LGUI], [LGUI, TAB], [LGUI], []]
+
+  - name: layer lock keeps EXTEND after the thumb is released
+    steps: [{down: 38}, {tap: 29}, {up: 38}, {tap: 20}]
+    expect: [[DOWN], []]
+
+  # ── SYMBOLS: numpad, symbols, macros ─────────────────────────────────────────
+
+  - name: SYMBOLS thumb tapped alone is Enter
+    steps: [{tap: 39}]
+    expect: [[ENT], []]
+
+  - name: numpad under the SYMBOLS thumb
+    steps: [{down: 39}, {tap: 14}, {tap: 15}, {tap: 16}, {up: 39}]   # 1 2 3
+    expect: [[1], [], [2], [], [3], []]
+
+  - name: arrow macro types -> and => when shifted
+    steps: [{down: 39}, {tap: 25}, {down: 37}, {tap: 25}, {up: 37}, {up: 39}]
+    expect:
+      - [MINS]                  # -
+      - []
+      - [LSFT]                  # > is Shift + .
+      - [LSFT, DOT]
+      - [LSFT]
+      - []
+      - [LSFT]                  # the thumb Shift, flushed from the combo buffer
+      - [EQL]                   # the macro clears Shift: =
+      - []
+      - [LSFT]                  # >
+      - [LSFT, DOT]
+      - [LSFT]
+      - []
+
+  - name: code fence macro
+    steps: [{down: 39}, {tap: 1}, {up: 39}]
+    expect: [[GRV], [], [GRV], [], [GRV], []]
+
+  - name: modifier latch keeps Alt through SYMBOLS
+    description: Alt held on BASE, SYMBOLS entered, Alt released — Alt stays until SYMBOLS ends.
+    steps: [{down: 26}, {wait: 300}, {down: 39}, {up: 26}, {tap: 14}, {tap: 15}, {up: 39}]
+    expect: [[LALT], [LALT, 1], [LALT], [LALT, 2], [LALT], []]
+
+  - name: the morph's Ctrl latches through SYMBOLS on Linux
+    description: The morph registers Ctrl by hand off macOS, and hands it to the latch on release.
+    steps: [{down: 17}, {wait: 300}, {down: 39}, {up: 17}, {tap: 14}, {up: 39}]
+    expect: [[LCTL], [LCTL, 1], [LCTL], []]
+
+  - name: the morph's Cmd latches through SYMBOLS on macOS
+    setup: macos
+    steps: [{down: 17}, {wait: 300}, {down: 39}, {up: 17}, {tap: 14}, {up: 39}]
+    expect: [[LGUI], [LGUI, 1], [LGUI], []]
+
+  - name: locking SYMBOLS drops the latched modifier
+    description: >
+      Layer Lock turns the chord into a mode, so the latch lets Alt go the moment SYMBOLS
+      is locked; digits typed on the locked layer are plain.
+    steps: [{down: 26}, {wait: 300}, {down: 39}, {up: 26}, {tap: 29}, {up: 39}, {tap: 14}]
+    expect: [[LALT], [], [1], []]
+
+  # ── ADJUST (both inner thumbs) ───────────────────────────────────────────────
+
+  - name: ADJUST F-keys
+    steps: [{down: 38}, {down: 39}, {tap: 1}, {up: 39}, {up: 38}]
+    expect: [[F1], []]
+
+  - name: ADJUST media keys go out as consumer reports
+    steps: [{down: 38}, {down: 39}, {tap: 19}, {up: 39}, {up: 38}]
+    expect: [{consumer: MUTE}, {consumer: none}]
+
+  - name: switching the OS on ADJUST changes the shortcuts
+    steps: [{down: 38}, {down: 39}, {tap: 13}, {up: 39}, {tap: 27}, {up: 38}]   # OS⇄, then copy
+    expect: [[LGUI], [LGUI, C], [LGUI], []]

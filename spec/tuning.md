@@ -1,7 +1,8 @@
-# Luz — open tap-hold tuning decisions
+# Open questions: tap-hold tuning
 
-> This file is **not** part of the contract. [`LUZ.spec.md`](./LUZ.spec.md) states what a Luz
-> variant must do; this states four settings that are *deliberately unresolved*, together with
+> This chapter is **not normative**. [The specification](README.md) states what a Luz variant
+> must do ([Modifiers](mods.md#tap-hold-arbitration) for tap-hold); this states four settings
+> that are *deliberately unresolved*, together with
 > the arguments accumulated for and against each, so they don't get re-derived from scratch
 > every time one of them comes up.
 >

@@ -2,7 +2,7 @@
 
 ![](./header.jpeg)
 
-**Luz** (Spanish: *luz* /luθ/, "light") turns any alpha layout (Graphite, Focal, Canary… or QWERTY) into a complete keymap. Your layout places the letters; Luz supplies the rest (symbols, numbers, navigation, editing, modifiers and accents) as one consistent set of keymap conventions. Each keymap built this way is a **variant**:
+**Luz** (Spanish: *luz* /luθ/, "light") turns any alpha layout (Graphite, Focal, Canary… or QWERTY) into a complete keymap. Your layout places the letters; Luz supplies the rest (symbols, numbers, navigation, editing, modifiers and accents) as one consistent set of keymap conventions, [documented](./spec/README.md) independently of any firmware. Each keymap built this way is a **variant**. Four are implemented for QMK:
 
 | Variant | Letters | Keymap |
 |---------|---------|--------|
@@ -48,17 +48,26 @@
 
 ---
 
+## What's in this repository
+
+- **[The specification](./spec/README.md).** The definition of Luz: every layer, position and rule, written as behaviour, for any firmware.
+- **Reference implementations** for QMK: the four variants above, built from shared code ([guide](./docs/qmk.md)).
+- **[Community modules](./modules/luz/README.md)** for QMK: the OS-aware features (semantic editing keys, dead keys, Compose, the Cmd/Ctrl morph, the modifier latch, the window switcher), usable in any keymap.
+- **[Conformance tests](./spec/conformance.md).** The rules as executable scenarios, run on every variant with [keyspec](./packages/keyspec/README.md), a firmware-agnostic test runner for keymaps.
+
+---
+
 ## Make it personal
 
 Luz **deliberately leaves blanks** on several layers. They're yours: map whatever suits your workflow, without disturbing the shared frame.
 
-Go further whenever you like: swap the editing commands on the navigation layer, promote other symbols to the base layer, tuck something under the navigation thumb. To check that a change keeps you compatible with the other variants, [`LUZ.spec.md`](./LUZ.spec.md) opens with a one-minute checklist.
+Go further whenever you like: swap the editing commands on the navigation layer, promote other symbols to the base layer, tuck something under the navigation thumb. To check that a change keeps you compatible with the other variants, the [conformance checklist](./spec/conformance.md) takes a minute, and the tests take less.
 
 ---
 
 ## Contributing variants
 
-**New variants are very welcome.** If your favourite alpha layout doesn't have one yet, copy an existing variant and follow [`LUZ.spec.md`](./LUZ.spec.md), the contract every variant meets. Open an issue to discuss, or send a pull request.
+**New variants are very welcome**, on QMK or any other firmware. If your favourite alpha layout doesn't have one yet, follow [the specification](./spec/README.md). For QMK, copy an existing variant ([how](./docs/qmk.md#adding-a-variant)); the shared conformance scenarios must pass unchanged. Open an issue to discuss, or send a pull request.
 
 ---
 
@@ -78,12 +87,15 @@ qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
 qmk userspace-compile
 ```
 
+See the [QMK guide](./docs/qmk.md) for setup, tests and diagrams.
+
 ## Going further
 
-- [`LUZ.spec.md`](./LUZ.spec.md) — the exact, implementation-facing contract: every layer, keycode, position, and rule.
-- [`TUNING.md`](./TUNING.md) — four tap-hold settings left deliberately open, with the arguments on each side.
+- [The specification](./spec/README.md) — the exact contract: every layer, position and rule.
+- [Open questions](./spec/tuning.md) — four tap-hold settings left deliberately open, with the arguments on each side.
 - The variant READMEs (linked in the table at the top) — diagrams and per-layout specifics.
-- [`keyboards/6x3_3/luz/`](./keyboards/6x3_3/luz/) — the shared code the variants compile against.
+- [The QMK guide](./docs/qmk.md) — how the reference implementations map onto the spec, and how to add one.
+- [`modules/luz/`](./modules/luz/README.md) and [keyspec](./packages/keyspec/README.md) — the reusable pieces.
 
 ## Inspiration
 

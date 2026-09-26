@@ -3,7 +3,7 @@
 // Canonical file at keyboards/6x3_3/luz/symbols.h, shared by every Luz variant.
 // Each variant's rules.mk puts this dir's parent on the include path
 // (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`), so custom_keycodes.h / keymap.c can
-// `#include "luz/symbols.h"`. See LUZ.md (repo root) for the prose spec.
+// `#include "luz/symbols.h"`. See spec/ (repo root) for the specification.
 //
 // The symbol VOCABULARY and BEHAVIOR are a Luz contract, shared verbatim by every
 // variant so muscle memory transfers. What stays per-layout is PLACEMENT — which

@@ -1,5 +1,10 @@
 # QMK Userspace
 
+Luz is documentation-first: the normative definition is the specification in `spec/`
+(chapters, RFC 2119 wording, positions 0-41). The QMK keymaps here are reference
+implementations of it; when code and spec disagree, fix the code (or fix the spec first,
+deliberately). `docs/qmk.md` maps spec chapters to code.
+
 ## Project Structure
 
 Two keyboards share the same `split_3x6_3` (6 columns, 3 rows + 3 thumb keys per side) layout.

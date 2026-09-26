@@ -4,6 +4,26 @@ Each `## v…` section below is published as the body of the matching GitHub rel
 `v*` tag is pushed, CI extracts that section (heading → release title, text → release notes)
 and attaches the built firmware. Newest release on top.
 
+## Unreleased
+
+**Luz is documented first.** The specification now stands on its own, independent of any
+firmware, and the QMK keymaps are its reference implementations. Nothing changes on the
+keyboard.
+
+- **[The specification](./spec/README.md)** replaces `LUZ.spec.md`. It is split into chapters
+  (frame, layers, modifiers, symbols, Compose, navigation, conformance) and written as
+  behaviour, with each shared layer given position by position. `TUNING.md` is now
+  [its open-questions chapter](./spec/tuning.md).
+- **[QMK community modules](./modules/luz/README.md):** host_os, semantic_keys, dead_keys,
+  compose, cmd_ctrl_morph, mod_latch and swapper, reusable in any keymap. The variants now
+  load them through `keymap.json`.
+- **[keyspec](./packages/keyspec/README.md):** the behavioural test runner, extracted as a
+  standalone, firmware-agnostic tool.
+- **[Conformance scenarios](./spec/conformance.md):** a shared suite every variant passes,
+  plus per-variant files, run in CI on both boards.
+- Local builds need `qmk config user.overlay_dir=<this repo>` so the QMK CLI finds the
+  modules ([QMK guide](./docs/qmk.md#building)).
+
 ## v3.0.0 — Serpentine
 
 **`crafted` is now Luz.** What was one keymap is a *framework*: a set of shared conventions —
@@ -16,7 +36,7 @@ variants, and adding a fifth is a day's work.
 
 ### The framework
 
-- [`LUZ.spec.md`](./LUZ.spec.md) — the contract, opening with a conformance checklist of what may
+- [`LUZ.spec.md`](./spec/README.md) — the contract, opening with a conformance checklist of what may
   and must not vary, so you can judge a variant without reading its code. (`e03af29`, `50a51d7`)
 - Shared headers under `keyboards/6x3_3/luz/` — one source of truth for the layer model, the
   symbol set, the mod system and Compose. (`f1fcb18`, `17c951a`, `c0a1040`, `fa01dfe`)
@@ -67,7 +87,7 @@ variants, and adding a fifth is a day's work.
   layout. (`ea7b02e`, `79279cb`, `21cc986`)
 - A guide for contributing variants. (`23054b3`)
 - Four tap-hold settings recorded as deliberately open, with the arguments for each, in
-  [`TUNING.md`](./TUNING.md). (`a875e90`)
+  [`TUNING.md`](./spec/tuning.md). (`a875e90`)
 - Corrections to documentation the mod rework left stale — including a Shift drawn on the wrong
   key in a published diagram. (`939ee00`, `31bcbb3`, `c17fc63`)
 

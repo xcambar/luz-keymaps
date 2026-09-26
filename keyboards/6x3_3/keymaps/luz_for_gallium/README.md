@@ -67,7 +67,7 @@ EXTEND cursor layer + Select / Delete / Tabs sub-modes
 <details>
 <summary><strong>Compose &amp; diacritics</strong></summary>
 
-Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [`LUZ.spec.md`](../../../../LUZ.spec.md#compose).
+Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [the specification](../../../../spec/compose.md).
 
 <!-- BEGIN DIACRITICS TABLE -->
 

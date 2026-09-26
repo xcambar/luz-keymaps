@@ -6,7 +6,7 @@ verbatim with the other variants; SYMBOLS keeps the shared numpad and vocabulary
 right-hand field for this layout, as the spec allows.
 
 The shared interaction model — layers, mods, symbols, Compose, navigation — is documented in
-[the README](../../../../README.md) and specified in [`LUZ.spec.md`](../../../../LUZ.spec.md).
+[the README](../../../../README.md) and specified in [the Luz specification](../../../../spec/README.md).
 This page covers what's specific to this variant.
 
 ## Main features
@@ -68,7 +68,7 @@ does not.
 The fix is an `is_flow_tap_key()` override, which is deliberately **left open** — turning Flow Tap
 off for 38 buys instant layer entry at the price of a fast `r` rolled into the next letter becoming
 a layer activation, and `r` is ~6% of letters. Both sides of that trade, and the three other
-tap-hold settings it interacts with, are written up in [`TUNING.md`](../../../../TUNING.md).
+tap-hold settings it interacts with, are written up in [the open tap-hold questions](../../../../spec/tuning.md).
 
 ## Reference tables
 
@@ -107,7 +107,7 @@ EXTEND cursor layer + Select / Delete / Tabs sub-modes
 <details>
 <summary><strong>Compose &amp; diacritics</strong></summary>
 
-Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [`LUZ.spec.md`](../../../../LUZ.spec.md#compose).
+Press `Shift` then `Space` (the thumb pair, positions 37+40) while on BASE, then a key. Shift must come first — see [the specification](../../../../spec/compose.md).
 
 <!-- BEGIN DIACRITICS TABLE -->
 
