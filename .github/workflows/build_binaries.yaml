@@ -41,6 +41,8 @@ jobs:
         run: |
           git clone --depth 1 --branch master https://github.com/qmk/qmk_firmware.git qmk_firmware
           git -C qmk_firmware submodule update --init --depth 1 lib/googletest lib/printf
+          # Same as the build job: `qmk info` only resolves the Cantor Pro from qmk_firmware
+          cp -rL keyboards/42keebs qmk_firmware/keyboards/
       - uses: astral-sh/setup-uv@v6
       - name: Install the QMK CLI
         run: uv tool install qmk
