@@ -10,11 +10,11 @@ runners:
     settle_ms: 1000     # keep recording this long after the last step
     setups:             # fixtures scenarios can ask for with `setup:`
       linux:
-        includes: [luz/os_control.h]
-        code: "while (get_os_platform() != OS_Linux) toggle_os_platform();"
+        includes: [host_os.h]
+        code: "host_os_set(HOST_OS_LINUX);"
       macos:
-        includes: [luz/os_control.h]
-        code: "while (get_os_platform() != OS_MacOS) toggle_os_platform();"
+        includes: [host_os.h]
+        code: "host_os_set(HOST_OS_MACOS);"
 
 targets:
   - keymap: luz_for_qwerty

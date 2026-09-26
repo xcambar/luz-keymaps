@@ -1,6 +1,7 @@
 // Luz — Compose combo
 // ----------------------------------------------------------------------------
-// Canonical file at keyboards/6x3_3/luz/compose.h, shared by every Luz variant.
+// Canonical file at keyboards/6x3_3/luz/compose_combo.h, shared by every Luz variant. What
+// Compose does once armed is the luz/compose community module.
 //
 // Compose is armed by a single cross-hand combo on BASE — the only combo in Luz — and
 // the whole thing is contractual: the POSITIONS, the OPERANDS and the behaviour are the
@@ -27,7 +28,7 @@
 // held-Shift capitalisation keeps its ordering and the DOUBLE_TAP_SHIFT Caps Word detector
 // (process_caps_word.c, which compares record->event.time) is unaffected.
 //
-// Wired in luz/luz.h:
+// Wired in luz/luz.h (process_combo_event calls compose_arm()):
 //     combo_t key_combos[] = { COMBO_ACTION(compose_combo) };
 
 #pragma once

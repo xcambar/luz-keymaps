@@ -1,0 +1,11 @@
+{
+    "modules": [
+        "luz/compose",
+        "luz/dead_keys",
+        "luz/semantic_keys",
+        "luz/swapper",
+        "luz/cmd_ctrl_morph",
+        "luz/mod_latch",
+        "luz/host_os"
+    ]
+}

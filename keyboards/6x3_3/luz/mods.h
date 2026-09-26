@@ -28,8 +28,8 @@
 //   - Chordal Hold (opposite-hands rule) arbitrates every mod-tap; thumbs are exempt.
 //   - LAYER-SCOPED MOD LATCH: while SYMBOLS is up, releasing a held modifier latches it
 //     for the life of the layer instead of releasing it, so Ctrl/Alt/Cmd + a SYMBOLS key
-//     needs only one hand. Shift is excluded and Layer Lock drops the latch. The rule
-//     and its rationale are in luz/mod_latch.h, included below.
+//     needs only one hand. Shift is excluded and Layer Lock drops the latch. Implemented
+//     by the luz/mod_latch community module (MOD_LATCH_LAYER in luz/config.h).
 //
 // Companion config (kept in each variant's config.h, identical, part of the contract):
 //   TAPPING_TERM 240, CHORDAL_HOLD, PERMISSIVE_HOLD, FLOW_TAP_TERM 150,
@@ -50,8 +50,6 @@
 
 #include <stdint.h>
 #include "quantum.h"
-#include "luz/os_control.h"
-#include "luz/mod_latch.h"
 
 // Chordal Hold handedness: 'L'=left, 'R'=right, '*'=exempt (thumbs). Purely
 // positional — identical for every variant, so it lives here, not in keymap.c.
@@ -65,24 +63,8 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
 
 // Cmd/Ctrl morph — the unified shortcut modifier: GUI on macOS, Ctrl on Linux, so
 // Cmd-C and Ctrl-C are the same chord. It is a mirrored pair of GUI mod-taps on the inner
-// index column (17/18); off macOS the HOLD is intercepted here and Ctrl registered instead.
-//
-// One invocation per morph key, inside process_record_user (same idiom as SYM_MODTAP_SHIFT).
-// `key` is the snapshotted LGUI_T()/RGUI_T() keycode — snapshots live in keymap.c because
-// they wrap a per-layout tap. The morph exists on BASE only: modifiers live on BASE and are
-// held BEFORE switching layers, which is already the required pattern for Alt (26/33) since
-// the bottom row is occupied by digits and symbols on SYMBOLS.
-// Off macOS the morph registers its Ctrl by hand, so it also has to honour the layer-scoped
-// mod latch by hand: on release it offers the mod to the latch first and only unregisters
-// when the latch declines (luz_mod_latch_take, mod_latch.h).
-#define LUZ_MORPH_KEY(keycode, record, key, mod) \
-    do { \
-        if (get_os_platform() != OS_MacOS && !(record)->tap.count && (keycode) == (key)) { \
-            if ((record)->event.pressed) { \
-                register_code(mod); \
-            } else if (!luz_mod_latch_take(MOD_BIT(mod))) { \
-                unregister_code(mod); \
-            } \
-            return false; \
-        } \
-    } while (0)
+// index column (17/18), implemented by the luz/cmd_ctrl_morph community module; luz/luz.h
+// tells it which keys morph (the variant's LUZ_MORPH_L/LUZ_MORPH_R). The morph exists on
+// BASE only: modifiers live on BASE and are held BEFORE switching layers, which is already
+// the required pattern for Alt (26/33) since the bottom row is occupied by digits and
+// symbols on SYMBOLS.

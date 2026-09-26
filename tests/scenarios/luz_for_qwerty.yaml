@@ -228,6 +228,23 @@ scenarios:
     steps: [{down: 26}, {wait: 300}, {down: 39}, {up: 26}, {tap: 14}, {tap: 15}, {up: 39}]
     expect: [[LALT], [LALT, 1], [LALT], [LALT, 2], [LALT], []]
 
+  - name: the morph's Ctrl latches through SYMBOLS on Linux
+    description: The morph registers Ctrl by hand off macOS, and hands it to the latch on release.
+    steps: [{down: 17}, {wait: 300}, {down: 39}, {up: 17}, {tap: 14}, {up: 39}]
+    expect: [[LCTL], [LCTL, 1], [LCTL], []]
+
+  - name: the morph's Cmd latches through SYMBOLS on macOS
+    setup: macos
+    steps: [{down: 17}, {wait: 300}, {down: 39}, {up: 17}, {tap: 14}, {up: 39}]
+    expect: [[LGUI], [LGUI, 1], [LGUI], []]
+
+  - name: locking SYMBOLS drops the latched modifier
+    description: >
+      Layer Lock turns the chord into a mode, so the latch lets Alt go the moment SYMBOLS
+      is locked; digits typed on the locked layer are plain.
+    steps: [{down: 26}, {wait: 300}, {down: 39}, {up: 26}, {tap: 29}, {up: 39}, {tap: 14}]
+    expect: [[LALT], [], [1], []]
+
   # ── ADJUST (both inner thumbs) ───────────────────────────────────────────────
 
   - name: ADJUST F-keys
