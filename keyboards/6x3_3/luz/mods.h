@@ -50,7 +50,7 @@
 
 #include <stdint.h>
 #include "quantum.h"
-#include "features/os_control.h"
+#include "luz/os_control.h"
 #include "luz/mod_latch.h"
 
 // Chordal Hold handedness: 'L'=left, 'R'=right, '*'=exempt (thumbs). Purely

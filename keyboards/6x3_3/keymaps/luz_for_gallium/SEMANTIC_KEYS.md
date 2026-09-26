@@ -52,7 +52,6 @@ const key_override_t copy_to_cut_override = ko_make_basic(MOD_MASK_SHIFT, SK_COP
 | `SK_CUT`  | `Cmd+X`     | `Ctrl+X`    | Cut          |
 | `SK_COPY` | `Cmd+C`     | `Ctrl+C`    | Copy         |
 | `SK_PSTE` | `Cmd+V`     | `Ctrl+V`    | Paste        |
-| `SK_SALL` | `Cmd+A`     | `Ctrl+A`    | Select All   |
 
 ## Adding New Semantic Keys
 

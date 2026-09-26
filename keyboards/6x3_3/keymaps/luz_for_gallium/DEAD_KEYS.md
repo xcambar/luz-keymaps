@@ -121,7 +121,7 @@ Similar to semantic keys, uses a lookup table indexed by keycode.
 
 To add a new dead key:
 
-1. Add keycode to [custom_keycodes.h](custom_keycodes.h):
+1. Add keycode to [dead_keys.h](../../luz/dead_keys.h):
 ```c
 enum custom_keycodes {
     ...
@@ -130,7 +130,7 @@ enum custom_keycodes {
 };
 ```
 
-2. Add mapping to `deadkey_table` in [dead_keys.c](features/dead_keys.c):
+2. Add mapping to `deadkey_table` in [dead_keys.c](../../luz/dead_keys.c):
 ```c
 [DK_ndx(DK_CARON)] = {KC_NO, RALT(KC_V)},  // Linux: AltGr + v
 ```

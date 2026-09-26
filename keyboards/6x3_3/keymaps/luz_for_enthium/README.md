@@ -74,7 +74,7 @@ tap-hold settings it interacts with, are written up in [`TUNING.md`](../../../..
 
 > [!NOTE]
 > Searchable, greppable text twins of the diagrams above. Auto-generated from
-> `keymap_drawer/make_*_page.py`. The navigation and Compose behavior is shared Luz, so these
+> `keyboards/6x3_3/luz/keymap_drawer/make_*_page.py`. The navigation and Compose behavior is shared Luz, so these
 > match `luz_for_gallium`.
 
 <details>

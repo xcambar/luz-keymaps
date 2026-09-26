@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]      # CI build check on main (no release)
     tags: ['v*']          # versioned release on tag push
+  pull_request:
+    branches: [main]      # test build; required status check gates the merge
   workflow_dispatch:
 
 permissions:

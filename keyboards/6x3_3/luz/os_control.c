@@ -22,10 +22,7 @@ uint8_t get_os_platform(void) {
 
 // Get the current OS platform name as a string
 const char* get_os_platform_name(void) {
-    if (current_os < _OS_COUNT) {
-        return os_names[current_os];
-    }
-    return "Unknown";
+    return os_names[current_os];
 }
 
 // Toggle to the next OS platform (cycles through all supported OSes)

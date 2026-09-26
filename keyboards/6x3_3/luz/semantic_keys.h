@@ -14,10 +14,7 @@
  * - Data-driven: keycodes stored in lookup table by platform
  * - Proper C file structure (no static variables in headers)
  *
- * Usage in keymap.c:
- * 1. Include this header in keymap.c (defines SK_* keycodes)
- * 2. Add semantic_keys.c to SRC in rules.mk
- * 3. Call process_semkey() in process_record_user()
+ * Wired in luz/luz.h (process_semkey() in process_record_user); built via luz/rules.mk.
  */
 
 // Semantic keys list using CUSTOM_KEYCODES macro from custom_keycodes.h
@@ -27,14 +24,10 @@
         SK_CUT, \
         SK_COPY, \
         SK_PSTE, \
-        SK_SALL, \
         SK_EURO, \
         SK_CEDIL, \
-        SK_NTILDE, \
         SK_WORDPRV, \
         SK_WORDNXT, \
-        SK_DOCBEG, \
-        SK_DOCEND, \
         SK_LINEBEG, \
         SK_LINEEND, \
         SK_DELWORDPRV, \

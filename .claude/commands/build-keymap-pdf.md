@@ -26,13 +26,13 @@ Parse `$ARGUMENTS` as follows:
 
 - Keymap source: `keyboards/6x3_3/keymaps/<keymap>/keymap.c`
 - YAML files: `keyboards/6x3_3/keymaps/<keymap>/keymap_drawer/`
-- Build script: `keyboards/6x3_3/keymaps/<keymap>/keymap_drawer/build_pdf.sh`
+- Build script (shared): `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`
 
 ## Mode 1: Build Only (default)
 
 When `sync` is NOT specified:
 
-1. Run `./build_pdf.sh` in the `keymap_drawer/` directory
+1. Run `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>` from the repo root
 2. Report the output paths (SVGs, PNGs for README, and PDF)
 
 ## Mode 2: Sync + Build
@@ -66,7 +66,7 @@ For existing YAML files whose layer name is NOT in keymap.c, delete them.
 
 ### Step 4: Build
 
-Run `./build_pdf.sh` in the `keymap_drawer/` directory.
+Run `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>` from the repo root.
 
 ## YAML file format
 

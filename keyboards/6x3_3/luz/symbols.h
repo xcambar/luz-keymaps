@@ -80,7 +80,7 @@
         MOD_MASK_SHIFT, trigger, shifted, ~0 \
     )
 
-// One key_overrides[] pair per symbol — consumed by the array in keymap.c via
+// One key_overrides[] pair per symbol — consumed by the array in luz/luz.h via
 // SYMBOL_TABLE(SYM_OVR). Unshifted is KC_<name> (matches the keycode name).
 #define SYM_OVR(name, shifted) SYM_OVERRIDE(SY_##name, KC_##name, shifted),
 

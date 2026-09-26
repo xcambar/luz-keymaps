@@ -27,7 +27,7 @@
 // held-Shift capitalisation keeps its ordering and the DOUBLE_TAP_SHIFT Caps Word detector
 // (process_caps_word.c, which compares record->event.time) is unaffected.
 //
-// Nothing to do in keymap.c but reference it:
+// Wired in luz/luz.h:
 //     combo_t key_combos[] = { COMBO_ACTION(compose_combo) };
 
 #pragma once
