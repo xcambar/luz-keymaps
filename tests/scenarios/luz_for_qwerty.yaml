@@ -127,6 +127,108 @@ scenarios:
     steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 2}]
     expect: [[RALT], [RALT, EQL], [RALT], [], [E], []]
 
+  - name: compose sends each dead key's Linux chord (AltGr)
+    description: >
+      E acute, A grave, U diaeresis, O circumflex, N tilde, each armed afresh. The shifted
+      chords carry the right Shift: QMK keeps a chord's modifiers on one side (RALT(S(x))).
+    steps:
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 3}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 13}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 7}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 9}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 30}
+    expect:
+      - [RALT]
+      - [RALT, QUOT]
+      - [RALT]
+      - []
+      - [RALT]
+      - [RALT, GRV]
+      - [RALT]
+      - []
+      - [RALT, RSFT]
+      - [RALT, RSFT, QUOT]
+      - [RALT, RSFT]
+      - []
+      - [RALT, RSFT]
+      - [RALT, RSFT, 6]
+      - [RALT, RSFT]
+      - []
+      - [RALT, RSFT]
+      - [RALT, RSFT, GRV]
+      - [RALT, RSFT]
+      - []
+
+  - name: compose sends each dead key's macOS chord (Option)
+    setup: macos
+    steps:
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 3}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 13}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 7}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 9}
+      - {down: 37}
+      - {down: 40}
+      - {up: 37}
+      - {up: 40}
+      - {tap: 30}
+    expect:
+      - [LALT]
+      - [LALT, E]
+      - [LALT]
+      - []
+      - [LALT]
+      - [LALT, GRV]
+      - [LALT]
+      - []
+      - [LALT]
+      - [LALT, U]
+      - [LALT]
+      - []
+      - [LALT]
+      - [LALT, I]
+      - [LALT]
+      - []
+      - [LALT]
+      - [LALT, N]
+      - [LALT]
+      - []
+
   - name: compose stays armed through a held Shift
     description: >
       A plain modifier doesn't consume Compose, so Shift+E still sends the dead acute, with
