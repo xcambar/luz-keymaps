@@ -37,6 +37,9 @@ Everything the variants share lives once in `keyboards/6x3_3/luz/`: the C featur
 build: `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`). A variant holds only its
 `keymap.c` (`keymaps[]` + position-bound defines), `layouts/`, docs and diagram YAMLs.
 
+Behavioural tests live in `tests/` (scenarios + `keyspec.yaml`) and run with keyspec, the
+standalone tool in `packages/keyspec/`: `uv run --project packages/keyspec keyspec -c tests/keyspec.yaml run`.
+
 Note: QMK forbids hyphens in keymap names, so the dirs use underscores (`luz_for_gallium`),
 while the human-facing name is "Luz for Gallium".
 
