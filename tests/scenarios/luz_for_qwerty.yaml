@@ -127,6 +127,22 @@ scenarios:
     steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 2}]
     expect: [[RALT], [RALT, EQL], [RALT], [], [E], []]
 
+  - name: compose stays armed through a held Shift
+    description: >
+      A plain modifier doesn't consume Compose, so Shift+E still sends the dead acute, with
+      Shift held around it (Shift+AltGr+' on Linux). What the host makes of that depends on
+      its layout.
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {down: 37}, {tap: 3}, {up: 37}]
+    expect: [[LSFT], [LSFT, RALT], [LSFT, RALT, QUOT], [LSFT, RALT], [LSFT], []]
+
+  - name: compose is disarmed by the EXTEND thumb, so Esc reaches the host
+    description: >
+      Esc lives on EXTEND, and the EXTEND hold is itself "any other key": it disarms
+      Compose before Esc is pressed. Compose's Esc-cancels rule is unreachable in practice;
+      the E typed afterwards is plain.
+    steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {down: 38}, {tap: 12}, {up: 38}, {tap: 3}]
+    expect: [[ESC], [], [E], []]
+
   - name: compose on an unmapped key passes it through
     steps: [{down: 37}, {down: 40}, {up: 37}, {up: 40}, {tap: 20}]
     expect: [[K], []]
