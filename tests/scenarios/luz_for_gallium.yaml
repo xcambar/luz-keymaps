@@ -2,7 +2,7 @@
 #
 # What depends on Gallium East's letters and symbol placement. The behaviour shared by every
 # variant is in luz.yaml, which runs alongside this file. Keys are Luz positions (0-41,
-# CLAUDE.md); outputs are the USB reports the host receives.
+# spec/README.md#positions); outputs are the USB reports the host receives.
 #
 # Position cheat-sheet (BASE):
 #    0 ·   1 B   2 L   3 C   4 D   5 V   |   6 J   7 F   8 O   9 U  10 '  11 ·

@@ -3,7 +3,7 @@
 # What depends on Enthium's letters and symbol placement, including its two liberties: an R
 # tap under the EXTEND thumb, and `-` under the right morph. The behaviour shared by every
 # variant is in luz.yaml, which runs alongside this file. Keys are Luz positions (0-41,
-# CLAUDE.md); outputs are the USB reports the host receives.
+# spec/README.md#positions); outputs are the USB reports the host receives.
 #
 # Position cheat-sheet (BASE):
 #    0 ·   1 Z   2 P   3 D   4 L   5 X   |   6 =   7 U   8 O   9 Y  10 Q  11 ·

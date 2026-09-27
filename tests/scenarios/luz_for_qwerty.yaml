@@ -3,7 +3,7 @@
 # What depends on QWERTY's letters and symbol placement (BASE, the SYMBOLS right half, and
 # the letter-keyed behaviours: tap-hold rolls, Caps Word, Compose). The behaviour shared by
 # every variant is in luz.yaml, which runs alongside this file.
-# Keys are Luz positions (0-41, CLAUDE.md); outputs are the USB reports the host
+# Keys are Luz positions (0-41, spec/README.md#positions); outputs are the USB reports the host
 # receives. Format: packages/keyspec/README.md.
 #
 # Position cheat-sheet (BASE):
