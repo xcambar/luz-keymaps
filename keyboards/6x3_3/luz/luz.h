@@ -4,7 +4,7 @@
 // keymap.c holds only what is per-layout (keymaps[] and the position-bound keycodes below),
 // then includes this file LAST, after keymaps[]:
 //
-//     #define LUZ_MORPH_L    LGUI_T(...)    // inner-index morph keys (see luz/mods.h)
+//     #define LUZ_MORPH_L    LGUI_T(...)    // inner-index morph keys (luz/cmd_ctrl_morph)
 //     #define LUZ_MORPH_R    RGUI_T(...)
 //     #define SY_COMM_MODTAP RGUI_T(...)    // mod-taps with a custom shifted glyph
 //     #define SY_DOT_MODTAP  RALT_T(...)    // (SYM_MODTAP_SHIFT, luz/symbols.h)
@@ -43,12 +43,19 @@ const key_override_t* key_overrides[] = {
     NULL
 };
 
-// Luz shared mod system: chordal_hold_layout (positional) + the Cmd/Ctrl morph
+// Luz shared mod system: chordal_hold_layout (positional) and the mod latch
 #include "luz/mods.h"
+#include "cmd_ctrl_morph.h"  // luz/cmd_ctrl_morph module
 
-// Snapshot the morph keycodes for LUZ_MORPH_KEY (the preprocessor expands them here).
-static const uint16_t morph_l = LUZ_MORPH_L;
-static const uint16_t morph_r = LUZ_MORPH_R;
+// luz/cmd_ctrl_morph: the inner-index GUI mod-taps hold Ctrl off macOS.
+bool is_cmd_ctrl_morph_key(uint16_t keycode) {
+    return keycode == LUZ_MORPH_L || keycode == LUZ_MORPH_R;
+}
+
+// The morph registers Ctrl by hand, so it hands the release to the latch (mod_latch.h).
+bool mod_latch_take(uint8_t mods) {
+    return luz_mod_latch_take(mods);
+}
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // ADJUST tri-layer: active while both EXTEND and SYMBOLS are held
@@ -59,10 +66,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // OS morph: inner-index mod-taps (LUZ_MORPH_L/R) use GUI on macOS, Ctrl on Linux
-    LUZ_MORPH_KEY(keycode, record, morph_l, KC_LCTL);
-    LUZ_MORPH_KEY(keycode, record, morph_r, KC_RCTL);
-
     // Layer-scoped mod latch: under SYMBOLS, releasing a held mod-tap latches the mod for
     // the life of the layer instead of releasing it (Shift excluded; see luz/mod_latch.h).
     if (!luz_mod_latch_process(keycode, record)) {

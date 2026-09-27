@@ -94,8 +94,9 @@ static inline bool luz_mod_latch_take(uint8_t mods) {
     return true;
 }
 
-// Mod-tap entry point. Call from process_record_user, AFTER the LUZ_MORPH_KEY lines
-// (off macOS the morph registers its Ctrl by hand and consults the latch itself).
+// Mod-tap entry point, called from process_record_user. The luz/cmd_ctrl_morph module runs
+// before it: off macOS the morph registers its Ctrl by hand and offers it to the latch itself
+// (mod_latch_take, in luz/luz.h).
 // Returns false when the release was swallowed, i.e. the modifier is now latched.
 static inline bool luz_mod_latch_process(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed || record->tap.count != 0 || !IS_QK_MOD_TAP(keycode)) {

@@ -57,7 +57,7 @@
 // Luz shared layer model (BASE + EXTEND/SYMBOLS + EXTEND_DEL/EXTEND_TABS/ADJUST)
 #include "luz/layers.h"
 
-// Inner-index morph keys for LUZ_MORPH_KEY (luz/mods.h), consumed by luz/luz.h. SYMBOLS 18
+// Inner-index morph keys (the luz/cmd_ctrl_morph module), consumed by luz/luz.h. SYMBOLS 18
 // repeats `-` as a plain SY_MINS, so `-` keeps its position on both layers while the morph
 // stays BASE-only.
 #define LUZ_MORPH_L LGUI_T(KC_K)

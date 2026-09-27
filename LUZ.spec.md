@@ -319,14 +319,14 @@ An implementation on other firmware should reproduce the rule, not the mechanism
 direct ZMK equivalent (a `&sl`-style sticky behaviour is consumed by the next key, where this
 persists for the layer).
 
-### Shared (the contract) → `luz/mods.h`
+### Shared (the contract) → `luz/mods.h` and the mod modules
 
 - **Chordal Hold handedness array** (`chordal_hold_layout`) — purely positional (`L`/`R`/`*`,
   thumbs exempt), so it is defined once here and identical for every variant.
-- **The Cmd/Ctrl morph** — `LUZ_MORPH_KEY(keycode, record, key, mod)`, a macro
-  that expands inside `process_record_user` (same idiom as `SYM_MODTAP_SHIFT`): on a non-macOS
-  platform it registers Ctrl for the held index morph keys. The per-layout `LUZ_MORPH_L`/`LUZ_MORPH_R`
-  keycodes are defined in `keymap.c` because they wrap that layout's index letter.
+- **The Cmd/Ctrl morph** — the [`luz/cmd_ctrl_morph`](modules/luz/cmd_ctrl_morph/) community
+  module: on a non-macOS platform it registers Ctrl for the held index morph keys. The
+  per-layout `LUZ_MORPH_L`/`LUZ_MORPH_R` keycodes are defined in `keymap.c` because they wrap
+  that layout's index letter; `luz/luz.h` hands them to the module.
 - **The layer-scoped mod latch** — [`keyboards/6x3_3/luz/mod_latch.h`](keyboards/6x3_3/luz/mod_latch.h),
   pulled in by `mods.h` because it is part of the mod contract rather than a variant feature. The
   shared [`luz/luz.h`](keyboards/6x3_3/luz/luz.h) wires it with two calls: `luz_mod_latch_process()` in `process_record_user` (after

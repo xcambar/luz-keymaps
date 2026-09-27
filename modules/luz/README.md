@@ -9,6 +9,7 @@ use them, Luz or not. Each one is small, does one thing, and is configured from 
 |---|---|---|
 | [`luz/compose`](compose/) | Luz's Compose: arm it, and the next key picks an accent or character | `luz/dead_keys`, `luz/semantic_keys` |
 | [`luz/dead_keys`](dead_keys/) | Keys that tap the host's dead key for an accent (´ ` ^ ¨ ~) | Luz's OS setting (for now) |
+| [`luz/cmd_ctrl_morph`](cmd_ctrl_morph/) | GUI mod-taps that hold Ctrl off macOS, so ⌘C and Ctrl+C are one chord | Luz's OS setting (for now) |
 | [`luz/swapper`](swapper/) | Cmd-Tab on one key: the modifier stays held while you tap through windows | – |
 | [`luz/semantic_keys`](semantic_keys/) | One key per editing intent (undo, copy, word left, delete line, new tab...), sending the right chord for the host OS | Luz's OS setting (for now) |
 
@@ -24,7 +25,8 @@ in your keymap's `keymap.json`:
         "luz/compose",
         "luz/dead_keys",
         "luz/semantic_keys",
-        "luz/swapper"
+        "luz/swapper",
+        "luz/cmd_ctrl_morph"
     ]
 }
 ```
