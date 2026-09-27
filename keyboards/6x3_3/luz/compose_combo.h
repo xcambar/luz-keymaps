@@ -1,6 +1,6 @@
 // Luz — Compose combo
 // ----------------------------------------------------------------------------
-// Canonical file at keyboards/6x3_3/luz/compose.h, shared by every Luz variant.
+// Canonical file at keyboards/6x3_3/luz/compose_combo.h, shared by every Luz variant.
 //
 // Compose is armed by a single cross-hand combo on BASE — the only combo in Luz — and
 // the whole thing is contractual: the POSITIONS, the OPERANDS and the behaviour are the

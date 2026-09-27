@@ -20,7 +20,7 @@
 // Compose is Shift(37)+Space(40). MUST_PRESS_IN_ORDER requires Shift first, so rolling out
 // of a Space into the next word's capital (right thumb still down, left thumb reaching for
 // Shift) cannot fire the combo and swallow the space. Shift-first is the natural gesture,
-// so the constraint costs nothing. See luz/compose.h.
+// so the constraint costs nothing. See luz/compose_combo.h.
 #define COMBO_MUST_PRESS_IN_ORDER
 
 // Split transport resilience — fixes the "slave half dead after macOS sleep/wake" desync.

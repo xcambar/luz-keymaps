@@ -19,7 +19,7 @@
 
 #include "luz/swapper.h"
 #include "luz/os_control.h"
-#include "luz/compose.h"
+#include "luz/compose_combo.h"
 #include "luz/semantic_keys.h"
 #include "luz/dead_keys.h"
 #include "luz/symbols.h"

@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * the index home pair spans a common CROSS-HAND bigram (th in Gallium, he in Enthium),
       * which is precisely the case Chordal Hold does not guard.
       * The home row (15/16/19/20) carries no mod-taps.
-      * COMPOSE is the thumb combo Shift(37)+Space(40), in that order — see luz/compose.h.
+      * COMPOSE is the thumb combo Shift(37)+Space(40), in that order — see luz/compose_combo.h.
       * pos 36 and 41 are blank; Esc lives on EXTEND (12) and Enter is the tap of
       * LT(SYMBOLS) at 39, so nothing unique is lost.
       * pos 34=SY_MINS (- → _), pos 35=SY_SLSH (/ → |)

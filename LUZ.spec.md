@@ -183,7 +183,7 @@ keystroke*. Being able to write accents, diacritics and other common symbols is 
   every other Luz convention there is no per-variant half: the mod contract puts a plain
   `KC_LSFT` on 37 and Space on 40 in *every* variant, so the positions, the operands and the
   behaviour are all shared. The combo is declared outright in
-  [`keyboards/6x3_3/luz/compose.h`](keyboards/6x3_3/luz/compose.h) and wired in the shared
+  [`keyboards/6x3_3/luz/compose_combo.h`](keyboards/6x3_3/luz/compose_combo.h) and wired in the shared
   [`luz/luz.h`](keyboards/6x3_3/luz/luz.h).
 
   A combo operand must be a key you never type in sequence with the other operand. Shift
@@ -435,7 +435,7 @@ cluster's geometry and the sub-mode mechanics; what rides on top is the layout's
 
 **This document is the contract; the code is one implementation of it.** Some conventions
 happen to be backed by shared headers in this repository (`luz/layers.h`, `luz/symbols.h`,
-`luz/mods.h`, `luz/compose.h`) — that is convenient for the QMK variants and it makes drift
+`luz/mods.h`, `luz/compose_combo.h`) — that is convenient for the QMK variants and it makes drift
 between *them* harder, but it is not what makes a convention binding. A Luz variant written
 for ZMK, Kanata or anything else compiles none of that code and is no less a variant for it.
 
