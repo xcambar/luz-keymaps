@@ -52,13 +52,13 @@
 
 Luz **deliberately leaves blanks** on several layers. They're yours: map whatever suits your workflow, without disturbing the shared frame.
 
-Go further whenever you like: swap the editing commands on the navigation layer, promote other symbols to the base layer, tuck something under the navigation thumb. To check that a change keeps you compatible with the other variants, [`LUZ.spec.md`](./LUZ.spec.md) opens with a one-minute checklist.
+Go further whenever you like: swap the editing commands on the navigation layer, promote other symbols to the base layer, tuck something under the navigation thumb. To check that a change keeps you compatible with the other variants, [`LUZ.spec.md`](./spec/README.md) opens with a one-minute checklist.
 
 ---
 
 ## Contributing variants
 
-**New variants are very welcome.** If your favourite alpha layout doesn't have one yet, copy an existing variant and follow [`LUZ.spec.md`](./LUZ.spec.md), the contract every variant meets. Open an issue to discuss, or send a pull request.
+**New variants are very welcome.** If your favourite alpha layout doesn't have one yet, copy an existing variant and follow [`LUZ.spec.md`](./spec/README.md), the contract every variant meets. Open an issue to discuss, or send a pull request.
 
 ---
 
@@ -80,8 +80,8 @@ qmk userspace-compile
 
 ## Going further
 
-- [`LUZ.spec.md`](./LUZ.spec.md) — the exact, implementation-facing contract: every layer, keycode, position, and rule.
-- [`TUNING.md`](./TUNING.md) — four tap-hold settings left deliberately open, with the arguments on each side.
+- [`LUZ.spec.md`](./spec/README.md) — the exact, implementation-facing contract: every layer, keycode, position, and rule.
+- [`TUNING.md`](./spec/tuning.md) — four tap-hold settings left deliberately open, with the arguments on each side.
 - The variant READMEs (linked in the table at the top) — diagrams and per-layout specifics.
 - [`keyboards/6x3_3/luz/`](./keyboards/6x3_3/luz/) — the shared code the variants compile against.
 

@@ -2,7 +2,7 @@
 
 > This is the **precise, implementation-facing spec** — the exact contract each variant is
 > kept against (file paths, macros, positions, rules). For a human-friendly tour of *what Luz
-> is and why*, read [the README](./README.md) first; come here for the details.
+> is and why*, read [the README](../README.md) first; come here for the details.
 
 **Luz** is a framework of shared conventions and features for alternative keyboard
 layouts on the `split_3x6_3` (42-key) form factor. It defines a common interaction
@@ -41,8 +41,8 @@ written for.
 
 This is the first and load-bearing Luz convention: a fixed set of six layers with fixed
 roles, ordering, and activation. The enum is defined once, in the canonical shared header
-[`keyboards/6x3_3/luz/layers.h`](keyboards/6x3_3/luz/layers.h). Each variant's `rules.mk`
-includes the shared [`luz/rules.mk`](keyboards/6x3_3/luz/rules.mk), which adds the shared dir's
+[`keyboards/6x3_3/luz/layers.h`](../keyboards/6x3_3/luz/layers.h). Each variant's `rules.mk`
+includes the shared [`luz/rules.mk`](../keyboards/6x3_3/luz/rules.mk), which adds the shared dir's
 parent to the include path (`VPATH += $(QMK_USERSPACE)/keyboards/6x3_3`), so variants
 `#include` it as `"luz/layers.h"`. No variant redefines the enum; renaming a layer
 happens in one file.
@@ -106,7 +106,7 @@ happens in one file.
 
 Symbols are split the same way the layers are: the **vocabulary and behavior** are a Luz
 contract shared verbatim, while **placement** is where each variant keeps its character.
-The shared half lives in [`keyboards/6x3_3/luz/symbols.h`](keyboards/6x3_3/luz/symbols.h)
+The shared half lives in [`keyboards/6x3_3/luz/symbols.h`](../keyboards/6x3_3/luz/symbols.h)
 (on the include path, like `layers.h`); placement lives in each `keymap.c`.
 
 ### Shared (the contract)
@@ -183,8 +183,8 @@ keystroke*. Being able to write accents, diacritics and other common symbols is 
   every other Luz convention there is no per-variant half: the mod contract puts a plain
   `KC_LSFT` on 37 and Space on 40 in *every* variant, so the positions, the operands and the
   behaviour are all shared. The combo is declared outright in
-  [`keyboards/6x3_3/luz/compose_combo.h`](keyboards/6x3_3/luz/compose_combo.h) and wired in the shared
-  [`luz/luz.h`](keyboards/6x3_3/luz/luz.h).
+  [`keyboards/6x3_3/luz/compose_combo.h`](../keyboards/6x3_3/luz/compose_combo.h) and wired in the shared
+  [`luz/luz.h`](../keyboards/6x3_3/luz/luz.h).
 
   A combo operand must be a key you never type in sequence with the other operand. Shift
   satisfies that by not being a typed character at all — which is what makes this pair safe,
@@ -238,7 +238,7 @@ Modifiers are placed by **position, not by letter** — every variant carries th
 the same physical key, so chording for shortcuts is identical muscle memory across layouts.
 The only thing that changes per layout is the alpha under each mod, which is just BASE. The
 positional, shareable parts live in
-[`keyboards/6x3_3/luz/mods.h`](keyboards/6x3_3/luz/mods.h) (on the include path, like `layers.h`).
+[`keyboards/6x3_3/luz/mods.h`](../keyboards/6x3_3/luz/mods.h) (on the include path, like `layers.h`).
 
 ### The scheme
 
@@ -323,16 +323,16 @@ persists for the layer).
 
 - **Chordal Hold handedness array** (`chordal_hold_layout`) — purely positional (`L`/`R`/`*`,
   thumbs exempt), so it is defined once here and identical for every variant.
-- **The Cmd/Ctrl morph** — the [`luz/cmd_ctrl_morph`](modules/luz/cmd_ctrl_morph/) community
+- **The Cmd/Ctrl morph** — the [`luz/cmd_ctrl_morph`](../modules/luz/cmd_ctrl_morph/) community
   module: on a non-macOS platform it registers Ctrl for the held index morph keys. The
   per-layout `LUZ_MORPH_L`/`LUZ_MORPH_R` keycodes are defined in `keymap.c` because they wrap
   that layout's index letter; `luz/luz.h` hands them to the module.
-- **The layer-scoped mod latch** — the [`luz/mod_latch`](modules/luz/mod_latch/) community
+- **The layer-scoped mod latch** — the [`luz/mod_latch`](../modules/luz/mod_latch/) community
   module, with `MOD_LATCH_LAYER` set to SYMBOLS in the shared
-  [`luz/config.h`](keyboards/6x3_3/luz/config.h). It is listed after the morph in each
+  [`luz/config.h`](../keyboards/6x3_3/luz/config.h). It is listed after the morph in each
   variant's `keymap.json`, so a morphed Ctrl latches like any modifier, and it drops the latch
   when Layer Lock locks SYMBOLS.
-- **Tap-hold tuning** (in the shared [`luz/config.h`](keyboards/6x3_3/luz/config.h), part of the contract): `TAPPING_TERM 240`,
+- **Tap-hold tuning** (in the shared [`luz/config.h`](../keyboards/6x3_3/luz/config.h), part of the contract): `TAPPING_TERM 240`,
   `CHORDAL_HOLD`, `PERMISSIVE_HOLD`, `FLOW_TAP_TERM 150`. Chordal Hold's opposite-hands rule
   prevents same-hand roll misfires; Flow Tap suppresses holds during fast typing bursts.
 
@@ -351,7 +351,7 @@ every letter keeps the same modifier under the opposite hand.
 > against ~6.8% for Gallium East — `H` alone carries almost the whole Gallium load. The natural
 > mitigation is a longer per-variant `TAPPING_TERM`, which the tap-hold tuning contract above
 > currently forbids. This is recorded, not resolved; see
-> [`luz_for_colemak_dh/README.md`](keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md).
+> [`luz_for_colemak_dh/README.md`](../keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md).
 
 ---
 
@@ -443,5 +443,5 @@ So where this spec and the C disagree, the spec is wrong and should be corrected
 other way round.
 
 Four tap-hold settings are deliberately left unresolved; the arguments for and against each
-are kept in [`TUNING.md`](./TUNING.md) so they are not re-derived every time one comes up. And where a rule is stated in QMK vocabulary, that is shorthand for a
+are kept in [`TUNING.md`](tuning.md) so they are not re-derived every time one comes up. And where a rule is stated in QMK vocabulary, that is shorthand for a
 behaviour, not a requirement to use QMK.

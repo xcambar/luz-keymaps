@@ -16,7 +16,7 @@ variants, and adding a fifth is a day's work.
 
 ### The framework
 
-- [`LUZ.spec.md`](./LUZ.spec.md) — the contract, opening with a conformance checklist of what may
+- [`LUZ.spec.md`](./spec/README.md) — the contract, opening with a conformance checklist of what may
   and must not vary, so you can judge a variant without reading its code. (`e03af29`, `50a51d7`)
 - Shared headers under `keyboards/6x3_3/luz/` — one source of truth for the layer model, the
   symbol set, the mod system and Compose. (`f1fcb18`, `17c951a`, `c0a1040`, `fa01dfe`)
@@ -67,7 +67,7 @@ variants, and adding a fifth is a day's work.
   layout. (`ea7b02e`, `79279cb`, `21cc986`)
 - A guide for contributing variants. (`23054b3`)
 - Four tap-hold settings recorded as deliberately open, with the arguments for each, in
-  [`TUNING.md`](./TUNING.md). (`a875e90`)
+  [`TUNING.md`](./spec/tuning.md). (`a875e90`)
 - Corrections to documentation the mod rework left stale — including a Shift drawn on the wrong
   key in a published diagram. (`939ee00`, `31bcbb3`, `c17fc63`)
 
