@@ -1,6 +1,7 @@
 {
     "modules": [
         "luz/compose",
-        "luz/dead_keys"
+        "luz/dead_keys",
+        "luz/semantic_keys"
     ]
 }

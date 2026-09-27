@@ -7,8 +7,9 @@ use them, Luz or not. Each one is small, does one thing, and is configured from 
 
 | Module | What it does | Needs |
 |---|---|---|
-| [`luz/compose`](compose/) | Luz's Compose: arm it, and the next key picks an accent or character | `luz/dead_keys`, Luz's semantic keys (for now) |
+| [`luz/compose`](compose/) | Luz's Compose: arm it, and the next key picks an accent or character | `luz/dead_keys`, `luz/semantic_keys` |
 | [`luz/dead_keys`](dead_keys/) | Keys that tap the host's dead key for an accent (´ ` ^ ¨ ~) | Luz's OS setting (for now) |
+| [`luz/semantic_keys`](semantic_keys/) | One key per editing intent (undo, copy, word left, delete line, new tab...), sending the right chord for the host OS | Luz's OS setting (for now) |
 
 ## Using them
 
@@ -20,7 +21,8 @@ in your keymap's `keymap.json`:
 {
     "modules": [
         "luz/compose",
-        "luz/dead_keys"
+        "luz/dead_keys",
+        "luz/semantic_keys"
     ]
 }
 ```

@@ -9,8 +9,8 @@
 //     Esc cancels. Plain modifiers don't consume it (Shift+E still composes).
 //     Any other key disarms it and does what it normally does.
 //
-// Requires tap_deadkey_code() and tap_semkey_code() (Luz's dead and semantic keys), and
-// must be listed first in keymap.json so it sees the next key before anything else.
+// Requires luz/dead_keys and luz/semantic_keys, and must be listed BEFORE them in
+// keymap.json so it sees the next key first.
 
 #pragma once
 

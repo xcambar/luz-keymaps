@@ -21,7 +21,6 @@
 #include "luz/os_control.h"
 #include "luz/compose_combo.h"
 #include "compose.h"   // luz/compose module: compose_arm()
-#include "luz/semantic_keys.h"
 #include "luz/symbols.h"
 
 #ifndef LUZ_VARIANT_MODTAP_SHIFTS
@@ -64,11 +63,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Process semantic keys (platform-independent editing commands)
-    if (!process_semkey(keycode, record)) {
-        return false;  // Semantic key was handled
-    }
-
     // Update swapper
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
 

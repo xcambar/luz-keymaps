@@ -2,27 +2,30 @@
 
 #include "quantum.h"
 
-// Token concatenation helper macros for custom keycodes
-#define X_CONCAT_IMPL(a, b) a ## b
-#define X_CONCAT(a, b) X_CONCAT_IMPL(a, b)
-
-#define LIST_START_MARKER(PREFIX) X_CONCAT(X_CONCAT(_, PREFIX), _START)
-#define LIST_LENGTH(PREFIX) X_CONCAT(X_CONCAT(_, PREFIX), _COUNT)
-
-#define CUSTOM_KEYCODES(PREFIX, ...) \
-    LIST_START_MARKER(PREFIX), \
-    X_FIRST(__VA_ARGS__), \
-    X_REST(__VA_ARGS__), \
-    LIST_LENGTH(PREFIX)
-
-// Helper macros to extract first and rest of arguments
-#define X_FIRST(first, ...) first
-#define X_REST(first, ...) __VA_ARGS__
-
-#include "luz/semantic_keys.h"
 #include "luz/symbols.h"
 
-// Luz's names for the luz/dead_keys module's keycodes (its own aliases are CM_*).
+// Luz's names for its community modules' keycodes (their own aliases are CM_*).
+#define SK_UNDO       COMMUNITY_MODULE_SEMANTIC_UNDO
+#define SK_CUT        COMMUNITY_MODULE_SEMANTIC_CUT
+#define SK_COPY       COMMUNITY_MODULE_SEMANTIC_COPY
+#define SK_PSTE       COMMUNITY_MODULE_SEMANTIC_PASTE
+#define SK_EURO       COMMUNITY_MODULE_SEMANTIC_EURO
+#define SK_CEDIL      COMMUNITY_MODULE_SEMANTIC_CEDILLA
+#define SK_WORDPRV    COMMUNITY_MODULE_SEMANTIC_WORD_PREV
+#define SK_WORDNXT    COMMUNITY_MODULE_SEMANTIC_WORD_NEXT
+#define SK_LINEBEG    COMMUNITY_MODULE_SEMANTIC_LINE_BEGIN
+#define SK_LINEEND    COMMUNITY_MODULE_SEMANTIC_LINE_END
+#define SK_DELWORDPRV COMMUNITY_MODULE_SEMANTIC_DEL_WORD_PREV
+#define SK_DELWORDNXT COMMUNITY_MODULE_SEMANTIC_DEL_WORD_NEXT
+#define SK_DELLINEBEG COMMUNITY_MODULE_SEMANTIC_DEL_LINE_BEGIN
+#define SK_DELLINEEND COMMUNITY_MODULE_SEMANTIC_DEL_LINE_END
+#define SK_TABNEW     COMMUNITY_MODULE_SEMANTIC_TAB_NEW
+#define SK_TABCLOSE   COMMUNITY_MODULE_SEMANTIC_TAB_CLOSE
+#define SK_TABREOPEN  COMMUNITY_MODULE_SEMANTIC_TAB_REOPEN
+#define SK_TABLEFT    COMMUNITY_MODULE_SEMANTIC_TAB_LEFT
+#define SK_TABRIGHT   COMMUNITY_MODULE_SEMANTIC_TAB_RIGHT
+#define SK_HISTPRV    COMMUNITY_MODULE_SEMANTIC_HISTORY_PREV
+#define SK_HISTNXT    COMMUNITY_MODULE_SEMANTIC_HISTORY_NEXT
 #define DK_ACUTE      COMMUNITY_MODULE_DEAD_ACUTE
 #define DK_GRAVE      COMMUNITY_MODULE_DEAD_GRAVE
 #define DK_CIRC       COMMUNITY_MODULE_DEAD_CIRC
@@ -36,9 +39,6 @@ enum custom_keycodes {
     ARROW_OP,                // Tap: ->  Shift: =>
     SW_OS,                   // Toggle OS platform (macOS/Linux)
     PR_OS,                   // Type the current OS platform name
-
-    // Semantic keys (expanded from SEMANTIC_KEYS_LIST macro)
-    SEMANTIC_KEYS_LIST,
 
     // Symbol keycodes (expanded from SYMBOLS_LIST macro)
     SYMBOLS_LIST,

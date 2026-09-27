@@ -4,8 +4,7 @@
 #include QMK_KEYBOARD_H
 #include "compose.h"
 #include "dead_keys.h"
-// Semantic keys are still Luz's own code (keyboards/6x3_3/luz); a module next.
-#include "luz/custom_keycodes.h"
+#include "semantic_keys.h"
 
 ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
@@ -44,8 +43,8 @@ bool process_record_compose(uint16_t keycode, keyrecord_t *record) {
         case KC_U: armed = false; tap_deadkey_code(COMMUNITY_MODULE_DEAD_DIAE);  return false;
         case KC_O: armed = false; tap_deadkey_code(COMMUNITY_MODULE_DEAD_CIRC);  return false;
         case KC_N: armed = false; tap_deadkey_code(COMMUNITY_MODULE_DEAD_TILDE); return false;
-        case KC_C: armed = false; tap_semkey_code(SK_CEDIL);   return false;
-        case KC_W: armed = false; tap_semkey_code(SK_EURO);    return false;
+        case KC_C: armed = false; tap_semkey_code(COMMUNITY_MODULE_SEMANTIC_CEDILLA); return false;
+        case KC_W: armed = false; tap_semkey_code(COMMUNITY_MODULE_SEMANTIC_EURO);    return false;
         default:
             armed = false;
             return true;  // any other key passes through unchanged
