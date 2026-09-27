@@ -20,4 +20,6 @@ class AdapterError(RuntimeError):
     pass
 
 
-ADAPTERS: dict = {}
+from . import qmk  # noqa: E402  (needs AdapterError above)
+
+ADAPTERS = {qmk.QmkAdapter.name: qmk.QmkAdapter}
