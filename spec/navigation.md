@@ -19,7 +19,7 @@ the sub-modes' *behaviour*. The commands that fill them are a default, not a req
   Dl⊙ / Tb⊙ hold for EXTEND_DEL / EXTEND_TABS    SWn = window switcher
 ```
 
-![EXTEND — navigation & editing](../keyboards/6x3_3/luz/keymap_drawer/EXTEND.svg)
+![EXTEND — navigation & editing](../packages/qmk/keyboards/6x3_3/luz/keymap_drawer/EXTEND.svg)
 
 ### The cluster (shape)
 
@@ -77,7 +77,7 @@ EXTEND_DEL                                  EXTEND_TABS
   (▽) the held trigger   ✗ blocked                                         ◅ ▻ history back/forward
 ```
 
-![Navigation modes](../keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/04_MODES.svg)
+![Navigation modes](../packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/04_MODES.svg)
 
 ## Fills
 
@@ -105,8 +105,8 @@ on the host OS.
 
 ## Reference implementation (QMK)
 
-- **Commands:** the [`luz/semantic_keys`](../modules/luz/semantic_keys/) module (`SK_*`),
-  following [`luz/host_os`](../modules/luz/host_os/).
-- **Window switcher:** the [`luz/swapper`](../modules/luz/swapper/) module (`SW_WIN`).
+- **Commands:** the [`luz/semantic_keys`](../packages/qmk/modules/luz/semantic_keys/) module (`SK_*`),
+  following [`luz/host_os`](../packages/qmk/modules/luz/host_os/).
+- **Window switcher:** the [`luz/swapper`](../packages/qmk/modules/luz/swapper/) module (`SW_WIN`).
 - **Sub-layers:** `MO(EXTEND_DEL)` and `MO(EXTEND_TABS)`, with `XXXXXXX` for the blocked
   keys.

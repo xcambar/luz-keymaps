@@ -65,8 +65,8 @@ layer thumbs are held.
 
 ## Reference implementation (QMK)
 
-- **Layer enum:** `keyboards/6x3_3/luz/layers.h`.
+- **Layer enum:** `packages/qmk/keyboards/6x3_3/luz/layers.h`.
 - **Tri-layer:** `update_tri_layer_state` in `luz/luz.h`.
 - **Lock:** QMK's Layer Lock (`QK_LLCK`).
-- **Host OS setting:** the [`luz/host_os`](../modules/luz/host_os/) module (`SW_OS`,
+- **Host OS setting:** the [`luz/host_os`](../packages/qmk/modules/luz/host_os/) module (`SW_OS`,
   `PR_OS`).

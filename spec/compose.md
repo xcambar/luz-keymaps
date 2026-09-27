@@ -87,9 +87,9 @@ otherwise shared verbatim.
 
 ## Reference implementation (QMK)
 
-- **Combo:** the Shift+Space combo is in `keyboards/6x3_3/luz/compose_combo.h`, with
+- **Combo:** the Shift+Space combo is in `packages/qmk/keyboards/6x3_3/luz/compose_combo.h`, with
   `COMBO_MUST_PRESS_IN_ORDER`.
-- **What Compose does once armed:** the [`luz/compose`](../modules/luz/compose/) module.
-- **Host chords:** the [`luz/dead_keys`](../modules/luz/dead_keys/) and
-  [`luz/semantic_keys`](../modules/luz/semantic_keys/) modules, both following
-  [`luz/host_os`](../modules/luz/host_os/).
+- **What Compose does once armed:** the [`luz/compose`](../packages/qmk/modules/luz/compose/) module.
+- **Host chords:** the [`luz/dead_keys`](../packages/qmk/modules/luz/dead_keys/) and
+  [`luz/semantic_keys`](../packages/qmk/modules/luz/semantic_keys/) modules, both following
+  [`luz/host_os`](../packages/qmk/modules/luz/host_os/).

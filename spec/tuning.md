@@ -9,7 +9,7 @@
 > None of the four can be settled by measurement. They are all *felt* — flash, type for a week,
 > decide. What can be written down is the reasoning, and that is what this is.
 
-Current state, in the shared `keyboards/6x3_3/luz/config.h`:
+Current state, in the shared `packages/qmk/keyboards/6x3_3/luz/config.h`:
 
 ```c
 #define TAPPING_TERM 240

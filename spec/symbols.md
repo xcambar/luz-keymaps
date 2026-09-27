@@ -79,11 +79,11 @@ Enthium mirrors the hands). It is free, but governed by these principles:
 └────┴────┴────┴────┴────┴────┘
 ```
 
-![SYMBOLS — numbers & symbols](../keyboards/6x3_3/luz/keymap_drawer/SYMBOLS.svg)
+![SYMBOLS — numbers & symbols](../packages/qmk/keyboards/6x3_3/luz/keymap_drawer/SYMBOLS.svg)
 
 ## Reference implementation (QMK)
 
-- **Symbol table:** `SYMBOL_TABLE` in `keyboards/6x3_3/luz/symbols.h` is the single source.
+- **Symbol table:** `SYMBOL_TABLE` in `packages/qmk/keyboards/6x3_3/luz/symbols.h` is the single source.
   Each row generates an `SY_*` keycode and a pair of key overrides live on all layers.
 - **Mod-tap symbols:** mod-tap taps can't ride a key override, so `SYM_MODTAP_SHIFT`
   supplies the partner from `process_record_user`.

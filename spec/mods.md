@@ -124,18 +124,18 @@ adopting a *published* layout does not: Colemak Mod-DH's bottom row is fixed at
 `z x c d v` / `k h , . /`, which puts ≈13.3% of English letters under a bottom-row mod-tap,
 against ≈6.8% for Gallium East. The natural mitigation, a longer per-variant tapping term,
 is what the fixed 240 ms above forbids. This is recorded, not resolved (see
-[Luz for Colemak-DH](../keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md)).
+[Luz for Colemak-DH](../packages/qmk/keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md)).
 
 ## Reference implementation (QMK)
 
 | Rule | Implementation |
 |---|---|
 | mod-taps | `LALT_T`… on BASE |
-| morph | the [`luz/cmd_ctrl_morph`](../modules/luz/cmd_ctrl_morph/) module; the variant names its keys (`LUZ_MORPH_L/R`) |
+| morph | the [`luz/cmd_ctrl_morph`](../packages/qmk/modules/luz/cmd_ctrl_morph/) module; the variant names its keys (`LUZ_MORPH_L/R`) |
 | opposite hands | QMK's Chordal Hold, with the handedness map in `luz/mods.h` |
 | permissive hold / fast typing | `PERMISSIVE_HOLD`, `FLOW_TAP_TERM 150` in `luz/config.h` |
 | Caps Word | `DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD` and `caps_word_press_user` in `luz/luz.h` |
-| mod latch | the [`luz/mod_latch`](../modules/luz/mod_latch/) module, `MOD_LATCH_LAYER` = SYMBOLS |
+| mod latch | the [`luz/mod_latch`](../packages/qmk/modules/luz/mod_latch/) module, `MOD_LATCH_LAYER` = SYMBOLS |
 
 QMK's Caps Word detector accepts only a plain left Shift, which 37 is. Its "both Shifts"
 trigger can't work with a single Shift key.

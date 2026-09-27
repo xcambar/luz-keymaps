@@ -38,11 +38,11 @@ half, the taps under the morph and the EXTEND thumb, and where its envelope sits
 
 The rules are also written as **scenarios**: key presses by position, and the USB reports
 the host must receive, with exact timings where timing is the rule. They live in
-[`tests/scenarios/`](../tests/scenarios/):
+[`tests/scenarios/`](../packages/qmk/tests/scenarios/):
 
 | File | Checks |
 |---|---|
-| [`luz.yaml`](../tests/scenarios/luz.yaml) | what every variant shares: the holds and the morph, EXTEND and its sub-layers with every command on both OSes, the window switcher, the SYMBOLS left half and its macros, the mod latch, ADJUST, the host OS setting |
+| [`luz.yaml`](../packages/qmk/tests/scenarios/luz.yaml) | what every variant shares: the holds and the morph, EXTEND and its sub-layers with every command on both OSes, the window switcher, the SYMBOLS left half and its macros, the mod latch, ADJUST, the host OS setting |
 | `luz_for_<variant>.yaml` | what depends on that variant's letters: typing, symbol pairs on BASE, tap-hold rolls, Caps Word, Compose and every dead key |
 
 Scenarios don't know about firmware, keycodes or matrices. They run with

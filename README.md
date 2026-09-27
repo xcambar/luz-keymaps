@@ -6,10 +6,10 @@
 
 | Variant | Letters | Keymap |
 |---------|---------|--------|
-| **Luz for Gallium** | Gallium East | [`luz_for_gallium`](./keyboards/6x3_3/keymaps/luz_for_gallium/README.md) |
-| **Luz for Enthium** | Enthium | [`luz_for_enthium`](./keyboards/6x3_3/keymaps/luz_for_enthium/README.md) |
-| **Luz for Colemak-DH** | Colemak Mod-DH (matrix) | [`luz_for_colemak_dh`](./keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md) |
-| **Luz for QWERTY** | QWERTY | [`luz_for_qwerty`](./keyboards/6x3_3/keymaps/luz_for_qwerty/README.md) |
+| **Luz for Gallium** | Gallium East | [`luz_for_gallium`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/README.md) |
+| **Luz for Enthium** | Enthium | [`luz_for_enthium`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_enthium/README.md) |
+| **Luz for Colemak-DH** | Colemak Mod-DH (matrix) | [`luz_for_colemak_dh`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md) |
+| **Luz for QWERTY** | QWERTY | [`luz_for_qwerty`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_qwerty/README.md) |
 
 ## What you get, out of the box
 
@@ -22,7 +22,7 @@
 - **A lightweight thumb cluster.** Plain Shift with Caps Word on double tap, layer holds, Enter, Space.
 - **OS-aware Cmd/Ctrl.** On the inner index column: `⌘C` on macOS, `Ctrl-C` on Linux.
 
-![BASE — the Luz frame](./keyboards/6x3_3/luz/keymap_drawer/BASE.svg)
+![BASE — the Luz frame](./packages/qmk/keyboards/6x3_3/luz/keymap_drawer/BASE.svg)
 
 ### Numbers & Symbols
 
@@ -30,29 +30,29 @@
 - **Digits on the left hand.** The symbols layer turns the left hand into a number pad: `1 2 3` across the home row with `0` beside them, `4 5 6` below, `7 8 9` above.
 - **Mods survive the layer switch.** Hold `Ctrl`, `Alt` or `Cmd`, then enter the symbols layer: the mods stay on until you leave it, freeing that hand for the number pad. Shift is the exception.
 
-![SYMBOLS — numbers & symbols](./keyboards/6x3_3/luz/keymap_drawer/SYMBOLS.svg)
+![SYMBOLS — numbers & symbols](./packages/qmk/keyboards/6x3_3/luz/keymap_drawer/SYMBOLS.svg)
 
 ### Navigation & Editing
 
 - **Inverted-T arrows, no modifiers.** The further a key sits from home, the further it moves: character, word, line, page.
 - **Left-hand modes.** Left-hand triggers turn the same keys into **select**, **delete** (by character, word or line), or **browser tab** controls.
 
-![EXTEND — navigation & editing](./keyboards/6x3_3/luz/keymap_drawer/EXTEND.svg)
-![Navigation modes](./keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/04_MODES.svg)
+![EXTEND — navigation & editing](./packages/qmk/keyboards/6x3_3/luz/keymap_drawer/EXTEND.svg)
+![Navigation modes](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/04_MODES.svg)
 
 ### Compose — accents, without a layer of its own
 
 - **Accents via Compose.** Press `Shift` then `Space` (both thumbs, same keys on every variant), and the next key gets an accent: `é à ü ô ñ`, plus `ç` and `€`. Anything else is on AltGr.
 
-![Compose & diacritics](./keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/05_DIACRITICS.svg)
+![Compose & diacritics](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/05_DIACRITICS.svg)
 
 ---
 
 ## What's in this repository
 
 - **[The specification](./spec/README.md).** The definition of Luz: every layer, position and rule, written as behaviour, for any firmware.
-- **Reference implementations** for QMK: the four variants above, built from shared code ([guide](./docs/qmk.md)).
-- **[Community modules](./modules/luz/README.md)** for QMK: the OS-aware features (semantic editing keys, dead keys, Compose, the Cmd/Ctrl morph, the modifier latch, the window switcher), usable in any keymap.
+- **Reference implementations** for QMK: the four variants above, built from shared code ([guide](./packages/qmk/README.md)).
+- **[Community modules](./packages/qmk/modules/luz/README.md)** for QMK: the OS-aware features (semantic editing keys, dead keys, Compose, the Cmd/Ctrl morph, the modifier latch, the window switcher), usable in any keymap.
 - **[Conformance tests](./spec/conformance.md).** The rules as executable scenarios, run on every variant with [keyspec](./packages/keyspec/README.md), a firmware-agnostic test runner for keymaps.
 
 ---
@@ -67,7 +67,7 @@ Go further whenever you like: swap the editing commands on the navigation layer,
 
 ## Contributing variants
 
-**New variants are very welcome**, on QMK or any other firmware. If your favourite alpha layout doesn't have one yet, follow [the specification](./spec/README.md). For QMK, copy an existing variant ([how](./docs/qmk.md#adding-a-variant)); the shared conformance scenarios must pass unchanged. Open an issue to discuss, or send a pull request.
+**New variants are very welcome**, on QMK or any other firmware. If your favourite alpha layout doesn't have one yet, follow [the specification](./spec/README.md). For QMK, copy an existing variant ([how](./packages/qmk/README.md#adding-a-variant)); the shared conformance scenarios must pass unchanged. Open an issue to discuss, or send a pull request.
 
 ---
 
@@ -87,15 +87,15 @@ qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
 qmk userspace-compile
 ```
 
-See the [QMK guide](./docs/qmk.md) for setup, tests and diagrams.
+See the [QMK guide](./packages/qmk/README.md) for setup, tests and diagrams.
 
 ## Going further
 
 - [The specification](./spec/README.md) — the exact contract: every layer, position and rule.
 - [Open questions](./spec/tuning.md) — four tap-hold settings left deliberately open, with the arguments on each side.
 - The variant READMEs (linked in the table at the top) — diagrams and per-layout specifics.
-- [The QMK guide](./docs/qmk.md) — how the reference implementations map onto the spec, and how to add one.
-- [`modules/luz/`](./modules/luz/README.md) and [keyspec](./packages/keyspec/README.md) — the reusable pieces.
+- [The QMK guide](./packages/qmk/README.md) — how the reference implementations map onto the spec, and how to add one.
+- [`modules/luz/`](./packages/qmk/modules/luz/README.md) and [keyspec](./packages/keyspec/README.md) — the reusable pieces.
 
 ## Inspiration
 

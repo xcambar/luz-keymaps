@@ -11,9 +11,9 @@ Luz, on any firmware, and for anyone who wants the exact rules behind the
 [README](../README.md)'s tour. Implementations follow it; they do not define it:
 
 - The QMK keymaps in this repository are **reference implementations**
-  ([guide](../docs/qmk.md)).
-- The [QMK community modules](../modules/luz/) package the parts others may want to reuse.
-- The [scenarios](../tests/scenarios/) are **executable conformance tests** (see
+  ([guide](../packages/qmk/README.md)).
+- The [QMK community modules](../packages/qmk/modules/luz/) package the parts others may want to reuse.
+- The [scenarios](../packages/qmk/tests/scenarios/) are **executable conformance tests** (see
   [Conformance](conformance.md)).
 
 Where an implementation and this document disagree, the implementation is wrong, or this

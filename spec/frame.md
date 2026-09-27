@@ -19,7 +19,7 @@ modifiers and envelope in the same places.
   EXT = EXTEND (hold)   SYM = SYMBOLS (hold) / Enter (tap)   · = free for the variant
 ```
 
-![BASE — the Luz frame](../keyboards/6x3_3/luz/keymap_drawer/BASE.svg)
+![BASE — the Luz frame](../packages/qmk/keyboards/6x3_3/luz/keymap_drawer/BASE.svg)
 
 ## Rules
 
