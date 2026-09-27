@@ -12,23 +12,51 @@ permissions:
   contents: write
 
 jobs:
+  # The steps of QMK's reusable userspace build (qmk/.github qmk_userspace_build.yml), which
+  # can only build a userspace at the repository root; ours is packages/qmk.
   build:
-    name: 'QMK Userspace Build'
-    uses: qmk/.github/.github/workflows/qmk_userspace_build.yml@main
-    with:
-      qmk_repo: qmk/qmk_firmware
-      qmk_ref: master
-      preparation_command: |
-        # Materialize the userspace keymap symlinks (scoped to our keyboards/ tree:
-        # `find .` would also walk the qmk_firmware checkout and choke on its symlinks)
-        find keyboards -type l | while read link; do
-          target=$(readlink -f "$link") || { echo "Unresolvable symlink: $link" >&2; exit 1; }
-          rm "$link"
-          cp -r "$target" "$link"
-        done
-        cp -r keyboards/42keebs qmk_firmware/keyboards/
+    name: 'Firmware build'
+    runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli:latest
+    defaults:
+      run:
+        working-directory: packages/qmk
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out QMK
+        uses: actions/checkout@v4
+        with:
+          repository: qmk/qmk_firmware
+          ref: master
+          path: qmk_firmware
+          submodules: recursive
+      - name: Configure the QMK CLI
+        run: |
+          pip install -r "$GITHUB_WORKSPACE/qmk_firmware/requirements.txt"
+          qmk config userspace_compile.parallel=$(nproc)
+          qmk config user.qmk_home="$GITHUB_WORKSPACE/qmk_firmware"
+          qmk config user.overlay_dir="$GITHUB_WORKSPACE/packages/qmk"
+          qmk userspace-doctor
+      - name: Materialize the keymap symlinks, and add the Cantor Pro to QMK
+        run: |
+          find keyboards -type l | while read link; do
+            target=$(readlink -f "$link") || { echo "Unresolvable symlink: $link" >&2; exit 1; }
+            rm "$link"
+            cp -r "$target" "$link"
+          done
+          cp -r keyboards/42keebs "$GITHUB_WORKSPACE/qmk_firmware/keyboards/"
+      - name: Build every target in qmk.json
+        run: qmk userspace-compile -e DUMP_CI_METADATA=yes -p
+      - name: Upload the firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: Firmware
+          path: |
+            packages/qmk/*.bin
+            packages/qmk/*.hex
+            packages/qmk/*.uf2
 
-  # Behavioural keymap tests (keyspec, packages/keyspec): the Luz scenarios in tests/,
+  # Behavioural keymap tests (keyspec, packages/keyspec): the Luz scenarios in packages/qmk/tests/,
   # replayed in QMK's host test harness against the same QMK ref as the build above.
   test:
     name: 'Keymap tests'
@@ -42,12 +70,12 @@ jobs:
           git clone --depth 1 --branch master https://github.com/qmk/qmk_firmware.git qmk_firmware
           git -C qmk_firmware submodule update --init --depth 1 lib/googletest lib/printf
           # Same as the build job: `qmk info` only resolves the Cantor Pro from qmk_firmware
-          cp -rL keyboards/42keebs qmk_firmware/keyboards/
+          cp -rL packages/qmk/keyboards/42keebs qmk_firmware/keyboards/
       - uses: astral-sh/setup-uv@v6
       - name: Install the QMK CLI
         run: uv tool install qmk
       - name: Run the scenarios
-        run: uv run --project packages/keyspec keyspec -c tests/keyspec.yaml run --no-color --junit keyspec.xml
+        run: uv run --project packages/keyspec keyspec -c packages/qmk/tests/keyspec.yaml run --no-color --junit keyspec.xml
       - name: Upload the JUnit report
         if: always()
         uses: actions/upload-artifact@v4
