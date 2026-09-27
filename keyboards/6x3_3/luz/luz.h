@@ -20,6 +20,7 @@
 #include "luz/swapper.h"
 #include "luz/os_control.h"
 #include "luz/compose_combo.h"
+#include "compose.h"   // luz/compose module: compose_arm()
 #include "luz/semantic_keys.h"
 #include "luz/dead_keys.h"
 #include "luz/symbols.h"
@@ -52,9 +53,6 @@ const key_override_t* key_overrides[] = {
 static const uint16_t morph_l = LUZ_MORPH_L;
 static const uint16_t morph_r = LUZ_MORPH_R;
 
-// Compose state: armed by the Shift+Space thumb combo, consumed by the next keypress
-static bool compose_pending = false;
-
 // Swapper state
 static bool sw_win_active = false;
 
@@ -67,35 +65,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Compose (accents): the next key picks a dead key or special character.
-    // Unlike the old Leader, unmatched keys pass through unchanged.
-    if (compose_pending && record->event.pressed) {
-        uint16_t kc = keycode;
-        if (IS_QK_MOD_TAP(keycode)) {
-            if (record->tap.count == 0) {
-                return true;  // mod-tap held as modifier: keep compose pending
-            }
-            kc = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
-        }
-        switch (kc) {
-            case KC_LCTL ... KC_RGUI:
-                return true;  // plain modifiers don't consume compose (allows shifted accents)
-            case KC_ESC:
-                compose_pending = false;
-                return false;  // cancel
-            case KC_E: compose_pending = false; tap_deadkey_code(DK_ACUTE); return false;
-            case KC_A: compose_pending = false; tap_deadkey_code(DK_GRAVE); return false;
-            case KC_U: compose_pending = false; tap_deadkey_code(DK_DIAE);  return false;
-            case KC_O: compose_pending = false; tap_deadkey_code(DK_CIRC);  return false;
-            case KC_C: compose_pending = false; tap_semkey_code(SK_CEDIL);  return false;
-            case KC_N: compose_pending = false; tap_deadkey_code(DK_TILDE); return false;
-            case KC_W: compose_pending = false; tap_semkey_code(SK_EURO);   return false;
-            default:
-                compose_pending = false;
-                return true;  // pass through unchanged
-        }
-    }
-
     // Process dead keys FIRST (before semantic keys and oneshots)
     if (!process_dead_key(keycode, record)) {
         return false;  // Dead key was handled
@@ -176,7 +145,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) {
         case COMBO_COMPOSE:
             if (pressed) {
-                compose_pending = true;
+                compose_arm();  // luz/compose module
             }
             break;
     }
