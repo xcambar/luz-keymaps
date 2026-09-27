@@ -38,12 +38,12 @@ keyboards/42keebs/cantor_pro/v3/{left,right}/keymaps -> ../../../../6x3_3/keymap
 
 Everything the variants share lives once in `keyboards/6x3_3/luz/`: `config.h` and `rules.mk`
 (each variant's are one-line includes), `luz.h` (the shared `keymap.c` body, included after
-`keymaps[]`), the layer/symbol/mod/combo headers, and `keymap_drawer/` (the diagram build:
-`keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`). The OS-aware features are QMK
+`keymaps[]`), and the layer/symbol/mod/combo headers. The variant pages and diagrams live with the spec,
+in `../../spec/variants/`. The OS-aware features are QMK
 community modules in `modules/luz/` (compose, dead_keys, semantic_keys, swapper,
 cmd_ctrl_morph, mod_latch, host_os), listed in each variant's `keymap.json` in that order,
 which is the order they see keys in. A variant holds only its `keymap.c` (`keymaps[]` +
-position-bound defines), `keymap.json`, `layouts/`, docs and diagram YAMLs.
+position-bound defines), `keymap.json`, `layouts/` and a short README.
 
 Local builds need the QMK CLI to see this userspace: `qmk config user.overlay_dir=<repo>/packages/qmk`.
 A stale overlay_dir hides it, and module generation then fails with "Module not found".

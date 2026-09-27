@@ -26,6 +26,9 @@ modules, and the rules executable tests. Nothing changes on the keyboard.
   repository root holds the specification. Local builds need
   `qmk config user.overlay_dir=<this repo>/packages/qmk` so the QMK CLI finds it
   ([QMK guide](./packages/qmk/README.md#building)).
+- **[Variant pages](./spec/variants/) and their diagrams moved to the spec,** from their YAML
+  sources to the SVGs and PDFs, with the diagram build in [`spec/diagrams/`](./spec/diagrams/).
+  They build without QMK; each QMK keymap keeps a short README with its build commands.
 
 ## v3.0.0 — Serpentine
 

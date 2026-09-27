@@ -1,7 +1,7 @@
 #!/bin/bash
 # Render the generic Luz BASE illustration (BASE.yml -> BASE.svg) in the same "Direction A"
 # look as the per-variant diagrams. This is a Luz-level asset (alphas left blank), so it lives
-# here rather than in a keymap's keymap_drawer/. The apply_design step is shared with
+# here rather than in a variant's directory. The apply_design step is shared with
 # build_pdf.sh via design.py. SVG only — no PNG/PDF/print.
 # Requires: keymap-drawer (via uvx).
 set -euo pipefail

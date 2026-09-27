@@ -21,7 +21,6 @@ keyboards/6x3_3/
     luz.h                     the shared keymap.c body (combos, key overrides, macros, Caps Word)
     layers.h symbols.h mods.h compose_combo.h custom_keycodes.h
     config.h rules.mk         tap-hold tuning and features; variants include these
-    keymap_drawer/            diagram build (build_pdf.sh <keymap>)
   keymaps/luz_for_*/          the variants
     keymap.c                  keymaps[] and the position-bound defines, then #include "luz/luz.h"
     keymap.json               the community modules, in processing order
@@ -93,12 +92,9 @@ uv run --project ../keyspec keyspec -c tests/keyspec.yaml run -t luz_for_enthium
 
 ## Diagrams
 
-```sh
-keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh luz_for_gallium
-```
-
-It renders each variant's `keymap_drawer/*.yml` into the SVGs its README uses, plus a colour
-PDF and a print PDF. The `build-keymap-pdf` command can first sync the YAMLs from `keymap.c`.
+The variant pages and their diagrams belong to the spec, in
+[`spec/variants/`](../../spec/variants/), and build without QMK. The `build-keymap-pdf` command
+can sync a variant's diagram YAMLs from its `keymap.c` first.
 
 ## Adding a variant
 
@@ -111,4 +107,5 @@ PDF and a print PDF. The `build-keymap-pdf` command can first sync the YAMLs fro
    on any symbol mod-taps.
 4. **Add it to `qmk.json`**, symlink it for Kaly42, and add targets to `tests/keyspec.yaml`
    with a `tests/scenarios/luz_for_<name>.yaml` of your own.
-5. **Run the tests.** `luz.yaml` must pass unchanged.
+5. **Document it** in `spec/variants/<name>/`: its page and its diagram YAMLs.
+6. **Run the tests.** `luz.yaml` must pass unchanged.

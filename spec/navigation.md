@@ -19,7 +19,7 @@ the sub-modes' *behaviour*. The commands that fill them are a default, not a req
   Dl⊙ / Tb⊙ hold for EXTEND_DEL / EXTEND_TABS    SWn = window switcher
 ```
 
-![EXTEND — navigation & editing](../packages/qmk/keyboards/6x3_3/luz/keymap_drawer/EXTEND.svg)
+![EXTEND — navigation & editing](diagrams/EXTEND.svg)
 
 ### The cluster (shape)
 
@@ -77,7 +77,7 @@ EXTEND_DEL                                  EXTEND_TABS
   (▽) the held trigger   ✗ blocked                                         ◅ ▻ history back/forward
 ```
 
-![Navigation modes](../packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/04_MODES.svg)
+![Navigation modes](variants/gallium/04_MODES.svg)
 
 ## Fills
 

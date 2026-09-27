@@ -124,7 +124,7 @@ adopting a *published* layout does not: Colemak Mod-DH's bottom row is fixed at
 `z x c d v` / `k h , . /`, which puts ≈13.3% of English letters under a bottom-row mod-tap,
 against ≈6.8% for Gallium East. The natural mitigation, a longer per-variant tapping term,
 is what the fixed 240 ms above forbids. This is recorded, not resolved (see
-[Luz for Colemak-DH](../packages/qmk/keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md)).
+[Luz for Colemak-DH](variants/colemak_dh/README.md)).
 
 ## Reference implementation (QMK)
 

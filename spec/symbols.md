@@ -79,7 +79,7 @@ Enthium mirrors the hands). It is free, but governed by these principles:
 └────┴────┴────┴────┴────┴────┘
 ```
 
-![SYMBOLS — numbers & symbols](../packages/qmk/keyboards/6x3_3/luz/keymap_drawer/SYMBOLS.svg)
+![SYMBOLS — numbers & symbols](diagrams/SYMBOLS.svg)
 
 ## Reference implementation (QMK)
 

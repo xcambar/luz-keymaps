@@ -6,10 +6,10 @@
 
 | Variant | Letters | Keymap |
 |---------|---------|--------|
-| **Luz for Gallium** | Gallium East | [`luz_for_gallium`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/README.md) |
-| **Luz for Enthium** | Enthium | [`luz_for_enthium`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_enthium/README.md) |
-| **Luz for Colemak-DH** | Colemak Mod-DH (matrix) | [`luz_for_colemak_dh`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_colemak_dh/README.md) |
-| **Luz for QWERTY** | QWERTY | [`luz_for_qwerty`](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_qwerty/README.md) |
+| **Luz for Gallium** | Gallium East | [`luz_for_gallium`](./spec/variants/gallium/README.md) |
+| **Luz for Enthium** | Enthium | [`luz_for_enthium`](./spec/variants/enthium/README.md) |
+| **Luz for Colemak-DH** | Colemak Mod-DH (matrix) | [`luz_for_colemak_dh`](./spec/variants/colemak_dh/README.md) |
+| **Luz for QWERTY** | QWERTY | [`luz_for_qwerty`](./spec/variants/qwerty/README.md) |
 
 ## What you get, out of the box
 
@@ -22,7 +22,7 @@
 - **A lightweight thumb cluster.** Plain Shift with Caps Word on double tap, layer holds, Enter, Space.
 - **OS-aware Cmd/Ctrl.** On the inner index column: `⌘C` on macOS, `Ctrl-C` on Linux.
 
-![BASE — the Luz frame](./packages/qmk/keyboards/6x3_3/luz/keymap_drawer/BASE.svg)
+![BASE — the Luz frame](./spec/diagrams/BASE.svg)
 
 ### Numbers & Symbols
 
@@ -30,21 +30,21 @@
 - **Digits on the left hand.** The symbols layer turns the left hand into a number pad: `1 2 3` across the home row with `0` beside them, `4 5 6` below, `7 8 9` above.
 - **Mods survive the layer switch.** Hold `Ctrl`, `Alt` or `Cmd`, then enter the symbols layer: the mods stay on until you leave it, freeing that hand for the number pad. Shift is the exception.
 
-![SYMBOLS — numbers & symbols](./packages/qmk/keyboards/6x3_3/luz/keymap_drawer/SYMBOLS.svg)
+![SYMBOLS — numbers & symbols](./spec/diagrams/SYMBOLS.svg)
 
 ### Navigation & Editing
 
 - **Inverted-T arrows, no modifiers.** The further a key sits from home, the further it moves: character, word, line, page.
 - **Left-hand modes.** Left-hand triggers turn the same keys into **select**, **delete** (by character, word or line), or **browser tab** controls.
 
-![EXTEND — navigation & editing](./packages/qmk/keyboards/6x3_3/luz/keymap_drawer/EXTEND.svg)
-![Navigation modes](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/04_MODES.svg)
+![EXTEND — navigation & editing](./spec/diagrams/EXTEND.svg)
+![Navigation modes](./spec/variants/gallium/04_MODES.svg)
 
 ### Compose — accents, without a layer of its own
 
 - **Accents via Compose.** Press `Shift` then `Space` (both thumbs, same keys on every variant), and the next key gets an accent: `é à ü ô ñ`, plus `ç` and `€`. Anything else is on AltGr.
 
-![Compose & diacritics](./packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap_drawer/05_DIACRITICS.svg)
+![Compose & diacritics](./spec/variants/gallium/05_DIACRITICS.svg)
 
 ---
 

@@ -1,20 +1,21 @@
 #!/bin/bash
 # Builds ALL diagram outputs:
 #   NN_*.svg             - color, committed, used by the README ("Direction A" styling)
-#   <keymap>.pdf         - color landscape A4 PDF for onscreen use
+#   luz_for_<variant>.pdf         - color landscape A4 PDF for onscreen use
 #   (PNGs are intermediate only: rendered into the temp dir for the PDFs, not committed)
-#   <keymap>_print.pdf   - ADDITIONAL printer-friendly PDF: white keys, black
+#   luz_for_<variant>_print.pdf   - ADDITIONAL printer-friendly PDF: white keys, black
 #                          strokes/text, flat (no paper/shadow), for B&W printers
 # Requires: keymap-drawer (via uvx), ImageMagick (convert), ghostscript (gs),
 #           Inkscape + the Source Sans 3 font (color diagrams only — see design.py).
 #
-# Usage: build_pdf.sh <keymap>     e.g. build_pdf.sh luz_for_gallium
-# Works on keyboards/6x3_3/keymaps/<keymap>/keymap_drawer/, from any directory.
+# Usage: build_pdf.sh <variant>     e.g. build_pdf.sh gallium
+# Works on spec/variants/<variant>/, from any directory.
 
 set -euo pipefail
 LUZ_DRAW="$(dirname "$(realpath "$0")")"
-KEYMAP_NAME="${1:?usage: build_pdf.sh <keymap>, e.g. luz_for_gallium}"
-cd "$LUZ_DRAW/../../keymaps/$KEYMAP_NAME/keymap_drawer"
+VARIANT="${1:?usage: build_pdf.sh <variant>, e.g. gallium}"
+cd "$LUZ_DRAW/../variants/$VARIANT"
+PDF_NAME="luz_for_$VARIANT"
 
 OUTDIR="$(mktemp -d)"
 trap 'rm -rf "$OUTDIR"' EXIT
@@ -92,7 +93,7 @@ echo "  make_diacritics_page.py -> 05_DIACRITICS.svg (+ PNGs for the PDFs)"
 # Keep the README "Reference tables" block in sync with the SAME data that drives the SVG
 # pages: each generator emits its table as markdown with --md, injected between the
 # <!-- BEGIN/END … TABLE --> markers so the searchable text twin never drifts from the diagram.
-README="../README.md"
+README="README.md"
 sync_readme_table() {   # $1 = marker tag, $2 = markdown file
     python3 - "$README" "$1" "$2" <<'PY'
 import re, sys
@@ -135,5 +136,5 @@ compose_pdf() {
 }
 
 echo "Composing PDFs..."
-compose_pdf color "${KEYMAP_NAME}.pdf" "#faf8f4"
-compose_pdf print "${KEYMAP_NAME}_print.pdf" white
+compose_pdf color "${PDF_NAME}.pdf" "#faf8f4"
+compose_pdf print "${PDF_NAME}_print.pdf" white

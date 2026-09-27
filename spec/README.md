@@ -83,6 +83,10 @@ Everything else (EXTEND, EXTEND_DEL, EXTEND_TABS, ADJUST, the SYMBOLS left half)
 identical in every variant. A variant that stays within the left column is a Luz variant,
 whatever firmware it is written for.
 
+The variants so far are documented in [`variants/`](variants/), each with its choices and
+its diagrams: [Gallium](variants/gallium/README.md), [Enthium](variants/enthium/README.md),
+[Colemak-DH](variants/colemak_dh/README.md) and [QWERTY](variants/qwerty/README.md).
+
 ## Chapters
 
 1. [The frame](frame.md): BASE's fixed structure, the envelope, the thumbs.

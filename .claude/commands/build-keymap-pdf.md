@@ -1,7 +1,7 @@
 ---
 name: build-keymap-pdf
 description: "Build keymap SVGs, PNGs, and PDF from YAML layer files, or sync YAMLs from keymap.c first"
-argument-hint: "[sync] [keymap-name]"
+argument-hint: "[sync] [variant]"
 allowed-tools:
   - Read
   - Glob
@@ -13,27 +13,27 @@ allowed-tools:
 
 # Build Keymap PDF
 
-You are a keymap visualization assistant for a QMK userspace project.
+You are a keymap visualization assistant for the Luz variant diagrams in `spec/variants/`.
 
 ## Arguments
 
 Parse `$ARGUMENTS` as follows:
-- If the first word is `sync`, enable sync mode and treat the next word as the keymap name
-- Otherwise, treat the first word as the keymap name
-- Default keymap name: `luz_for_gallium`
+- If the first word is `sync`, enable sync mode and treat the next word as the variant name
+- Otherwise, treat the first word as the variant name
+- Default variant: `gallium` (the others: `enthium`, `colemak_dh`, `qwerty`)
 
 ## Paths
 
-- Keymap source: `keyboards/6x3_3/keymaps/<keymap>/keymap.c`
-- YAML files: `keyboards/6x3_3/keymaps/<keymap>/keymap_drawer/`
-- Build script (shared): `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`
+- YAML files, SVGs and PDFs: `spec/variants/<variant>/`
+- Build script (shared): `spec/diagrams/build_pdf.sh <variant>`, from the repository root
+- Sync source (sync mode only): the QMK keymap, `packages/qmk/keyboards/6x3_3/keymaps/luz_for_<variant>/keymap.c`
 
 ## Mode 1: Build Only (default)
 
 When `sync` is NOT specified:
 
-1. Run `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>` from `packages/qmk`
-2. Report the output paths (SVGs, PNGs for README, and PDF)
+1. Run `spec/diagrams/build_pdf.sh <variant>`
+2. Report the output paths (SVGs and PDFs)
 
 ## Mode 2: Sync + Build
 
@@ -41,13 +41,13 @@ When `sync` IS specified:
 
 ### Step 1: Read keymap.c
 
-Read the keymap's `keymap.c` file. Extract:
+Read the variant's QMK `keymap.c` file. Extract:
 - The layer names from the `enum layers` block
 - The key assignments from each `[LAYER_NAME] = LAYOUT_split_3x6_3(...)` block
 
 ### Step 2: Read existing YAML config
 
-Read one existing YAML file from `keymap_drawer/` to extract:
+Read one existing YAML file from `spec/variants/<variant>/` to extract:
 - The `layout:` block (`qmk_keyboard` and `layout_name`)
 - The `draw_config:` block (styles, key_h, etc.)
 
@@ -55,7 +55,7 @@ These will be reused in all generated files.
 
 ### Step 3: Compare and update
 
-List existing `[0-9]*.yml` files in `keymap_drawer/`.
+List existing `[0-9]*.yml` files in `spec/variants/<variant>/`.
 
 For each layer found in keymap.c (in order of the enum):
 - Generate the numbered filename: `{NN}_{LAYER_NAME}.yml` where NN is the zero-padded index
@@ -66,7 +66,7 @@ For existing YAML files whose layer name is NOT in keymap.c, delete them.
 
 ### Step 4: Build
 
-Run `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>` from `packages/qmk`.
+Run `spec/diagrams/build_pdf.sh <variant>`.
 
 ## YAML file format
 

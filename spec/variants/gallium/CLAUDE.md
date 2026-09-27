@@ -2,18 +2,19 @@
 
 ## Purpose
 
-Keep the per-layer YAML files in `keymap_drawer/` in sync with `keymap.c`, then build
-the SVGs and the PDFs via the shared `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh`. The YAMLs follow the
+Keep the per-layer YAML files in this directory in sync with the QMK keymap
+(`packages/qmk/keyboards/6x3_3/keymaps/luz_for_gallium/keymap.c`), then build the SVGs and
+the PDFs via the shared `spec/diagrams/build_pdf.sh`. The YAMLs follow the
 keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 
 ## Workflow
 
-1. **Read configuration first** — `luz/rules.mk` (`COMBO_ENABLE`) and `luz/config.h` (shared, in `keyboards/6x3_3/luz/`).
+1. **Read configuration first** — `luz/rules.mk` (`COMBO_ENABLE`) and `luz/config.h` (shared, in `packages/qmk/keyboards/6x3_3/luz/`).
    Never ask for what these files state.
 2. **Parse `keymap.c`** — `enum layers`, the `LAYOUT_split_3x6_3` blocks, `key_combos[]`,
    and `enum custom_keycodes` (in `luz/custom_keycodes.h` and the `luz/` feature headers).
-3. **Update the per-layer YAMLs** in `keymap_drawer/` (format below).
-4. **Build**: run `keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh luz_for_gallium` — it iterates `[0-9]*.yml`,
+3. **Update the per-layer YAMLs** here (format below).
+4. **Build**: run `spec/diagrams/build_pdf.sh gallium` — it iterates `[0-9]*.yml`,
    producing one committed SVG per file plus merged landscape-A4 `luz_for_gallium.pdf` (color) +
    `luz_for_gallium_print.pdf` (flat B/W). PNGs are rendered only into the build temp dir as PDF
    intermediates (not committed). **Deps: Inkscape + Source Sans 3 font** (color path).
@@ -31,13 +32,13 @@ keymap-drawer spec (https://github.com/caksoylar/keymap-drawer).
 One self-contained YAML per *rendered* layer, numbered by render order:
 
 ```
-keymap_drawer/00_BASE.yml      # Layer 0  (Gallium East)
-keymap_drawer/01_SYMBOLS.yml   # Layer 3  (render order before EXTEND by choice)
-keymap_drawer/02_EXTEND.yml      # Layer 2  (EXTEND; sub-modes are in the README table, not on-key hints)
-keymap_drawer/03_ADJUST.yml    # Layer 5
+00_BASE.yml      # Layer 0  (Gallium East)
+01_SYMBOLS.yml   # Layer 3  (render order before EXTEND by choice)
+02_EXTEND.yml    # Layer 2  (EXTEND; sub-modes are in the README table, not on-key hints)
+03_ADJUST.yml    # Layer 5
 ```
 
-**Non-layer page:** `luz/keymap_drawer/make_modes_page.py` generates `04_MODES.svg` — a hand-built reference
+**Non-layer page:** `spec/diagrams/make_modes_page.py` generates `04_MODES.svg` — a hand-built reference
 table for the EXTEND navigation modes (mirrors the README "Navigation modes" section), styled
 to match the Direction A look (warm paper, the category palette, floating-shadow cards). It is
 **not** a keymap-drawer layer: `build_pdf.sh` runs the script after the `[0-9]*.yml` loop and
