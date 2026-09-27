@@ -212,6 +212,23 @@ scenarios:
     steps: [{down: 38}, {tap: 17}, {tap: 17}, {up: 38}]
     expect: [[LGUI], [LGUI, TAB], [LGUI], [LGUI, TAB], [LGUI], []]
 
+  - name: window switcher goes backwards with Shift, and ends on any other key
+    description: >
+      Shift doesn't end the switch (it adds itself to the next Tab); the arrow does, and GUI
+      is released before the arrow goes out.
+    steps: [{down: 38}, {tap: 17}, {down: 37}, {tap: 17}, {up: 37}, {tap: 20}, {up: 38}]
+    expect:
+      - [LGUI]
+      - [LGUI, TAB]
+      - [LGUI]
+      - [LGUI, LSFT]
+      - [LGUI, LSFT, TAB]
+      - [LGUI, LSFT]
+      - [LGUI]
+      - []
+      - [DOWN]
+      - []
+
   - name: layer lock keeps EXTEND after the thumb is released
     steps: [{down: 38}, {tap: 29}, {up: 38}, {tap: 20}]
     expect: [[DOWN], []]
