@@ -3,7 +3,7 @@
 //
 // Dead Keys: keycodes that tap the host's own dead key for an accent (acute, grave,
 // circumflex, diaeresis, tilde), so the next letter the host receives gets that accent.
-// The chord depends on the host OS (Luz's OS setting, for now):
+// The chord depends on the host OS (requires luz/host_os):
 //   macOS: Option + E / ` / I / U / N          (standard US layout)
 //   Linux: AltGr + ' / ` / ^ / " / ~           (EurKEY or US-intl with AltGr dead keys)
 

@@ -3,7 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include "cmd_ctrl_morph.h"
-#include "luz/os_control.h"  // Luz's OS setting, until luz/host_os exists
+#include "host_os.h"
 
 ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
@@ -21,7 +21,7 @@ bool process_record_cmd_ctrl_morph(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
     // Only the hold of a chosen mod-tap, and only off macOS (where GUI is already right).
-    if (get_os_platform() == OS_MacOS || record->tap.count || !IS_QK_MOD_TAP(keycode) ||
+    if (host_os_get() == HOST_OS_MACOS || record->tap.count || !IS_QK_MOD_TAP(keycode) ||
         !is_cmd_ctrl_morph_key(keycode)) {
         return true;
     }

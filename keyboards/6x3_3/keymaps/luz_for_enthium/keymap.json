@@ -5,6 +5,7 @@
         "luz/semantic_keys",
         "luz/swapper",
         "luz/cmd_ctrl_morph",
-        "luz/mod_latch"
+        "luz/mod_latch",
+        "luz/host_os"
     ]
 }

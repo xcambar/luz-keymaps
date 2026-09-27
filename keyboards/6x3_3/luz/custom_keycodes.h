@@ -32,13 +32,13 @@
 #define DK_CIRC       COMMUNITY_MODULE_DEAD_CIRC
 #define DK_DIAE       COMMUNITY_MODULE_DEAD_DIAE
 #define DK_TILDE      COMMUNITY_MODULE_DEAD_TILDE
+#define SW_OS         COMMUNITY_MODULE_HOST_OS_TOGGLE
+#define PR_OS         COMMUNITY_MODULE_HOST_OS_PRINT
 
-// Custom keycodes for the xavier keymap
+// Luz's own keycodes.
 enum custom_keycodes {
     MD_FENCE = SAFE_RANGE,   // Markdown code fence: types ```
     ARROW_OP,                // Tap: ->  Shift: =>
-    SW_OS,                   // Toggle OS platform (macOS/Linux)
-    PR_OS,                   // Type the current OS platform name
 
     // Symbol keycodes (expanded from SYMBOLS_LIST macro)
     SYMBOLS_LIST,

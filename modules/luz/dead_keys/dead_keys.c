@@ -3,7 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include "dead_keys.h"
-#include "luz/os_control.h"  // Luz's OS setting, until luz/host_os exists
+#include "host_os.h"
 
 ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
@@ -22,7 +22,7 @@ static const uint16_t deadkey_table[DK_LAST - DK_FIRST + 1][2] = {
 
 void tap_deadkey_code(uint16_t dk) {
     if (!IS_DEAD_KEY(dk)) return;
-    tap_code16(deadkey_table[dk - DK_FIRST][get_os_platform() == OS_MacOS ? 0 : 1]);
+    tap_code16(deadkey_table[dk - DK_FIRST][host_os_get() == HOST_OS_MACOS ? 0 : 1]);
 }
 
 bool process_record_dead_keys(uint16_t keycode, keyrecord_t *record) {

@@ -1,7 +1,7 @@
 # luz/semantic_keys
 
 One keycode per editing **intent**, sending whatever chord means it on the host OS (read
-from Luz's OS setting for now). Put `CM_COPY` on a key and it is ⌘C on macOS and Ctrl+C on Linux.
+from `luz/host_os`). Put `CM_COPY` on a key and it is ⌘C on macOS and Ctrl+C on Linux.
 
 | Keycode (`COMMUNITY_MODULE_SEMANTIC_…`) | Alias | macOS | Linux |
 |---|---|---|---|
@@ -27,4 +27,4 @@ from Luz's OS setting for now). Put `CM_COPY` on a key and it is ⌘C on macOS a
 API (`semantic_keys.h`): `tap_semkey_code(keycode)` taps a semantic key's chord from your
 own code.
 
-Requires Luz's OS setting (`keyboards/6x3_3/luz/os_control.h`), for now.
+Requires `luz/host_os`.

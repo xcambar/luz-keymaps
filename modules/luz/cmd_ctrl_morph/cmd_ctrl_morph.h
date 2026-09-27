@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 //
 // Cmd/Ctrl Morph: the shortcut modifier follows the host OS. Chosen GUI mod-taps hold GUI
-// on macOS and Ctrl everywhere else (Luz's OS setting, for now), so ⌘C and Ctrl+C are the same
+// on macOS and Ctrl everywhere else (requires luz/host_os), so ⌘C and Ctrl+C are the same
 // chord. Only the hold changes; the tap and the tap-hold decision are QMK's.
 //
 // The keymap picks which mod-taps morph:

@@ -12,12 +12,14 @@
 //     const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { ... };
 //     #include "luz/luz.h"
 //
-// Everything else (Compose, the combo and key-override tables, dead and semantic keys, the
-// swapper, the Cmd/Ctrl morph, the mod latch, Caps Word) is identical in every variant.
+// The OS-aware features are QMK community modules (modules/luz/*), wired by each variant's
+// keymap.json in this order, which is the order they see every key in:
+//     compose, dead_keys, semantic_keys, swapper, cmd_ctrl_morph, mod_latch, host_os
+// What stays here is Luz's own glue: the Compose combo, the symbol set's key overrides,
+// the ADJUST tri-layer, the macros and Caps Word.
 
 #pragma once
 
-#include "luz/os_control.h"
 #include "luz/compose_combo.h"
 #include "compose.h"   // luz/compose module: compose_arm()
 #include "luz/symbols.h"
@@ -77,19 +79,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 clear_mods();
                 send_string((saved & MOD_MASK_SHIFT) ? "=>" : "->");
                 set_mods(saved);
-            }
-            return false;
-
-        // System actions on ADJUST (moved off the old base-layer combos)
-        case SW_OS:
-            if (record->event.pressed) {
-                toggle_os_platform();
-            }
-            return false;
-
-        case PR_OS:
-            if (record->event.pressed) {
-                send_string(get_os_platform_name());
             }
             return false;
 

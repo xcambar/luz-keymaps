@@ -3,7 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include "semantic_keys.h"
-#include "luz/os_control.h"  // Luz's OS setting, until luz/host_os exists
+#include "host_os.h"
 
 ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
@@ -47,7 +47,7 @@ static const uint16_t semkey_table[SK_LAST - SK_FIRST + 1][2][SEQ_LEN] = {
 };
 
 static const uint16_t *sequence(uint16_t sk) {
-    return semkey_table[sk - SK_FIRST][get_os_platform() == OS_MacOS ? 0 : 1];
+    return semkey_table[sk - SK_FIRST][host_os_get() == HOST_OS_MACOS ? 0 : 1];
 }
 
 void tap_semkey_code(uint16_t sk) {

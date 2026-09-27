@@ -2,7 +2,7 @@
 
 Keys that tap the **host's own dead key** for an accent, so the next letter the host
 receives carries it (`CM_ACUT`, then `e`, gives `é`). The chord depends on the host OS,
-read from Luz's OS setting (for now; it becomes the `luz/host_os` module).
+read from `luz/host_os`.
 
 | Keycode (`COMMUNITY_MODULE_DEAD_…`) | Alias | Accent | macOS | Linux |
 |---|---|---|---|---|
@@ -18,4 +18,4 @@ layer carries dead keys (EurKEY, US-intl with AltGr dead keys).
 API (`dead_keys.h`): `tap_deadkey_code(keycode)` taps a dead key from your own code
 (`luz/compose` uses it).
 
-Requires Luz's OS setting (`keyboards/6x3_3/luz/os_control.h`), for now.
+Requires `luz/host_os`.

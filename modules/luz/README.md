@@ -7,12 +7,13 @@ use them, Luz or not. Each one is small, does one thing, and is configured from 
 
 | Module | What it does | Needs |
 |---|---|---|
-| [`luz/compose`](compose/) | Luz's Compose: arm it, and the next key picks an accent or character | `luz/dead_keys`, `luz/semantic_keys` |
-| [`luz/dead_keys`](dead_keys/) | Keys that tap the host's dead key for an accent (´ ` ^ ¨ ~) | Luz's OS setting (for now) |
-| [`luz/cmd_ctrl_morph`](cmd_ctrl_morph/) | GUI mod-taps that hold Ctrl off macOS, so ⌘C and Ctrl+C are one chord | Luz's OS setting (for now) |
+| [`luz/host_os`](host_os/) | A host-OS setting (macOS / Linux) the other modules read; keys to toggle and print it | – |
+| [`luz/semantic_keys`](semantic_keys/) | One key per editing intent (undo, copy, word left, delete line, new tab...), sending the right chord for the host OS | `host_os` |
+| [`luz/dead_keys`](dead_keys/) | Keys that tap the host's dead key for an accent (´ ` ^ ¨ ~) | `host_os` |
+| [`luz/compose`](compose/) | Luz's Compose: arm it, and the next key picks an accent or character | `dead_keys`, `semantic_keys` |
+| [`luz/cmd_ctrl_morph`](cmd_ctrl_morph/) | GUI mod-taps that hold Ctrl off macOS, so ⌘C and Ctrl+C are one chord | `host_os` |
 | [`luz/mod_latch`](mod_latch/) | While a chosen layer is up, a released modifier stays held until the layer ends | – |
 | [`luz/swapper`](swapper/) | Cmd-Tab on one key: the modifier stays held while you tap through windows | – |
-| [`luz/semantic_keys`](semantic_keys/) | One key per editing intent (undo, copy, word left, delete line, new tab...), sending the right chord for the host OS | Luz's OS setting (for now) |
 
 ## Using them
 
@@ -28,14 +29,23 @@ in your keymap's `keymap.json`:
         "luz/semantic_keys",
         "luz/swapper",
         "luz/cmd_ctrl_morph",
-        "luz/mod_latch"
+        "luz/mod_latch",
+        "luz/host_os"
     ]
 }
 ```
 
 **Order matters:** QMK hands every key press to the modules in the listed order, before
 your `process_record_user`, and a module that consumes a key hides it from the ones after
-it.
+it. The order above is the one Luz uses:
+- `compose` comes first, so it sees the key after it is armed;
+- `cmd_ctrl_morph` comes before `mod_latch`, so a morphed Ctrl can be latched.
+
+Take only the modules you want, keeping their relative order.
+
+Keycodes come with short `CM_*` aliases (`CM_COPY`, `CM_ACUT`, `CM_SWIN`...), or use the
+full `COMMUNITY_MODULE_*` names. Each module's README lists its keycodes, settings and
+API.
 
 ## Tests
 
