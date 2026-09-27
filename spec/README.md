@@ -19,6 +19,10 @@ Luz, on any firmware, and for anyone who wants the exact rules behind the
 Where an implementation and this document disagree, the implementation is wrong, or this
 document has a bug, which is then fixed here first.
 
+> [!NOTE]
+> These specs have been implemented in 4 variants, see the [variants/README](./variants/README.md)
+> file to find each variant's layout choices, the diagrams of all its layers, and a printable PDF.
+
 ## Reading this specification
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT** and **MAY** are to be
@@ -82,10 +86,6 @@ small and deliberately **enumerated**: a conformance checklist, not a vague lice
 Everything else (EXTEND, EXTEND_DEL, EXTEND_TABS, ADJUST, the SYMBOLS left half) is
 identical in every variant. A variant that stays within the left column is a Luz variant,
 whatever firmware it is written for.
-
-The variants so far are documented in [`variants/`](variants/), each with its choices and
-its diagrams: [Gallium](variants/gallium/README.md), [Enthium](variants/enthium/README.md),
-[Colemak-DH](variants/colemak_dh/README.md) and [QWERTY](variants/qwerty/README.md).
 
 ## Chapters
 
