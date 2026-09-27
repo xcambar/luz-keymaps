@@ -28,8 +28,8 @@
 //   - Chordal Hold (opposite-hands rule) arbitrates every mod-tap; thumbs are exempt.
 //   - LAYER-SCOPED MOD LATCH: while SYMBOLS is up, releasing a held modifier latches it
 //     for the life of the layer instead of releasing it, so Ctrl/Alt/Cmd + a SYMBOLS key
-//     needs only one hand. Shift is excluded and Layer Lock drops the latch. The rule
-//     and its rationale are in luz/mod_latch.h, included below.
+//     needs only one hand. Shift is excluded and Layer Lock drops the latch. Implemented
+//     by the luz/mod_latch community module (MOD_LATCH_LAYER in luz/config.h).
 //
 // Companion config (kept in each variant's config.h, identical, part of the contract):
 //   TAPPING_TERM 240, CHORDAL_HOLD, PERMISSIVE_HOLD, FLOW_TAP_TERM 150,
@@ -50,7 +50,6 @@
 
 #include <stdint.h>
 #include "quantum.h"
-#include "luz/mod_latch.h"
 
 // Chordal Hold handedness: 'L'=left, 'R'=right, '*'=exempt (thumbs). Purely
 // positional — identical for every variant, so it lives here, not in keymap.c.

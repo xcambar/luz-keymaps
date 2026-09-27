@@ -43,7 +43,7 @@ const key_override_t* key_overrides[] = {
     NULL
 };
 
-// Luz shared mod system: chordal_hold_layout (positional) and the mod latch
+// Luz shared mod system: chordal_hold_layout (positional)
 #include "luz/mods.h"
 #include "cmd_ctrl_morph.h"  // luz/cmd_ctrl_morph module
 
@@ -52,26 +52,15 @@ bool is_cmd_ctrl_morph_key(uint16_t keycode) {
     return keycode == LUZ_MORPH_L || keycode == LUZ_MORPH_R;
 }
 
-// The morph registers Ctrl by hand, so it hands the release to the latch (mod_latch.h).
-bool mod_latch_take(uint8_t mods) {
-    return luz_mod_latch_take(mods);
-}
+// luz/mod_latch: modifiers latch while SYMBOLS is up (MOD_LATCH_LAYER, luz/config.h).
+_Static_assert(MOD_LATCH_LAYER == SYMBOLS, "luz/config.h: MOD_LATCH_LAYER must be the SYMBOLS layer");
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // ADJUST tri-layer: active while both EXTEND and SYMBOLS are held
-    state = update_tri_layer_state(state, EXTEND, SYMBOLS, ADJUST);
-    // Layer-scoped mod latch: leaving SYMBOLS releases whatever it is holding (mod_latch.h)
-    luz_mod_latch_layer_state(state);
-    return state;
+    return update_tri_layer_state(state, EXTEND, SYMBOLS, ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Layer-scoped mod latch: under SYMBOLS, releasing a held mod-tap latches the mod for
-    // the life of the layer instead of releasing it (Shift excluded; see luz/mod_latch.h).
-    if (!luz_mod_latch_process(keycode, record)) {
-        return false;
-    }
-
     switch (keycode) {
         case MD_FENCE:
             if (record->event.pressed) {

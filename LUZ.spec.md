@@ -327,11 +327,11 @@ persists for the layer).
   module: on a non-macOS platform it registers Ctrl for the held index morph keys. The
   per-layout `LUZ_MORPH_L`/`LUZ_MORPH_R` keycodes are defined in `keymap.c` because they wrap
   that layout's index letter; `luz/luz.h` hands them to the module.
-- **The layer-scoped mod latch** — [`keyboards/6x3_3/luz/mod_latch.h`](keyboards/6x3_3/luz/mod_latch.h),
-  pulled in by `mods.h` because it is part of the mod contract rather than a variant feature. The
-  shared [`luz/luz.h`](keyboards/6x3_3/luz/luz.h) wires it with two calls: `luz_mod_latch_process()` in `process_record_user` (after
-  the morph) and `luz_mod_latch_layer_state()` in `layer_state_set_user` (after the tri-layer
-  update). The Layer Lock hook is defined in the header, since it is identical everywhere.
+- **The layer-scoped mod latch** — the [`luz/mod_latch`](modules/luz/mod_latch/) community
+  module, with `MOD_LATCH_LAYER` set to SYMBOLS in the shared
+  [`luz/config.h`](keyboards/6x3_3/luz/config.h). It is listed after the morph in each
+  variant's `keymap.json`, so a morphed Ctrl latches like any modifier, and it drops the latch
+  when Layer Lock locks SYMBOLS.
 - **Tap-hold tuning** (in the shared [`luz/config.h`](keyboards/6x3_3/luz/config.h), part of the contract): `TAPPING_TERM 240`,
   `CHORDAL_HOLD`, `PERMISSIVE_HOLD`, `FLOW_TAP_TERM 150`. Chordal Hold's opposite-hands rule
   prevents same-hand roll misfires; Flow Tap suppresses holds during fast typing bursts.

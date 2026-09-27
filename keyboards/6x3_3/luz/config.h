@@ -38,3 +38,7 @@
 // Shift key. NOTE: do NOT also enable CAPS_WORD_INVERT_ON_SHIFT — its handle_shift swallows
 // the Shift release once Caps Word is on, leaving Shift stuck down.
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
+// luz/mod_latch: modifiers latch while SYMBOLS is up. SYMBOLS is layer 2 (luz/layers.h;
+// luz/luz.h asserts the two agree).
+#define MOD_LATCH_LAYER 2
