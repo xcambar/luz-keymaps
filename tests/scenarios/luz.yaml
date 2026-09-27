@@ -27,6 +27,20 @@ scenarios:
       - {report: [LALT], at: 240}
       - []
 
+  - name: the right morph holds right Ctrl on Linux
+    steps: [{down: 18}, {wait: 300}, {down: 38}, {tap: 20}, {up: 38}, {up: 18}]
+    expect: [{report: [RCTL], at: 240}, [RCTL, DOWN], [RCTL], []]
+
+  - name: the right morph holds right GUI on macOS
+    setup: macos
+    steps: [{down: 18}, {wait: 300}, {down: 38}, {tap: 20}, {up: 38}, {up: 18}]
+    expect: [{report: [RGUI], at: 240}, [RGUI, DOWN], [RGUI], []]
+
+  - name: the bottom-row GUI does not morph
+    description: Only the inner-index pair follows the OS; 27 holds GUI on Linux too.
+    steps: [{down: 27}, {wait: 300}, {down: 38}, {tap: 20}, {up: 38}, {up: 27}]
+    expect: [{report: [LGUI], at: 240}, [LGUI, DOWN], [LGUI], []]
+
   # ── EXTEND: navigation, selection, editing ───────────────────────────────────
 
   - name: EXTEND arrows
