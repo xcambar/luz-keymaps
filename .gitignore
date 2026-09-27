@@ -19,3 +19,7 @@ compile_commands.json
 __pycache__/
 keyspec.xml
 .venv/
+
+# Local tool state
+.claude/settings.json
+.playwright-mcp/
