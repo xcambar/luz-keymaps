@@ -22,8 +22,10 @@ modules, and the rules executable tests. Nothing changes on the keyboard.
   with every shared layer given position by position. `TUNING.md` is
   [its open-questions chapter](./spec/tuning.md).
 - **[QMK guide](./packages/qmk/README.md)** for the reference implementations.
-- Local builds need `qmk config user.overlay_dir=<this repo>` so the QMK CLI finds the
-  modules ([QMK guide](./packages/qmk/README.md#building)).
+- **The QMK userspace moved to [`packages/qmk`](./packages/qmk/README.md),** beside keyspec; the
+  repository root holds the specification. Local builds need
+  `qmk config user.overlay_dir=<this repo>/packages/qmk` so the QMK CLI finds it
+  ([QMK guide](./packages/qmk/README.md#building)).
 
 ## v3.0.0 — Serpentine
 

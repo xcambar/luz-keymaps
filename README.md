@@ -80,7 +80,7 @@ I have run these keymaps on:
 | STM32 | **Kaly42** (`kaly/kaly42`) |
 | RP2040 | **Cantor Pro v3** (`42keebs/cantor_pro/v3/left`) |
 
-Build a single target, or all of them at once:
+Build a single target, or all of them at once, from `packages/qmk`:
 
 ```bash
 qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
@@ -95,7 +95,7 @@ See the [QMK guide](./packages/qmk/README.md) for setup, tests and diagrams.
 - [Open questions](./spec/tuning.md) — four tap-hold settings left deliberately open, with the arguments on each side.
 - The variant READMEs (linked in the table at the top) — diagrams and per-layout specifics.
 - [The QMK guide](./packages/qmk/README.md) — how the reference implementations map onto the spec, and how to add one.
-- [`modules/luz/`](./packages/qmk/modules/luz/README.md) and [keyspec](./packages/keyspec/README.md) — the reusable pieces.
+- [The community modules](./packages/qmk/modules/luz/README.md) and [keyspec](./packages/keyspec/README.md) — the reusable pieces.
 
 ## Inspiration
 

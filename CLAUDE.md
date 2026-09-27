@@ -1,116 +1,13 @@
-# QMK Userspace
+# Luz
 
 Luz is documentation-first: the normative definition is the specification in `spec/`
-(chapters, RFC 2119 wording, positions 0-41). The QMK keymaps here are reference
-implementations of it; when code and spec disagree, fix the code (or fix the spec first,
-deliberately). `docs/qmk.md` maps spec chapters to code.
+(chapters, RFC 2119 wording, positions 0-41). Implementations follow it; when code and spec
+disagree, fix the code (or fix the spec first, deliberately).
 
-## Project Structure
-
-Two keyboards share the same `split_3x6_3` (6 columns, 3 rows + 3 thumb keys per side) layout.
-
-### Keyboards
-- **Kaly42** (`kaly/kaly42`) - STM32-based split keyboard
-- **Cantor Pro v3** (`42keebs/cantor_pro/v3/left`) - RP2040-based split keyboard by 42Keebs
-
-### Shared Keymaps
-Keymaps live in `keyboards/6x3_3/keymaps/` and are symlinked to both keyboards:
-
-```
-keyboards/6x3_3/keymaps/
-├── luz_for_gallium/   # Luz for Gallium (the daily driver; dead keys, semantic keys, symbols, etc.)
-├── luz_for_enthium/   # Luz for Enthium (same Luz conventions on the Enthium layout)
-├── luz_for_colemak_dh/ # Luz for Colemak-DH (matrix); the portability test variant
-├── luz_for_qwerty/    # Luz for QWERTY; the framework demo — Luz conventions, familiar alphas
-└── zen/               # Minimal QWERTY keymap (3 layers: BASE, CODE, NAV)
-
-# kaly symlinks each keymap individually:
-keyboards/kaly/kaly42/keymaps/
-├── luz_for_gallium -> ../../../6x3_3/keymaps/luz_for_gallium
-├── luz_for_enthium -> ../../../6x3_3/keymaps/luz_for_enthium
-├── luz_for_colemak_dh -> ../../../6x3_3/keymaps/luz_for_colemak_dh
-├── luz_for_qwerty -> ../../../6x3_3/keymaps/luz_for_qwerty
-└── zen -> ../../../6x3_3/keymaps/zen
-
-# cantor symlinks the WHOLE keymaps dir (so it picks up all of them):
-keyboards/42keebs/cantor_pro/v3/{left,right}/keymaps -> ../../../../6x3_3/keymaps
-```
-
-Everything the variants share lives once in `keyboards/6x3_3/luz/`: `config.h` and `rules.mk`
-(each variant's are one-line includes), `luz.h` (the shared `keymap.c` body, included after
-`keymaps[]`), the layer/symbol/mod/combo headers, and `keymap_drawer/` (the diagram build:
-`keyboards/6x3_3/luz/keymap_drawer/build_pdf.sh <keymap>`). The OS-aware features are QMK
-community modules in `modules/luz/` (compose, dead_keys, semantic_keys, swapper,
-cmd_ctrl_morph, mod_latch, host_os), listed in each variant's `keymap.json` in that order,
-which is the order they see keys in. A variant holds only its `keymap.c` (`keymaps[]` +
-position-bound defines), `keymap.json`, `layouts/`, docs and diagram YAMLs.
-
-Local builds need the QMK CLI to see this userspace: `qmk config user.overlay_dir=<repo>`.
-A stale overlay_dir hides it, and module generation then fails with "Module not found".
-
-Behavioural tests live in `tests/` (scenarios + `keyspec.yaml`) and run with keyspec, the
-standalone tool in `packages/keyspec/`: `uv run --project packages/keyspec keyspec -c tests/keyspec.yaml run`.
-
-Note: QMK forbids hyphens in keymap names, so the dirs use underscores (`luz_for_gallium`),
-while the human-facing name is "Luz for Gallium".
-
-### Build Configuration (`qmk.json`)
-```json
-{
-    "userspace_version": "1.1",
-    "build_targets": [
-        ["kaly/kaly42", "luz_for_gallium"],
-        ["kaly/kaly42", "zen"],
-        ["kaly/kaly42", "luz_for_enthium"],
-        ["kaly/kaly42", "luz_for_colemak_dh"],
-        ["kaly/kaly42", "luz_for_qwerty"],
-        ["42keebs/cantor_pro/v3/left", "luz_for_gallium"],
-        ["42keebs/cantor_pro/v3/right", "luz_for_gallium"],
-        ["42keebs/cantor_pro/v3/left", "zen"],
-        ["42keebs/cantor_pro/v3/right", "zen"],
-        ["42keebs/cantor_pro/v3/left", "luz_for_enthium"],
-        ["42keebs/cantor_pro/v3/right", "luz_for_enthium"],
-        ["42keebs/cantor_pro/v3/left", "luz_for_colemak_dh"],
-        ["42keebs/cantor_pro/v3/right", "luz_for_colemak_dh"],
-        ["42keebs/cantor_pro/v3/left", "luz_for_qwerty"],
-        ["42keebs/cantor_pro/v3/right", "luz_for_qwerty"]
-    ]
-}
-```
-
-## Compile Commands
-
-Build all targets:
-```sh
-qmk userspace-compile
-```
-
-Build a single target:
-```sh
-qmk compile -kb kaly/kaly42 -km luz_for_gallium
-qmk compile -kb kaly/kaly42 -km zen
-qmk compile -kb 42keebs/cantor_pro/v3/left -km luz_for_gallium
-qmk compile -kb 42keebs/cantor_pro/v3/left -km zen
-qmk compile -kb kaly/kaly42 -km luz_for_colemak_dh
-qmk compile -kb kaly/kaly42 -km luz_for_qwerty
-```
-
-## Key Position Reference (split_3x6_3)
-
-```
-┌────┬────┬────┬────┬────┬────┐       ┌────┬────┬────┬────┬────┬────┐
-│  0 │  1 │  2 │  3 │  4 │  5 │       │  6 │  7 │  8 │  9 │ 10 │ 11 │
-├────┼────┼────┼────┼────┼────┤       ├────┼────┼────┼────┼────┼────┤
-│ 12 │ 13 │ 14 │ 15 │ 16 │ 17 │       │ 18 │ 19 │ 20 │ 21 │ 22 │ 23 │
-├────┼────┼────┼────┼────┼────┤       ├────┼────┼────┼────┼────┼────┤
-│ 24 │ 25 │ 26 │ 27 │ 28 │ 29 │       │ 30 │ 31 │ 32 │ 33 │ 34 │ 35 │
-└────┴────┴────┴────┴────┴────┘       └────┴────┴────┴────┴────┴────┘
-                  ┌────┬────┬────┐ ┌────┬────┬────┐
-                  │ 36 │ 37 │ 38 │ │ 39 │ 40 │ 41 │
-                  └────┴────┴────┘ └────┴────┴────┘
-```
-
-## Notes
-- The Cantor Pro keyboard definition files live in the main QMK firmware repo (`~/qmk_firmware/keyboards/42keebs/cantor_pro/`), not in this userspace
-- The Cantor Pro v3 uses RP2040 with double-tap reset bootloader
-- Firmware output files are `.bin` for Kaly42 and `.uf2` for Cantor Pro
+- `spec/`: the specification.
+- `packages/qmk/`: the QMK userspace, holding the reference implementations, the community
+  modules (`modules/luz/`) and the conformance scenarios (`tests/`). Open that directory to
+  work on the firmware; its `CLAUDE.md` covers the code, builds and tests.
+- `packages/keyspec/`: the behavioural test runner, a standalone package with no Luz
+  assumptions.
+- `README.md` is the tour; `CHANGELOG.md`'s `## v…` sections become the GitHub release notes.
