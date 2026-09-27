@@ -4,7 +4,7 @@
 # the letter-keyed behaviours: tap-hold rolls, Caps Word, Compose). The behaviour shared by
 # every variant is in luz.yaml, which runs alongside this file.
 # Keys are Luz positions (0-41, CLAUDE.md); outputs are the USB reports the host
-# receives. Format: packages/keyCLAUDE.md.
+# receives. Format: packages/keyspec/README.md.
 #
 # Position cheat-sheet (BASE):
 #    0 ·   1 Q   2 W   3 E   4 R   5 T   |   6 Y   7 U   8 I   9 O  10 P  11 ·
