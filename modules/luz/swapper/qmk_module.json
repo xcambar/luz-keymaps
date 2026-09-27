@@ -1,0 +1,14 @@
+{
+    "module_name": "Swapper",
+    "maintainer": "xcambar",
+    "license": "GPL-2.0-or-later",
+    "url": "https://github.com/xcambar/luz-keymaps/tree/main/modules/luz/swapper",
+    "keycodes": [
+        {
+            "key": "COMMUNITY_MODULE_SWAPPER",
+            "aliases": [
+                "CM_SWIN"
+            ]
+        }
+    ]
+}

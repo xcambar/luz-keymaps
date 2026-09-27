@@ -1,0 +1,16 @@
+[project]
+name = "keyspec"
+version = "0.1.0"
+description = "Behavioural tests for keyboard firmware: press keys by position, check the USB reports"
+readme = "README.md"
+license = "GPL-2.0-or-later"
+requires-python = ">=3.10"
+dependencies = ["pyyaml>=6"]
+keywords = ["qmk", "keyboard", "firmware", "testing", "keymap"]
+
+[project.scripts]
+keyspec = "keyspec.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
