@@ -54,6 +54,152 @@ scenarios:
     steps: [{down: 37}, {down: 38}, {tap: 27}, {up: 38}, {up: 37}]
     expect: [[LSFT], [LCTL], [LCTL, X], [LCTL], []]   # Shift swapped for Ctrl in one report
 
+  - name: EXTEND commands on Linux
+    description: Undo, Paste, line begin/end.
+    steps: [{down: 38}, {tap: 25}, {tap: 28}, {tap: 7}, {tap: 9}, {up: 38}]
+    expect:
+      - [LCTL]
+      - [LCTL, Z]
+      - [LCTL]
+      - []
+      - [LCTL]
+      - [LCTL, V]
+      - [LCTL]
+      - []
+      - [HOME]
+      - []
+      - [END]
+      - []
+
+  - name: EXTEND commands on macOS
+    setup: macos
+    steps: [{down: 38}, {tap: 25}, {tap: 28}, {tap: 7}, {tap: 9}, {up: 38}]
+    expect:
+      - [LGUI]
+      - [LGUI, Z]
+      - [LGUI]
+      - []
+      - [LGUI]
+      - [LGUI, V]
+      - [LGUI]
+      - []
+      - [LGUI]
+      - [LGUI, LEFT]
+      - [LGUI]
+      - []
+      - [LGUI]
+      - [LGUI, RGHT]
+      - [LGUI]
+      - []
+
+  - name: a single-chord command is held while its key is held
+    description: >
+      Line begin (Home on Linux) stays down for as long as the key, so it repeats. EXTEND is
+      held past the tapping term first, so the timing is the same whether thumb 38 is a plain
+      layer key or a layer-tap (Enthium).
+    steps: [{down: 38}, {wait: 300}, {down: 7}, {wait: 500}, {up: 7}, {up: 38}]
+    expect:
+      - {report: [HOME], at: 301}
+      - {report: [], at: 802}
+
+  - name: delete sub-layer on Linux
+    description: >
+      Word forward is one chord; the line deletions are two steps (select to the line's
+      edge, then Backspace), tapped in sequence.
+    steps: [{down: 38}, {down: 14}, {tap: 33}, {tap: 7}, {tap: 9}, {up: 14}, {up: 38}]
+    expect:
+      - [LCTL]
+      - [LCTL, DEL]
+      - [LCTL]
+      - []
+      - [LSFT]
+      - [LSFT, HOME]
+      - [LSFT]
+      - []
+      - [BSPC]
+      - []
+      - [LSFT]
+      - [LSFT, END]
+      - [LSFT]
+      - []
+      - [BSPC]
+      - []
+
+  - name: delete sub-layer on macOS
+    setup: macos
+    steps: [{down: 38}, {down: 14}, {tap: 31}, {tap: 7}, {tap: 9}, {up: 14}, {up: 38}]
+    expect:
+      - [LALT]
+      - [LALT, BSPC]
+      - [LALT]
+      - []
+      - [LGUI]
+      - [LGUI, BSPC]
+      - [LGUI]
+      - []
+      - [LCTL]
+      - [LCTL, K]
+      - [LCTL]
+      - []
+
+  - name: tab sub-layer on Linux
+    description: Close, reopen, previous and next tab, history back and forward.
+    steps: [{down: 38}, {down: 15}, {tap: 20}, {tap: 32}, {tap: 19}, {tap: 21}, {tap: 31}, {tap: 33}, {up: 15}, {up: 38}]
+    expect:
+      - [LCTL]
+      - [LCTL, W]
+      - [LCTL]
+      - []
+      - [LCTL, LSFT]
+      - [LCTL, LSFT, T]
+      - [LCTL, LSFT]
+      - []
+      - [LCTL]
+      - [LCTL, PGUP]
+      - [LCTL]
+      - []
+      - [LCTL]
+      - [LCTL, PGDN]
+      - [LCTL]
+      - []
+      - [LALT]
+      - [LALT, LEFT]
+      - [LALT]
+      - []
+      - [LALT]
+      - [LALT, RGHT]
+      - [LALT]
+      - []
+
+  - name: tab sub-layer on macOS
+    setup: macos
+    steps: [{down: 38}, {down: 15}, {tap: 20}, {tap: 32}, {tap: 19}, {tap: 21}, {tap: 31}, {tap: 33}, {up: 15}, {up: 38}]
+    expect:
+      - [LGUI]
+      - [LGUI, W]
+      - [LGUI]
+      - []
+      - [LGUI, LSFT]
+      - [LGUI, LSFT, T]
+      - [LGUI, LSFT]
+      - []
+      - [LGUI, LALT]
+      - [LGUI, LALT, LEFT]
+      - [LGUI, LALT]
+      - []
+      - [LGUI, LALT]
+      - [LGUI, LALT, RGHT]
+      - [LGUI, LALT]
+      - []
+      - [LGUI]
+      - [LGUI, LBRC]
+      - [LGUI]
+      - []
+      - [LGUI]
+      - [LGUI, RBRC]
+      - [LGUI]
+      - []
+
   - name: delete sub-layer deletes a word backwards
     steps: [{down: 38}, {down: 14}, {tap: 31}, {up: 14}, {up: 38}]
     expect: [[LCTL], [LCTL, BSPC], [LCTL], []]
