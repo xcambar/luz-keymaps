@@ -10,7 +10,8 @@ This specification is **the** definition of Luz. It is written for people implem
 Luz, on any firmware, and for anyone who wants the exact rules behind the
 [README](../README.md)'s tour. Implementations follow it; they do not define it:
 
-- The QMK keymaps in this repository are **reference implementations**.
+- The QMK keymaps in this repository are **reference implementations**
+  ([guide](../docs/qmk.md)).
 - The [QMK community modules](../modules/luz/) package the parts others may want to reuse.
 - The [scenarios](../tests/scenarios/) are **executable conformance tests** (see
   [Conformance](conformance.md)).
