@@ -20,8 +20,14 @@
 #define X_REST(first, ...) __VA_ARGS__
 
 #include "luz/semantic_keys.h"
-#include "luz/dead_keys.h"
 #include "luz/symbols.h"
+
+// Luz's names for the luz/dead_keys module's keycodes (its own aliases are CM_*).
+#define DK_ACUTE      COMMUNITY_MODULE_DEAD_ACUTE
+#define DK_GRAVE      COMMUNITY_MODULE_DEAD_GRAVE
+#define DK_CIRC       COMMUNITY_MODULE_DEAD_CIRC
+#define DK_DIAE       COMMUNITY_MODULE_DEAD_DIAE
+#define DK_TILDE      COMMUNITY_MODULE_DEAD_TILDE
 
 // Custom keycodes for the xavier keymap
 enum custom_keycodes {
@@ -33,9 +39,6 @@ enum custom_keycodes {
 
     // Semantic keys (expanded from SEMANTIC_KEYS_LIST macro)
     SEMANTIC_KEYS_LIST,
-
-    // Dead keys (expanded from DEAD_KEYS_LIST macro)
-    DEAD_KEYS_LIST,
 
     // Symbol keycodes (expanded from SYMBOLS_LIST macro)
     SYMBOLS_LIST,

@@ -22,7 +22,6 @@
 #include "luz/compose_combo.h"
 #include "compose.h"   // luz/compose module: compose_arm()
 #include "luz/semantic_keys.h"
-#include "luz/dead_keys.h"
 #include "luz/symbols.h"
 
 #ifndef LUZ_VARIANT_MODTAP_SHIFTS
@@ -65,11 +64,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Process dead keys FIRST (before semantic keys and oneshots)
-    if (!process_dead_key(keycode, record)) {
-        return false;  // Dead key was handled
-    }
-
     // Process semantic keys (platform-independent editing commands)
     if (!process_semkey(keycode, record)) {
         return false;  // Semantic key was handled

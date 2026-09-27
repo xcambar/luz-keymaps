@@ -20,6 +20,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 ```
 
-Requires `tap_deadkey_code()` and `tap_semkey_code()`: Luz's dead and semantic keys, for
-now still in `keyboards/6x3_3/luz/`. List it **first** in `keymap.json`, so it sees the next
-key before anything else.
+Requires `luz/dead_keys`, and `tap_semkey_code()` (Luz's semantic keys, for now still in
+`keyboards/6x3_3/luz/`). List it **first** in `keymap.json`, so it sees the next key before
+anything else.

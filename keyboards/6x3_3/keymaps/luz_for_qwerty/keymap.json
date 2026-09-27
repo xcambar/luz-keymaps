@@ -1,5 +1,6 @@
 {
     "modules": [
-        "luz/compose"
+        "luz/compose",
+        "luz/dead_keys"
     ]
 }

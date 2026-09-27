@@ -15,4 +15,3 @@ VPATH += $(QMK_USERSPACE)/keyboards/6x3_3
 SRC += $(LUZ_DIR)/os_control.c
 SRC += $(LUZ_DIR)/swapper.c
 SRC += $(LUZ_DIR)/semantic_keys.c
-SRC += $(LUZ_DIR)/dead_keys.c
