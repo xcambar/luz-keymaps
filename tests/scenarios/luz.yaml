@@ -322,6 +322,14 @@ scenarios:
     steps: [{down: 38}, {down: 39}, {tap: 19}, {up: 39}, {up: 38}]
     expect: [{consumer: MUTE}, {consumer: none}]
 
+  - name: ADJUST types the OS setting's name
+    steps: [{down: 38}, {down: 39}, {tap: 25}, {up: 39}, {up: 38}]
+    expect: [[LSFT], [LSFT, L], [LSFT], [], [I], [], [N], [], [U], [], [X], []]
+
+  - name: switching the OS twice comes back to Linux
+    steps: [{down: 38}, {down: 39}, {tap: 13}, {tap: 13}, {up: 39}, {tap: 27}, {up: 38}]
+    expect: [[LCTL], [LCTL, C], [LCTL], []]
+
   - name: switching the OS on ADJUST changes the shortcuts
     steps: [{down: 38}, {down: 39}, {tap: 13}, {up: 39}, {tap: 27}, {up: 38}]   # OS⇄, then copy
     expect: [[LGUI], [LGUI, C], [LGUI], []]
