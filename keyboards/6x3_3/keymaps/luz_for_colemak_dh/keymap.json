@@ -2,6 +2,7 @@
     "modules": [
         "luz/compose",
         "luz/dead_keys",
-        "luz/semantic_keys"
+        "luz/semantic_keys",
+        "luz/swapper"
     ]
 }

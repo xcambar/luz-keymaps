@@ -26,6 +26,7 @@
 #define SK_TABRIGHT   COMMUNITY_MODULE_SEMANTIC_TAB_RIGHT
 #define SK_HISTPRV    COMMUNITY_MODULE_SEMANTIC_HISTORY_PREV
 #define SK_HISTNXT    COMMUNITY_MODULE_SEMANTIC_HISTORY_NEXT
+#define SW_WIN        COMMUNITY_MODULE_SWAPPER
 #define DK_ACUTE      COMMUNITY_MODULE_DEAD_ACUTE
 #define DK_GRAVE      COMMUNITY_MODULE_DEAD_GRAVE
 #define DK_CIRC       COMMUNITY_MODULE_DEAD_CIRC
@@ -34,8 +35,7 @@
 
 // Custom keycodes for the xavier keymap
 enum custom_keycodes {
-    SW_WIN = SAFE_RANGE,     // Switch window (cmd-tab)
-    MD_FENCE,                // Markdown code fence: types ```
+    MD_FENCE = SAFE_RANGE,   // Markdown code fence: types ```
     ARROW_OP,                // Tap: ->  Shift: =>
     SW_OS,                   // Toggle OS platform (macOS/Linux)
     PR_OS,                   // Type the current OS platform name

@@ -13,4 +13,3 @@ LUZ_DIR := $(QMK_USERSPACE)/keyboards/6x3_3/luz
 VPATH += $(QMK_USERSPACE)/keyboards/6x3_3
 
 SRC += $(LUZ_DIR)/os_control.c
-SRC += $(LUZ_DIR)/swapper.c

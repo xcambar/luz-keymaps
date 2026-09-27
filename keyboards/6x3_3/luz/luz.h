@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include "luz/swapper.h"
 #include "luz/os_control.h"
 #include "luz/compose_combo.h"
 #include "compose.h"   // luz/compose module: compose_arm()
@@ -51,9 +50,6 @@ const key_override_t* key_overrides[] = {
 static const uint16_t morph_l = LUZ_MORPH_L;
 static const uint16_t morph_r = LUZ_MORPH_R;
 
-// Swapper state
-static bool sw_win_active = false;
-
 layer_state_t layer_state_set_user(layer_state_t state) {
     // ADJUST tri-layer: active while both EXTEND and SYMBOLS are held
     state = update_tri_layer_state(state, EXTEND, SYMBOLS, ADJUST);
@@ -63,9 +59,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Update swapper
-    update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
-
     // OS morph: inner-index mod-taps (LUZ_MORPH_L/R) use GUI on macOS, Ctrl on Linux
     LUZ_MORPH_KEY(keycode, record, morph_l, KC_LCTL);
     LUZ_MORPH_KEY(keycode, record, morph_r, KC_RCTL);
@@ -115,17 +108,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         LUZ_VARIANT_MODTAP_SHIFTS
     }
     return true;
-}
-
-// Define keys that should be ignored by swapper (allows changing direction)
-bool is_swapper_ignored_key(uint16_t keycode) {
-    switch (keycode) {
-        case KC_LSFT:
-        case KC_RSFT:
-            return true;
-        default:
-            return false;
-    }
 }
 
 // Combo event handler
