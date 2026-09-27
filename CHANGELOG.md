@@ -4,6 +4,27 @@ Each `## v…` section below is published as the body of the matching GitHub rel
 `v*` tag is pushed, CI extracts that section (heading → release title, text → release notes)
 and attaches the built firmware. Newest release on top.
 
+## Unreleased
+
+**Luz is documented first.** The specification stands on its own, independent of any
+firmware; the QMK keymaps are its reference implementations, their features reusable QMK
+modules, and the rules executable tests. Nothing changes on the keyboard.
+
+- **[keyspec](./packages/keyspec/README.md):** a firmware-agnostic behavioural test tool for
+  keymaps (press keys by position, check the USB reports), with a QMK runner.
+- **[Conformance scenarios](./spec/conformance.md):** a shared suite every variant passes, plus
+  per-variant files, run in CI on both boards, and on every pull request.
+- **[QMK community modules](./modules/luz/README.md):** compose, dead_keys, semantic_keys,
+  swapper, cmd_ctrl_morph, mod_latch and host_os, reusable in any keymap. The variants now
+  load them through `keymap.json`.
+- **[The specification](./spec/README.md)** replaces `LUZ.spec.md`. It is split into chapters
+  (frame, layers, modifiers, symbols, Compose, navigation, conformance), written as behaviour,
+  with every shared layer given position by position. `TUNING.md` is
+  [its open-questions chapter](./spec/tuning.md).
+- **[QMK guide](./docs/qmk.md)** for the reference implementations.
+- Local builds need `qmk config user.overlay_dir=<this repo>` so the QMK CLI finds the
+  modules ([QMK guide](./docs/qmk.md#building)).
+
 ## v3.0.0 — Serpentine
 
 **`crafted` is now Luz.** What was one keymap is a *framework*: a set of shared conventions —
