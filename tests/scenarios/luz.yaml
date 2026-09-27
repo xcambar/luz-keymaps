@@ -293,6 +293,18 @@ scenarios:
     steps: [{down: 17}, {wait: 300}, {down: 39}, {up: 17}, {tap: 14}, {up: 39}]
     expect: [[LGUI], [LGUI, 1], [LGUI], []]
 
+  - name: modifiers don't latch on EXTEND
+    description: The latch is SYMBOLS-only; on EXTEND a released modifier is released.
+    steps: [{down: 26}, {wait: 300}, {down: 38}, {wait: 300}, {up: 26}, {tap: 20}, {up: 38}]
+    expect: [{report: [LALT], at: 240}, [], [DOWN], []]
+
+  - name: the latch survives a trip through ADJUST
+    description: >
+      ADJUST is SYMBOLS plus EXTEND; leaving it for SYMBOLS keeps the latch, which only ends
+      with SYMBOLS.
+    steps: [{down: 26}, {wait: 300}, {down: 39}, {up: 26}, {down: 38}, {wait: 300}, {up: 38}, {tap: 14}, {up: 39}]
+    expect: [{report: [LALT], at: 240}, [LALT, 1], [LALT], []]
+
   - name: locking SYMBOLS drops the latched modifier
     description: >
       Layer Lock turns the chord into a mode, so the latch lets Alt go the moment SYMBOLS
