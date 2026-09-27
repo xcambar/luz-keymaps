@@ -19,8 +19,8 @@ the same expectations. Running them is the job of a **runner adapter**. The firs
 and the clock, and records every report.
 
 Combos, layers, tap-hold (permissive hold, Chordal Hold, Flow Tap), Caps Word, key
-overrides, macros, custom `process_record_user` logic: if it changes what the host
-receives, a scenario can pin it down.
+overrides, macros, custom `process_record_user` logic, community modules: if it changes
+what the host receives, a scenario can pin it down.
 
 ## Quick start
 
@@ -143,7 +143,7 @@ runners:
 ### qmk
 
 It builds the keymap's `keymap.c`, `config.h` and `rules.mk` (and so everything they
-include, userspace code too) against QMK core for the host,
+include: userspace code, `keymap.json` community modules) against QMK core for the host,
 inside QMK's GoogleTest harness.
 
 - **Simulated:** the matrix and the clock. Positions map to the keyboard's own matrix

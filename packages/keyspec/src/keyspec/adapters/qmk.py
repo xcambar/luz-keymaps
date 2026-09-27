@@ -108,6 +108,23 @@ class QmkAdapter:
     def _keyboard_info(self) -> dict:
         return json.loads(self._qmk("info", "-kb", self.target.keyboard, "-f", "json"))
 
+    def _community_modules(self, keymap_dir: Path) -> list[str]:
+        """Generate QMK's community-module glue for the keymap's keymap.json, the way a
+        firmware build does (builddefs/build_keyboard.mk), and return the module dirs."""
+        keymap_json = keymap_dir / "keymap.json"
+        if not keymap_json.is_file() or not json.loads(keymap_json.read_text()).get("modules"):
+            return []
+        kb = self.target.keyboard
+        for gen, out in (("generate-community-modules-rules-mk", "community_rules.mk"),
+                         ("generate-community-modules-h", "community_modules.h"),
+                         ("generate-community-modules-c", "community_modules.c"),
+                         ("generate-community-modules-introspection-h", "community_modules_introspection.h"),
+                         ("generate-community-modules-introspection-c", "community_modules_introspection.c")):
+            extra = ["--escape"] if out.endswith(".mk") else []
+            self._qmk(gen, "-kb", kb, "--quiet", *extra, "--output", str(self.test_dir / out), str(keymap_json))
+        rules = (self.test_dir / "community_rules.mk").read_text()
+        return re.findall(r"^COMMUNITY_MODULE_PATHS \+= (.+)$", rules, re.M)
+
     def _keymap_dir(self) -> Path:
         for base in (self.userspace, self.qmk_home):
             d = base / "keyboards" / self.target.keyboard
@@ -158,6 +175,7 @@ class QmkAdapter:
         if self.test_dir.exists():
             shutil.rmtree(self.test_dir)
         self.test_dir.mkdir(parents=True)
+        modules = self._community_modules(keymap_dir)
 
         # LAYOUT macro: the keyboard's own position -> matrix mapping, KC_NO elsewhere.
         args = [f"k{i:02d}" for i in range(len(layout))]
@@ -173,6 +191,8 @@ class QmkAdapter:
             '#define QMK_KEYBOARD_H "quantum.h"',
             f"#define {layout_name}({', '.join(args)}) {{ {body} }}",
         ]
+        # Same order as a firmware build: community modules' config.h, then the keymap's.
+        config += [f'#include "{m}/config.h"' for m in modules if Path(m, "config.h").is_file()]
         if (keymap_dir / "config.h").is_file():
             config.append(f'#include "{keymap_dir / "config.h"}"')
         config += [f"#undef {m}" for m in self.undefine]
@@ -182,6 +202,9 @@ class QmkAdapter:
         mk += [f"{f.upper()}_ENABLE = yes" for f in REPORT_FEATURES if features.get(f)]
         if (keymap_dir / "rules.mk").is_file():
             mk.append(f"include {keymap_dir / 'rules.mk'}")
+        if modules:
+            mk.append(f"include {self.test_dir / 'community_rules.mk'}")
+            mk.append(f"SRC += {self.test_dir / 'community_modules.c'}")
         # Keymap rules may add header dirs to VPATH (for firmware builds, VPATH is on the
         # include path). The test build doesn't do that, so pass them as -I explicitly.
         mk.append("KEYSPEC_INC := $(addprefix -I,$(VPATH))")
